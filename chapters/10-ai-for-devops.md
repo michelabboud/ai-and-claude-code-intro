@@ -16,37 +16,37 @@ This chapter brings everything together with practical applications of AI in the
 ├────────────────────────────────────────────────────────────────────────────┤
 │                                                                            │
 │  08:00 - Morning Check                                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐   │
-│  │  > claude "Summarize overnight alerts and their status"            │   │
-│  │  > claude "Any failed deployments in the last 12 hours?"           │   │
-│  │  > claude "What's the current system health across clusters?"      │   │
-│  └────────────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │  > claude "Summarize overnight alerts and their status"            │    │
+│  │  > claude "Any failed deployments in the last 12 hours?"           │    │
+│  │  > claude "What's the current system health across clusters?"      │    │
+│  └────────────────────────────────────────────────────────────────────┘    │
 │                                                                            │
 │  09:00 - Code Review                                                       │
-│  ┌────────────────────────────────────────────────────────────────────┐   │
-│  │  > claude "Review the PRs assigned to me, highlight security"      │   │
-│  │  > claude "Check this Terraform change for cost implications"      │   │
-│  └────────────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │  > claude "Review the PRs assigned to me, highlight security"      │    │
+│  │  > claude "Check this Terraform change for cost implications"      │    │
+│  └────────────────────────────────────────────────────────────────────┘    │
 │                                                                            │
 │  11:00 - Incident Response                                                 │
-│  ┌────────────────────────────────────────────────────────────────────┐   │
-│  │  > claude "Analyze these error logs and identify root cause"       │   │
-│  │  > claude "What changed in the last hour that might cause this?"   │   │
-│  │  > claude "Generate a hotfix for the connection pool issue"        │   │
-│  └────────────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │  > claude "Analyze these error logs and identify root cause"       │    │
+│  │  > claude "What changed in the last hour that might cause this?"   │    │
+│  │  > claude "Generate a hotfix for the connection pool issue"        │    │
+│  └────────────────────────────────────────────────────────────────────┘    │
 │                                                                            │
 │  14:00 - Infrastructure Work                                               │
-│  ┌────────────────────────────────────────────────────────────────────┐   │
-│  │  > claude "Create Terraform for new microservice deployment"       │   │
-│  │  > claude "Add monitoring and alerting for the new service"        │   │
-│  │  > claude "Write the Kubernetes manifests"                         │   │
-│  └────────────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │  > claude "Create Terraform for new microservice deployment"       │    │
+│  │  > claude "Add monitoring and alerting for the new service"        │    │
+│  │  > claude "Write the Kubernetes manifests"                         │    │
+│  └────────────────────────────────────────────────────────────────────┘    │
 │                                                                            │
 │  16:00 - Documentation                                                     │
-│  ┌────────────────────────────────────────────────────────────────────┐   │
-│  │  > claude "Update the runbook for the auth service"               │   │
-│  │  > claude "Generate architecture diagram from the codebase"        │   │
-│  └────────────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │  > claude "Update the runbook for the auth service"                │    │
+│  │  > claude "Generate architecture diagram from the codebase"        │    │
+│  └────────────────────────────────────────────────────────────────────┘    │
 │                                                                            │
 └────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -964,34 +964,34 @@ continuous_optimization:
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Daily Tasks:                                                  │
-│  • "Summarize overnight alerts"                               │
-│  • "Review PRs for security issues"                           │
-│  • "Analyze these logs for root cause"                        │
+│  • "Summarize overnight alerts"                                │
+│  • "Review PRs for security issues"                            │
+│  • "Analyze these logs for root cause"                         │
 │                                                                │
 │  Infrastructure:                                               │
-│  • "Create Terraform for [requirement]"                       │
-│  • "Generate K8s manifests for [service]"                     │
-│  • "Write Ansible playbook for [task]"                        │
+│  • "Create Terraform for [requirement]"                        │
+│  • "Generate K8s manifests for [service]"                      │
+│  • "Write Ansible playbook for [task]"                         │
 │                                                                │
 │  CI/CD:                                                        │
-│  • "Create GitHub Actions for [workflow]"                     │
-│  • "Add security scanning to pipeline"                        │
-│  • "Generate deployment procedure"                            │
+│  • "Create GitHub Actions for [workflow]"                      │
+│  • "Add security scanning to pipeline"                         │
+│  • "Generate deployment procedure"                             │
 │                                                                │
 │  Incidents:                                                    │
-│  • "Analyze this error and suggest fix"                       │
-│  • "What changed that might cause this?"                      │
-│  • "Generate incident timeline"                               │
+│  • "Analyze this error and suggest fix"                        │
+│  • "What changed that might cause this?"                       │
+│  • "Generate incident timeline"                                │
 │                                                                │
 │  Documentation:                                                │
-│  • "Create runbook for [service]"                             │
-│  • "Generate architecture documentation"                      │
-│  • "Update README with current state"                         │
+│  • "Create runbook for [service]"                              │
+│  • "Generate architecture documentation"                       │
+│  • "Update README with current state"                          │
 │                                                                │
 │  Shell Aliases:                                                │
-│  alias ai='claude'                                            │
-│  alias aireview='claude "Review: "'                           │
-│  alias aidebug='claude "Debug: "'                             │
+│  alias ai='claude'                                             │
+│  alias aireview='claude "Review: "'                            │
+│  alias aidebug='claude "Debug: "'                              │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
