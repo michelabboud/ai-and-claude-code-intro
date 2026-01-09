@@ -67,15 +67,15 @@ Think of it this way:
 ### By Capability Level
 
 ```
-┌─────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────────┐
 │                    ARTIFICIAL GENERAL INTELLIGENCE (AGI)     │
 │                    Human-level intelligence across all tasks │
 │                    Status: THEORETICAL / NOT YET ACHIEVED    │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
                               ▲
                               │ (Future goal)
                               │
-┌─────────────────────────────────────────────────────────────┐
+┌──────────────────────────────────────────────────────────────┐
 │                    NARROW AI (ANI)                           │
 │                    Excellent at specific tasks               │
 │                    Status: THIS IS WHAT WE HAVE TODAY        │
@@ -85,7 +85,7 @@ Think of it this way:
 │   • DALL-E/Midjourney - Image generation                     │
 │   • GitHub Copilot - Code completion                         │
 │   • Tesla Autopilot - Driving assistance                     │
-└─────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ### By Learning Approach
@@ -244,18 +244,18 @@ code_generation:
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                         AIOps                                   │
+│                         AIOps                                  │
 │        (AI for IT Operations / DevOps)                         │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐            │
-│  │  Monitoring │  │  Analysis   │  │  Action     │            │
-│  │             │  │             │  │             │            │
-│  │ Collect     │  │ AI finds    │  │ Auto-       │            │
-│  │ metrics,    │→ │ patterns,   │→ │ remediate   │            │
-│  │ logs,       │  │ anomalies,  │  │ or alert    │            │
-│  │ traces      │  │ root causes │  │ humans      │            │
-│  └─────────────┘  └─────────────┘  └─────────────┘            │
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐             │
+│  │  Monitoring │  │  Analysis   │  │  Action     │             │
+│  │             │  │             │  │             │             │
+│  │ Collect     │  │ AI finds    │  │ Auto-       │             │
+│  │ metrics,    │→ │ patterns,   │→ │ remediate   │             │
+│  │ logs,       │  │ anomalies,  │  │ or alert    │             │
+│  │ traces      │  │ root causes │  │ humans      │             │
+│  └─────────────┘  └─────────────┘  └─────────────┘             │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -430,14 +430,14 @@ resource "aws_autoscaling_group" "app" {
 ```
 ┌────────────────────────────────────────────────────────────┐
 │                                                            │
-│   AI excels at (80% of value):                            │
+│   AI excels at (80% of value):                             │
 │   ├── Repetitive pattern recognition                       │
 │   ├── Processing large amounts of data                     │
 │   ├── Generating boilerplate code                          │
 │   ├── Summarizing information                              │
 │   └── Suggesting solutions from known patterns             │
 │                                                            │
-│   You excel at (the critical 20%):                        │
+│   You excel at (the critical 20%):                         │
 │   ├── Strategic decisions                                  │
 │   ├── Understanding business context                       │
 │   ├── Handling novel situations                            │
@@ -529,13 +529,13 @@ In Chapter 2, we'll dive deep into **Large Language Models (LLMs)** - the techno
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│                 AI QUICK REFERENCE                          │
+│                 AI QUICK REFERENCE                         │
 ├────────────────────────────────────────────────────────────┤
 │                                                            │
 │  AI Types:                                                 │
 │  • ML = Learning from data                                 │
 │  • Deep Learning = Neural networks with many layers        │
-│  • LLM = AI trained on text, generates language           │
+│  • LLM = AI trained on text, generates language            │
 │                                                            │
 │  Key Terms:                                                │
 │  • Model = The trained AI system                           │
