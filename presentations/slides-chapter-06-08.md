@@ -25,6 +25,9 @@ style: |
 
 **Your AI Pair Programmer for the Terminal**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # What is Claude Code?
@@ -371,3 +374,12 @@ Break into steps, refine each
 - Chapter 6: [claude-code-fundamentals.md](../chapters/06-claude-code-fundamentals.md)
 - Chapter 7: [claude-code-intermediate.md](../chapters/07-claude-code-intermediate.md)
 - Chapter 8: [claude-code-professional.md](../chapters/08-claude-code-professional.md)
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+**License:** CC BY-NC 4.0 | © 2026 Michel Abboud

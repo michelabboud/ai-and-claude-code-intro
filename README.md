@@ -4,7 +4,7 @@
 
 **Author:** Michel Abboud
 **Created with:** Claude AI (Anthropic)
-**Copyright:** © 2025 Michel Abboud. All rights reserved.
+**Copyright:** © 2026 Michel Abboud. All rights reserved.
 
 ---
 
@@ -268,7 +268,7 @@ Please note: Contributions will be subject to the same CC BY-NC 4.0 license.
 │                                                                │
 │     Your DevOps Expertise  +  AI Tools  =  Superpowers        │
 │                                                                │
-│                    © 2025 Michel Abboud                        │
+│                    © 2026 Michel Abboud                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```

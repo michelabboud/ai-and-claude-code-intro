@@ -25,6 +25,9 @@ style: |
 
 **The Technology Behind Modern AI**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # What is an LLM?
@@ -301,3 +304,12 @@ shellcheck ai-script.sh
 
 - Full chapter: [chapters/02-understanding-llms-and-tokens.md](../chapters/02-understanding-llms-and-tokens.md)
 - Token counter: tiktoken library
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+**License:** CC BY-NC 4.0 | © 2026 Michel Abboud

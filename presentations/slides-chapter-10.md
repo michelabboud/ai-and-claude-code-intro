@@ -25,6 +25,9 @@ style: |
 
 **Tips, Workflows, and Real-World Usage**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # AI-Augmented Day
@@ -337,3 +340,20 @@ You now understand:
 - All chapters: [chapters/](../chapters/)
 - Claude: [claude.ai](https://claude.ai)
 - MCP: [modelcontextprotocol.io](https://modelcontextprotocol.io)
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+This entire guide and presentation series was created
+with the assistance of AI - demonstrating the very
+capabilities it teaches!
+
+**License:** Creative Commons BY-NC 4.0
+Free for personal and educational use.
+Commercial use requires written permission.
+
+© 2026 Michel Abboud

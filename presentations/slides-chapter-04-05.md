@@ -25,6 +25,9 @@ style: |
 
 **Navigating Models and Meeting Claude**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # Major AI Companies
@@ -242,3 +245,12 @@ Use for: dashboard screenshots, error images, architecture diagrams
 - Chapter 4: [ai-models-landscape.md](../chapters/04-ai-models-landscape.md)
 - Chapter 5: [introduction-to-claude.md](../chapters/05-introduction-to-claude.md)
 - Claude: [claude.ai](https://claude.ai)
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+**License:** CC BY-NC 4.0 | © 2026 Michel Abboud

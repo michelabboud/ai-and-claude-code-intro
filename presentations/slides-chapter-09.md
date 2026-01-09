@@ -25,6 +25,9 @@ style: |
 
 **The Universal Connector for AI**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # What is MCP?
@@ -373,3 +376,12 @@ claude
 - Full chapter: [chapters/09-mcp-deep-dive.md](../chapters/09-mcp-deep-dive.md)
 - MCP Spec: [modelcontextprotocol.io](https://modelcontextprotocol.io)
 - Official servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers)
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+**License:** CC BY-NC 4.0 | © 2026 Michel Abboud

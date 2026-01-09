@@ -25,6 +25,9 @@ style: |
 
 **Mastering AI Communication**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # What is a Prompt?
@@ -357,3 +360,12 @@ ai_debug "Connection refused to port 5432"
 ## Resources
 
 - Full chapter: [chapters/03-the-art-of-prompting.md](../chapters/03-the-art-of-prompting.md)
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+**License:** CC BY-NC 4.0 | © 2026 Michel Abboud

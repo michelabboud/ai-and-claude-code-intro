@@ -28,6 +28,9 @@ style: |
 
 **For DevOps Engineers**
 
+*By Michel Abboud | Created with Claude AI*
+*© 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
 # What is AI?
@@ -212,3 +215,19 @@ ai_analyze_logs /var/log/app.log \
 - Full guide: [chapters/01-introduction-to-ai.md](../chapters/01-introduction-to-ai.md)
 - Anthropic: [anthropic.com](https://anthropic.com)
 - Claude: [claude.ai](https://claude.ai)
+
+---
+
+# Credits
+
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+
+This presentation was created with the assistance of AI,
+demonstrating the capabilities discussed in this guide.
+
+**License:** CC BY-NC 4.0
+Free for personal/educational use.
+Commercial use requires permission.
+
+© 2026 Michel Abboud
