@@ -41,22 +41,22 @@ Prerequisites:
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  FOUNDATIONS (Chapters 1-3)                                    │
-│  ├── What is AI and how it works                              │
-│  ├── Understanding LLMs and tokens                            │
-│  └── The art of writing effective prompts                     │
+│  ├── What is AI and how it works                               │
+│  ├── Understanding LLMs and tokens                             │
+│  └── The art of writing effective prompts                      │
 │                                                                │
 │  AI ECOSYSTEM (Chapters 4-5)                                   │
-│  ├── AI models landscape and providers                        │
-│  └── Introduction to Claude                                   │
+│  ├── AI models landscape and providers                         │
+│  └── Introduction to Claude                                    │
 │                                                                │
 │  CLAUDE CODE (Chapters 6-8)                                    │
-│  ├── Basic: Installation and core usage                       │
-│  ├── Intermediate: Configuration and workflows                │
-│  └── Professional: Agents, skills, sub-agents                 │
+│  ├── Basic: Installation and core usage                        │
+│  ├── Intermediate: Configuration and workflows                 │
+│  └── Professional: Agents, skills, sub-agents                  │
 │                                                                │
 │  ADVANCED (Chapters 9-10)                                      │
-│  ├── MCP (Model Context Protocol) deep dive                   │
-│  └── AI for DevOps: Practical applications                    │
+│  ├── MCP (Model Context Protocol) deep dive                    │
+│  └── AI for DevOps: Practical applications                     │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -271,7 +271,7 @@ See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for full details on:
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │                                                                │
-│     Your DevOps Expertise  +  AI Tools  =  Superpowers        │
+│     Your DevOps Expertise  +  AI Tools  =  Superpowers         │
 │                                                                │
 │                    © 2026 Michel Abboud                        │
 │                                                                │
