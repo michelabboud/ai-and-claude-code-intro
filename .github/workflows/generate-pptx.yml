@@ -1,0 +1,73 @@
+name: Generate PowerPoint Presentations
+
+on:
+  # Manual trigger from GitHub Actions UI
+  workflow_dispatch:
+    inputs:
+      commit_files:
+        description: 'Commit PPTX files to repository'
+        required: false
+        default: 'false'
+        type: choice
+        options:
+          - 'true'
+          - 'false'
+
+# Grant write permissions for committing files
+permissions:
+  contents: write
+
+jobs:
+  generate-pptx:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Marp CLI
+        run: npm install -g @marp-team/marp-cli
+
+      - name: Clean and create output directory
+        run: |
+          # Remove old PPTX files to ensure fresh generation
+          rm -rf presentations/pptx
+          mkdir -p presentations/pptx
+
+      - name: Convert presentations to PPTX
+        run: |
+          echo "Converting Marp markdown to PowerPoint..."
+
+          for file in presentations/slides-*.md; do
+            if [ -f "$file" ]; then
+              filename=$(basename "$file" .md)
+              echo "Converting: $file -> presentations/pptx/${filename}.pptx"
+              marp "$file" --pptx -o "presentations/pptx/${filename}.pptx"
+            fi
+          done
+
+          echo "Conversion complete!"
+          ls -la presentations/pptx/
+
+      - name: Upload PPTX as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: powerpoint-presentations
+          path: presentations/pptx/*.pptx
+          retention-days: 30
+
+      - name: Commit PPTX files to repository
+        if: ${{ inputs.commit_files == 'true' }}
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add presentations/pptx/*.pptx
+          git diff --staged --quiet || git commit -m "Update generated PowerPoint presentations"
+          git push

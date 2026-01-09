@@ -1,0 +1,165 @@
+# Chapter 8: Claude Code Professional
+# Hooks Configuration
+#
+# Hooks allow you to run custom commands at specific points
+# in Claude Code's workflow.
+
+hooks:
+  # =========================================================
+  # PRE-EDIT HOOKS
+  # Run before any file is modified
+  # =========================================================
+  pre_edit:
+    - command: "cp {{file}} {{file}}.backup"
+      description: "Create backup before editing"
+      enabled: true
+
+    - command: |
+        if echo "{{file}}" | grep -q "k8s/prod"; then
+          echo "WARNING: Modifying production Kubernetes files!"
+          read -p "Continue? (yes/no): " confirm
+          [ "$confirm" = "yes" ] || exit 1
+        fi
+      description: "Warn before modifying production K8s files"
+      enabled: true
+
+  # =========================================================
+  # POST-EDIT HOOKS
+  # Run after files are modified
+  # =========================================================
+  post_edit:
+    # Format JavaScript/TypeScript files
+    - command: "prettier --write {{file}}"
+      condition: "{{file}} matches *.js or *.ts or *.jsx or *.tsx"
+      description: "Format JavaScript/TypeScript files"
+
+    # Format Python files
+    - command: "black {{file}}"
+      condition: "{{file}} matches *.py"
+      description: "Format Python files"
+
+    # Format Terraform files
+    - command: "terraform fmt {{file}}"
+      condition: "{{file}} matches *.tf"
+      description: "Format Terraform files"
+
+    # Validate Kubernetes manifests
+    - command: "kubeval {{file}}"
+      condition: "{{file}} matches k8s/*.yaml"
+      description: "Validate Kubernetes manifests"
+
+    # Lint Dockerfiles
+    - command: "hadolint {{file}}"
+      condition: "{{file}} matches *Dockerfile*"
+      description: "Lint Dockerfiles"
+
+    # Scan for secrets
+    - command: "gitleaks detect --source={{file}} --no-git"
+      description: "Scan for secrets in modified files"
+      enabled: true
+
+  # =========================================================
+  # PRE-COMMAND HOOKS
+  # Run before shell commands are executed
+  # =========================================================
+  pre_command:
+    # Log all commands
+    - command: "echo '{{command}}' >> ~/.claude/command.log"
+      description: "Log all commands"
+
+    # Confirm destructive terraform commands
+    - command: |
+        if echo "{{command}}" | grep -q "terraform destroy"; then
+          echo "WARNING: Destructive terraform command detected!"
+          read -p "Are you sure? (yes/no): " confirm
+          [ "$confirm" = "yes" ] || exit 1
+        fi
+      description: "Confirm destructive terraform commands"
+
+    # Block dangerous commands
+    - command: |
+        if echo "{{command}}" | grep -qE "rm -rf /|sudo rm"; then
+          echo "BLOCKED: Dangerous command not allowed"
+          exit 1
+        fi
+      description: "Block dangerous commands"
+
+  # =========================================================
+  # POST-COMMAND HOOKS
+  # Run after shell commands complete
+  # =========================================================
+  post_command:
+    # Notify on long-running command completion
+    - command: |
+        if [ "$EXECUTION_TIME" -gt 60 ]; then
+          osascript -e 'display notification "Command completed" with title "Claude Code"'
+        fi
+      description: "Notify on long-running commands"
+      condition: "{{platform}} == darwin"
+
+  # =========================================================
+  # POST-TEST HOOKS
+  # Run after test commands
+  # =========================================================
+  post_test:
+    - command: "coverage report --fail-under=80"
+      description: "Check coverage threshold"
+
+    - command: "coverage html && open htmlcov/index.html"
+      description: "Generate and open coverage report"
+      condition: "{{platform}} == darwin"
+
+  # =========================================================
+  # SESSION HOOKS
+  # Run at session start/end
+  # =========================================================
+  session_start:
+    - command: "git status"
+      description: "Show git status on start"
+
+    - command: "git fetch --quiet"
+      description: "Fetch latest from remote"
+
+    - command: |
+        echo "=== Project Summary ==="
+        echo "Branch: $(git branch --show-current)"
+        echo "Last commit: $(git log -1 --oneline)"
+        echo "Uncommitted changes: $(git status --short | wc -l)"
+      description: "Show project summary"
+
+  session_end:
+    - command: "git diff --stat"
+      description: "Show changes made in session"
+
+    - command: |
+        CHANGES=$(git status --short | wc -l)
+        if [ "$CHANGES" -gt 0 ]; then
+          echo "WARNING: You have $CHANGES uncommitted changes"
+        fi
+      description: "Warn about uncommitted changes"
+
+# =========================================================
+# INFRASTRUCTURE SAFETY HOOKS
+# Specific hooks for infrastructure changes
+# =========================================================
+infrastructure_safety:
+  pre_apply:
+    - command: |
+        echo "Running terraform plan before apply..."
+        terraform plan -out=tfplan
+        echo "Review the plan above. Proceed? (yes/no)"
+        read confirm
+        [ "$confirm" = "yes" ] || exit 1
+      description: "Require plan review before apply"
+
+  post_apply:
+    - command: "terraform show -json > terraform_state.json"
+      description: "Export state for audit"
+
+    - command: |
+        # Send notification to Slack
+        curl -X POST "$SLACK_WEBHOOK" \
+          -H 'Content-Type: application/json' \
+          -d "{\"text\": \"Terraform applied by $USER on $(date)\"}"
+      description: "Notify Slack of infrastructure changes"
+      condition: "{{SLACK_WEBHOOK}} is set"

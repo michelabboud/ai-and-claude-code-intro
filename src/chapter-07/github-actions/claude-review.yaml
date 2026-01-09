@@ -1,0 +1,105 @@
+# Chapter 7: GitHub Actions Claude Code Review Integration
+# This workflow runs AI-assisted code review on pull requests
+
+name: Claude Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  claude-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for diff
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Claude Code
+        run: npm install -g @anthropic-ai/claude-code
+
+      - name: Get changed files
+        id: changed-files
+        run: |
+          # Get list of changed files
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD | tr '\n' ' ')
+          echo "files=$CHANGED_FILES" >> $GITHUB_OUTPUT
+
+          # Get diff for review
+          git diff origin/${{ github.base_ref }}...HEAD > /tmp/pr-diff.txt
+
+      - name: Run Claude Review
+        id: review
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          # Run Claude Code review
+          claude --non-interactive --output /tmp/review.md "
+          Review the following code changes for a pull request:
+
+          Changed files: ${{ steps.changed-files.outputs.files }}
+
+          Diff:
+          $(cat /tmp/pr-diff.txt | head -c 100000)
+
+          Please review for:
+          1. Security vulnerabilities (OWASP Top 10)
+          2. Performance issues
+          3. Error handling
+          4. Code style and best practices
+          5. Test coverage gaps
+
+          Format your response as:
+          ## Summary
+          Brief overview of the changes
+
+          ## Issues Found
+          ### Critical
+          - Issue with file:line reference
+
+          ### Major
+          - Issue with file:line reference
+
+          ### Minor
+          - Suggestions
+
+          ## Positive Observations
+          What was done well
+
+          ## Recommendations
+          Action items for the author
+          "
+
+      - name: Post Review Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const review = fs.readFileSync('/tmp/review.md', 'utf8');
+
+            // Post as PR comment
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: '## 🤖 Claude Code Review\n\n' + review + '\n\n---\n*Automated review by Claude Code*'
+            });
+
+      - name: Check for Critical Issues
+        run: |
+          # Fail if critical issues found
+          if grep -q "### Critical" /tmp/review.md && grep -A 20 "### Critical" /tmp/review.md | grep -q "^-"; then
+            echo "::error::Critical issues found in code review"
+            exit 1
+          fi
