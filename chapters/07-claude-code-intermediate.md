@@ -299,25 +299,25 @@ Claude Code is also available in browser at **claude.ai** with enhanced capabili
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Features:                                                     │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  • Visual file explorer                                  │ │
-│  │  • Syntax-highlighted code editing                       │ │
-│  │  • Diff view for changes                                 │ │
-│  │  • Project upload capability                             │ │
-│  │  • No local installation required                        │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Visual file explorer                                  │  │
+│  │  • Syntax-highlighted code editing                       │  │
+│  │  • Diff view for changes                                 │  │
+│  │  • Project upload capability                             │  │
+│  │  • No local installation required                        │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 │  Access:                                                       │
-│  1. Go to claude.ai                                           │
+│  1. Go to claude.ai                                            │
 │  2. Start a new conversation                                   │
-│  3. Upload project files or connect repository                │
-│  4. Use Claude Code features in the browser                   │
+│  3. Upload project files or connect repository                 │
+│  4. Use Claude Code features in the browser                    │
 │                                                                │
 │  Best for:                                                     │
-│  • Quick tasks without local setup                            │
-│  • Sharing sessions with team members                         │
-│  • Working from machines without CLI access                   │
-│  • Visual code review                                         │
+│  • Quick tasks without local setup                             │
+│  • Sharing sessions with team members                          │
+│  • Working from machines without CLI access                    │
+│  • Visual code review                                          │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -408,30 +408,30 @@ code --install-extension anthropic.claude-code
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Side Panel Chat:                                              │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  • Chat interface in sidebar                             │ │
-│  │  • Workspace-aware context                               │ │
-│  │  • File references with @file                            │ │
-│  │  • Direct code insertion                                 │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Chat interface in sidebar                             │  │
+│  │  • Workspace-aware context                               │  │
+│  │  • File references with @file                            │  │
+│  │  • Direct code insertion                                 │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 │  Inline Features:                                              │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  • Select code → Right click → "Ask Claude"             │ │
-│  │  • "Explain this code"                                   │ │
-│  │  • "Fix this error"                                      │ │
-│  │  • "Generate tests"                                      │ │
-│  │  • "Add documentation"                                   │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Select code → Right click → "Ask Claude"              │  │
+│  │  • "Explain this code"                                   │  │
+│  │  • "Fix this error"                                      │  │
+│  │  • "Generate tests"                                      │  │
+│  │  • "Add documentation"                                   │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 │  Commands (Ctrl+Shift+P):                                      │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  • Claude: Open Chat                                     │ │
-│  │  • Claude: Explain Selection                             │ │
-│  │  • Claude: Fix Selection                                 │ │
-│  │  • Claude: Generate Tests                                │ │
-│  │  • Claude: Review File                                   │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Claude: Open Chat                                     │  │
+│  │  • Claude: Explain Selection                             │  │
+│  │  • Claude: Fix Selection                                 │  │
+│  │  • Claude: Generate Tests                                │  │
+│  │  • Claude: Review File                                   │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -980,28 +980,28 @@ Document your setup and workflow.
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Configuration:                                                │
-│  ~/.claude/config.json     - User defaults                    │
-│  .claude/config.json       - Project settings                 │
+│  ~/.claude/config.json     - User defaults                     │
+│  .claude/config.json       - Project settings                  │
 │                                                                │
 │  Custom Commands:                                              │
-│  .claude/commands/*.md     - Your custom commands             │
-│  /commands                 - List available commands          │
-│  /command-name             - Run a command                    │
+│  .claude/commands/*.md     - Your custom commands              │
+│  /commands                 - List available commands           │
+│  /command-name             - Run a command                     │
 │                                                                │
 │  Session Management:                                           │
-│  /save <name>              - Save session                     │
-│  /load <name>              - Load session                     │
-│  /sessions                 - List saved sessions              │
-│  /export <file>            - Export session                   │
+│  /save <name>              - Save session                      │
+│  /load <name>              - Load session                      │
+│  /sessions                 - List saved sessions               │
+│  /export <file>            - Export session                    │
 │                                                                │
 │  Debug:                                                        │
-│  CLAUDE_DEBUG=1 claude     - Enable debug mode                │
-│  /debug on                 - In-session debug                 │
+│  CLAUDE_DEBUG=1 claude     - Enable debug mode                 │
+│  /debug on                 - In-session debug                  │
 │                                                                │
 │  Optimization:                                                 │
-│  --model claude-3-haiku-*  - Fast/cheap model                │
-│  --stream                  - Stream responses                 │
-│  /clear                    - Reset context                    │
+│  --model claude-3-haiku-*  - Fast/cheap model                  │
+│  --stream                  - Stream responses                  │
+│  /clear                    - Reset context                     │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
