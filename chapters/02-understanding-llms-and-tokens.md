@@ -52,36 +52,36 @@ An LLM is a **neural network** with billions of **parameters** (learned weights)
 ├──────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  Step 1: Data Collection                                         │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ • Books (millions of them)                                  ││
-│  │ • Websites (Common Crawl - billions of pages)               ││
-│  │ • Wikipedia, academic papers                                ││
-│  │ • Code repositories (GitHub)                                ││
-│  │ • Documentation, forums, Q&A sites                          ││
-│  └─────────────────────────────────────────────────────────────┘│
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │ • Books (millions of them)                                  │ │
+│  │ • Websites (Common Crawl - billions of pages)               │ │
+│  │ • Wikipedia, academic papers                                │ │
+│  │ • Code repositories (GitHub)                                │ │
+│  │ • Documentation, forums, Q&A sites                          │ │
+│  └─────────────────────────────────────────────────────────────┘ │
 │                           ↓                                      │
 │  Step 2: Preprocessing                                           │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ • Clean and filter data                                     ││
-│  │ • Remove duplicates, harmful content                        ││
-│  │ • Convert to tokens                                         ││
-│  └─────────────────────────────────────────────────────────────┘│
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │ • Clean and filter data                                     │ │
+│  │ • Remove duplicates, harmful content                        │ │
+│  │ • Convert to tokens                                         │ │
+│  └─────────────────────────────────────────────────────────────┘ │
 │                           ↓                                      │
 │  Step 3: Training (Self-Supervised Learning)                     │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ Input: "The DevOps engineer deployed the"                   ││
-│  │ Target: "application"                                       ││
-│  │                                                             ││
-│  │ Model predicts → compares to actual → adjusts weights       ││
-│  │ Repeat trillions of times                                   ││
-│  └─────────────────────────────────────────────────────────────┘│
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │ Input: "The DevOps engineer deployed the"                   │ │
+│  │ Target: "application"                                       │ │
+│  │                                                             │ │
+│  │ Model predicts → compares to actual → adjusts weights       │ │
+│  │ Repeat trillions of times                                   │ │
+│  └─────────────────────────────────────────────────────────────┘ │
 │                           ↓                                      │
 │  Step 4: Fine-Tuning (Making it Useful)                          │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ • RLHF (Reinforcement Learning from Human Feedback)         ││
-│  │ • Human raters score responses                              ││
-│  │ • Model learns to be helpful, harmless, honest              ││
-│  └─────────────────────────────────────────────────────────────┘│
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │ • RLHF (Reinforcement Learning from Human Feedback)         │ │
+│  │ • Human raters score responses                              │ │
+│  │ • Model learns to be helpful, harmless, honest              │ │
+│  └─────────────────────────────────────────────────────────────┘ │
 │                                                                  │
 └──────────────────────────────────────────────────────────────────┘
 ```
@@ -92,45 +92,45 @@ LLMs use a architecture called **Transformers** (introduced in the famous "Atten
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                   TRANSFORMER ARCHITECTURE                      │
+│                   TRANSFORMER ARCHITECTURE                     │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │    Input: "kubectl get pods -n"                                │
 │                    ↓                                           │
-│    ┌──────────────────────────────────────┐                   │
-│    │         TOKENIZATION                  │                   │
-│    │  "kubectl" "get" "pods" "-" "n"      │                   │
-│    └──────────────────────────────────────┘                   │
+│    ┌──────────────────────────────────────┐                    │
+│    │         TOKENIZATION                 │                    │
+│    │  "kubectl" "get" "pods" "-" "n"      │                    │
+│    └──────────────────────────────────────┘                    │
 │                    ↓                                           │
-│    ┌──────────────────────────────────────┐                   │
-│    │      EMBEDDING LAYER                  │                   │
-│    │  Convert tokens to vectors            │                   │
-│    │  [0.23, -0.45, 0.12, ...]            │                   │
-│    └──────────────────────────────────────┘                   │
+│    ┌──────────────────────────────────────┐                    │
+│    │      EMBEDDING LAYER                 │                    │
+│    │  Convert tokens to vectors           │                    │
+│    │  [0.23, -0.45, 0.12, ...]            │                    │
+│    └──────────────────────────────────────┘                    │
 │                    ↓                                           │
-│    ┌──────────────────────────────────────┐                   │
-│    │      ATTENTION MECHANISM              │  ← The magic!    │
-│    │  "Which words relate to which?"       │                   │
-│    │                                       │                   │
-│    │  "kubectl" pays attention to "pods"   │                   │
-│    │  "-n" pays attention to "namespace"   │                   │
-│    └──────────────────────────────────────┘                   │
+│    ┌──────────────────────────────────────┐                    │
+│    │      ATTENTION MECHANISM             │  ← The magic!      │
+│    │  "Which words relate to which?"      │                    │
+│    │                                      │                    │
+│    │  "kubectl" pays attention to "pods"  │                    │
+│    │  "-n" pays attention to "namespace"  │                    │
+│    └──────────────────────────────────────┘                    │
 │                    ↓                                           │
-│    ┌──────────────────────────────────────┐                   │
-│    │      FEED FORWARD LAYERS              │                   │
-│    │  Process and transform                │                   │
-│    └──────────────────────────────────────┘                   │
+│    ┌──────────────────────────────────────┐                    │
+│    │      FEED FORWARD LAYERS             │                    │
+│    │  Process and transform               │                    │
+│    └──────────────────────────────────────┘                    │
 │                    ↓                                           │
-│    ┌──────────────────────────────────────┐                   │
-│    │      OUTPUT LAYER                     │                   │
-│    │  Probability distribution over        │                   │
-│    │  all possible next tokens             │                   │
-│    │                                       │                   │
-│    │  "production": 0.35                   │                   │
-│    │  "default": 0.28                      │                   │
-│    │  "kube-system": 0.22                  │                   │
-│    │  ...                                  │                   │
-│    └──────────────────────────────────────┘                   │
+│    ┌──────────────────────────────────────┐                    │
+│    │      OUTPUT LAYER                    │                    │
+│    │  Probability distribution over       │                    │
+│    │  all possible next tokens            │                    │
+│    │                                      │                    │
+│    │  "production": 0.35                  │                    │
+│    │  "default": 0.28                     │                    │
+│    │  "kube-system": 0.22                 │                    │
+│    │  ...                                 │                    │
+│    └──────────────────────────────────────┘                    │
 │                    ↓                                           │
 │    Output: "production" (highest probability selected)         │
 │                                                                │
@@ -187,7 +187,7 @@ Tokenization Examples (using GPT-style tokenization):
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                 WHY TOKENIZATION?                            │
+│                 WHY TOKENIZATION?                           │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
 │  Problem with word-based:                                   │
@@ -302,21 +302,21 @@ The **context window** is the maximum number of tokens an LLM can process at onc
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                    CONTEXT WINDOW                               │
+│                    CONTEXT WINDOW                              │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  ┌─────────────────────────────────────────────────────────┐  │
-│  │                  Your Input (Prompt)                      │  │
-│  │  • Your question/request                                  │  │
-│  │  • Code you paste                                         │  │
-│  │  • System instructions                                    │  │
-│  │  • Conversation history                                   │  │
-│  └─────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                  Your Input (Prompt)                    │   │
+│  │  • Your question/request                                │   │
+│  │  • Code you paste                                       │   │
+│  │  • System instructions                                  │   │
+│  │  • Conversation history                                 │   │
+│  └─────────────────────────────────────────────────────────┘   │
 │                           +                                    │
-│  ┌─────────────────────────────────────────────────────────┐  │
-│  │                  Model Output                             │  │
-│  │  • The response generated                                 │  │
-│  └─────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                  Model Output                           │   │
+│  │  • The response generated                               │   │
+│  └─────────────────────────────────────────────────────────┘   │
 │                           =                                    │
 │         Must fit within Context Window limit                   │
 │                                                                │
@@ -420,20 +420,20 @@ step3 = "Here's the relevant file. What's wrong?"
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  You pay for:                                                  │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  INPUT TOKENS                                            │ │
-│  │  • Your prompt                                           │ │
-│  │  • System instructions                                   │ │
-│  │  • Context you provide                                   │ │
-│  │                                                          │ │
-│  │  Usually cheaper (the model just reads)                  │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  INPUT TOKENS                                            │  │
+│  │  • Your prompt                                           │  │
+│  │  • System instructions                                   │  │
+│  │  • Context you provide                                   │  │
+│  │                                                          │  │
+│  │  Usually cheaper (the model just reads)                  │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                           +                                    │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  OUTPUT TOKENS                                           │ │
-│  │  • The model's response                                  │ │
-│  │  • Usually more expensive (computation intensive)        │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  OUTPUT TOKENS                                           │  │
+│  │  • The model's response                                  │  │
+│  │  • Usually more expensive (computation intensive)        │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -557,16 +557,16 @@ Note: Prices change frequently. Check current pricing.
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                  TEXT GENERATION PROCESS                        │
+│                  TEXT GENERATION PROCESS                       │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Input: "Write a bash script to"                               │
 │                                                                │
 │  Step 1: Process input tokens                                  │
-│  ["Write", " a", " bash", " script", " to"]                   │
+│  ["Write", " a", " bash", " script", " to"]                    │
 │                                                                │
 │  Step 2: Predict next token                                    │
-│  ┌───────────────────────────────────────┐                    │
+│  ┌───────────────────────────────────────┐                     │
 │  │ Probability distribution:              │                    │
 │  │ " check"     : 0.15                    │                    │
 │  │ " backup"    : 0.12                    │                    │
@@ -574,14 +574,14 @@ Note: Prices change frequently. Check current pricing.
 │  │ " list"      : 0.08                    │                    │
 │  │ " delete"    : 0.05                    │                    │
 │  │ ...                                    │                    │
-│  └───────────────────────────────────────┘                    │
+│  └───────────────────────────────────────┘                     │
 │                                                                │
 │  Step 3: Select token (based on sampling settings)             │
 │  Selected: " backup"                                           │
 │                                                                │
 │  Step 4: Append and repeat                                     │
 │  New context: "Write a bash script to backup"                  │
-│  Predict next: " the" (0.25), " MySQL" (0.18), ...            │
+│  Predict next: " the" (0.25), " MySQL" (0.18), ...             │
 │                                                                │
 │  Continue until:                                               │
 │  • End token generated                                         │
@@ -679,25 +679,25 @@ response = client.generate(
 │                 WHY LLMs MAKE MISTAKES                         │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  1. STATISTICAL PATTERNS, NOT TRUE UNDERSTANDING              │
-│     • LLMs predict likely text, not factually correct text    │
-│     • "Hallucinations" occur when patterns mislead            │
+│  1. STATISTICAL PATTERNS, NOT TRUE UNDERSTANDING               │
+│     • LLMs predict likely text, not factually correct text     │
+│     • "Hallucinations" occur when patterns mislead             │
 │                                                                │
 │  2. TRAINING DATA CUTOFF                                       │
-│     • Model doesn't know events after training date           │
-│     • New tools, versions, APIs may be unknown                │
+│     • Model doesn't know events after training date            │
+│     • New tools, versions, APIs may be unknown                 │
 │                                                                │
 │  3. TRAINING DATA BIASES                                       │
 │     • Reflects patterns in training data                       │
 │     • Popular != correct                                       │
 │                                                                │
 │  4. CONTEXT LIMITATIONS                                        │
-│     • Can lose track in very long conversations               │
-│     • May "forget" earlier context                            │
+│     • Can lose track in very long conversations                │
+│     • May "forget" earlier context                             │
 │                                                                │
 │  5. AMBIGUOUS PROMPTS                                          │
 │     • Garbage in, garbage out                                  │
-│     • Vague questions get vague answers                       │
+│     • Vague questions get vague answers                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -974,21 +974,21 @@ Temperature 1.2:
 │  Token Estimation:                                             │
 │  • ~4 characters = 1 token                                     │
 │  • ~0.75 words = 1 token                                       │
-│  • 100 lines of code ≈ 1,000 tokens                           │
+│  • 100 lines of code ≈ 1,000 tokens                            │
 │                                                                │
 │  Temperature Guide:                                            │
-│  • 0.0 = Deterministic (code, configs)                        │
-│  • 0.7 = Balanced (general use)                               │
-│  • 1.0+ = Creative (brainstorming)                            │
+│  • 0.0 = Deterministic (code, configs)                         │
+│  • 0.7 = Balanced (general use)                                │
+│  • 1.0+ = Creative (brainstorming)                             │
 │                                                                │
 │  Context Windows (2025):                                       │
-│  • GPT-4 Turbo: 128K tokens                                   │
-│  • Claude 4.5: 200K tokens                                    │
+│  • GPT-4 Turbo: 128K tokens                                    │
+│  • Claude 4.5: 200K tokens                                     │
 │                                                                │
 │  Verification Commands:                                        │
-│  • kubectl --dry-run=client                                   │
-│  • terraform plan                                             │
-│  • shellcheck script.sh                                       │
+│  • kubectl --dry-run=client                                    │
+│  • terraform plan                                              │
+│  • shellcheck script.sh                                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
