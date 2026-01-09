@@ -2,6 +2,18 @@
 
 > **From AI fundamentals to professional Claude Code workflows**
 
+**Author:** Michel Abboud
+**Created with:** Claude AI (Anthropic)
+**Copyright:** © 2025 Michel Abboud. All rights reserved.
+
+---
+
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+> **License Notice:** This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. Free for personal and educational use. Commercial use requires written permission from the author.
+
+---
+
 Welcome to this comprehensive guide designed specifically for DevOps professionals who want to master AI tools and integrate them into their daily workflows. Whether you're new to AI or looking to advance your skills with Claude Code, this guide has you covered.
 
 ---
@@ -123,6 +135,7 @@ claude
 ```
 ai-and-claude-code-intro/
 ├── README.md                    # This file
+├── LICENSE                      # CC BY-NC 4.0 License
 ├── chapters/
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
@@ -135,7 +148,7 @@ ai-and-claude-code-intro/
 │   ├── 09-mcp-deep-dive.md
 │   └── 10-ai-for-devops.md
 ├── presentations/               # PowerPoint slides for each chapter
-│   └── *.pptx
+│   └── *.md (Marp format)
 ├── examples/                    # Code examples and templates
 └── assets/                      # Images and diagrams
 ```
@@ -200,6 +213,33 @@ Each chapter includes practical exercises:
 
 ---
 
+## License
+
+This work is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.
+
+### You are free to:
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material
+
+### Under the following terms:
+- **Attribution** — You must give appropriate credit to Michel Abboud, provide a link to the license, and indicate if changes were made.
+- **NonCommercial** — You may not use the material for commercial purposes without written permission.
+
+### Commercial Use
+For commercial licensing inquiries, please contact the author.
+
+See the [LICENSE](./LICENSE) file for full details.
+
+---
+
+## About the Author
+
+**Michel Abboud** - DevOps enthusiast and technical educator passionate about helping professionals leverage AI effectively in their workflows.
+
+This guide was created with the assistance of Claude AI, demonstrating the very capabilities it teaches.
+
+---
+
 ## Contributing
 
 Found an issue or have a suggestion? Contributions are welcome!
@@ -209,22 +249,15 @@ Found an issue or have a suggestion? Contributions are welcome!
 3. Make your changes
 4. Submit a pull request
 
----
-
-## License
-
-This educational material is provided for learning purposes. Please refer to Anthropic's terms of service for using Claude and Claude Code.
+Please note: Contributions will be subject to the same CC BY-NC 4.0 license.
 
 ---
 
 ## Acknowledgments
 
-Created with passion for helping DevOps professionals leverage AI effectively.
-
-Special thanks to:
-- Anthropic for creating Claude
-- The DevOps community for inspiration
-- All contributors and reviewers
+- Anthropic for creating Claude and Claude Code
+- The DevOps community for inspiration and feedback
+- All readers and contributors
 
 ---
 
@@ -234,6 +267,8 @@ Special thanks to:
 ┌────────────────────────────────────────────────────────────────┐
 │                                                                │
 │     Your DevOps Expertise  +  AI Tools  =  Superpowers        │
+│                                                                │
+│                    © 2025 Michel Abboud                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
