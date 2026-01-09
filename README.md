@@ -177,11 +177,11 @@ ai-and-claude-code-intro/
 ```
 
 ### Claude Models
-| Model | Best For | Speed | Cost |
-|-------|----------|-------|------|
-| Claude 3.5 Sonnet | Most tasks | Fast | Medium |
-| Claude 3 Opus | Complex reasoning | Slower | Higher |
-| Claude 3 Haiku | Simple tasks | Fastest | Lowest |
+| Model | Best For | Speed | Cost (per MTok) |
+|-------|----------|-------|-----------------|
+| Claude Sonnet 4.5 | Most tasks | Fast | $3-6 / $15-22.50 |
+| Claude Opus 4.5 | Complex reasoning | Slower | $5 / $25 |
+| Claude Haiku 4.5 | Simple tasks | Fastest | $1 / $5 |
 
 ### CRAFT Prompting Framework
 - **C**ontext - Environment, versions, constraints

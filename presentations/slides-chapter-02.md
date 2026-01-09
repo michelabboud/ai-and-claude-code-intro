@@ -55,7 +55,7 @@ At its core: **Very sophisticated autocomplete**
 ```
 GPT-2 (2019)      ██ 1.5 Billion parameters
 GPT-3 (2020)      ████████████████████ 175 Billion
-Claude 3 (2024)   ████████████████████████ ~200B+
+Claude 4.5 (2025) ████████████████████████ ~200B+
 GPT-4 (2023)      ████████████████████████████ ~1.7T
 
 Human brain: ~86 billion neurons
@@ -152,13 +152,12 @@ The model learns: **Which words relate to which**
 
 ---
 
-# Context Window Sizes (2024)
+# Context Window Sizes (2025)
 
 | Model | Context | Equivalent |
 |-------|---------|------------|
-| GPT-3.5 | 16K | ~40 pages |
 | GPT-4 Turbo | 128K | ~300 pages |
-| **Claude 3** | **200K** | **~500 pages** |
+| **Claude 4.5** | **200K** | **~500 pages** |
 | Gemini | 1M+ | A short book! |
 
 ---
@@ -183,13 +182,13 @@ The model learns: **Which words relate to which**
 
 # Pricing Examples
 
-## Per 1M Tokens (Approximate)
+## Per 1M Tokens (Approximate - 2025)
 
 | Model | Input | Output |
 |-------|-------|--------|
-| Claude 3 Haiku | $0.25 | $1.25 |
-| Claude 3.5 Sonnet | $3.00 | $15.00 |
-| Claude 3 Opus | $15.00 | $75.00 |
+| Claude Haiku 4.5 | $1.00 | $5.00 |
+| Claude Sonnet 4.5 | $3.00 | $15.00 |
+| Claude Opus 4.5 | $5.00 | $25.00 |
 | GPT-4 Turbo | $10.00 | $30.00 |
 
 ---
@@ -202,7 +201,7 @@ The model learns: **Which words relate to which**
 # Per review:
 # Input: 2,000 tokens, Output: 500 tokens
 
-# Using Claude 3.5 Sonnet:
+# Using Claude Sonnet 4.5:
 # Input:  2,000 / 1M × $3  = $0.006
 # Output: 500 / 1M × $15  = $0.0075
 # Total per review: ~$0.01
@@ -280,7 +279,7 @@ shellcheck ai-script.sh
 │  • 1.0+ = Creative (brainstorming)      │
 │                                         │
 │  Context Windows:                       │
-│  • Claude 3: 200K tokens                │
+│  • Claude 4.5: 200K tokens              │
 │  • GPT-4 Turbo: 128K tokens             │
 └─────────────────────────────────────────┘
 ```

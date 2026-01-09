@@ -28,7 +28,7 @@ Model Size Comparison (Parameters)
 
 GPT-2 (2019)          ██ 1.5 Billion
 GPT-3 (2020)          ████████████████████████████████████ 175 Billion
-Claude 3 (2024)       ████████████████████████████████████████ ~200B+ (estimated)
+Claude 4.5 (2025)     ████████████████████████████████████████ ~200B+ (estimated)
 GPT-4 (2023)          ████████████████████████████████████████ ~1.7 Trillion (rumored)
 
 For context:
@@ -323,18 +323,16 @@ The **context window** is the maximum number of tokens an LLM can process at onc
 └────────────────────────────────────────────────────────────────┘
 ```
 
-### Context Window Sizes (2024)
+### Context Window Sizes (2025)
 
 ```
 Model Context Windows
 ═══════════════════════════════════════════════════════════════════
 
-GPT-3.5            ████░░░░░░░░░░░░░░░░  16K tokens (~12K words)
-GPT-4 (Standard)   ████░░░░░░░░░░░░░░░░  8K tokens
-GPT-4 (32K)        ████████░░░░░░░░░░░░  32K tokens
 GPT-4 Turbo        ████████████████████  128K tokens (~100K words)
-Claude 3 Opus      ████████████████████  200K tokens (~150K words)
-Claude 3.5 Sonnet  ████████████████████  200K tokens
+Claude Opus 4.5    ████████████████████  200K tokens (~150K words)
+Claude Sonnet 4.5  ████████████████████  200K tokens
+Claude Haiku 4.5   ████████████████████  200K tokens
 
 Practical comparison:
 ├── 8K tokens   = ~20 pages of text
@@ -443,18 +441,15 @@ step3 = "Here's the relevant file. What's wrong?"
 ### Pricing Examples (Approximate, as of 2024)
 
 ```
-Cost per 1 Million Tokens (USD)
+Cost per 1 Million Tokens (USD) - 2025
 ═══════════════════════════════════════════════════════════════════
 
 Model               Input        Output
 ─────────────────────────────────────────────────────────────────
-GPT-3.5 Turbo       $0.50        $1.50
+Claude Haiku 4.5    $1.00        $5.00
+Claude Sonnet 4.5   $3.00        $15.00
+Claude Opus 4.5     $5.00        $25.00
 GPT-4 Turbo         $10.00       $30.00
-GPT-4 (8K)          $30.00       $60.00
-Claude 3 Haiku      $0.25        $1.25
-Claude 3 Sonnet     $3.00        $15.00
-Claude 3 Opus       $15.00       $75.00
-Claude 3.5 Sonnet   $3.00        $15.00
 
 Note: Prices change frequently. Check current pricing.
 ```
@@ -473,7 +468,7 @@ Note: Prices change frequently. Check current pricing.
 # Output per review:
 # - Feedback: ~400 tokens
 
-# Using Claude 3.5 Sonnet:
+# Using Claude Sonnet 4.5:
 # Input cost: 1,000 / 1,000,000 * $3 = $0.003
 # Output cost: 400 / 1,000,000 * $15 = $0.006
 # Total per review: $0.009
@@ -491,12 +486,12 @@ Note: Prices change frequently. Check current pricing.
 # Output:
 # - Summary: ~300 tokens
 
-# Using Claude 3 Haiku (cheaper for simple tasks):
-# Input cost: 5,500 / 1,000,000 * $0.25 = $0.001375
-# Output cost: 300 / 1,000,000 * $1.25 = $0.000375
-# Total per analysis: $0.00175
+# Using Claude Haiku 4.5 (cheaper for simple tasks):
+# Input cost: 5,500 / 1,000,000 * $1 = $0.0055
+# Output cost: 300 / 1,000,000 * $5 = $0.0015
+# Total per analysis: $0.007
 
-# 1,000 analyses per day = $1.75/day = ~$52/month
+# 1,000 analyses per day = $7/day = ~$210/month
 
 
 # Example 3: Interactive Debugging Session
@@ -520,11 +515,11 @@ Note: Prices change frequently. Check current pricing.
 # DevOps Cost Optimization for LLM Usage
 
 1_use_appropriate_model:
-  description: "Don't use GPT-4 for simple tasks"
+  description: "Don't use Opus for simple tasks"
   examples:
-    - simple_formatting: "Use GPT-3.5 or Haiku"
-    - code_generation: "Use Claude 3.5 Sonnet"
-    - complex_reasoning: "Use GPT-4 or Claude 3 Opus"
+    - simple_formatting: "Use Claude Haiku 4.5"
+    - code_generation: "Use Claude Sonnet 4.5"
+    - complex_reasoning: "Use Claude Opus 4.5"
 
 2_minimize_context:
   description: "Only include what's necessary"
@@ -986,9 +981,9 @@ Temperature 1.2:
 │  • 0.7 = Balanced (general use)                               │
 │  • 1.0+ = Creative (brainstorming)                            │
 │                                                                │
-│  Context Windows (2024):                                       │
+│  Context Windows (2025):                                       │
 │  • GPT-4 Turbo: 128K tokens                                   │
-│  • Claude 3: 200K tokens                                      │
+│  • Claude 4.5: 200K tokens                                    │
 │                                                                │
 │  Verification Commands:                                        │
 │  • kubectl --dry-run=client                                   │

@@ -14,7 +14,7 @@ import json
 @dataclass
 class ClaudeConfig:
     """Configuration for Claude API usage."""
-    model: str = "claude-3-5-sonnet-20241022"
+    model: str = "claude-sonnet-4-5-20250514"
     max_tokens: int = 4096
     temperature: float = 0.7
 
@@ -43,8 +43,8 @@ def select_claude_model(
 
     if task in ["quick_answer", "formatting", "simple_query"]:
         if speed == "fast":
-            return "claude-3-5-haiku-20241022"
-        return "claude-3-5-sonnet-20241022"
+            return "claude-haiku-4-5-20250514"
+        return "claude-sonnet-4-5-20250514"
 
     if task in ["code_generation", "code_review", "documentation"]:
         return "claude-sonnet-4-20250514"
@@ -148,7 +148,7 @@ body = json.dumps({
 
 # Call Claude via Bedrock
 response = bedrock.invoke_model(
-    modelId="anthropic.claude-3-5-sonnet-20241022-v2:0",
+    modelId="anthropic.claude-sonnet-4-5-20250514-v1:0",
     body=body,
     contentType="application/json",
     accept="application/json"

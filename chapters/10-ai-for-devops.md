@@ -639,9 +639,9 @@ Format with clear steps, commands, and expected outputs.
 5_use_the_right_model:
   tip: "Match model to task complexity"
   rules:
-    simple_formatting: "Haiku"
-    general_coding: "Sonnet"
-    complex_architecture: "Opus"
+    simple_formatting: "Haiku 4.5"
+    general_coding: "Sonnet 4.5"
+    complex_architecture: "Opus 4.5"
 ```
 
 ### Common Patterns

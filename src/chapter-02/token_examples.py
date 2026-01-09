@@ -98,21 +98,19 @@ def count_tokens_tiktoken(text: str, model: str = "gpt-4") -> int:
 # COST ESTIMATION
 # =============================================================================
 
-# Pricing as of 2024 (prices change frequently)
+# Pricing as of 2025 (prices change frequently)
 MODEL_PRICING = {
-    "gpt-4": {"input": 0.03, "output": 0.06},  # per 1K tokens
-    "gpt-4-turbo": {"input": 0.01, "output": 0.03},
-    "gpt-3.5-turbo": {"input": 0.0005, "output": 0.0015},
-    "claude-3-opus": {"input": 0.015, "output": 0.075},
-    "claude-3-sonnet": {"input": 0.003, "output": 0.015},
-    "claude-3-haiku": {"input": 0.00025, "output": 0.00125},
+    "gpt-4-turbo": {"input": 0.01, "output": 0.03},  # per 1K tokens
+    "claude-opus-4.5": {"input": 0.005, "output": 0.025},
+    "claude-sonnet-4.5": {"input": 0.003, "output": 0.015},
+    "claude-haiku-4.5": {"input": 0.001, "output": 0.005},
 }
 
 
 def estimate_cost(
     input_tokens: int,
     output_tokens: int,
-    model: str = "claude-3-sonnet"
+    model: str = "claude-sonnet-4.5"
 ) -> dict:
     """
     Estimate API cost for a given number of tokens.
@@ -144,7 +142,7 @@ def plan_code_review_budget(
     avg_file_lines: int = 200,
     files_per_pr: int = 5,
     prs_per_day: int = 10,
-    model: str = "claude-3-sonnet"
+    model: str = "claude-sonnet-4.5"
 ) -> dict:
     """
     Plan budget for AI-assisted code review.
@@ -270,7 +268,7 @@ def process_request(request):
     print("\n" + "=" * 60)
     print("COST ESTIMATION")
     print("-" * 40)
-    cost = estimate_cost(10000, 2000, "claude-3-sonnet")
+    cost = estimate_cost(10000, 2000, "claude-sonnet-4.5")
     for key, value in cost.items():
         print(f"  {key}: {value}")
 
