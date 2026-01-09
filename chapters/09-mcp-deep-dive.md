@@ -15,25 +15,25 @@ The **Model Context Protocol (MCP)** is one of the most powerful features of Cla
 │                    BEFORE MCP                                  │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│    ┌─────────────┐                                            │
-│    │   AI App    │                                            │
-│    │   (Claude)  │                                            │
-│    └──────┬──────┘                                            │
+│    ┌─────────────┐                                             │
+│    │   AI App    │                                             │
+│    │   (Claude)  │                                             │
+│    └──────┬──────┘                                             │
 │           │                                                    │
-│           │  Custom integration for each data source          │
+│           │  Custom integration for each data source           │
 │           │                                                    │
-│    ┌──────┼──────┬──────────┬──────────┬──────────┐          │
-│    │      │      │          │          │          │          │
-│    ▼      ▼      ▼          ▼          ▼          ▼          │
-│  ┌───┐ ┌───┐ ┌─────┐   ┌───────┐  ┌─────┐  ┌──────┐        │
-│  │Git│ │DB │ │Slack│   │Jira   │  │AWS  │  │K8s   │        │
-│  └───┘ └───┘ └─────┘   └───────┘  └─────┘  └──────┘        │
+│    ┌──────┼──────┬──────────┬──────────┬──────────┐            │
+│    │      │      │          │          │          │            │
+│    ▼      ▼      ▼          ▼          ▼          ▼            │
+│  ┌───┐ ┌───┐ ┌─────┐   ┌───────┐  ┌─────┐  ┌──────┐            │
+│  │Git│ │DB │ │Slack│   │Jira   │  │AWS  │  │K8s   │            │
+│  └───┘ └───┘ └─────┘   └───────┘  └─────┘  └──────┘            │
 │                                                                │
 │  Problems:                                                     │
-│  • Each integration is custom-built                           │
-│  • Duplicated effort across AI applications                   │
-│  • Inconsistent interfaces                                    │
-│  • Hard to maintain and update                                │
+│  • Each integration is custom-built                            │
+│  • Duplicated effort across AI applications                    │
+│  • Inconsistent interfaces                                     │
+│  • Hard to maintain and update                                 │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 
@@ -41,31 +41,31 @@ The **Model Context Protocol (MCP)** is one of the most powerful features of Cla
 │                    WITH MCP                                    │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│    ┌─────────────┐     ┌─────────────┐     ┌─────────────┐   │
-│    │  Claude     │     │  ChatGPT    │     │  Other AI   │   │
-│    │  Code       │     │  Plugin     │     │  App        │   │
-│    └──────┬──────┘     └──────┬──────┘     └──────┬──────┘   │
-│           │                   │                   │           │
-│           │    Standard MCP Protocol             │           │
-│           │                   │                   │           │
-│    ┌──────┴───────────────────┴───────────────────┴──────┐   │
-│    │                    MCP LAYER                         │   │
-│    │  (Unified protocol for all integrations)             │   │
-│    └──────────────────────────┬───────────────────────────┘   │
-│                               │                               │
-│    ┌──────┬──────┬───────┬────┴───┬───────┬───────┐          │
-│    │      │      │       │        │       │       │          │
-│    ▼      ▼      ▼       ▼        ▼       ▼       ▼          │
-│  ┌───┐ ┌───┐ ┌─────┐ ┌───────┐ ┌─────┐ ┌──────┐ ┌───┐      │
-│  │Git│ │DB │ │Slack│ │Jira   │ │AWS  │ │K8s   │ │...│      │
-│  │MCP│ │MCP│ │MCP  │ │MCP    │ │MCP  │ │MCP   │ │   │      │
-│  └───┘ └───┘ └─────┘ └───────┘ └─────┘ └──────┘ └───┘      │
+│    ┌─────────────┐     ┌─────────────┐     ┌─────────────┐     │
+│    │  Claude     │     │  ChatGPT    │     │  Other AI   │     │
+│    │  Code       │     │  Plugin     │     │  App        │     │
+│    └──────┬──────┘     └──────┬──────┘     └──────┬──────┘     │
+│           │                   │                   │            │
+│           │    Standard MCP Protocol              │            │
+│           │                   │                   │            │
+│    ┌──────┴───────────────────┴───────────────────┴──────┐     │
+│    │                    MCP LAYER                         │    │
+│    │  (Unified protocol for all integrations)             │    │
+│    └──────────────────────────┬───────────────────────────┘    │
+│                               │                                │
+│    ┌──────┬──────┬───────┬────┴───┬───────┬───────┐            │
+│    │      │      │       │        │       │       │            │
+│    ▼      ▼      ▼       ▼        ▼       ▼       ▼            │
+│  ┌───┐ ┌───┐ ┌─────┐ ┌───────┐ ┌─────┐ ┌──────┐ ┌───┐          │
+│  │Git│ │DB │ │Slack│ │Jira   │ │AWS  │ │K8s   │ │...│          │
+│  │MCP│ │MCP│ │MCP  │ │MCP    │ │MCP  │ │MCP   │ │   │          │
+│  └───┘ └───┘ └─────┘ └───────┘ └─────┘ └──────┘ └───┘          │
 │                                                                │
 │  Benefits:                                                     │
-│  • Standard protocol for all integrations                     │
-│  • Build once, use everywhere                                 │
-│  • Consistent interface                                       │
-│  • Community-maintained servers                               │
+│  • Standard protocol for all integrations                      │
+│  • Build once, use everywhere                                  │
+│  • Consistent interface                                        │
+│  • Community-maintained servers                                │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -114,43 +114,43 @@ components:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                         MCP ARCHITECTURE                                    │
+│                         MCP ARCHITECTURE                                   │
 ├────────────────────────────────────────────────────────────────────────────┤
 │                                                                            │
-│  ┌────────────────────────────────────────────────────────────────────┐   │
-│  │                         MCP CLIENT                                  │   │
-│  │                        (Claude Code)                                │   │
-│  │                                                                     │   │
-│  │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐    │   │
-│  │  │ Server Manager  │  │ Protocol Handler│  │ Capability Cache│    │   │
-│  │  │                 │  │                 │  │                 │    │   │
-│  │  │ • Start servers │  │ • Send requests │  │ • Tools list    │    │   │
-│  │  │ • Health check  │  │ • Handle resp.  │  │ • Resources     │    │   │
-│  │  │ • Restart       │  │ • Error handle  │  │ • Prompts       │    │   │
-│  │  └─────────────────┘  └─────────────────┘  └─────────────────┘    │   │
-│  └────────────────────────────────┬───────────────────────────────────┘   │
+│  ┌────────────────────────────────────────────────────────────────────┐    │
+│  │                         MCP CLIENT                                 │    │
+│  │                        (Claude Code)                               │    │
+│  │                                                                    │    │
+│  │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐     │    │
+│  │  │ Server Manager  │  │ Protocol Handler│  │ Capability Cache│     │    │
+│  │  │                 │  │                 │  │                 │     │    │
+│  │  │ • Start servers │  │ • Send requests │  │ • Tools list    │     │    │
+│  │  │ • Health check  │  │ • Handle resp.  │  │ • Resources     │     │    │
+│  │  │ • Restart       │  │ • Error handle  │  │ • Prompts       │     │    │
+│  │  └─────────────────┘  └─────────────────┘  └─────────────────┘     │    │
+│  └────────────────────────────────┬───────────────────────────────────┘    │
 │                                   │                                        │
 │                          JSON-RPC Protocol                                 │
 │                        (stdio or HTTP/SSE)                                 │
 │                                   │                                        │
-│  ┌────────────────────────────────┼───────────────────────────────────┐   │
-│  │                                │                                    │   │
-│  │     ┌──────────────────────────┼───────────────────────────┐       │   │
-│  │     │                          │                           │       │   │
-│  │     ▼                          ▼                           ▼       │   │
-│  │  ┌─────────────┐   ┌─────────────────────┐   ┌─────────────────┐  │   │
-│  │  │ GitHub      │   │ Kubernetes          │   │ PostgreSQL      │  │   │
-│  │  │ MCP Server  │   │ MCP Server          │   │ MCP Server      │  │   │
-│  │  │             │   │                     │   │                 │  │   │
-│  │  │ Tools:      │   │ Tools:              │   │ Tools:          │  │   │
-│  │  │ • clone     │   │ • get_pods          │   │ • query         │  │   │
-│  │  │ • commit    │   │ • get_deployments   │   │ • execute       │  │   │
-│  │  │ • create_pr │   │ • apply_manifest    │   │ • list_tables   │  │   │
-│  │  │ • list_prs  │   │ • scale             │   │ • describe      │  │   │
-│  │  └─────────────┘   └─────────────────────┘   └─────────────────┘  │   │
-│  │                                                                    │   │
-│  │                         MCP SERVERS                                │   │
-│  └────────────────────────────────────────────────────────────────────┘   │
+│  ┌────────────────────────────────┼───────────────────────────────────┐    │
+│  │                                │                                   │    │
+│  │     ┌──────────────────────────┼───────────────────────────┐       │    │
+│  │     │                          │                           │       │    │
+│  │     ▼                          ▼                           ▼       │    │
+│  │  ┌─────────────┐   ┌─────────────────────┐   ┌─────────────────┐   │    │
+│  │  │ GitHub      │   │ Kubernetes          │   │ PostgreSQL      │   │    │
+│  │  │ MCP Server  │   │ MCP Server          │   │ MCP Server      │   │    │
+│  │  │             │   │                     │   │                 │   │    │
+│  │  │ Tools:      │   │ Tools:              │   │ Tools:          │   │    │
+│  │  │ • clone     │   │ • get_pods          │   │ • query         │   │    │
+│  │  │ • commit    │   │ • get_deployments   │   │ • execute       │   │    │
+│  │  │ • create_pr │   │ • apply_manifest    │   │ • list_tables   │   │    │
+│  │  │ • list_prs  │   │ • scale             │   │ • describe      │   │    │
+│  │  └─────────────┘   └─────────────────────┘   └─────────────────┘   │    │
+│  │                                                                    │    │
+│  │                         MCP SERVERS                                │    │
+│  └────────────────────────────────────────────────────────────────────┘    │
 │                                                                            │
 └────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -1495,30 +1495,30 @@ const server = new Server(
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Configuration:                                                │
-│  ~/.claude/mcp_servers.json                                   │
+│  ~/.claude/mcp_servers.json                                    │
 │                                                                │
 │  Official Servers:                                             │
-│  @modelcontextprotocol/server-filesystem                      │
-│  @modelcontextprotocol/server-github                          │
-│  @modelcontextprotocol/server-postgres                        │
-│  @modelcontextprotocol/server-slack                           │
+│  @modelcontextprotocol/server-filesystem                       │
+│  @modelcontextprotocol/server-github                           │
+│  @modelcontextprotocol/server-postgres                         │
+│  @modelcontextprotocol/server-slack                            │
 │                                                                │
 │  Building Servers:                                             │
-│  npm install @modelcontextprotocol/sdk                        │
+│  npm install @modelcontextprotocol/sdk                         │
 │                                                                │
 │  Key Concepts:                                                 │
-│  • Tools = Functions Claude can call                          │
-│  • Resources = Data Claude can read                           │
-│  • Prompts = Templates for common tasks                       │
+│  • Tools = Functions Claude can call                           │
+│  • Resources = Data Claude can read                            │
+│  • Prompts = Templates for common tasks                        │
 │                                                                │
 │  Transport:                                                    │
-│  • stdio (recommended for local)                              │
-│  • HTTP/SSE (for remote servers)                              │
+│  • stdio (recommended for local)                               │
+│  • HTTP/SSE (for remote servers)                               │
 │                                                                │
 │  Security:                                                     │
-│  • Use environment variables for secrets                      │
-│  • Apply least privilege principle                            │
-│  • Enable audit logging                                       │
+│  • Use environment variables for secrets                       │
+│  • Apply least privilege principle                             │
+│  • Enable audit logging                                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
