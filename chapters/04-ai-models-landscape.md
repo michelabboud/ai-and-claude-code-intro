@@ -19,24 +19,24 @@ A **model** is a trained AI system that can perform specific tasks. Think of it 
 │                                                                │
 │  1. ARCHITECTURE DESIGN                                        │
 │     "How should the neural network be structured?"             │
-│     └─► Transformer, CNN, RNN, etc.                           │
+│     └─► Transformer, CNN, RNN, etc.                            │
 │                                                                │
 │  2. PRE-TRAINING                                               │
 │     "Learn general knowledge from massive data"                │
-│     └─► Billions of tokens of text, code, etc.                │
-│         └─► Months of training on GPU clusters                │
+│     └─► Billions of tokens of text, code, etc.                 │
+│         └─► Months of training on GPU clusters                 │
 │                                                                │
 │  3. FINE-TUNING                                                │
 │     "Specialize for specific tasks"                            │
-│     └─► Instruction tuning, RLHF, domain adaptation           │
+│     └─► Instruction tuning, RLHF, domain adaptation            │
 │                                                                │
 │  4. DEPLOYMENT                                                 │
 │     "Make it available for use"                                │
-│     └─► API endpoints, downloadable weights, etc.             │
+│     └─► API endpoints, downloadable weights, etc.              │
 │                                                                │
 │  5. INFERENCE                                                  │
 │     "Using the model to get predictions"                       │
-│     └─► What you do when you chat with an AI                  │
+│     └─► What you do when you chat with an AI                   │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -78,53 +78,53 @@ LLaMA-2-70B-Chat
 │                    MAJOR AI COMPANIES (2024)                    │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │  ANTHROPIC                                               │   │
-│  │  "AI Safety First"                                       │   │
-│  │                                                          │   │
-│  │  Founded: 2021 by ex-OpenAI researchers                  │   │
-│  │  Focus: Safe, helpful, honest AI                         │   │
-│  │  Models: Claude family                                   │   │
-│  │  Notable: Constitutional AI, long context windows        │   │
-│  └─────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  ANTHROPIC                                              │    │
+│  │  "AI Safety First"                                      │    │
+│  │                                                         │    │
+│  │  Founded: 2021 by ex-OpenAI researchers                 │    │
+│  │  Focus: Safe, helpful, honest AI                        │    │
+│  │  Models: Claude family                                  │    │
+│  │  Notable: Constitutional AI, long context windows       │    │
+│  └─────────────────────────────────────────────────────────┘    │
 │                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │  OPENAI                                                  │   │
-│  │  "AGI for the benefit of humanity"                       │   │
-│  │                                                          │   │
-│  │  Founded: 2015                                           │   │
-│  │  Focus: General AI advancement                           │   │
-│  │  Models: GPT family, DALL-E, Whisper, Codex              │   │
-│  │  Notable: ChatGPT, API platform, Microsoft partnership   │   │
-│  └─────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  OPENAI                                                 │    │
+│  │  "AGI for the benefit of humanity"                      │    │
+│  │                                                         │    │
+│  │  Founded: 2015                                          │    │
+│  │  Focus: General AI advancement                          │    │
+│  │  Models: GPT family, DALL-E, Whisper, Codex             │    │
+│  │  Notable: ChatGPT, API platform, Microsoft partnership  │    │
+│  └─────────────────────────────────────────────────────────┘    │
 │                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │  GOOGLE (DeepMind + Google AI)                           │   │
-│  │  "Organizing the world's information"                    │   │
-│  │                                                          │   │
-│  │  Focus: Research + product integration                   │   │
-│  │  Models: Gemini, PaLM, Bard                              │   │
-│  │  Notable: AlphaFold, integrated into Google products     │   │
-│  └─────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  GOOGLE (DeepMind + Google AI)                          │    │
+│  │  "Organizing the world's information"                   │    │
+│  │                                                         │    │
+│  │  Focus: Research + product integration                  │    │
+│  │  Models: Gemini, PaLM, Bard                             │    │
+│  │  Notable: AlphaFold, integrated into Google products    │    │
+│  └─────────────────────────────────────────────────────────┘    │
 │                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │  META (Facebook AI Research)                             │   │
-│  │  "Open AI research"                                      │   │
-│  │                                                          │   │
-│  │  Focus: Open-source AI                                   │   │
-│  │  Models: LLaMA family (open source!)                     │   │
-│  │  Notable: Democratizing AI access                        │   │
-│  └─────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  META (Facebook AI Research)                            │    │
+│  │  "Open AI research"                                     │    │
+│  │                                                         │    │
+│  │  Focus: Open-source AI                                  │    │
+│  │  Models: LLaMA family (open source!)                    │    │
+│  │  Notable: Democratizing AI access                       │    │
+│  └─────────────────────────────────────────────────────────┘    │
 │                                                                 │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │  MISTRAL AI                                              │   │
-│  │  "Open and efficient AI"                                 │   │
-│  │                                                          │   │
-│  │  Founded: 2023 in France                                 │   │
-│  │  Focus: Efficient, open models                           │   │
-│  │  Models: Mistral, Mixtral (MoE)                          │   │
-│  │  Notable: High performance at smaller sizes              │   │
-│  └─────────────────────────────────────────────────────────┘   │
+│  ┌─────────────────────────────────────────────────────────┐    │
+│  │  MISTRAL AI                                             │    │
+│  │  "Open and efficient AI"                                │    │
+│  │                                                         │    │
+│  │  Founded: 2023 in France                                │    │
+│  │  Focus: Efficient, open models                          │    │
+│  │  Models: Mistral, Mixtral (MoE)                         │    │
+│  │  Notable: High performance at smaller sizes             │    │
+│  └─────────────────────────────────────────────────────────┘    │
 │                                                                 │
 └─────────────────────────────────────────────────────────────────┘
 ```
@@ -133,7 +133,7 @@ LLaMA-2-70B-Chat
 
 ```
 ┌───────────────────────────────────────────────────────────────────────────────┐
-│                           MODEL COMPARISON MATRIX                              │
+│                           MODEL COMPARISON MATRIX                             │
 ├───────────────┬──────────────┬──────────────┬──────────────┬──────────────────┤
 │ Model         │ Provider     │ Context      │ Best For     │ API Access       │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
@@ -186,25 +186,25 @@ LLaMA-2-70B-Chat
 │  Examples: Claude, GPT-4, Gemini                               │
 │                                                                │
 │  PROS:                                                         │
-│  ✓ State-of-the-art performance                               │
-│  ✓ No infrastructure to manage                                │
-│  ✓ Regular updates and improvements                           │
-│  ✓ Better safety and alignment                                │
-│  ✓ Enterprise support available                               │
-│  ✓ Easy to start (just an API key)                           │
+│  ✓ State-of-the-art performance                                │
+│  ✓ No infrastructure to manage                                 │
+│  ✓ Regular updates and improvements                            │
+│  ✓ Better safety and alignment                                 │
+│  ✓ Enterprise support available                                │
+│  ✓ Easy to start (just an API key)                             │
 │                                                                │
 │  CONS:                                                         │
-│  ✗ Ongoing costs (pay per token)                              │
-│  ✗ Data leaves your infrastructure                            │
-│  ✗ Vendor lock-in risk                                        │
-│  ✗ Rate limits and quotas                                     │
-│  ✗ Can't customize model weights                              │
-│  ✗ Dependent on provider's policies                           │
+│  ✗ Ongoing costs (pay per token)                               │
+│  ✗ Data leaves your infrastructure                             │
+│  ✗ Vendor lock-in risk                                         │
+│  ✗ Rate limits and quotas                                      │
+│  ✗ Can't customize model weights                               │
+│  ✗ Dependent on provider's policies                            │
 │                                                                │
 │  BEST FOR:                                                     │
 │  • Most production use cases                                   │
 │  • When you need the best quality                              │
-│  • When you don't want to manage infra                        │
+│  • When you don't want to manage infra                         │
 │  • Rapid prototyping                                           │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
@@ -220,26 +220,26 @@ LLaMA-2-70B-Chat
 │  Examples: LLaMA 2, Mistral, Falcon, MPT                       │
 │                                                                │
 │  PROS:                                                         │
-│  ✓ Free to use (no per-token cost)                            │
-│  ✓ Data stays on your infrastructure                          │
-│  ✓ Full control and customization                             │
-│  ✓ Can fine-tune for specific tasks                           │
-│  ✓ No vendor lock-in                                          │
-│  ✓ Community support and improvements                         │
+│  ✓ Free to use (no per-token cost)                             │
+│  ✓ Data stays on your infrastructure                           │
+│  ✓ Full control and customization                              │
+│  ✓ Can fine-tune for specific tasks                            │
+│  ✓ No vendor lock-in                                           │
+│  ✓ Community support and improvements                          │
 │                                                                │
 │  CONS:                                                         │
-│  ✗ Requires GPU infrastructure                                │
-│  ✗ Generally lower performance than proprietary               │
-│  ✗ You manage updates and security                            │
-│  ✗ Need ML expertise to deploy                                │
-│  ✗ Higher upfront investment                                  │
-│  ✗ Smaller context windows typically                          │
+│  ✗ Requires GPU infrastructure                                 │
+│  ✗ Generally lower performance than proprietary                │
+│  ✗ You manage updates and security                             │
+│  ✗ Need ML expertise to deploy                                 │
+│  ✗ Higher upfront investment                                   │
+│  ✗ Smaller context windows typically                           │
 │                                                                │
 │  BEST FOR:                                                     │
 │  • Strict data privacy requirements                            │
-│  • High-volume, predictable workloads                         │
-│  • Custom/specialized use cases                               │
-│  • When you have ML engineering capacity                      │
+│  • High-volume, predictable workloads                          │
+│  • Custom/specialized use cases                                │
+│  • When you have ML engineering capacity                       │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -344,39 +344,39 @@ embedding_models:
 │  TEXT GENERATION (LLMs)                                                    │
 │  ├── General purpose: Claude, GPT-4, Gemini                                │
 │  ├── Code specialized: CodeLlama, StarCoder, Codex                         │
-│  └── Instruction-tuned: Vicuna, Alpaca, WizardLM                          │
+│  └── Instruction-tuned: Vicuna, Alpaca, WizardLM                           │
 │                                                                            │
 │  TEXT UNDERSTANDING                                                        │
-│  ├── Classification: BERT, RoBERTa, DistilBERT                            │
-│  ├── Named Entity Recognition: SpaCy models, Flair                        │
-│  └── Sentiment Analysis: Specialized BERT variants                        │
+│  ├── Classification: BERT, RoBERTa, DistilBERT                             │
+│  ├── Named Entity Recognition: SpaCy models, Flair                         │
+│  └── Sentiment Analysis: Specialized BERT variants                         │
 │                                                                            │
 │  EMBEDDINGS (Vector Representations)                                       │
-│  ├── Text: OpenAI Ada, Sentence-BERT, E5                                  │
-│  ├── Code: CodeBERT, UniXcoder                                            │
-│  └── Multi-modal: CLIP (text + images)                                    │
+│  ├── Text: OpenAI Ada, Sentence-BERT, E5                                   │
+│  ├── Code: CodeBERT, UniXcoder                                             │
+│  └── Multi-modal: CLIP (text + images)                                     │
 │                                                                            │
 │  IMAGE GENERATION                                                          │
-│  ├── DALL-E 3 (OpenAI)                                                    │
+│  ├── DALL-E 3 (OpenAI)                                                     │
 │  ├── Midjourney                                                            │
-│  ├── Stable Diffusion (open source!)                                      │
+│  ├── Stable Diffusion (open source!)                                       │
 │  └── Imagen (Google)                                                       │
 │                                                                            │
 │  IMAGE UNDERSTANDING                                                       │
-│  ├── GPT-4V (Vision)                                                      │
-│  ├── Claude 3 (Vision)                                                    │
-│  ├── LLaVA (open source)                                                  │
+│  ├── GPT-4V (Vision)                                                       │
+│  ├── Claude 3 (Vision)                                                     │
+│  ├── LLaVA (open source)                                                   │
 │  └── BLIP-2                                                                │
 │                                                                            │
 │  SPEECH                                                                    │
-│  ├── Speech-to-Text: Whisper (OpenAI, open source!)                       │
-│  ├── Text-to-Speech: ElevenLabs, Azure, Amazon Polly                      │
-│  └── Voice Cloning: Various providers                                     │
+│  ├── Speech-to-Text: Whisper (OpenAI, open source!)                        │
+│  ├── Text-to-Speech: ElevenLabs, Azure, Amazon Polly                       │
+│  └── Voice Cloning: Various providers                                      │
 │                                                                            │
 │  SPECIALIZED                                                               │
-│  ├── SQL Generation: SQLCoder, NSQL                                       │
-│  ├── Math/Reasoning: Specialized fine-tunes                               │
-│  └── Scientific: BioGPT, ChemBERTa                                        │
+│  ├── SQL Generation: SQLCoder, NSQL                                        │
+│  ├── Math/Reasoning: Specialized fine-tunes                                │
+│  └── Scientific: BioGPT, ChemBERTa                                         │
 │                                                                            │
 └────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -463,49 +463,49 @@ chatops_bot:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                       MODEL HOSTING OPTIONS                                 │
+│                       MODEL HOSTING OPTIONS                                │
 ├────────────────────────────────────────────────────────────────────────────┤
 │                                                                            │
 │  1. DIRECT API ACCESS                                                      │
-│     ┌──────────────────────────────────────────────────────────────────┐  │
-│     │  Provider APIs: api.anthropic.com, api.openai.com                │  │
-│     │  Pros: Simplest, always latest models                            │  │
-│     │  Cons: Data leaves your network                                  │  │
-│     │  Cost: Pay per token                                             │  │
-│     └──────────────────────────────────────────────────────────────────┘  │
+│     ┌──────────────────────────────────────────────────────────────────┐   │
+│     │  Provider APIs: api.anthropic.com, api.openai.com                │   │
+│     │  Pros: Simplest, always latest models                            │   │
+│     │  Cons: Data leaves your network                                  │   │
+│     │  Cost: Pay per token                                             │   │
+│     └──────────────────────────────────────────────────────────────────┘   │
 │                                                                            │
 │  2. CLOUD PROVIDER MARKETPLACES                                            │
-│     ┌──────────────────────────────────────────────────────────────────┐  │
-│     │  AWS Bedrock: Claude, LLaMA, Titan                               │  │
-│     │  Azure OpenAI: GPT-4, GPT-3.5                                    │  │
-│     │  Google Vertex AI: Gemini, PaLM                                  │  │
-│     │  Pros: Compliance, VPC integration, enterprise features          │  │
-│     │  Cons: Slight markup, limited model selection                    │  │
-│     └──────────────────────────────────────────────────────────────────┘  │
+│     ┌──────────────────────────────────────────────────────────────────┐   │
+│     │  AWS Bedrock: Claude, LLaMA, Titan                               │   │
+│     │  Azure OpenAI: GPT-4, GPT-3.5                                    │   │
+│     │  Google Vertex AI: Gemini, PaLM                                  │   │
+│     │  Pros: Compliance, VPC integration, enterprise features          │   │
+│     │  Cons: Slight markup, limited model selection                    │   │
+│     └──────────────────────────────────────────────────────────────────┘   │
 │                                                                            │
 │  3. SELF-HOSTED (Open Source)                                              │
-│     ┌──────────────────────────────────────────────────────────────────┐  │
-│     │  Options:                                                        │  │
-│     │  - vLLM (production-grade serving)                               │  │
-│     │  - Text Generation Inference (Hugging Face)                      │  │
-│     │  - Ollama (easy local deployment)                                │  │
-│     │  - llama.cpp (CPU inference)                                     │  │
-│     │                                                                  │  │
-│     │  Pros: Full control, data privacy, no per-token cost            │  │
-│     │  Cons: Infrastructure overhead, GPU costs, expertise needed      │  │
-│     └──────────────────────────────────────────────────────────────────┘  │
+│     ┌──────────────────────────────────────────────────────────────────┐   │
+│     │  Options:                                                        │   │
+│     │  - vLLM (production-grade serving)                               │   │
+│     │  - Text Generation Inference (Hugging Face)                      │   │
+│     │  - Ollama (easy local deployment)                                │   │
+│     │  - llama.cpp (CPU inference)                                     │   │
+│     │                                                                  │   │
+│     │  Pros: Full control, data privacy, no per-token cost             │   │
+│     │  Cons: Infrastructure overhead, GPU costs, expertise needed      │   │
+│     └──────────────────────────────────────────────────────────────────┘   │
 │                                                                            │
 │  4. MANAGED OPEN SOURCE                                                    │
-│     ┌──────────────────────────────────────────────────────────────────┐  │
-│     │  Providers:                                                      │  │
-│     │  - Together.ai                                                   │  │
-│     │  - Anyscale                                                      │  │
-│     │  - Replicate                                                     │  │
-│     │  - Modal                                                         │  │
-│     │                                                                  │  │
-│     │  Pros: Open source models, managed infrastructure               │  │
-│     │  Cons: Still have API costs, less control                       │  │
-│     └──────────────────────────────────────────────────────────────────┘  │
+│     ┌──────────────────────────────────────────────────────────────────┐   │
+│     │  Providers:                                                      │   │
+│     │  - Together.ai                                                   │   │
+│     │  - Anyscale                                                      │   │
+│     │  - Replicate                                                     │   │
+│     │  - Modal                                                         │   │
+│     │                                                                  │   │
+│     │  Pros: Open source models, managed infrastructure                │   │
+│     │  Cons: Still have API costs, less control                        │   │
+│     └──────────────────────────────────────────────────────────────────┘   │
 │                                                                            │
 └────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -892,26 +892,26 @@ ollama run codellama "Write a Kubernetes CronJob that runs a backup script daily
 │              MODEL SELECTION QUICK REFERENCE                   │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  NEED BEST QUALITY?                                           │
-│  → Claude 3 Opus, GPT-4                                       │
+│  NEED BEST QUALITY?                                            │
+│  → Claude 3 Opus, GPT-4                                        │
 │                                                                │
-│  NEED BALANCE OF QUALITY & COST?                              │
-│  → Claude 3.5 Sonnet, GPT-4 Turbo                             │
+│  NEED BALANCE OF QUALITY & COST?                               │
+│  → Claude 3.5 Sonnet, GPT-4 Turbo                              │
 │                                                                │
-│  NEED LOW COST?                                               │
-│  → Claude 3 Haiku, GPT-3.5 Turbo                              │
+│  NEED LOW COST?                                                │
+│  → Claude 3 Haiku, GPT-3.5 Turbo                               │
 │                                                                │
-│  NEED PRIVACY/LOCAL?                                          │
-│  → LLaMA 2, Mistral, CodeLlama (via Ollama)                   │
+│  NEED PRIVACY/LOCAL?                                           │
+│  → LLaMA 2, Mistral, CodeLlama (via Ollama)                    │
 │                                                                │
-│  NEED ENTERPRISE COMPLIANCE?                                  │
-│  → AWS Bedrock, Azure OpenAI, Google Vertex AI               │
+│  NEED ENTERPRISE COMPLIANCE?                                   │
+│  → AWS Bedrock, Azure OpenAI, Google Vertex AI                 │
 │                                                                │
-│  NEED CODE SPECIFICALLY?                                      │
-│  → Claude 3.5 Sonnet, CodeLlama, StarCoder                    │
+│  NEED CODE SPECIFICALLY?                                       │
+│  → Claude 3.5 Sonnet, CodeLlama, StarCoder                     │
 │                                                                │
-│  NEED LONG CONTEXT?                                           │
-│  → Claude 3 (200K), Gemini (1M), GPT-4 Turbo (128K)          │
+│  NEED LONG CONTEXT?                                            │
+│  → Claude 3 (200K), Gemini (1M), GPT-4 Turbo (128K)            │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
