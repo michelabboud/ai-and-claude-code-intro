@@ -17,30 +17,30 @@ A **prompt** is any text input you provide to an LLM. It's your way of telling t
 │                      ANATOMY OF A PROMPT                       │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  ┌─────────────────────────────────────────────────────────┐  │
-│  │                    SYSTEM PROMPT                         │  │
-│  │  (Sets the AI's role, personality, constraints)          │  │
-│  │                                                          │  │
-│  │  "You are a senior DevOps engineer specializing in       │  │
-│  │   Kubernetes. Be concise and provide working examples."  │  │
-│  └─────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                    SYSTEM PROMPT                        │   │
+│  │  (Sets the AI's role, personality, constraints)         │   │
+│  │                                                         │   │
+│  │  "You are a senior DevOps engineer specializing in      │   │
+│  │   Kubernetes. Be concise and provide working examples." │   │
+│  └─────────────────────────────────────────────────────────┘   │
 │                           +                                    │
-│  ┌─────────────────────────────────────────────────────────┐  │
-│  │                    USER PROMPT                           │  │
-│  │  (Your actual question or request)                       │  │
-│  │                                                          │  │
-│  │  "How do I set up horizontal pod autoscaling for my      │  │
-│  │   nginx deployment based on CPU usage?"                  │  │
-│  └─────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                    USER PROMPT                          │   │
+│  │  (Your actual question or request)                      │   │
+│  │                                                         │   │
+│  │  "How do I set up horizontal pod autoscaling for my     │   │
+│  │   nginx deployment based on CPU usage?"                 │   │
+│  └─────────────────────────────────────────────────────────┘   │
 │                           +                                    │
-│  ┌─────────────────────────────────────────────────────────┐  │
-│  │                    CONTEXT (Optional)                    │  │
-│  │  (Additional information: code, logs, configs)           │  │
-│  │                                                          │  │
-│  │  "Here's my current deployment:                          │  │
-│  │   apiVersion: apps/v1                                    │  │
-│  │   kind: Deployment..."                                   │  │
-│  └─────────────────────────────────────────────────────────┘  │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                    CONTEXT (Optional)                   │   │
+│  │  (Additional information: code, logs, configs)          │   │
+│  │                                                         │   │
+│  │  "Here's my current deployment:                         │   │
+│  │   apiVersion: apps/v1                                   │   │
+│  │   kind: Deployment..."                                  │   │
+│  └─────────────────────────────────────────────────────────┘   │
 │                                                                │
 │                           ↓                                    │
 │                    AI RESPONSE                                 │
@@ -90,11 +90,11 @@ I've developed the **CRAFT** framework specifically for DevOps prompting:
 │                                                                │
 │   F - FORMAT                                                   │
 │       Describe the desired output format                       │
-│       Code, list, table, step-by-step                         │
+│       Code, list, table, step-by-step                          │
 │                                                                │
 │   T - TARGET                                                   │
 │       Define success criteria                                  │
-│       What does "done" look like?                             │
+│       What does "done" look like?                              │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -1081,25 +1081,25 @@ Prompt (uses Step 3 output):
 │                                                                │
 │  CRAFT Framework:                                              │
 │  C - Context (environment, versions, constraints)              │
-│  R - Role (who should the AI be)                              │
-│  A - Action (what to do)                                      │
-│  F - Format (how to output)                                   │
-│  T - Target (success criteria)                                │
+│  R - Role (who should the AI be)                               │
+│  A - Action (what to do)                                       │
+│  F - Format (how to output)                                    │
+│  T - Target (success criteria)                                 │
 │                                                                │
 │  Techniques:                                                   │
-│  • Zero-shot: Direct question                                 │
-│  • One-shot: One example                                      │
-│  • Few-shot: Multiple examples                                │
-│  • Chain-of-thought: Step-by-step reasoning                   │
-│  • Role-based: Expert persona                                 │
-│  • Constraint-based: Define boundaries                        │
+│  • Zero-shot: Direct question                                  │
+│  • One-shot: One example                                       │
+│  • Few-shot: Multiple examples                                 │
+│  • Chain-of-thought: Step-by-step reasoning                    │
+│  • Role-based: Expert persona                                  │
+│  • Constraint-based: Define boundaries                         │
 │                                                                │
 │  Common Mistakes:                                              │
-│  ✗ Too vague                                                  │
-│  ✗ Missing context                                            │
-│  ✗ Asking too much at once                                    │
-│  ✗ Not specifying format                                      │
-│  ✗ Ignoring limitations                                       │
+│  ✗ Too vague                                                   │
+│  ✗ Missing context                                             │
+│  ✗ Asking too much at once                                     │
+│  ✗ Not specifying format                                       │
+│  ✗ Ignoring limitations                                        │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
