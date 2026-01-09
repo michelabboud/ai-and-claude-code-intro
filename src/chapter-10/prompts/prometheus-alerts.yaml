@@ -1,0 +1,309 @@
+# Chapter 10: AI for DevOps
+# Prometheus Alerting Rules for Microservices Platform
+#
+# These rules provide comprehensive monitoring for a microservices architecture.
+# Customize thresholds and labels for your environment.
+
+groups:
+  # =========================================================================
+  # AVAILABILITY ALERTS
+  # =========================================================================
+  - name: availability
+    rules:
+      # Service completely down
+      - alert: ServiceDown
+        expr: up{job=~".*-service"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Service {{ $labels.job }} is down"
+          description: "Service {{ $labels.job }} has been down for more than 1 minute."
+          runbook_url: "https://runbooks.example.com/service-down"
+          dashboard_url: "https://grafana.example.com/d/services?var-service={{ $labels.job }}"
+
+      # High error rate
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[5m])) by (service)
+            /
+            sum(rate(http_requests_total[5m])) by (service)
+          ) * 100 > 5
+        for: 5m
+        labels:
+          severity: critical
+          team: "{{ $labels.service }}"
+        annotations:
+          summary: "High error rate on {{ $labels.service }}"
+          description: "{{ $labels.service }} has {{ $value | printf \"%.1f\" }}% error rate (threshold: 5%)."
+          runbook_url: "https://runbooks.example.com/high-error-rate"
+
+      # High latency
+      - alert: HighLatency
+        expr: |
+          histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le))
+          > 2
+        for: 10m
+        labels:
+          severity: warning
+          team: "{{ $labels.service }}"
+        annotations:
+          summary: "High latency on {{ $labels.service }}"
+          description: "{{ $labels.service }} p99 latency is {{ $value | printf \"%.2f\" }}s (threshold: 2s)."
+          runbook_url: "https://runbooks.example.com/high-latency"
+
+  # =========================================================================
+  # SATURATION ALERTS
+  # =========================================================================
+  - name: saturation
+    rules:
+      # High CPU usage
+      - alert: HighCPUUsage
+        expr: |
+          (
+            sum(rate(container_cpu_usage_seconds_total{container!=""}[5m])) by (pod, namespace)
+            /
+            sum(kube_pod_container_resource_limits{resource="cpu"}) by (pod, namespace)
+          ) * 100 > 80
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High CPU usage on {{ $labels.pod }}"
+          description: "Pod {{ $labels.pod }} in {{ $labels.namespace }} is using {{ $value | printf \"%.1f\" }}% CPU."
+          runbook_url: "https://runbooks.example.com/high-cpu"
+
+      # High memory usage
+      - alert: HighMemoryUsage
+        expr: |
+          (
+            sum(container_memory_working_set_bytes{container!=""}) by (pod, namespace)
+            /
+            sum(kube_pod_container_resource_limits{resource="memory"}) by (pod, namespace)
+          ) * 100 > 85
+        for: 10m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "High memory usage on {{ $labels.pod }}"
+          description: "Pod {{ $labels.pod }} in {{ $labels.namespace }} is using {{ $value | printf \"%.1f\" }}% memory."
+          runbook_url: "https://runbooks.example.com/high-memory"
+
+      # Pod restart loop
+      - alert: PodRestartLoop
+        expr: |
+          increase(kube_pod_container_status_restarts_total[10m]) > 3
+        for: 0m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Pod {{ $labels.pod }} is in a restart loop"
+          description: "Pod {{ $labels.pod }} in {{ $labels.namespace }} has restarted {{ $value }} times in 10 minutes."
+          runbook_url: "https://runbooks.example.com/restart-loop"
+
+      # Disk space low
+      - alert: DiskSpaceLow
+        expr: |
+          (
+            node_filesystem_avail_bytes{mountpoint="/"}
+            /
+            node_filesystem_size_bytes{mountpoint="/"}
+          ) * 100 < 15
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Low disk space on {{ $labels.instance }}"
+          description: "Node {{ $labels.instance }} has only {{ $value | printf \"%.1f\" }}% disk space remaining."
+          runbook_url: "https://runbooks.example.com/disk-space"
+
+  # =========================================================================
+  # TRAFFIC ALERTS
+  # =========================================================================
+  - name: traffic
+    rules:
+      # Traffic spike
+      - alert: TrafficSpike
+        expr: |
+          (
+            sum(rate(http_requests_total[5m])) by (service)
+            /
+            sum(rate(http_requests_total[1h] offset 1d)) by (service)
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Traffic spike detected on {{ $labels.service }}"
+          description: "{{ $labels.service }} is receiving {{ $value | printf \"%.1f\" }}x normal traffic."
+          runbook_url: "https://runbooks.example.com/traffic-spike"
+
+      # Traffic drop
+      - alert: TrafficDrop
+        expr: |
+          (
+            sum(rate(http_requests_total[5m])) by (service)
+            /
+            sum(rate(http_requests_total[1h] offset 1d)) by (service)
+          ) < 0.5
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Traffic drop detected on {{ $labels.service }}"
+          description: "{{ $labels.service }} traffic dropped to {{ $value | printf \"%.1f\" }}x normal levels."
+          runbook_url: "https://runbooks.example.com/traffic-drop"
+
+  # =========================================================================
+  # DEPENDENCY ALERTS
+  # =========================================================================
+  - name: dependencies
+    rules:
+      # Database connection errors
+      - alert: DatabaseConnectionErrors
+        expr: |
+          sum(rate(db_connection_errors_total[5m])) by (service, database) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Database connection errors in {{ $labels.service }}"
+          description: "{{ $labels.service }} is experiencing {{ $value | printf \"%.2f\" }} connection errors/sec to {{ $labels.database }}."
+          runbook_url: "https://runbooks.example.com/db-connection"
+
+      # Redis connection failures
+      - alert: RedisConnectionFailure
+        expr: |
+          redis_connected_clients == 0
+        for: 1m
+        labels:
+          severity: critical
+          team: platform
+        annotations:
+          summary: "Redis has no connected clients"
+          description: "Redis instance {{ $labels.instance }} has no connected clients."
+          runbook_url: "https://runbooks.example.com/redis-connection"
+
+      # External API failures
+      - alert: ExternalAPIFailure
+        expr: |
+          (
+            sum(rate(external_api_requests_total{status="error"}[5m])) by (service, api)
+            /
+            sum(rate(external_api_requests_total[5m])) by (service, api)
+          ) * 100 > 10
+        for: 5m
+        labels:
+          severity: warning
+          team: "{{ $labels.service }}"
+        annotations:
+          summary: "External API {{ $labels.api }} failing"
+          description: "{{ $labels.service }} is seeing {{ $value | printf \"%.1f\" }}% failure rate calling {{ $labels.api }}."
+          runbook_url: "https://runbooks.example.com/external-api"
+
+  # =========================================================================
+  # KUBERNETES ALERTS
+  # =========================================================================
+  - name: kubernetes
+    rules:
+      # Deployment replicas mismatch
+      - alert: DeploymentReplicasMismatch
+        expr: |
+          kube_deployment_spec_replicas != kube_deployment_status_replicas_available
+        for: 15m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "Deployment {{ $labels.deployment }} replicas mismatch"
+          description: "Deployment {{ $labels.deployment }} in {{ $labels.namespace }} has mismatched replicas for 15 minutes."
+          runbook_url: "https://runbooks.example.com/replicas-mismatch"
+
+      # HPA at max
+      - alert: HPAAtMaxCapacity
+        expr: |
+          kube_horizontalpodautoscaler_status_current_replicas == kube_horizontalpodautoscaler_spec_max_replicas
+        for: 15m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "HPA {{ $labels.horizontalpodautoscaler }} at maximum"
+          description: "HPA {{ $labels.horizontalpodautoscaler }} in {{ $labels.namespace }} has been at max replicas for 15 minutes."
+          runbook_url: "https://runbooks.example.com/hpa-max"
+
+      # Persistent volume almost full
+      - alert: PersistentVolumeFull
+        expr: |
+          (
+            kubelet_volume_stats_used_bytes
+            /
+            kubelet_volume_stats_capacity_bytes
+          ) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          team: platform
+        annotations:
+          summary: "PV {{ $labels.persistentvolumeclaim }} almost full"
+          description: "PersistentVolumeClaim {{ $labels.persistentvolumeclaim }} is {{ $value | printf \"%.1f\" }}% full."
+          runbook_url: "https://runbooks.example.com/pv-full"
+
+  # =========================================================================
+  # RECORDING RULES
+  # =========================================================================
+  - name: recording
+    rules:
+      # Error rate by service
+      - record: service:http_error_rate:5m
+        expr: |
+          sum(rate(http_requests_total{status=~"5.."}[5m])) by (service)
+          /
+          sum(rate(http_requests_total[5m])) by (service)
+
+      # Request rate by service
+      - record: service:http_request_rate:5m
+        expr: |
+          sum(rate(http_requests_total[5m])) by (service)
+
+      # Latency percentiles by service
+      - record: service:http_latency_p99:5m
+        expr: |
+          histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le))
+
+      - record: service:http_latency_p95:5m
+        expr: |
+          histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le))
+
+      - record: service:http_latency_p50:5m
+        expr: |
+          histogram_quantile(0.50, sum(rate(http_request_duration_seconds_bucket[5m])) by (service, le))
+
+  # =========================================================================
+  # INHIBITION RULES (in alertmanager.yml)
+  # =========================================================================
+  # Include these in your alertmanager.yml to prevent alert storms:
+  #
+  # inhibit_rules:
+  #   # If service is down, suppress other alerts for that service
+  #   - source_match:
+  #       alertname: ServiceDown
+  #     target_match_re:
+  #       alertname: (HighErrorRate|HighLatency|HighCPUUsage)
+  #     equal: ['service']
+  #
+  #   # If node is down, suppress pod alerts on that node
+  #   - source_match:
+  #       alertname: NodeDown
+  #     target_match_re:
+  #       alertname: (PodRestartLoop|HighCPUUsage|HighMemoryUsage)
+  #     equal: ['node']

@@ -1,0 +1,185 @@
+# Chapter 8: Claude Code Professional
+# Memory Configuration
+#
+# Long-term memory allows Claude to remember project-specific
+# facts, conventions, and patterns across sessions.
+
+# =========================================================
+# PROJECT FACTS
+# Key information Claude should remember about this project
+# =========================================================
+facts:
+  technology:
+    - "This project uses Django 4.2 with PostgreSQL 15"
+    - "Frontend is React 18 with TypeScript"
+    - "We use Redis 7.0 for caching with 1-hour default TTL"
+    - "Message queue is RabbitMQ with delayed message plugin"
+
+  architecture:
+    - "Microservices architecture with 12 services"
+    - "All external calls go through the api-gateway service"
+    - "Service mesh uses Istio for traffic management"
+    - "Database migrations must be backward compatible"
+
+  deployment:
+    - "Production runs on EKS in us-east-1 and eu-west-1"
+    - "CI/CD pipeline uses GitHub Actions"
+    - "Deployments use ArgoCD for GitOps"
+    - "Canary deployments for production releases"
+
+  security:
+    - "OAuth 2.0 authentication with Keycloak"
+    - "All APIs require JWT tokens"
+    - "PII data is encrypted at rest with AES-256"
+    - "Security scanning runs on every PR"
+
+# =========================================================
+# TEAM CONTACTS
+# Who to reach for different concerns
+# =========================================================
+team:
+  backend:
+    name: "Backend Team"
+    contact: "backend-team@company.com"
+    slack: "#backend-dev"
+    responsibilities:
+      - "API development"
+      - "Database design"
+      - "Performance optimization"
+
+  devops:
+    name: "DevOps Team"
+    contact: "devops@company.com"
+    slack: "#devops-oncall"
+    responsibilities:
+      - "Infrastructure management"
+      - "CI/CD pipelines"
+      - "Monitoring and alerting"
+      - "Incident response"
+
+  security:
+    name: "Security Team"
+    contact: "security@company.com"
+    slack: "#security-alerts"
+    responsibilities:
+      - "Security reviews"
+      - "Vulnerability management"
+      - "Compliance"
+
+  oncall:
+    schedule: "PagerDuty"
+    escalation: |
+      1. Primary oncall (15 min SLA)
+      2. Secondary oncall (30 min)
+      3. Engineering Manager (1 hour)
+      4. VP Engineering (2 hours)
+
+# =========================================================
+# NAMING CONVENTIONS
+# How things should be named
+# =========================================================
+conventions:
+  code:
+    python: "snake_case for functions and variables"
+    typescript: "camelCase for functions, PascalCase for classes"
+    sql: "lowercase with underscores for tables and columns"
+
+  resources:
+    kubernetes: "kebab-case for all resources (my-service)"
+    terraform: "snake_case for resource names"
+    aws: "PascalCase for tags (Environment, Project)"
+
+  git:
+    branches:
+      feature: "feature/JIRA-123-description"
+      bugfix: "bugfix/JIRA-123-description"
+      hotfix: "hotfix/JIRA-123-description"
+    commits: "conventional commits format (feat:, fix:, docs:)"
+
+  services:
+    internal: "prefix with 'internal-' (internal-user-service)"
+    external: "no prefix (api-gateway)"
+    background: "suffix with '-worker' (payment-worker)"
+
+# =========================================================
+# ARCHITECTURE PATTERNS
+# Standard patterns used in this project
+# =========================================================
+patterns:
+  api:
+    versioning: "/api/v1/, /api/v2/ in URL path"
+    pagination: "cursor-based pagination for all list endpoints"
+    errors: "RFC 7807 Problem Details format"
+    rate_limiting: "100 requests per minute per API key"
+
+  database:
+    connections: "Use connection pooling with PgBouncer"
+    migrations: "Flyway for schema migrations"
+    indexes: "All foreign keys must have indexes"
+
+  caching:
+    strategy: "Cache-aside pattern with Redis"
+    keys: "namespace:entity:id format"
+    invalidation: "Event-driven invalidation via RabbitMQ"
+
+  logging:
+    format: "Structured JSON with correlation IDs"
+    levels: "DEBUG, INFO, WARNING, ERROR, CRITICAL"
+    required_fields:
+      - "timestamp"
+      - "level"
+      - "correlation_id"
+      - "service"
+      - "message"
+
+  metrics:
+    format: "Prometheus exposition format"
+    endpoint: "/metrics on port 9090"
+    required:
+      - "request_count"
+      - "request_duration_seconds"
+      - "error_count"
+
+# =========================================================
+# ANTI-PATTERNS
+# Things to avoid in this project
+# =========================================================
+anti_patterns:
+  - pattern: "Using print() for logging"
+    reason: "Breaks structured logging and monitoring"
+    alternative: "Use the logger module with structured logging"
+
+  - pattern: "Committing directly to main"
+    reason: "Bypasses code review and CI checks"
+    alternative: "Use feature branches and pull requests"
+
+  - pattern: "Hardcoded environment values"
+    reason: "Makes deployment configuration difficult"
+    alternative: "Use environment variables or ConfigMaps"
+
+  - pattern: "Synchronous external API calls"
+    reason: "Blocks request processing and reduces throughput"
+    alternative: "Use async/await or background workers"
+
+  - pattern: "SELECT * queries"
+    reason: "Wastes bandwidth and reveals schema changes"
+    alternative: "Explicitly list required columns"
+
+  - pattern: "Storing state in containers"
+    reason: "Containers are ephemeral"
+    alternative: "Use persistent storage (S3, EFS, RDS)"
+
+# =========================================================
+# KNOWN ISSUES
+# Current technical debt and workarounds
+# =========================================================
+known_issues:
+  - id: "TECH-123"
+    description: "Legacy code in /src/legacy is being deprecated"
+    workaround: "Don't add new features, only critical bug fixes"
+    planned_fix: "Q2 2024 migration to new architecture"
+
+  - id: "TECH-456"
+    description: "User service has N+1 query issue on /users endpoint"
+    workaround: "Use /users/batch for bulk operations"
+    planned_fix: "Backlog item for optimization"

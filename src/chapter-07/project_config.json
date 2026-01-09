@@ -1,0 +1,81 @@
+{
+  "$schema": "https://claude.ai/project-config.schema.json",
+  "_comment": "Chapter 7: Claude Code Project Configuration",
+
+  "project": {
+    "name": "my-microservices-app",
+    "description": "Node.js microservices with TypeScript",
+    "language": "typescript",
+    "framework": "express"
+  },
+
+  "model": "claude-sonnet-4-20250514",
+
+  "context": {
+    "alwaysInclude": [
+      "README.md",
+      "package.json",
+      "tsconfig.json",
+      ".env.example"
+    ],
+    "priorityPaths": [
+      "src/",
+      "tests/",
+      "docs/"
+    ],
+    "ignore": [
+      "node_modules/",
+      "dist/",
+      "coverage/",
+      ".git/",
+      "*.log",
+      ".env"
+    ]
+  },
+
+  "commands": {
+    "test": "npm test",
+    "lint": "npm run lint",
+    "build": "npm run build",
+    "dev": "npm run dev"
+  },
+
+  "conventions": {
+    "style": {
+      "code": "prettier + eslint",
+      "commits": "conventional commits",
+      "branches": "feature/, bugfix/, hotfix/"
+    },
+    "testing": {
+      "framework": "jest",
+      "coverage_threshold": 80,
+      "naming": "*.test.ts or *.spec.ts"
+    },
+    "documentation": {
+      "style": "JSDoc for functions",
+      "readme_required": true,
+      "changelog": true
+    }
+  },
+
+  "security": {
+    "secrets_patterns": [
+      "password",
+      "api_key",
+      "secret",
+      "token",
+      "credential"
+    ],
+    "blocked_commands": [
+      "rm -rf /",
+      "sudo",
+      "chmod 777"
+    ]
+  },
+
+  "integrations": {
+    "cicd": "github-actions",
+    "deployment": "kubernetes",
+    "monitoring": "datadog"
+  }
+}
