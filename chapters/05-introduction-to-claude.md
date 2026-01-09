@@ -22,14 +22,14 @@ Claude is Anthropic's family of AI assistants, designed to be helpful, harmless,
 │  Mission: AI safety research                                   │
 │                                                                │
 │  Key Differentiators:                                          │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  • Constitutional AI - trained with safety principles     │ │
-│  │  • Honest about limitations and uncertainties             │ │
-│  │  • 200K token context window (one of the largest)         │ │
-│  │  • Strong reasoning and analysis capabilities             │ │
-│  │  • Excellent at following complex instructions            │ │
-│  │  • Natural, conversational communication style            │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Constitutional AI - trained with safety principles    │  │
+│  │  • Honest about limitations and uncertainties            │  │
+│  │  • 200K token context window (one of the largest)        │  │
+│  │  • Strong reasoning and analysis capabilities            │  │
+│  │  • Excellent at following complex instructions           │  │
+│  │  • Natural, conversational communication style           │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 │  Available Via:                                                │
 │  • claude.ai (web interface)                                   │
@@ -82,39 +82,39 @@ honest:
 │                       CLAUDE 3 MODEL FAMILY                                │
 ├────────────────────────────────────────────────────────────────────────────┤
 │                                                                            │
-│  ╔═══════════════════════════════════════════════════════════════════╗    │
-│  ║  CLAUDE 3.5 SONNET                                                ║    │
-│  ║  "The Sweet Spot"                                                 ║    │
-│  ║                                                                   ║    │
-│  ║  • Best balance of intelligence, speed, and cost                  ║    │
-│  ║  • Excellent for code generation and analysis                     ║    │
-│  ║  • Great at complex reasoning                                     ║    │
-│  ║  • Recommended for most DevOps tasks                              ║    │
-│  ║  • 200K context window                                            ║    │
-│  ║  • Vision capabilities (can analyze images)                       ║    │
-│  ╚═══════════════════════════════════════════════════════════════════╝    │
+│  ╔═══════════════════════════════════════════════════════════════════╗     │
+│  ║  CLAUDE 3.5 SONNET                                                ║     │
+│  ║  "The Sweet Spot"                                                 ║     │
+│  ║                                                                   ║     │
+│  ║  • Best balance of intelligence, speed, and cost                  ║     │
+│  ║  • Excellent for code generation and analysis                     ║     │
+│  ║  • Great at complex reasoning                                     ║     │
+│  ║  • Recommended for most DevOps tasks                              ║     │
+│  ║  • 200K context window                                            ║     │
+│  ║  • Vision capabilities (can analyze images)                       ║     │
+│  ╚═══════════════════════════════════════════════════════════════════╝     │
 │                                                                            │
-│  ╔═══════════════════════════════════════════════════════════════════╗    │
-│  ║  CLAUDE 3 OPUS                                                    ║    │
-│  ║  "The Powerhouse"                                                 ║    │
-│  ║                                                                   ║    │
-│  ║  • Most capable model                                             ║    │
-│  ║  • Best for complex analysis and reasoning                        ║    │
-│  ║  • Excellent for architecture decisions                           ║    │
-│  ║  • Higher cost per token                                          ║    │
-│  ║  • Use when quality matters most                                  ║    │
-│  ╚═══════════════════════════════════════════════════════════════════╝    │
+│  ╔═══════════════════════════════════════════════════════════════════╗     │
+│  ║  CLAUDE 3 OPUS                                                    ║     │
+│  ║  "The Powerhouse"                                                 ║     │
+│  ║                                                                   ║     │
+│  ║  • Most capable model                                             ║     │
+│  ║  • Best for complex analysis and reasoning                        ║     │
+│  ║  • Excellent for architecture decisions                           ║     │
+│  ║  • Higher cost per token                                          ║     │
+│  ║  • Use when quality matters most                                  ║     │
+│  ╚═══════════════════════════════════════════════════════════════════╝     │
 │                                                                            │
-│  ╔═══════════════════════════════════════════════════════════════════╗    │
-│  ║  CLAUDE 3 HAIKU                                                   ║    │
-│  ║  "The Speed Demon"                                                ║    │
-│  ║                                                                   ║    │
-│  ║  • Fastest response times                                         ║    │
-│  ║  • Most cost-effective                                            ║    │
-│  ║  • Great for simple tasks at scale                                ║    │
-│  ║  • Perfect for chatbots and quick queries                         ║    │
-│  ║  • Ideal for high-volume automation                               ║    │
-│  ╚═══════════════════════════════════════════════════════════════════╝    │
+│  ╔═══════════════════════════════════════════════════════════════════╗     │
+│  ║  CLAUDE 3 HAIKU                                                   ║     │
+│  ║  "The Speed Demon"                                                ║     │
+│  ║                                                                   ║     │
+│  ║  • Fastest response times                                         ║     │
+│  ║  • Most cost-effective                                            ║     │
+│  ║  • Great for simple tasks at scale                                ║     │
+│  ║  • Perfect for chatbots and quick queries                         ║     │
+│  ║  • Ideal for high-volume automation                               ║     │
+│  ╚═══════════════════════════════════════════════════════════════════╝     │
 │                                                                            │
 └────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -281,32 +281,32 @@ knowledge_cutoff:
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                    CLAUDE.AI WEB INTERFACE                      │
+│                    CLAUDE.AI WEB INTERFACE                     │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  URL: https://claude.ai                                        │
 │                                                                │
 │  Access Tiers:                                                 │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  FREE TIER                                                │ │
-│  │  • Limited messages per day                               │ │
-│  │  • Access to Claude 3.5 Sonnet                           │ │
-│  │  • Good for learning and light usage                     │ │
-│  └──────────────────────────────────────────────────────────┘ │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  CLAUDE PRO ($20/month)                                   │ │
-│  │  • 5x more messages                                       │ │
-│  │  • Priority access during peak times                      │ │
-│  │  • Access to Claude 3 Opus                               │ │
-│  │  • Early access to new features                          │ │
-│  └──────────────────────────────────────────────────────────┘ │
-│  ┌──────────────────────────────────────────────────────────┐ │
-│  │  CLAUDE TEAM ($25/user/month)                             │ │
-│  │  • Everything in Pro                                      │ │
-│  │  • Team collaboration features                            │ │
-│  │  • Admin controls                                         │ │
-│  │  • Higher usage limits                                    │ │
-│  └──────────────────────────────────────────────────────────┘ │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  FREE TIER                                               │  │
+│  │  • Limited messages per day                              │  │
+│  │  • Access to Claude 3.5 Sonnet                           │  │
+│  │  • Good for learning and light usage                     │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  CLAUDE PRO ($20/month)                                  │  │
+│  │  • 5x more messages                                      │  │
+│  │  • Priority access during peak times                     │  │
+│  │  • Access to Claude 3 Opus                               │  │
+│  │  • Early access to new features                          │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  CLAUDE TEAM ($25/user/month)                            │  │
+│  │  • Everything in Pro                                     │  │
+│  │  • Team collaboration features                           │  │
+│  │  • Admin controls                                        │  │
+│  │  • Higher usage limits                                   │  │
+│  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 │  Best For:                                                     │
 │  • Quick questions and exploration                             │
@@ -969,15 +969,15 @@ Write a Python script that:
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Model Selection:                                              │
-│  • Complex reasoning → Claude 3 Opus                          │
-│  • General DevOps → Claude 3.5 Sonnet (default)               │
-│  • High volume/simple → Claude 3 Haiku                        │
+│  • Complex reasoning → Claude 3 Opus                           │
+│  • General DevOps → Claude 3.5 Sonnet (default)                │
+│  • High volume/simple → Claude 3 Haiku                         │
 │                                                                │
 │  Access Methods:                                               │
-│  • Quick tasks → claude.ai                                    │
-│  • Automation → API (api.anthropic.com)                       │
-│  • Enterprise → AWS Bedrock or GCP Vertex AI                  │
-│  • Coding → Claude Code CLI                                   │
+│  • Quick tasks → claude.ai                                     │
+│  • Automation → API (api.anthropic.com)                        │
+│  • Enterprise → AWS Bedrock or GCP Vertex AI                   │
+│  • Coding → Claude Code CLI                                    │
 │                                                                │
 │  Best Practices:                                               │
 │  • Be specific with requirements                               │
