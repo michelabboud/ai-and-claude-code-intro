@@ -3,11 +3,26 @@
 This directory contains slide decks for each chapter. The presentations are written in Marp markdown format, which can be:
 
 1. **Viewed directly** in VS Code with the Marp extension
-2. **Converted to PowerPoint** using Marp CLI
+2. **Converted to PowerPoint** using Marp CLI or GitHub Actions
 3. **Exported to PDF** for sharing
 4. **Presented directly** in the browser
 
-## Converting to PowerPoint
+---
+
+## Generate PowerPoint (Recommended)
+
+### Using GitHub Actions (Easiest)
+
+1. Go to the repository on GitHub
+2. Click **Actions** tab
+3. Select **"Generate PowerPoint Presentations"** workflow
+4. Click **"Run workflow"**
+5. Choose options:
+   - `commit_files: false` → Download as artifact (default)
+   - `commit_files: true` → Commit PPTX files to `presentations/pptx/`
+6. Download the `powerpoint-presentations` artifact when complete
+
+### Using Marp CLI (Local)
 
 ```bash
 # Install Marp CLI
@@ -25,6 +40,8 @@ done
 marp slides-chapter-01.md --pdf -o chapter-01.pdf
 ```
 
+---
+
 ## Viewing in Browser
 
 ```bash
@@ -34,6 +51,8 @@ marp -s .
 # Then open http://localhost:8080
 ```
 
+---
+
 ## Files
 
 | File | Chapter | Topic |
@@ -41,8 +60,7 @@ marp -s .
 | [slides-chapter-01.md](./slides-chapter-01.md) | 1 | Introduction to AI |
 | [slides-chapter-02.md](./slides-chapter-02.md) | 2 | Understanding LLMs and Tokens |
 | [slides-chapter-03.md](./slides-chapter-03.md) | 3 | The Art of Prompting |
-| [slides-chapter-04.md](./slides-chapter-04.md) | 4 | AI Models Landscape |
-| [slides-chapter-05.md](./slides-chapter-05.md) | 5 | Introduction to Claude |
-| [slides-chapter-06-08.md](./slides-chapter-06-08.md) | 6-8 | Claude Code (Basic to Pro) |
+| [slides-chapter-04-05.md](./slides-chapter-04-05.md) | 4-5 | AI Models & Introduction to Claude |
+| [slides-chapter-06-08.md](./slides-chapter-06-08.md) | 6-8 | Claude Code (Basic to Professional) |
 | [slides-chapter-09.md](./slides-chapter-09.md) | 9 | MCP Deep Dive |
 | [slides-chapter-10.md](./slides-chapter-10.md) | 10 | AI for DevOps |
