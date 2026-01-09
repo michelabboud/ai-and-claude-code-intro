@@ -1,0 +1,159 @@
+# Chapter 8: Claude Code Professional
+# Custom Skills Configuration
+#
+# Skills are specialized knowledge and patterns that extend
+# Claude Code's capabilities for specific domains or teams.
+
+name: my-company-standards
+description: Company-specific coding and deployment standards
+version: "1.0"
+
+# Knowledge: Facts Claude should know about your environment
+knowledge:
+  infrastructure:
+    - "We use AWS EKS for all Kubernetes deployments"
+    - "All services must expose Prometheus metrics on /metrics"
+    - "Use DataDog for logging via the dd-agent sidecar"
+    - "All Terraform must use our internal module registry"
+
+  coding:
+    - "Python code follows Black formatting"
+    - "TypeScript uses ESLint with our custom config"
+    - "All APIs must be versioned: /api/v1/, /api/v2/"
+    - "Use structured logging with correlation IDs"
+
+  security:
+    - "All secrets must be stored in AWS Secrets Manager"
+    - "No credentials in environment variables"
+    - "All S3 buckets must have encryption enabled"
+    - "IAM roles follow least-privilege principle"
+
+  operations:
+    - "Production deployments require two approvals"
+    - "All changes must have rollback procedures"
+    - "Incidents follow PagerDuty escalation policy"
+
+# Templates: Standard configurations used in the organization
+templates:
+  deployment: |
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+      name: {{service_name}}
+      labels:
+        app: {{service_name}}
+        version: {{version}}
+      annotations:
+        ad.datadoghq.com/tags: '{"team":"{{team}}","env":"{{env}}"}'
+    spec:
+      replicas: {{replicas | default(3)}}
+      selector:
+        matchLabels:
+          app: {{service_name}}
+      template:
+        metadata:
+          labels:
+            app: {{service_name}}
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "{{metrics_port | default(9090)}}"
+        spec:
+          containers:
+            - name: {{service_name}}
+              image: {{image}}
+              ports:
+                - containerPort: {{port}}
+              resources:
+                requests:
+                  memory: "{{memory_request | default('256Mi')}}"
+                  cpu: "{{cpu_request | default('100m')}}"
+                limits:
+                  memory: "{{memory_limit | default('512Mi')}}"
+                  cpu: "{{cpu_limit | default('500m')}}"
+              livenessProbe:
+                httpGet:
+                  path: /health
+                  port: {{port}}
+                initialDelaySeconds: 15
+                periodSeconds: 10
+              readinessProbe:
+                httpGet:
+                  path: /ready
+                  port: {{port}}
+                initialDelaySeconds: 5
+                periodSeconds: 5
+
+  service: |
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: {{service_name}}
+      labels:
+        app: {{service_name}}
+    spec:
+      type: ClusterIP
+      ports:
+        - port: {{port}}
+          targetPort: {{port}}
+          protocol: TCP
+      selector:
+        app: {{service_name}}
+
+# Commands: Standard commands used in the organization
+commands:
+  - name: lint
+    command: make lint
+    description: Run all linters
+
+  - name: test
+    command: make test
+    description: Run test suite
+
+  - name: build
+    command: make build
+    description: Build the application
+
+  - name: deploy
+    command: make deploy ENV={{env}}
+    description: Deploy to specified environment
+
+  - name: security-scan
+    command: make security-scan
+    description: Run security scanning tools
+
+# Patterns: Coding patterns and conventions
+patterns:
+  error_handling: |
+    Always use structured logging with correlation IDs:
+    logger.error("Operation failed", extra={
+        "correlation_id": request.correlation_id,
+        "operation": "operation_name",
+        "error_type": type(error).__name__,
+        "error_message": str(error)
+    })
+
+  api_versioning: |
+    APIs must be versioned in the URL path:
+    - /api/v1/resource
+    - /api/v2/resource
+
+    Version in headers is not acceptable.
+
+  database_connections: |
+    Always use connection pooling with PgBouncer.
+    Max connections per service: 20
+    Connection timeout: 10 seconds
+
+# Anti-patterns: Things to avoid
+anti_patterns:
+  - pattern: "print() for logging"
+    alternative: "Use the logger module with structured logging"
+
+  - pattern: "Committing to main directly"
+    alternative: "Use feature branches and pull requests"
+
+  - pattern: "Hardcoded environment-specific values"
+    alternative: "Use environment variables or ConfigMaps"
+
+  - pattern: "Storing secrets in code or configs"
+    alternative: "Use AWS Secrets Manager"

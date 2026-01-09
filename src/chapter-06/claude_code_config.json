@@ -1,0 +1,80 @@
+{
+  "$schema": "https://claude.ai/config.schema.json",
+  "_comment": "Chapter 6: Claude Code Configuration Example",
+
+  "model": "claude-sonnet-4-20250514",
+  "allowedTools": [
+    "Bash(npm:*)",
+    "Bash(git:*)",
+    "Bash(docker:*)",
+    "Bash(kubectl:*)",
+    "Bash(terraform:*)",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep"
+  ],
+
+  "environment": {
+    "EDITOR": "vim",
+    "NODE_ENV": "development"
+  },
+
+  "permissions": {
+    "allow": [
+      "read:**",
+      "write:src/**",
+      "write:tests/**",
+      "execute:npm *",
+      "execute:git *",
+      "execute:docker *"
+    ],
+    "deny": [
+      "write:node_modules/**",
+      "execute:rm -rf *",
+      "execute:sudo *"
+    ]
+  },
+
+  "contextFiles": [
+    "README.md",
+    "package.json",
+    ".env.example",
+    "docs/ARCHITECTURE.md"
+  ],
+
+  "ignorePatterns": [
+    "node_modules/**",
+    ".git/**",
+    "dist/**",
+    "coverage/**",
+    "*.log",
+    ".env",
+    "*.pem",
+    "*.key"
+  ],
+
+  "hooks": {
+    "preEdit": [],
+    "postEdit": [
+      "prettier --write {{file}}"
+    ],
+    "preCommand": [],
+    "postCommand": []
+  },
+
+  "memory": {
+    "projectFacts": [
+      "This is a Node.js microservices project",
+      "We use TypeScript for all new code",
+      "Tests are written with Jest",
+      "CI/CD runs on GitHub Actions"
+    ],
+    "conventions": {
+      "naming": "camelCase for variables, PascalCase for classes",
+      "testing": "All functions must have unit tests",
+      "commits": "Follow conventional commits format"
+    }
+  }
+}
