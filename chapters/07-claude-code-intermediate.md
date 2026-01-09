@@ -32,7 +32,7 @@ CLAUDE_CODE_MAX_TOKENS     # Max output tokens
   "api_key": "sk-ant-...",       // Or use env var (recommended)
 
   // Model settings
-  "model": "claude-3-5-sonnet-20241022",
+  "model": "claude-sonnet-4-5-20250514",
   "max_tokens": 4096,
 
   // Behavior settings
@@ -81,7 +81,7 @@ CLAUDE_CODE_MAX_TOKENS     # Max output tokens
 // .claude/config.json in your project root
 {
   // Project-specific model (maybe cheaper for simple projects)
-  "model": "claude-3-haiku-20240307",
+  "model": "claude-haiku-4-5-20250514",
 
   // Project-specific excludes
   "context": {
@@ -459,7 +459,7 @@ return {
     config = function()
       require("claude").setup({
         api_key = vim.env.ANTHROPIC_API_KEY,
-        model = "claude-3-5-sonnet-20241022",
+        model = "claude-sonnet-4-5-20250514",
         keymaps = {
           chat = "<leader>cc",      -- Open chat
           explain = "<leader>ce",    -- Explain selection
@@ -485,7 +485,7 @@ Plug 'anthropics/claude.vim'
 
 " Configuration
 let g:claude_api_key = $ANTHROPIC_API_KEY
-let g:claude_model = 'claude-3-5-sonnet-20241022'
+let g:claude_model = 'claude-sonnet-4-5-20250514'
 
 " Keybindings
 nnoremap <leader>cc :ClaudeChat<CR>
@@ -780,7 +780,7 @@ command_failures:
 slow_responses:
   symptom: "Responses take very long"
   solutions:
-    - "Use Claude Haiku for simpler tasks"
+    - "Use Claude Haiku 4.5 for simpler tasks"
     - "Reduce context size"
     - "Check network connection"
     - "Consider using streaming"
@@ -843,9 +843,9 @@ claude --no-history
   good: "Review src/api/auth.py for security issues"
 
 3_use_appropriate_model:
-  complex_reasoning: "claude-3-opus (expensive)"
-  most_tasks: "claude-3-5-sonnet (balanced)"
-  simple_tasks: "claude-3-haiku (cheapest)"
+  complex_reasoning: "claude-opus-4.5 (expensive)"
+  most_tasks: "claude-sonnet-4.5 (balanced)"
+  simple_tasks: "claude-haiku-4.5 (cheapest)"
 
 4_reuse_context:
   tip: "Keep sessions alive for related tasks"
@@ -865,7 +865,7 @@ claude --no-history
 claude --stream
 
 # Use Haiku for quick tasks
-claude --model claude-3-haiku-20240307
+claude --model claude-haiku-4-5-20250514
 
 # Pre-warm with project context
 # Start Claude Code before you need it
@@ -999,7 +999,7 @@ Document your setup and workflow.
 │  /debug on                 - In-session debug                  │
 │                                                                │
 │  Optimization:                                                 │
-│  --model claude-3-haiku-*  - Fast/cheap model                  │
+│  --model claude-haiku-4-5-*  - Fast/cheap model                │
 │  --stream                  - Stream responses                  │
 │  /clear                    - Reset context                     │
 │                                                                │

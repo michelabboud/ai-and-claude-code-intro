@@ -965,9 +965,9 @@ secret_management:
 # Getting the most out of Claude Code
 
 model_selection:
-  exploration: "Use Haiku for quick searches"
-  implementation: "Use Sonnet for most coding tasks"
-  architecture: "Use Opus for complex decisions"
+  exploration: "Use Haiku 4.5 for quick searches"
+  implementation: "Use Sonnet 4.5 for most coding tasks"
+  architecture: "Use Opus 4.5 for complex decisions"
 
 parallel_processing:
   approach: "Break large tasks into parallel sub-tasks"

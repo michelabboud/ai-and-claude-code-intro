@@ -75,15 +75,15 @@ honest:
 
 ## 5.2 The Claude Model Family
 
-### Current Claude 3 Models
+### Current Claude 4.5 Models
 
 ```
 ┌────────────────────────────────────────────────────────────────────────────┐
-│                       CLAUDE 3 MODEL FAMILY                                │
+│                       CLAUDE 4.5 MODEL FAMILY                              │
 ├────────────────────────────────────────────────────────────────────────────┤
 │                                                                            │
 │  ╔═══════════════════════════════════════════════════════════════════╗     │
-│  ║  CLAUDE 3.5 SONNET                                                ║     │
+│  ║  CLAUDE SONNET 4.5                                                ║     │
 │  ║  "The Sweet Spot"                                                 ║     │
 │  ║                                                                   ║     │
 │  ║  • Best balance of intelligence, speed, and cost                  ║     │
@@ -95,7 +95,7 @@ honest:
 │  ╚═══════════════════════════════════════════════════════════════════╝     │
 │                                                                            │
 │  ╔═══════════════════════════════════════════════════════════════════╗     │
-│  ║  CLAUDE 3 OPUS                                                    ║     │
+│  ║  CLAUDE OPUS 4.5                                                  ║     │
 │  ║  "The Powerhouse"                                                 ║     │
 │  ║                                                                   ║     │
 │  ║  • Most capable model                                             ║     │
@@ -106,7 +106,7 @@ honest:
 │  ╚═══════════════════════════════════════════════════════════════════╝     │
 │                                                                            │
 │  ╔═══════════════════════════════════════════════════════════════════╗     │
-│  ║  CLAUDE 3 HAIKU                                                   ║     │
+│  ║  CLAUDE HAIKU 4.5                                                 ║     │
 │  ║  "The Speed Demon"                                                ║     │
 │  ║                                                                   ║     │
 │  ║  • Fastest response times                                         ║     │
@@ -131,18 +131,18 @@ def select_claude_model(task: dict) -> str:
 
     # Complex reasoning, architecture decisions, critical code review
     if task.get("complexity") == "high":
-        return "claude-3-opus-20240229"
+        return "claude-opus-4-5-20250514"
 
     # Most DevOps tasks: code generation, debugging, documentation
     if task.get("needs_code_quality"):
-        return "claude-3-5-sonnet-20241022"
+        return "claude-sonnet-4-5-20250514"
 
     # High volume, simple tasks, chatbots
     if task.get("high_volume") or task.get("simple"):
-        return "claude-3-haiku-20240307"
+        return "claude-haiku-4-5-20250514"
 
     # Default: Sonnet is the best general choice
-    return "claude-3-5-sonnet-20241022"
+    return "claude-sonnet-4-5-20250514"
 
 
 # Examples
@@ -154,23 +154,23 @@ print(select_claude_model({"high_volume": True}))  # haiku
 ### Pricing Comparison
 
 ```
-Claude Model Pricing (per 1M tokens, as of 2024)
+Claude Model Pricing (per 1M tokens, as of 2025)
 ═══════════════════════════════════════════════════════════════════
 
 Model              │ Input      │ Output     │ Best For
 ───────────────────┼────────────┼────────────┼──────────────────────
-Claude 3 Opus      │ $15.00     │ $75.00     │ Complex analysis
-Claude 3.5 Sonnet  │ $3.00      │ $15.00     │ Most tasks (default)
-Claude 3 Haiku     │ $0.25      │ $1.25      │ High-volume simple
+Claude Opus 4.5    │ $5.00      │ $25.00     │ Complex analysis
+Claude Sonnet 4.5  │ $3.00      │ $15.00     │ Most tasks (default)
+Claude Haiku 4.5   │ $1.00      │ $5.00      │ High-volume simple
 
 Cost Example: 100 code reviews per day
 ─────────────────────────────────────────────────────────────────────
 Average: 2,000 input tokens, 500 output tokens per review
 Monthly: 3,000 reviews
 
-Opus:     Input: $90 + Output: $112.50 = $202.50/month
+Opus:     Input: $30 + Output: $37.50  = $67.50/month
 Sonnet:   Input: $18 + Output: $22.50  = $40.50/month
-Haiku:    Input: $1.50 + Output: $1.87 = $3.37/month
+Haiku:    Input: $6 + Output: $7.50    = $13.50/month
 ```
 
 ---
@@ -290,21 +290,21 @@ knowledge_cutoff:
 │  ┌──────────────────────────────────────────────────────────┐  │
 │  │  FREE TIER                                               │  │
 │  │  • Limited messages per day                              │  │
-│  │  • Access to Claude 3.5 Sonnet                           │  │
+│  │  • Access to Claude Sonnet 4.5                           │  │
 │  │  • Good for learning and light usage                     │  │
 │  └──────────────────────────────────────────────────────────┘  │
 │  ┌──────────────────────────────────────────────────────────┐  │
-│  │  CLAUDE PRO ($20/month)                                  │  │
-│  │  • 5x more messages                                      │  │
-│  │  • Priority access during peak times                     │  │
-│  │  • Access to Claude 3 Opus                               │  │
-│  │  • Early access to new features                          │  │
+│  │  CLAUDE PRO ($17/month annual)                           │  │
+│  │  • Higher usage limits                                   │  │
+│  │  • Claude Code access                                    │  │
+│  │  • Access to Claude Opus 4.5                             │  │
+│  │  • Extended thinking mode                                │  │
 │  └──────────────────────────────────────────────────────────┘  │
 │  ┌──────────────────────────────────────────────────────────┐  │
-│  │  CLAUDE TEAM ($25/user/month)                            │  │
-│  │  • Everything in Pro                                     │  │
-│  │  • Team collaboration features                           │  │
-│  │  • Admin controls                                        │  │
+│  │  CLAUDE MAX ($100/month)                                 │  │
+│  │  • 5x-20x more usage than Pro                            │  │
+│  │  • Excel integration                                     │  │
+│  │  • Priority access                                       │  │
 │  │  • Higher usage limits                                   │  │
 │  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
@@ -333,7 +333,7 @@ client = anthropic.Anthropic(
 
 # Simple message
 message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-4-5-20250514",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Write a Dockerfile for a Python Flask app"}
@@ -344,7 +344,7 @@ print(message.content[0].text)
 
 # With system prompt
 message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-4-5-20250514",
     max_tokens=1024,
     system="You are a DevOps expert specializing in Kubernetes. Be concise.",
     messages=[
@@ -371,7 +371,7 @@ bedrock = boto3.client(
 
 # Make request
 response = bedrock.invoke_model(
-    modelId='anthropic.claude-3-5-sonnet-20241022-v2:0',
+    modelId='anthropic.claude-sonnet-4-5-20250514-v1:0',
     body=json.dumps({
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 1024,
@@ -414,7 +414,7 @@ client = AnthropicVertex(
 )
 
 message = client.messages.create(
-    model="claude-3-5-sonnet@20241022",
+    model="claude-sonnet-4-5@20250514",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Explain GKE Autopilot vs Standard mode"}
@@ -767,7 +767,7 @@ Want me to add WAF integration or additional features?
 
 ## 5.6 Claude's Vision Capabilities
 
-Claude 3 models can analyze images, which is useful for DevOps:
+Claude 4.5 models can analyze images, which is useful for DevOps:
 
 ```python
 # Using Claude's vision for DevOps tasks
@@ -782,7 +782,7 @@ with open("error_screenshot.png", "rb") as f:
     image_data = base64.standard_b64encode(f.read()).decode("utf-8")
 
 message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-4-5-20250514",
     max_tokens=1024,
     messages=[
         {
@@ -901,7 +901,7 @@ client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 # 3. Save the response to a file
 
 message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-4-5-20250514",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Your prompt here"}
@@ -928,9 +928,9 @@ Write a Python script that:
 ```
 
 ### Test with:
-- Claude 3.5 Sonnet
-- Claude 3 Haiku
-- Claude 3 Opus (if available)
+- Claude Sonnet 4.5
+- Claude Haiku 4.5
+- Claude Opus 4.5 (if available)
 
 ### Comparison:
 
@@ -951,7 +951,7 @@ Write a Python script that:
 
 1. **Claude is Anthropic's AI assistant** - Designed to be helpful, harmless, and honest
 
-2. **Three main models**: Opus (most capable), Sonnet (balanced), Haiku (fastest/cheapest)
+2. **Three main models**: Opus 4.5 (most capable), Sonnet 4.5 (balanced), Haiku 4.5 (fastest/cheapest)
 
 3. **Multiple access options**: Web interface, API, AWS Bedrock, GCP Vertex AI, Claude Code
 
@@ -969,9 +969,9 @@ Write a Python script that:
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Model Selection:                                              │
-│  • Complex reasoning → Claude 3 Opus                           │
-│  • General DevOps → Claude 3.5 Sonnet (default)                │
-│  • High volume/simple → Claude 3 Haiku                         │
+│  • Complex reasoning → Claude Opus 4.5                         │
+│  • General DevOps → Claude Sonnet 4.5 (default)                │
+│  • High volume/simple → Claude Haiku 4.5                       │
 │                                                                │
 │  Access Methods:                                               │
 │  • Quick tasks → claude.ai                                     │

@@ -39,21 +39,21 @@ class ModelSpec:
     complexity_level: TaskComplexity
 
 
-# Model database (as of 2024 - prices and specs change frequently)
+# Model database (as of 2025 - prices and specs change frequently)
 MODELS = {
     # Claude Models
-    "claude-3-opus": ModelSpec(
-        name="Claude 3 Opus",
+    "claude-opus-4.5": ModelSpec(
+        name="Claude Opus 4.5",
         provider="Anthropic",
         context_window=200000,
-        cost_per_1k_input=0.015,
-        cost_per_1k_output=0.075,
+        cost_per_1k_input=0.005,
+        cost_per_1k_output=0.025,
         best_for=["complex architecture", "nuanced analysis", "research"],
         speed=SpeedRequirement.STANDARD,
         complexity_level=TaskComplexity.COMPLEX,
     ),
-    "claude-3-sonnet": ModelSpec(
-        name="Claude 3.5 Sonnet",
+    "claude-sonnet-4.5": ModelSpec(
+        name="Claude Sonnet 4.5",
         provider="Anthropic",
         context_window=200000,
         cost_per_1k_input=0.003,
@@ -62,12 +62,12 @@ MODELS = {
         speed=SpeedRequirement.FAST,
         complexity_level=TaskComplexity.MODERATE,
     ),
-    "claude-3-haiku": ModelSpec(
-        name="Claude 3 Haiku",
+    "claude-haiku-4.5": ModelSpec(
+        name="Claude Haiku 4.5",
         provider="Anthropic",
         context_window=200000,
-        cost_per_1k_input=0.00025,
-        cost_per_1k_output=0.00125,
+        cost_per_1k_input=0.001,
+        cost_per_1k_output=0.005,
         best_for=["quick queries", "simple formatting", "high volume"],
         speed=SpeedRequirement.REALTIME,
         complexity_level=TaskComplexity.SIMPLE,
@@ -116,17 +116,17 @@ def recommend_model(
         Dictionary with recommendation and reasoning.
     """
     task_mappings = {
-        "code_review": ["claude-3-sonnet", "gpt-4-turbo"],
-        "infrastructure": ["claude-3-sonnet", "gpt-4-turbo"],
-        "troubleshooting": ["claude-3-sonnet", "claude-3-opus"],
-        "documentation": ["claude-3-sonnet", "gpt-3.5-turbo"],
-        "quick_query": ["claude-3-haiku", "gpt-3.5-turbo"],
-        "architecture": ["claude-3-opus", "gpt-4-turbo"],
-        "security_audit": ["claude-3-opus", "claude-3-sonnet"],
-        "log_analysis": ["claude-3-sonnet", "claude-3-haiku"],
+        "code_review": ["claude-sonnet-4.5", "gpt-4-turbo"],
+        "infrastructure": ["claude-sonnet-4.5", "gpt-4-turbo"],
+        "troubleshooting": ["claude-sonnet-4.5", "claude-opus-4.5"],
+        "documentation": ["claude-sonnet-4.5", "gpt-4-turbo"],
+        "quick_query": ["claude-haiku-4.5", "gpt-4-turbo"],
+        "architecture": ["claude-opus-4.5", "gpt-4-turbo"],
+        "security_audit": ["claude-opus-4.5", "claude-sonnet-4.5"],
+        "log_analysis": ["claude-sonnet-4.5", "claude-haiku-4.5"],
     }
 
-    candidates = task_mappings.get(task_type, ["claude-3-sonnet"])
+    candidates = task_mappings.get(task_type, ["claude-sonnet-4.5"])
 
     # Filter by complexity
     filtered = []
@@ -142,7 +142,7 @@ def recommend_model(
     if budget_sensitive:
         filtered.sort(key=lambda m: MODELS[m].cost_per_1k_input)
 
-    recommended = filtered[0] if filtered else "claude-3-sonnet"
+    recommended = filtered[0] if filtered else "claude-sonnet-4.5"
     model = MODELS[recommended]
 
     return {
@@ -212,7 +212,7 @@ def model_decision_tree(
     # Check latency requirements
     if latency_sensitive:
         recommendations.append({
-            "model": "claude-3-haiku",
+            "model": "claude-haiku-4.5",
             "reason": "Lowest latency for real-time use cases",
         })
 
@@ -232,19 +232,19 @@ def model_decision_tree(
     # Check capability requirements
     if needs_reasoning and needs_code:
         recommendations.append({
-            "model": "claude-3-sonnet",
+            "model": "claude-sonnet-4.5",
             "reason": "Best balance of code generation and reasoning",
         })
     elif needs_code and not needs_reasoning:
         recommendations.append({
-            "model": "claude-3-haiku",
+            "model": "claude-haiku-4.5",
             "reason": "Fast and cost-effective for code tasks",
         })
 
     # Default recommendation
     if not recommendations:
         recommendations.append({
-            "model": "claude-3-sonnet",
+            "model": "claude-sonnet-4.5",
             "reason": "Best general-purpose model for DevOps",
         })
 

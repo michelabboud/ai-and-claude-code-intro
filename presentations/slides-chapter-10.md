@@ -200,7 +200,7 @@ Include environment, versions, constraints
 Start simple, add requirements
 
 ## 3. Right Model
-Haiku for simple, Sonnet for code, Opus for complex
+Haiku 4.5 for simple, Sonnet 4.5 for code, Opus 4.5 for complex
 
 ## 4. Verify
 Always test AI-generated configs

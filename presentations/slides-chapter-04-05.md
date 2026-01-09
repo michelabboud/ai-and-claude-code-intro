@@ -46,11 +46,10 @@ style: |
 
 | Model | Context | Best For |
 |-------|---------|----------|
-| Claude 3 Opus | 200K | Complex reasoning |
-| Claude 3.5 Sonnet | 200K | Balanced (recommended) |
-| Claude 3 Haiku | 200K | Speed + Cost |
+| Claude Opus 4.5 | 200K | Complex reasoning |
+| Claude Sonnet 4.5 | 200K | Balanced (recommended) |
+| Claude Haiku 4.5 | 200K | Speed + Cost |
 | GPT-4 Turbo | 128K | General purpose |
-| GPT-3.5 | 16K | Simple tasks |
 
 ---
 
@@ -74,16 +73,16 @@ style: |
 
 ```
 NEED BEST QUALITY?
-→ Claude 3 Opus, GPT-4
+→ Claude Opus 4.5, GPT-4
 
 NEED BALANCE?
-→ Claude 3.5 Sonnet, GPT-4 Turbo
+→ Claude Sonnet 4.5, GPT-4 Turbo
 
 NEED LOW COST?
-→ Claude 3 Haiku, GPT-3.5
+→ Claude Haiku 4.5
 
 NEED PRIVACY?
-→ LLaMA 2, Mistral (self-hosted)
+→ LLaMA 3, Mistral (self-hosted)
 
 NEED ENTERPRISE?
 → AWS Bedrock, Azure OpenAI
@@ -102,19 +101,19 @@ NEED ENTERPRISE?
 
 ---
 
-# The Claude 3 Family
+# The Claude 4.5 Family
 
 ```
 ┌────────────────────────────────────────┐
-│  CLAUDE 3.5 SONNET - "The Sweet Spot" │
+│  CLAUDE SONNET 4.5 - "The Sweet Spot" │
 │  Best balance of intelligence & speed  │
 │  Excellent for code, most DevOps tasks │
 ├────────────────────────────────────────┤
-│  CLAUDE 3 OPUS - "The Powerhouse"     │
+│  CLAUDE OPUS 4.5 - "The Powerhouse"   │
 │  Most capable, complex reasoning       │
 │  Best for architecture decisions       │
 ├────────────────────────────────────────┤
-│  CLAUDE 3 HAIKU - "The Speed Demon"   │
+│  CLAUDE HAIKU 4.5 - "The Speed Demon" │
 │  Fastest, most cost-effective          │
 │  Great for simple tasks at scale       │
 └────────────────────────────────────────┘
@@ -124,13 +123,13 @@ NEED ENTERPRISE?
 
 # Claude Pricing
 
-## Per 1M Tokens
+## Per 1M Tokens (2025)
 
 | Model | Input | Output |
 |-------|-------|--------|
-| Claude 3 Opus | $15.00 | $75.00 |
-| Claude 3.5 Sonnet | $3.00 | $15.00 |
-| Claude 3 Haiku | $0.25 | $1.25 |
+| Claude Opus 4.5 | $5.00 | $25.00 |
+| Claude Sonnet 4.5 | $3.00 | $15.00 |
+| Claude Haiku 4.5 | $1.00 | $5.00 |
 
 ---
 
@@ -173,12 +172,12 @@ NEED ENTERPRISE?
 
 # Vision Capabilities
 
-Claude 3 models can analyze images!
+Claude 4.5 models can analyze images!
 
 ```python
 # Send screenshot for analysis
 message = client.messages.create(
-    model="claude-3-5-sonnet",
+    model="claude-sonnet-4-5-20250514",
     messages=[{
         "role": "user",
         "content": [
@@ -197,11 +196,11 @@ Use for: dashboard screenshots, error images, architecture diagrams
 
 | Task | Model |
 |------|-------|
-| Code generation | Claude 3.5 Sonnet |
-| Complex debugging | Claude 3 Opus |
-| Log analysis | Claude 3.5 Sonnet |
-| Chatbot/automation | Claude 3 Haiku |
-| Architecture design | Claude 3 Opus |
+| Code generation | Claude Sonnet 4.5 |
+| Complex debugging | Claude Opus 4.5 |
+| Log analysis | Claude Sonnet 4.5 |
+| Chatbot/automation | Claude Haiku 4.5 |
+| Architecture design | Claude Opus 4.5 |
 
 ---
 
@@ -210,9 +209,9 @@ Use for: dashboard screenshots, error images, architecture diagrams
 ```
 ┌─────────────────────────────────────────┐
 │  Model Selection:                       │
-│  • Most tasks → Sonnet                  │
-│  • Complex → Opus                       │
-│  • Simple/volume → Haiku                │
+│  • Most tasks → Sonnet 4.5              │
+│  • Complex → Opus 4.5                   │
+│  • Simple/volume → Haiku 4.5            │
 │                                         │
 │  Access:                                │
 │  • Quick tasks → claude.ai              │

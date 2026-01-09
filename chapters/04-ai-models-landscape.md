@@ -46,11 +46,11 @@ A **model** is a trained AI system that can perform specific tasks. Think of it 
 ```
 Understanding model names:
 
-Claude 3.5 Sonnet
-│     │   │
-│     │   └── Variant (capability tier within the family)
-│     └────── Version (major iteration)
-└──────────── Family name (product line)
+Claude Sonnet 4.5
+│      │     │
+│      │     └── Version (major iteration)
+│      └──────── Variant (capability tier within the family)
+└────────────── Family name (product line)
 
 GPT-4-Turbo-128K
 │   │ │     │
@@ -137,14 +137,14 @@ LLaMA-2-70B-Chat
 ├───────────────┬──────────────┬──────────────┬──────────────┬──────────────────┤
 │ Model         │ Provider     │ Context      │ Best For     │ API Access       │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
-│ Claude 3 Opus │ Anthropic    │ 200K tokens  │ Complex      │ API + Console    │
-│               │              │              │ reasoning    │                  │
+│ Claude Opus   │ Anthropic    │ 200K tokens  │ Complex      │ API + Console    │
+│ 4.5           │              │              │ reasoning    │                  │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
-│ Claude 3.5    │ Anthropic    │ 200K tokens  │ Balanced     │ API + Console    │
-│ Sonnet        │              │              │ performance  │                  │
+│ Claude Sonnet │ Anthropic    │ 200K tokens  │ Balanced     │ API + Console    │
+│ 4.5           │              │              │ performance  │                  │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
-│ Claude 3      │ Anthropic    │ 200K tokens  │ Speed +      │ API + Console    │
-│ Haiku         │              │              │ Cost         │                  │
+│ Claude Haiku  │ Anthropic    │ 200K tokens  │ Speed +      │ API + Console    │
+│ 4.5           │              │              │ Cost         │                  │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
 │ GPT-4 Turbo   │ OpenAI       │ 128K tokens  │ General      │ API + ChatGPT    │
 │               │              │              │ purpose      │ Plus             │
@@ -152,16 +152,13 @@ LLaMA-2-70B-Chat
 │ GPT-4o        │ OpenAI       │ 128K tokens  │ Multimodal   │ API + ChatGPT    │
 │               │              │              │ tasks        │                  │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
-│ GPT-3.5       │ OpenAI       │ 16K tokens   │ Simple tasks │ API + Free tier  │
-│ Turbo         │              │              │ Cost saving  │                  │
-├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
-│ Gemini Ultra  │ Google       │ 1M tokens    │ Long context │ API + Bard       │
+│ Gemini Ultra  │ Google       │ 1M tokens    │ Long context │ API + Gemini     │
 │               │              │              │ Multimodal   │                  │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
 │ Gemini Pro    │ Google       │ 32K tokens   │ General      │ API + Vertex AI  │
 │               │              │              │ purpose      │                  │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
-│ LLaMA 2 70B   │ Meta         │ 4K tokens    │ Self-hosting │ Open weights     │
+│ LLaMA 3 70B   │ Meta         │ 8K tokens    │ Self-hosting │ Open weights     │
 │               │              │              │ Privacy      │ Free!            │
 ├───────────────┼──────────────┼──────────────┼──────────────┼──────────────────┤
 │ Mixtral 8x7B  │ Mistral      │ 32K tokens   │ Efficiency   │ Open weights     │
@@ -263,7 +260,7 @@ def select_model_type(requirements):
 
     # Priority 2: Performance Requirements
     if requirements.needs_state_of_the_art:
-        return "Proprietary (Claude 3 Opus, GPT-4)"
+        return "Proprietary (Claude Opus 4.5, GPT-4)"
 
     # Priority 3: Cost Optimization
     if requirements.high_volume and requirements.predictable_workload:
@@ -388,7 +385,7 @@ embedding_models:
 
 log_analysis:
   recommended_models:
-    - name: "Claude 3 Sonnet"
+    - name: "Claude Sonnet 4.5"
       reason: "Long context for log files, excellent reasoning"
     - name: "GPT-4"
       reason: "Good at pattern recognition in logs"
@@ -402,7 +399,7 @@ log_analysis:
 
 code_review:
   recommended_models:
-    - name: "Claude 3.5 Sonnet"
+    - name: "Claude Sonnet 4.5"
       reason: "Excellent at code understanding and security analysis"
     - name: "CodeLlama 34B"
       reason: "Open source, can run locally for sensitive code"
@@ -412,7 +409,7 @@ code_review:
 
 documentation:
   recommended_models:
-    - name: "Claude 3 Sonnet"
+    - name: "Claude Sonnet 4.5"
       reason: "Great at technical writing"
     - name: "GPT-4"
       reason: "Comprehensive documentation generation"
@@ -424,7 +421,7 @@ documentation:
 
 incident_response:
   recommended_models:
-    - name: "Claude 3 Opus"
+    - name: "Claude Opus 4.5"
       reason: "Best for complex reasoning about incidents"
   workflow:
     1_collect: "Gather logs, metrics, recent changes"
@@ -434,7 +431,7 @@ incident_response:
 
 infrastructure_as_code:
   recommended_models:
-    - name: "Claude 3.5 Sonnet"
+    - name: "Claude Sonnet 4.5"
       reason: "Excellent Terraform/CloudFormation generation"
     - name: "GPT-4"
       reason: "Strong at AWS/GCP/Azure specifics"
@@ -445,9 +442,9 @@ infrastructure_as_code:
 
 chatops_bot:
   recommended_models:
-    - name: "Claude 3 Haiku"
+    - name: "Claude Haiku 4.5"
       reason: "Fast, cheap, good for simple queries"
-    - name: "GPT-3.5 Turbo"
+    - name: "GPT-4o-mini"
       reason: "Fast responses, cost-effective"
   use_cases:
     - "Answer questions about infrastructure"
@@ -521,7 +518,7 @@ import anthropic
 client = anthropic.Anthropic(api_key="your-api-key")
 
 message = client.messages.create(
-    model="claude-3-5-sonnet-20241022",
+    model="claude-sonnet-4-5-20250514",
     max_tokens=1024,
     messages=[
         {"role": "user", "content": "Write a Kubernetes health check for nginx"}
@@ -540,7 +537,7 @@ import json
 bedrock = boto3.client('bedrock-runtime', region_name='us-east-1')
 
 response = bedrock.invoke_model(
-    modelId='anthropic.claude-3-5-sonnet-20241022-v2:0',
+    modelId='anthropic.claude-sonnet-4-5-20250514-v1:0',
     body=json.dumps({
         "anthropic_version": "bedrock-2023-05-31",
         "max_tokens": 1024,
@@ -620,31 +617,31 @@ def recommend_model(use_case: str, constraints: dict) -> str:
 
     recommendations = {
         "code_generation": {
-            "no_constraints": "Claude 3.5 Sonnet",
-            "cost_sensitive": "Claude 3 Haiku or GPT-3.5",
+            "no_constraints": "Claude Sonnet 4.5",
+            "cost_sensitive": "Claude Haiku 4.5",
             "privacy_required": "CodeLlama 34B (self-hosted)",
             "enterprise": "Azure OpenAI GPT-4 or AWS Bedrock Claude",
         },
         "log_analysis": {
-            "no_constraints": "Claude 3.5 Sonnet (long context)",
-            "high_volume": "Claude 3 Haiku (cost effective)",
+            "no_constraints": "Claude Sonnet 4.5 (long context)",
+            "high_volume": "Claude Haiku 4.5 (cost effective)",
             "privacy_required": "Mistral 7B (self-hosted)",
             "real_time": "Fine-tuned local classifier",
         },
         "documentation": {
-            "no_constraints": "Claude 3.5 Sonnet",
-            "cost_sensitive": "Claude 3 Haiku",
-            "technical_accuracy": "Claude 3 Opus",
+            "no_constraints": "Claude Sonnet 4.5",
+            "cost_sensitive": "Claude Haiku 4.5",
+            "technical_accuracy": "Claude Opus 4.5",
         },
         "incident_response": {
-            "no_constraints": "Claude 3 Opus (best reasoning)",
-            "fast_response": "Claude 3.5 Sonnet",
-            "privacy_required": "LLaMA 2 70B (self-hosted)",
+            "no_constraints": "Claude Opus 4.5 (best reasoning)",
+            "fast_response": "Claude Sonnet 4.5",
+            "privacy_required": "LLaMA 3 70B (self-hosted)",
         },
         "chatbot": {
-            "no_constraints": "Claude 3 Sonnet",
-            "cost_sensitive": "Claude 3 Haiku",
-            "low_latency": "Claude 3 Haiku or GPT-3.5",
+            "no_constraints": "Claude Sonnet 4.5",
+            "cost_sensitive": "Claude Haiku 4.5",
+            "low_latency": "Claude Haiku 4.5",
         },
         "embeddings": {
             "no_constraints": "OpenAI text-embedding-3-large",
@@ -655,7 +652,7 @@ def recommend_model(use_case: str, constraints: dict) -> str:
 
     return recommendations.get(use_case, {}).get(
         constraints.get("priority", "no_constraints"),
-        "Claude 3.5 Sonnet"  # Safe default
+        "Claude Sonnet 4.5"  # Safe default
     )
 ```
 
@@ -674,13 +671,12 @@ def calculate_monthly_cost(
     Calculate monthly API costs for different models.
     """
 
-    # Prices per 1M tokens (approximate, check current pricing)
+    # Prices per 1M tokens (approximate, check current pricing - 2025)
     pricing = {
-        "claude-3-opus": {"input": 15.0, "output": 75.0},
-        "claude-3.5-sonnet": {"input": 3.0, "output": 15.0},
-        "claude-3-haiku": {"input": 0.25, "output": 1.25},
+        "claude-opus-4.5": {"input": 5.0, "output": 25.0},
+        "claude-sonnet-4.5": {"input": 3.0, "output": 15.0},
+        "claude-haiku-4.5": {"input": 1.0, "output": 5.0},
         "gpt-4-turbo": {"input": 10.0, "output": 30.0},
-        "gpt-3.5-turbo": {"input": 0.5, "output": 1.5},
     }
 
     if model not in pricing:
@@ -710,14 +706,14 @@ def calculate_monthly_cost(
 # Average PR: 2000 input tokens, 500 output tokens
 # 50 PRs per day
 
-for model in ["claude-3-opus", "claude-3.5-sonnet", "claude-3-haiku", "gpt-4-turbo"]:
+for model in ["claude-opus-4.5", "claude-sonnet-4.5", "claude-haiku-4.5", "gpt-4-turbo"]:
     result = calculate_monthly_cost(2000, 500, 50, model)
     print(f"{model}: ${result['total_monthly_cost']}/month")
 
 # Output:
-# claude-3-opus: $146.25/month
-# claude-3.5-sonnet: $31.50/month
-# claude-3-haiku: $2.63/month
+# claude-opus-4.5: $33.75/month
+# claude-sonnet-4.5: $20.25/month
+# claude-haiku-4.5: $6.75/month
 # gpt-4-turbo: $75.00/month
 ```
 
@@ -735,7 +731,7 @@ for model in ["claude-3-opus", "claude-3.5-sonnet", "claude-3-haiku", "gpt-4-tur
   examples:
     - "Upload a screenshot of an error, get debugging help"
     - "Show architecture diagram, get Terraform code"
-  current_leaders: ["GPT-4V", "Claude 3 Vision", "Gemini"]
+  current_leaders: ["GPT-4V", "Claude 4.5 Vision", "Gemini"]
 
 2_longer_context_windows:
   description: "Processing entire codebases at once"
@@ -793,7 +789,7 @@ Task: Test the same prompt on different models
 4. Outputs results in JSON format"
 
 ### Test on:
-1. Claude 3.5 Sonnet (via console.anthropic.com)
+1. Claude Sonnet 4.5 (via claude.ai)
 2. GPT-4 (via chat.openai.com)
 3. CodeLlama (via Ollama locally)
 
@@ -827,8 +823,8 @@ Scenario: You want to implement an AI-powered log analyzer
 
 | Model | Input Cost/1M | Output Cost/1M | Monthly Cost |
 |-------|---------------|----------------|--------------|
-| Claude 3.5 Sonnet | $3.00 | $15.00 | $_____ |
-| Claude 3 Haiku | $0.25 | $1.25 | $_____ |
+| Claude Sonnet 4.5 | $3.00 | $15.00 | $_____ |
+| Claude Haiku 4.5 | $1.00 | $5.00 | $_____ |
 | GPT-4 Turbo | $10.00 | $30.00 | $_____ |
 | Self-hosted | GPU: $___/hr | N/A | $_____ |
 
@@ -893,25 +889,25 @@ ollama run codellama "Write a Kubernetes CronJob that runs a backup script daily
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  NEED BEST QUALITY?                                            │
-│  → Claude 3 Opus, GPT-4                                        │
+│  → Claude Opus 4.5, GPT-4                                      │
 │                                                                │
 │  NEED BALANCE OF QUALITY & COST?                               │
-│  → Claude 3.5 Sonnet, GPT-4 Turbo                              │
+│  → Claude Sonnet 4.5, GPT-4 Turbo                              │
 │                                                                │
 │  NEED LOW COST?                                                │
-│  → Claude 3 Haiku, GPT-3.5 Turbo                               │
+│  → Claude Haiku 4.5                                            │
 │                                                                │
 │  NEED PRIVACY/LOCAL?                                           │
-│  → LLaMA 2, Mistral, CodeLlama (via Ollama)                    │
+│  → LLaMA 3, Mistral, CodeLlama (via Ollama)                    │
 │                                                                │
 │  NEED ENTERPRISE COMPLIANCE?                                   │
 │  → AWS Bedrock, Azure OpenAI, Google Vertex AI                 │
 │                                                                │
 │  NEED CODE SPECIFICALLY?                                       │
-│  → Claude 3.5 Sonnet, CodeLlama, StarCoder                     │
+│  → Claude Sonnet 4.5, CodeLlama, StarCoder                     │
 │                                                                │
 │  NEED LONG CONTEXT?                                            │
-│  → Claude 3 (200K), Gemini (1M), GPT-4 Turbo (128K)            │
+│  → Claude 4.5 (200K), Gemini (1M), GPT-4 Turbo (128K)          │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
