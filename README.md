@@ -242,14 +242,19 @@ This guide was created with the assistance of Claude AI, demonstrating the very 
 
 ## Contributing
 
-Found an issue or have a suggestion? Contributions are welcome!
+Contributions are welcome! We reward contributors with commercial use rights.
 
-1. Fork the repository
-2. Create your feature branch
-3. Make your changes
-4. Submit a pull request
+| Tier | Requirements | Rights |
+|------|--------------|--------|
+| **Contributor** | 1+ merged PR | Attribution |
+| **Core Contributor** | 3+ significant PRs or new chapter | Commercial use rights |
+| **Co-Author** | Major contributions | Full commercial rights |
 
-Please note: Contributions will be subject to the same CC BY-NC 4.0 license.
+See **[CONTRIBUTING.md](./CONTRIBUTING.md)** for full details on:
+- How to contribute
+- Style guidelines
+- Contributor license agreement
+- Commercial rights details
 
 ---
 
