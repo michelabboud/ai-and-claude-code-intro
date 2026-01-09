@@ -21,50 +21,50 @@ In AI terminology, an **agent** is a system that can:
 │                    AGENTIC BEHAVIOR MODEL                      │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │              YOUR REQUEST                            │    │
-│    │   "Add caching to the user endpoint"                │    │
-│    └──────────────────────┬──────────────────────────────┘    │
+│    ┌─────────────────────────────────────────────────────┐     │
+│    │              YOUR REQUEST                           │     │
+│    │   "Add caching to the user endpoint"                │     │
+│    └──────────────────────┬──────────────────────────────┘     │
 │                           │                                    │
 │                           ▼                                    │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │              PERCEIVE                                │    │
-│    │   • Read existing code                              │    │
-│    │   • Understand project structure                    │    │
-│    │   • Identify patterns used                          │    │
-│    └──────────────────────┬──────────────────────────────┘    │
+│    ┌─────────────────────────────────────────────────────┐     │
+│    │              PERCEIVE                               │     │
+│    │   • Read existing code                              │     │
+│    │   • Understand project structure                    │     │
+│    │   • Identify patterns used                          │     │
+│    └──────────────────────┬──────────────────────────────┘     │
 │                           │                                    │
 │                           ▼                                    │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │              PLAN                                    │    │
-│    │   • Decide on caching strategy                      │    │
-│    │   • Identify files to modify                        │    │
-│    │   • Plan implementation steps                       │    │
-│    └──────────────────────┬──────────────────────────────┘    │
+│    ┌─────────────────────────────────────────────────────┐     │
+│    │              PLAN                                   │     │
+│    │   • Decide on caching strategy                      │     │
+│    │   • Identify files to modify                        │     │
+│    │   • Plan implementation steps                       │     │
+│    └──────────────────────┬──────────────────────────────┘     │
 │                           │                                    │
 │                           ▼                                    │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │              ACT                                     │    │
-│    │   • Edit code files                                 │    │
-│    │   • Add dependencies                                │    │
-│    │   • Update configurations                           │    │
-│    └──────────────────────┬──────────────────────────────┘    │
+│    ┌─────────────────────────────────────────────────────┐     │
+│    │              ACT                                    │     │
+│    │   • Edit code files                                 │     │
+│    │   • Add dependencies                                │     │
+│    │   • Update configurations                           │     │
+│    └──────────────────────┬──────────────────────────────┘     │
 │                           │                                    │
 │                           ▼                                    │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │              VERIFY                                  │    │
-│    │   • Run tests                                       │    │
-│    │   • Check for errors                                │    │
-│    │   • Validate changes work                           │    │
-│    └──────────────────────┬──────────────────────────────┘    │
+│    ┌─────────────────────────────────────────────────────┐     │
+│    │              VERIFY                                 │     │
+│    │   • Run tests                                       │     │
+│    │   • Check for errors                                │     │
+│    │   • Validate changes work                           │     │
+│    └──────────────────────┬──────────────────────────────┘     │
 │                           │                                    │
 │                           ▼                                    │
-│    ┌─────────────────────────────────────────────────────┐    │
-│    │              ITERATE (if needed)                     │    │
-│    │   • Fix any issues found                            │    │
-│    │   • Refine implementation                           │    │
-│    │   • Re-verify                                       │    │
-│    └─────────────────────────────────────────────────────┘    │
+│    ┌─────────────────────────────────────────────────────┐     │
+│    │              ITERATE (if needed)                    │     │
+│    │   • Fix any issues found                            │     │
+│    │   • Refine implementation                           │     │
+│    │   • Re-verify                                       │     │
+│    └─────────────────────────────────────────────────────┘     │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -120,25 +120,25 @@ human_in_the_loop:
 │                                                                │
 │   Skills = Specialized knowledge + Tools + Patterns            │
 │                                                                │
-│   ┌──────────────────┐  ┌──────────────────┐                  │
-│   │  Kubernetes      │  │  Terraform       │                  │
-│   │  Skill           │  │  Skill           │                  │
-│   │                  │  │                  │                  │
-│   │  • K8s manifests │  │  • AWS/GCP/Azure │                  │
-│   │  • Helm charts   │  │  • Module patterns│                 │
-│   │  • kubectl cmds  │  │  • State mgmt    │                  │
-│   │  • Debugging     │  │  • Best practices│                  │
-│   └──────────────────┘  └──────────────────┘                  │
+│   ┌──────────────────┐  ┌────────────────────┐                 │
+│   │  Kubernetes      │  │  Terraform         │                 │
+│   │  Skill           │  │  Skill             │                 │
+│   │                  │  │                    │                 │
+│   │  • K8s manifests │  │  • AWS/GCP/Azure   │                 │
+│   │  • Helm charts   │  │  • Module patterns │                 │
+│   │  • kubectl cmds  │  │  • State mgmt      │                 │
+│   │  • Debugging     │  │  • Best practices  │                 │
+│   └──────────────────┘  └────────────────────┘                 │
 │                                                                │
-│   ┌──────────────────┐  ┌──────────────────┐                  │
-│   │  Docker          │  │  CI/CD           │                  │
-│   │  Skill           │  │  Skill           │                  │
-│   │                  │  │                  │                  │
-│   │  • Dockerfile    │  │  • GitHub Actions│                  │
-│   │  • Compose       │  │  • GitLab CI     │                  │
-│   │  • Optimization  │  │  • Jenkins       │                  │
-│   │  • Security      │  │  • ArgoCD        │                  │
-│   └──────────────────┘  └──────────────────┘                  │
+│   ┌──────────────────┐  ┌──────────────────┐                   │
+│   │  Docker          │  │  CI/CD           │                   │
+│   │  Skill           │  │  Skill           │                   │
+│   │                  │  │                  │                   │
+│   │  • Dockerfile    │  │  • GitHub Actions│                   │
+│   │  • Compose       │  │  • GitLab CI     │                   │
+│   │  • Optimization  │  │  • Jenkins       │                   │
+│   │  • Security      │  │  • ArgoCD        │                   │
+│   └──────────────────┘  └──────────────────┘                   │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -301,30 +301,30 @@ patterns:
 │                    SUB-AGENT ARCHITECTURE                      │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│                    ┌─────────────────────┐                    │
-│                    │   MAIN AGENT        │                    │
-│                    │   (Coordinator)     │                    │
-│                    └─────────┬───────────┘                    │
+│                    ┌─────────────────────┐                     │
+│                    │   MAIN AGENT        │                     │
+│                    │   (Coordinator)     │                     │
+│                    └─────────┬───────────┘                     │
 │                              │                                 │
-│         ┌────────────────────┼────────────────────┐           │
-│         │                    │                    │           │
-│         ▼                    ▼                    ▼           │
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐       │
-│  │ Sub-Agent:  │    │ Sub-Agent:  │    │ Sub-Agent:  │       │
-│  │ Code Review │    │ Test Writer │    │ Docs Writer │       │
-│  │             │    │             │    │             │       │
-│  │ • Security  │    │ • Unit tests│    │ • README    │       │
-│  │ • Quality   │    │ • Int tests │    │ • API docs  │       │
-│  │ • Style     │    │ • E2E tests │    │ • Comments  │       │
-│  └─────────────┘    └─────────────┘    └─────────────┘       │
-│         │                    │                    │           │
-│         └────────────────────┼────────────────────┘           │
+│         ┌────────────────────┼────────────────────┐            │
+│         │                    │                    │            │
+│         ▼                    ▼                    ▼            │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
+│  │ Sub-Agent:  │    │ Sub-Agent:  │    │ Sub-Agent:  │         │
+│  │ Code Review │    │ Test Writer │    │ Docs Writer │         │
+│  │             │    │             │    │             │         │
+│  │ • Security  │    │ • Unit tests│    │ • README    │         │
+│  │ • Quality   │    │ • Int tests │    │ • API docs  │         │
+│  │ • Style     │    │ • E2E tests │    │ • Comments  │         │
+│  └─────────────┘    └─────────────┘    └─────────────┘         │
+│         │                    │                    │            │
+│         └────────────────────┼────────────────────┘            │
 │                              │                                 │
 │                              ▼                                 │
-│                    ┌─────────────────────┐                    │
-│                    │   FINAL RESULT      │                    │
-│                    │   (Aggregated)      │                    │
-│                    └─────────────────────┘                    │
+│                    ┌─────────────────────┐                     │
+│                    │   FINAL RESULT      │                     │
+│                    │   (Aggregated)      │                     │
+│                    └─────────────────────┘                     │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -1094,28 +1094,28 @@ patterns:
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
 │  Skills:                                                       │
-│  /skills              - List available skills                 │
-│  /skill <name>        - Activate a skill                      │
-│  /skill load <file>   - Load custom skill                     │
+│  /skills              - List available skills                  │
+│  /skill <name>        - Activate a skill                       │
+│  /skill load <file>   - Load custom skill                      │
 │                                                                │
 │  Sub-Agents:                                                   │
-│  @explorer            - Codebase exploration                  │
-│  @planner             - Implementation planning               │
-│  @security-reviewer   - Security analysis                     │
-│  @parallel { }        - Run agents in parallel                │
+│  @explorer            - Codebase exploration                   │
+│  @planner             - Implementation planning                │
+│  @security-reviewer   - Security analysis                      │
+│  @parallel { }        - Run agents in parallel                 │
 │                                                                │
 │  Hooks:                                                        │
-│  .claude/hooks.yaml   - Hook configuration                    │
-│  pre_edit, post_edit  - File modification hooks               │
-│  pre_command          - Command execution hooks               │
+│  .claude/hooks.yaml   - Hook configuration                     │
+│  pre_edit, post_edit  - File modification hooks                │
+│  pre_command          - Command execution hooks                │
 │                                                                │
 │  Memory:                                                       │
-│  .claude/memory.yaml  - Persistent project facts              │
-│  .claude/context.yaml - Context prioritization                │
+│  .claude/memory.yaml  - Persistent project facts               │
+│  .claude/context.yaml - Context prioritization                 │
 │                                                                │
 │  CI/CD:                                                        │
-│  --non-interactive    - Run without prompts                   │
-│  --output <file>      - Save output to file                   │
+│  --non-interactive    - Run without prompts                    │
+│  --output <file>      - Save output to file                    │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
