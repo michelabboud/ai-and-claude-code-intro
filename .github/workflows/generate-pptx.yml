@@ -35,8 +35,11 @@ jobs:
       - name: Install Marp CLI
         run: npm install -g @marp-team/marp-cli
 
-      - name: Create output directory
-        run: mkdir -p presentations/pptx
+      - name: Clean and create output directory
+        run: |
+          # Remove old PPTX files to ensure fresh generation
+          rm -rf presentations/pptx
+          mkdir -p presentations/pptx
 
       - name: Convert presentations to PPTX
         run: |

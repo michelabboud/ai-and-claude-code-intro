@@ -17,6 +17,28 @@ style: |
   code {
     background-color: #2d2d44;
   }
+  table {
+    border-collapse: collapse;
+    margin: 1em 0;
+    width: 100%;
+  }
+  th {
+    background-color: #7c3aed;
+    color: #ffffff;
+    font-weight: bold;
+    padding: 12px 16px;
+    text-align: left;
+    border: 1px solid #5a2eb8;
+  }
+  td {
+    background-color: #2d2d44;
+    color: #eee;
+    padding: 10px 16px;
+    border: 1px solid #3d3d5c;
+  }
+  tr:nth-child(even) td {
+    background-color: #363654;
+  }
 ---
 
 # AI for DevOps
