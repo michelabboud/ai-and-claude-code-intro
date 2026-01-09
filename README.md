@@ -136,7 +136,8 @@ claude
 ai-and-claude-code-intro/
 ├── README.md                    # This file
 ├── LICENSE                      # CC BY-NC 4.0 License
-├── chapters/
+├── CONTRIBUTING.md              # Contributor guidelines
+├── chapters/                    # Guide content (10 chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -147,9 +148,20 @@ ai-and-claude-code-intro/
 │   ├── 08-claude-code-professional.md
 │   ├── 09-mcp-deep-dive.md
 │   └── 10-ai-for-devops.md
-├── presentations/               # PowerPoint slides for each chapter
-│   └── *.md (Marp format)
-├── examples/                    # Code examples and templates
+├── presentations/               # Slides for each chapter
+│   ├── *.md                     # Marp source files
+│   └── pptx/                    # Generated PowerPoint files
+├── src/                         # Code examples by chapter
+│   ├── chapter-01/              # Traditional vs ML, AIOps patterns
+│   ├── chapter-02/              # Token counting, cost estimation
+│   ├── chapter-03/              # CRAFT framework, prompt templates
+│   ├── chapter-04/              # Model selection guide
+│   ├── chapter-05/              # Claude API examples
+│   ├── chapter-06/              # Claude Code config, commands
+│   ├── chapter-07/              # Custom commands, GitHub Actions
+│   ├── chapter-08/              # Skills, hooks, memory configs
+│   ├── chapter-09/              # MCP server implementations
+│   └── chapter-10/              # Shell aliases, incident response
 └── assets/                      # Images and diagrams
 ```
 
