@@ -137,6 +137,19 @@ brew install claude-code
 claude --version
 ```
 
+#### Method 4: Windows Package Manager (winget)
+
+```bash
+# Install via winget on Windows
+winget install Anthropic.ClaudeCode
+
+# Verify installation
+claude --version
+
+# Claude Code auto-detects winget and provides
+# update instructions when new versions are available
+```
+
 ### Platform-Specific Notes
 
 ```yaml
@@ -178,10 +191,12 @@ windows_wsl:
     - "VS Code WSL extension works great"
 
 windows_native:
-  support: "Limited - WSL recommended"
+  support: "Improved - winget installation available"
   notes:
-    - "PowerShell support is experimental"
-    - "WSL provides better experience"
+    - "Install via winget: winget install Anthropic.ClaudeCode"
+    - "PowerShell support improved"
+    - "WSL still provides best Unix-like experience"
+    - "Windows ARM64 supported via x64 emulation"
 ```
 
 ---
@@ -280,9 +295,13 @@ cat error.log | claude "what caused this error?"
 │                                                                │
 │  Navigation:                                                   │
 │  • Type message and press Enter to send                        │
+│  • Shift+Enter for multi-line input (iTerm2, WezTerm,          │
+│    Ghostty, Kitty)                                             │
 │  • Use ↑/↓ arrows for history                                  │
 │  • Tab for autocompletion                                      │
 │  • Ctrl+C to cancel current operation                          │
+│  • Ctrl+T to toggle theme/syntax highlighting                  │
+│  • Ctrl+B to background running tasks                          │
 │  • Type /help for commands                                     │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
@@ -295,6 +314,9 @@ cat error.log | claude "what caused this error?"
 /help                    # Show all commands
 /model                   # Show/change current model
 /cost                    # Show session token usage and cost
+/stats                   # Usage statistics, graphs, and streaks
+/config                  # Access configuration settings
+/doctor                  # Diagnose issues (permission rules, etc.)
 
 # File operations
 /file path/to/file       # Add file to context
@@ -303,12 +325,18 @@ cat error.log | claude "what caused this error?"
 # Session management
 /clear                   # Clear conversation history
 /history                 # Show conversation history
+/rename <name>           # Name current session for easy recall
+/resume <name>           # Resume a named session
 /save                    # Save session
 /load                    # Load previous session
 
 # Control
 /stop                    # Stop current operation
 /exit or Ctrl+D          # Exit Claude Code
+
+# Remote features (for claude.ai subscribers)
+/teleport                # Connect to remote environment
+/remote-env              # Remote environment management
 ```
 
 ---
@@ -841,8 +869,19 @@ claude
 │  /help    - Show all commands                                  │
 │  /clear   - Clear conversation                                 │
 │  /cost    - Show token usage                                   │
+│  /stats   - Usage statistics and graphs                        │
+│  /config  - Access settings                                    │
+│  /doctor  - Diagnose configuration issues                      │
+│  /rename  - Name session for easy resume                       │
+│  /resume  - Resume named session                               │
 │  /stop    - Stop current operation                             │
 │  /exit    - Exit Claude Code                                   │
+│                                                                │
+│  Keyboard Shortcuts:                                           │
+│  Ctrl+C   - Cancel current operation                           │
+│  Ctrl+T   - Toggle theme/syntax highlighting                   │
+│  Ctrl+B   - Background running tasks                           │
+│  Shift+Enter - Multi-line input (modern terminals)             │
 │                                                                │
 │  Approval:                                                     │
 │  y - Yes, execute                                              │

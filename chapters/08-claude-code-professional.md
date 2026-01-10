@@ -113,6 +113,8 @@ human_in_the_loop:
 
 **Skills** are pre-built capabilities that extend Claude Code's functionality for specific domains or tasks.
 
+> **New in 2.1:** Skills and slash commands are now unified. Skills placed in `~/.claude/skills` or `.claude/skills` are **hot-reloaded** - they become available immediately without restarting Claude Code. Previously, you had to restart Claude Code for new skills to be recognized.
+
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │                       SKILLS SYSTEM                            │
@@ -288,6 +290,29 @@ patterns:
 # Now Claude follows your company standards automatically
 ```
 
+### Sub-Agent Context Forking (New in 2.1)
+
+Skills can now run in a **forked sub-agent context** using frontmatter:
+
+```markdown
+// .claude/skills/security-audit.md
+---
+name: security-audit
+description: Run security audit in isolated context
+context: fork    # NEW: Run in forked sub-agent context
+---
+
+Perform a comprehensive security audit...
+```
+
+With `context: fork`:
+- The skill runs in an isolated sub-agent with its own context
+- The main conversation context is preserved
+- Useful for long-running or resource-intensive skills
+- Results are returned to the main conversation when complete
+
+> **What Changed:** Previously, all skills ran in the main conversation context, which could lead to context pollution for complex operations. Now you can isolate skill execution.
+
 ---
 
 ## 8.3 Sub-Agents and Task Delegation
@@ -421,6 +446,26 @@ reviewer_agent:
     @doc-writer "Update API documentation"
   }
 ```
+
+### Background Agents (New in 2.0.64)
+
+Agents can now run asynchronously in the background:
+
+```bash
+# Start a long-running task in the background
+# The agent will notify you when complete
+
+# Use Ctrl+B to background all running foreground tasks
+# This is a unified shortcut that works across all task types
+
+# View running background tasks
+> /tasks
+
+# Background agents send wake-up messages when they complete,
+# so you can continue working on other tasks
+```
+
+> **What Changed:** Previously, you had to wait for agents to complete. Now you can send tasks to the background with Ctrl+B and continue working. You'll be notified when they finish.
 
 ---
 
@@ -633,6 +678,8 @@ Task(
 ### What are Hooks?
 
 **Hooks** allow you to run custom commands at specific points in Claude Code's workflow.
+
+> **New in 2.1:** Tool hook execution timeout has been increased from 60 seconds to **10 minutes**. This allows for more complex validation and processing in hooks without timeout failures.
 
 ```yaml
 # .claude/hooks.yaml
@@ -959,6 +1006,28 @@ secret_management:
   - "Exclude .env files from context"
 ```
 
+### Wildcard Bash Permissions (New in 2.1)
+
+You can now configure granular bash command permissions using wildcards:
+
+```yaml
+# Permission patterns with wildcards
+permissions:
+  bash:
+    allow:
+      - "npm *"           # Allow all npm commands
+      - "* install"       # Allow any install command
+      - "git * main"      # Allow git commands on main branch
+      - "docker build *"  # Allow docker build with any args
+      - "kubectl get *"   # Allow kubectl get operations
+
+    deny:
+      - "rm -rf *"        # Block recursive force delete
+      - "* --force"       # Block force flags
+```
+
+> **What Changed:** Previously, bash permissions were exact matches only. Now wildcards (`*`) allow flexible permission patterns that cover families of related commands.
+
 ### Efficiency Tips
 
 ```yaml
@@ -968,6 +1037,7 @@ model_selection:
   exploration: "Use Haiku 4.5 for quick searches"
   implementation: "Use Sonnet 4.5 for most coding tasks"
   architecture: "Use Opus 4.5 for complex decisions"
+  note: "Opus 4.5 has thinking mode enabled by default for deeper reasoning"
 
 parallel_processing:
   approach: "Break large tasks into parallel sub-tasks"
@@ -1107,21 +1177,27 @@ Each agent includes real-world patterns and comprehensive documentation to compl
 │           PROFESSIONAL CLAUDE CODE REFERENCE                   │
 ├────────────────────────────────────────────────────────────────┤
 │                                                                │
-│  Skills:                                                       │
+│  Skills (Hot-Reloaded):                                        │
 │  /skills              - List available skills                  │
 │  /skill <name>        - Activate a skill                       │
-│  /skill load <file>   - Load custom skill                      │
+│  context: fork        - Run skill in isolated sub-agent        │
 │                                                                │
 │  Sub-Agents:                                                   │
 │  @explorer            - Codebase exploration                   │
 │  @planner             - Implementation planning                │
 │  @security-reviewer   - Security analysis                      │
 │  @parallel { }        - Run agents in parallel                 │
+│  Ctrl+B               - Background all running tasks           │
+│  /tasks               - View background tasks                  │
 │                                                                │
-│  Hooks:                                                        │
+│  Hooks (10 min timeout):                                       │
 │  .claude/hooks.yaml   - Hook configuration                     │
 │  pre_edit, post_edit  - File modification hooks                │
 │  pre_command          - Command execution hooks                │
+│                                                                │
+│  Permissions (with wildcards):                                 │
+│  Bash(npm *)          - Allow all npm commands                 │
+│  Bash(git * main)     - Allow git on main branch               │
 │                                                                │
 │  Memory:                                                       │
 │  .claude/memory.yaml  - Persistent project facts               │
