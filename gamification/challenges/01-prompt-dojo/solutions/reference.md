@@ -242,3 +242,10 @@ Target:
 **Challenge Complete! 🎉**
 
 You've learned how to reduce token usage by 86% while maintaining quality. Apply these principles to all your prompts for massive cost savings!
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

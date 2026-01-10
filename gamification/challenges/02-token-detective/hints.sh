@@ -1,6 +1,11 @@
 #!/bin/bash
-# Progressive hints system for prompt-dojo-01
+# Progressive hints system for token-detective-01
 # Each hint costs -5 points
+#
+# Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+# Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+# Copyright: © 2026 Michel Abboud. All rights reserved.
+# License: CC BY-NC 4.0
 
 HINT_FILE="$HOME/.ai-devops-quest/hints-prompt-dojo-01.txt"
 

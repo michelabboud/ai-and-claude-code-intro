@@ -2,6 +2,11 @@
 """
 Token Counter Utility
 Counts tokens in prompts using tiktoken (same as Claude)
+
+Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+Copyright: © 2026 Michel Abboud. All rights reserved.
+License: CC BY-NC 4.0
 """
 
 import sys
