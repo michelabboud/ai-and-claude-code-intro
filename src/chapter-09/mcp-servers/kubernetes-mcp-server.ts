@@ -4,6 +4,11 @@
  *
  * This server provides Kubernetes management capabilities to Claude Code.
  *
+ * Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+ * Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+ * Copyright: © 2026 Michel Abboud. All rights reserved.
+ * License: CC BY-NC 4.0
+ *
  * Installation:
  *   npm install @modelcontextprotocol/sdk @kubernetes/client-node
  *

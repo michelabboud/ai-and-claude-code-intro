@@ -1562,3 +1562,10 @@ Each server includes TypeScript implementation, tests, installation scripts, and
 ---
 
 [← Previous: Claude Code Professional](./08-claude-code-professional.md) | [Next: AI for DevOps →](./10-ai-for-devops.md)
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

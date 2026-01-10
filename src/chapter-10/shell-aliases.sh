@@ -3,6 +3,11 @@
 # Shell Aliases and Functions for AI-Assisted DevOps
 #
 # Add these to your ~/.bashrc or ~/.zshrc
+#
+# Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+# Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+# Copyright: © 2026 Michel Abboud. All rights reserved.
+# License: CC BY-NC 4.0
 
 # =============================================================================
 # BASIC ALIASES

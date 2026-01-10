@@ -180,3 +180,10 @@ See [CONTRIBUTING.md](../CONTRIBUTING.md) for guidelines.
 
 This code is part of the AI and Claude Code Guide for DevOps Engineers.
 See the main [LICENSE](../LICENSE) file for terms.
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

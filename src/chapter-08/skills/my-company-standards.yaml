@@ -3,6 +3,11 @@
 #
 # Skills are specialized knowledge and patterns that extend
 # Claude Code's capabilities for specific domains or teams.
+#
+# Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+# Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+# Copyright: © 2026 Michel Abboud. All rights reserved.
+# License: CC BY-NC 4.0
 
 name: my-company-standards
 description: Company-specific coding and deployment standards

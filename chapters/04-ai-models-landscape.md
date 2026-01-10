@@ -915,3 +915,10 @@ ollama run codellama "Write a Kubernetes CronJob that runs a backup script daily
 ---
 
 [← Previous: The Art of Prompting](./03-the-art-of-prompting.md) | [Next: Introduction to Claude →](./05-introduction-to-claude.md)
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

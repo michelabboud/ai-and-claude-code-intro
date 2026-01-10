@@ -248,3 +248,10 @@ Current settings are in this ConfigMap: [PASTE CONFIG]"
 "Draft a customer-facing incident summary for this issue.
 Include: what happened, impact, resolution, prevention."
 ```
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

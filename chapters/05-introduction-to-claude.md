@@ -996,3 +996,10 @@ Write a Python script that:
 ---
 
 [← Previous: AI Models Landscape](./04-ai-models-landscape.md) | [Next: Claude Code Fundamentals →](./06-claude-code-fundamentals.md)
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

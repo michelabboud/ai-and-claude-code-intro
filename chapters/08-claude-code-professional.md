@@ -1213,3 +1213,10 @@ Each agent includes real-world patterns and comprehensive documentation to compl
 ---
 
 [← Previous: Claude Code Intermediate](./07-claude-code-intermediate.md) | [Next: MCP Deep Dive →](./09-mcp-deep-dive.md)
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

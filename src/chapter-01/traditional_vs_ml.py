@@ -5,6 +5,11 @@ Traditional Programming vs Machine Learning Approaches
 
 This example demonstrates the difference between traditional
 rule-based programming and machine learning for spam detection.
+
+Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+Copyright: © 2026 Michel Abboud. All rights reserved.
+License: CC BY-NC 4.0
 """
 
 # =============================================================================

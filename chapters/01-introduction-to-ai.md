@@ -556,3 +556,10 @@ In Chapter 2, we'll dive deep into **Large Language Models (LLMs)** - the techno
 ---
 
 [Next Chapter: Understanding LLMs and Tokens →](./02-understanding-llms-and-tokens.md)
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0

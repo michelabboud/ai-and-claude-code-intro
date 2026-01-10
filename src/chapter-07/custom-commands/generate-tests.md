@@ -95,3 +95,10 @@ describe('functionUnderTest', () => {
 3. **AAA pattern**: Arrange, Act, Assert
 4. **No logic in tests**: Tests should be straightforward
 5. **Independent tests**: Tests shouldn't depend on each other
+
+---
+
+**Part of**: AI and Claude Code - A Comprehensive Guide for DevOps Engineers  
+**Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
+**Copyright**: © 2026 Michel Abboud. All rights reserved.  
+**License**: CC BY-NC 4.0
