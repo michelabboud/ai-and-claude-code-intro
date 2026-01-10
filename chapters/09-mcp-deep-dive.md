@@ -296,6 +296,25 @@ claude
 # Returns query results
 ```
 
+### Dynamic Tool Updates (New in 2.1)
+
+MCP now supports `list_changed` notifications, allowing servers to dynamically update their available tools:
+
+```yaml
+# MCP servers can now:
+- Add new tools at runtime
+- Remove tools when no longer available
+- Update tool schemas
+- All without requiring reconnection or restart
+
+# This is especially useful for:
+- Database connections (new tables become queryable)
+- Kubernetes (new CRDs become available)
+- Dynamic service discovery
+```
+
+> **What Changed:** Previously, MCP tool lists were static after connection. Now servers can send `list_changed` notifications and Claude Code will refresh its understanding of available tools.
+
 ### Available MCP Servers (Official)
 
 ```yaml
@@ -1526,6 +1545,7 @@ Each server includes TypeScript implementation, tests, installation scripts, and
 │  • Tools = Functions Claude can call                           │
 │  • Resources = Data Claude can read                            │
 │  • Prompts = Templates for common tasks                        │
+│  • list_changed = Dynamic tool updates (new in 2.1)            │
 │                                                                │
 │  Transport:                                                    │
 │  • stdio (recommended for local)                               │

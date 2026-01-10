@@ -62,6 +62,12 @@ CLAUDE_CODE_MAX_TOKENS     # Max output tokens
     "show_tokens": true
   },
 
+  // Language preference (new in 2.1)
+  "language": "english",     // Or: "japanese", "spanish", etc.
+
+  // Release channel (toggle in /config)
+  "release_channel": "stable",  // Or: "latest" for newest features
+
   // Safety settings
   "safety": {
     "confirm_destructive": true,    // Extra confirm for rm, git push --force
@@ -98,6 +104,9 @@ CLAUDE_CODE_MAX_TOKENS     # Max output tokens
     ]
   },
 
+  // Control @-mention file picker behavior
+  "respectGitignore": true,  // Respect .gitignore in file picker
+
   // Project instructions (system prompt addition)
   "project_instructions": """
     This is a Python Django project.
@@ -128,9 +137,45 @@ export CLAUDE_CODE_PROFILE=prod
 # └── demo.json      # Limited features for demos
 ```
 
+### Important Environment Variables
+
+```bash
+# Core configuration
+ANTHROPIC_API_KEY              # API authentication
+CLAUDE_CODE_MODEL              # Default model override
+CLAUDE_CODE_MAX_TOKENS         # Max output tokens
+CLAUDE_CODE_SHELL              # Override shell detection
+
+# File handling
+CLAUDE_CODE_FILE_READ_MAX_OUTPUT_TOKENS  # File read token limit
+
+# UI and display
+IS_DEMO=true                   # Hide email/org from UI (for streaming/recording)
+
+# Plugin management
+FORCE_AUTOUPDATE_PLUGINS=true  # Control plugin auto-updates
+
+# Network
+CLAUDE_CODE_PROXY_RESOLVES_HOSTS  # DNS resolution opt-in
+
+# Enterprise (AWS Bedrock)
+ANTHROPIC_BEDROCK_BASE_URL     # Bedrock endpoint override
+```
+
 ---
 
-## 7.2 Custom Slash Commands
+## 7.2 Custom Slash Commands (Skills)
+
+### Understanding the Unified System
+
+As of version 2.1, Claude Code has **merged slash commands and skills** into a unified system. This simplified mental model means:
+
+- Custom commands and skills work the same way
+- Both are loaded from `.claude/commands/` or `.claude/skills/` directories
+- Both support the same frontmatter options
+- Skills in `~/.claude/skills` or `.claude/skills` are **hot-reloaded** - available immediately without restarting Claude Code
+
+> **What Changed:** Previously, slash commands and skills were separate concepts with different behaviors. Slash commands were simpler prompt templates, while skills had additional capabilities. Now they are unified - you can use either directory and both support all features including context forking and hot-reload.
 
 ### Creating Custom Commands
 
@@ -409,10 +454,28 @@ code --install-extension anthropic.claude-code
 │                                                                │
 │  Side Panel Chat:                                              │
 │  ┌──────────────────────────────────────────────────────────┐  │
-│  │  • Chat interface in sidebar                             │  │
+│  │  • Chat interface in sidebar or secondary sidebar        │  │
+│  │    (VS Code 1.97+)                                       │  │
 │  │  • Workspace-aware context                               │  │
 │  │  • File references with @file                            │  │
 │  │  • Direct code insertion                                 │  │
+│  │  • Streaming message support                             │  │
+│  │  • Copy-to-clipboard on code blocks                      │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                │
+│  Tab Icon Badges:                                              │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Blue badge: Pending permission requests               │  │
+│  │  • Orange badge: Unread task completions                 │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                │
+│  Permission Requests:                                          │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Clickable destination selector for permissions:       │  │
+│  │    - Save to project                                     │  │
+│  │    - Save to all projects                                │  │
+│  │    - Share with team                                     │  │
+│  │    - Session only                                        │  │
 │  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 │  Inline Features:                                              │
@@ -431,6 +494,11 @@ code --install-extension anthropic.claude-code
 │  │  • Claude: Fix Selection                                 │  │
 │  │  • Claude: Generate Tests                                │  │
 │  │  • Claude: Review File                                   │  │
+│  └──────────────────────────────────────────────────────────┘  │
+│                                                                │
+│  Platform Support:                                             │
+│  ┌──────────────────────────────────────────────────────────┐  │
+│  │  • Windows ARM64 supported via x64 emulation             │  │
 │  └──────────────────────────────────────────────────────────┘  │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
@@ -491,6 +559,25 @@ let g:claude_model = 'claude-sonnet-4-5-20250514'
 nnoremap <leader>cc :ClaudeChat<CR>
 vnoremap <leader>ce :ClaudeExplain<CR>
 vnoremap <leader>cf :ClaudeFix<CR>
+```
+
+### Claude Code Built-in Vim Mode
+
+Claude Code's input field has enhanced Vim-like editing support (as of 2.1):
+
+```
+Vim Motions and Commands:
+• ; and , for repeat f/F/t/T motions
+• y operator with yy/Y for yank
+• p/P for paste
+• >> and << for indent/dedent
+• J for join lines
+
+Text Objects:
+• iw, aw (inner/around word)
+• iW, aW (inner/around WORD)
+• i", a", i', a' (quoted strings)
+• i(, a(, i[, a[, i{, a{ (brackets)
 ```
 
 ---
@@ -683,7 +770,25 @@ Provide findings in incident report format.
 
 ## 7.6 Session Management
 
-### Saving and Loading Sessions
+### Named Sessions (New in 2.0.64)
+
+Named sessions make it easier to organize and resume your work:
+
+```bash
+# Name your current session
+claude
+> /rename my-feature-work
+
+# Later, resume by name (instead of searching through session IDs)
+> /resume my-feature-work
+
+# This replaces the older /save and /load workflow
+# Sessions are now automatically saved, you just need to name them
+```
+
+> **What Changed:** Previously, you had to manually save sessions with `/save` and remember session filenames. Now sessions are automatically persisted, and `/rename` lets you give them memorable names that you can use with `/resume`.
+
+### Legacy Save/Load (Still Supported)
 
 ```bash
 # Save current session
@@ -983,20 +1088,30 @@ Document your setup and workflow.
 │  ~/.claude/config.json     - User defaults                     │
 │  .claude/config.json       - Project settings                  │
 │                                                                │
-│  Custom Commands:                                              │
-│  .claude/commands/*.md     - Your custom commands              │
+│  Custom Commands (Skills):                                     │
+│  .claude/commands/*.md     - Custom commands (hot-reloaded)    │
+│  .claude/skills/*.md       - Same as commands (unified)        │
 │  /commands                 - List available commands           │
 │  /command-name             - Run a command                     │
 │                                                                │
 │  Session Management:                                           │
-│  /save <name>              - Save session                      │
-│  /load <name>              - Load session                      │
+│  /rename <name>            - Name session for easy resume      │
+│  /resume <name>            - Resume named session              │
+│  /save <name>              - Save session (legacy)             │
+│  /load <name>              - Load session (legacy)             │
 │  /sessions                 - List saved sessions               │
-│  /export <file>            - Export session                    │
+│  /stats                    - Usage stats, graphs, streaks      │
+│                                                                │
+│  New Settings:                                                 │
+│  language: "japanese"      - UI language preference            │
+│  release_channel: "latest" - Get newest features               │
+│  respectGitignore: true    - @-mention respects .gitignore     │
+│  IS_DEMO=true              - Hide email/org for streaming      │
 │                                                                │
 │  Debug:                                                        │
 │  CLAUDE_DEBUG=1 claude     - Enable debug mode                 │
 │  /debug on                 - In-session debug                  │
+│  /doctor                   - Diagnose permission rules         │
 │                                                                │
 │  Optimization:                                                 │
 │  --model claude-haiku-4-5-*  - Fast/cheap model                │
