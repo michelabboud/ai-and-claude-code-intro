@@ -1473,6 +1473,22 @@ const server = new Server(
 
 ---
 
+### 💡 Production MCP Server Examples
+
+For working implementations beyond the exercises above, the **[Claude Code Helper MCP Servers](https://github.com/michelabboud/claude-code-helper/tree/main/mcp-servers)** provide 5 production-ready servers with 30 tools:
+
+| Server | Tools | Focus |
+|--------|-------|-------|
+| **API Specialist** | 8 | API testing, OpenAPI validation, security auditing |
+| **Code Review** | 4 | Linting, security scanning, complexity analysis |
+| **Design System** | 5 | Token validation, component checks, accessibility |
+| **Testing** | 4 | Test execution, coverage reporting, quality analysis |
+| **UI/UX Review** | 9 | Design review, WCAG compliance, wireframes |
+
+Each server includes TypeScript implementation, tests, installation scripts, and integration documentation.
+
+---
+
 ## 9.9 Chapter Summary
 
 ### Key Takeaways
