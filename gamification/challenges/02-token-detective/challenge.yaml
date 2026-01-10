@@ -1,0 +1,24 @@
+id: token-detective-01
+name: "Token Detective"
+chapter: 2
+difficulty: journeyman
+stars: 3
+
+points:
+  base: 30
+  bonuses:
+    extreme_reduction: 20  # 70% reduction
+    speed_bonus: 15        # <15 minutes
+  penalties:
+    missed_target: -10     # >3400 tokens
+
+requirements:
+  max_tokens: 3400
+  time_limit_minutes: 20
+  prompts_to_optimize: 5
+
+learning_objectives:
+  - "Token auditing"
+  - "Cost analysis"
+  - "Systematic optimization"
+  - "Pattern recognition"

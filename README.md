@@ -300,6 +300,104 @@ Theory (This Guide)           Practice (Claude Code Helper)
 
 ---
 
+## 🎮 New in v1.0.0: DevOps Quest Gamification System
+
+Transform your learning experience with interactive challenges, progress tracking, and achievements!
+
+### ✨ What's Included
+
+#### 📊 Progress Tracker
+Track your journey with a beautiful ASCII dashboard:
+```bash
+cd gamification/progress-tracker
+pip install -r requirements.txt
+python tracker.py init
+python tracker.py  # View your dashboard
+```
+
+**Features**:
+- 15 unlockable achievement badges 🎖️
+- Learning streak tracking 🔥
+- Chapter and challenge completion tracking
+- Beautiful terminal UI with progress bars
+
+#### 🏆 Challenges (4 Available)
+Hands-on coding challenges with auto-grading:
+
+1. **Prompt Dojo** (⭐⭐) - Reduce tokens by 75%
+2. **Token Detective** (⭐⭐⭐) - Audit 5 production prompts
+3. **CRAFT Master** (⭐⭐⭐) - Master prompt engineering framework
+4. **Claude Code Basics** (⭐) - First hands-on session
+
+Each challenge includes:
+- Auto-grader with instant feedback
+- Progressive 3-hint system
+- Multiple difficulty modes
+- Token optimization focus
+
+#### 📖 Story Mode
+Experience learning through immersive narratives:
+
+**Chapter 6: "The Midnight Deployment Crisis"** 🚨
+- Production is down at 2:47 AM
+- You have 30 minutes to fix it
+- Multiple difficulty levels
+- Real-time events and pressure
+
+```bash
+cd gamification/story-mode
+./play.sh
+```
+
+#### 🛠️ Sandbox Labs
+Docker-based incident scenarios:
+
+**Incident 01: CrashLoopBackOff** - Debug a broken Kubernetes deployment
+```bash
+cd gamification/sandbox/incident-01-crashloop
+docker-compose up -d
+# Fix the bug, then:
+./check-solution.sh
+```
+
+### 🎯 Three Learning Paths
+
+Choose your style:
+- 🚀 **Speed Run** (20 hours) - Core challenges, get it working
+- 🎓 **Knowledge Master** (40-60 hours) - Deep understanding
+- ⚡ **Hybrid** (30-40 hours) - Balanced approach (recommended)
+
+### 📈 Track Your Progress
+
+Your dashboard shows:
+- Chapters completed (10 total)
+- Challenges completed (30 planned)
+- Sandbox incidents resolved (10 planned)
+- Achievement badges earned
+- Current learning streak
+- Total points and score
+
+### 🚀 Quick Start
+
+```bash
+# 1. Initialize your quest
+cd gamification/progress-tracker
+pip install -r requirements.txt tiktoken
+python tracker.py init
+
+# 2. Start first challenge
+cd ../challenges/01-prompt-dojo
+./start.sh
+
+# 3. Experience story mode
+cd ../../story-mode
+./play.sh
+```
+
+**See**: [Gamification README](./gamification/README.md) for full details
+
+---
+
 ## License
 
 This work is licensed under the **Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0)**.

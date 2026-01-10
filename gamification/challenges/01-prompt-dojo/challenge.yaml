@@ -1,0 +1,59 @@
+id: prompt-dojo-01
+name: "Token Minimization"
+chapter: 3
+difficulty: apprentice
+stars: 2
+
+points:
+  base: 20
+  bonuses:
+    extreme_efficiency: 20  # <300 tokens
+    speed_bonus: 10         # <10 minutes
+    no_hints: 10            # No hints used
+  penalties:
+    over_limit_minor: -5    # 501-600 tokens
+    over_limit_major: -10   # >600 tokens
+    hint_usage: -5          # Per hint
+
+requirements:
+  max_tokens: 500
+  time_limit_minutes: 15
+  must_include:
+    - "Python 3.11 base"
+    - "Non-root user"
+    - "Health check"
+    - "Dependency installation"
+    - "Working entry point"
+
+grading:
+  correctness: 40
+  efficiency: 40
+  quality: 20
+
+difficulty_modes:
+  normal:
+    max_tokens: 500
+    time_limit: 15
+  hard:
+    max_tokens: 300
+    time_limit: 10
+    bonus: 50
+  nightmare:
+    max_tokens: 200
+    time_limit: 8
+    bonus: 100
+    requires_craft: true
+
+learning_objectives:
+  - "Token counting and estimation"
+  - "Removing redundant context"
+  - "Concise prompt engineering"
+  - "Cost optimization"
+
+related_chapters:
+  - 2  # Understanding LLMs and Tokens
+  - 3  # The Art of Prompting
+
+hints:
+  count: 3
+  penalty_per_hint: -5

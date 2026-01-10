@@ -1,0 +1,304 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║             CHAPTER 6: THE MIDNIGHT DEPLOYMENT CRISIS                 ║
+║                                                                       ║
+║                    A DevOps Story Mode Adventure                      ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+
+                              🌙 2:47 AM 🌙
+
+Your phone buzzes. Then buzzes again. And again.
+
+You fumble for it in the dark, squinting at the blindingly bright screen:
+
+┌─────────────────────────────────────────────────────────────┐
+│  💬 SLACK - #incidents (47 unread)                         │
+├─────────────────────────────────────────────────────────────┤
+│  Sarah (CTO): @channel PRODUCTION DOWN                      │
+│  Sarah: All services returning 503                          │
+│  Sarah: Customer CEO calling in 30 minutes                  │
+│  Sarah: @you - you're on call. FIX THIS NOW.               │
+│                                                             │
+│  Mike: I was deploying the new feature...                   │
+│  Mike: Something went wrong                                 │
+│  Mike: I don't know what to do                              │
+│                                                             │
+│  Jenkins Bot: ❌ Deploy #1247 FAILED                        │
+│  PagerDuty: 🚨 P1 INCIDENT: All production services down    │
+│  DataDog: 🔴 99.2% error rate                               │
+└─────────────────────────────────────────────────────────────┘
+
+Your heart rate spikes. You're wide awake now.
+
+This is a DISASTER. And you have 30 minutes.
+
+You sit up, grab your laptop. Your mind races:
+- What broke?
+- How do we roll back?
+- Where are the logs?
+- How do I even start debugging this?
+
+Then you remember: last week, you installed Claude Code.
+
+"Maybe..." you think, "maybe this AI thing can actually help."
+
+You open your terminal with shaking hands...
+
+
+═══════════════════════════════════════════════════════════════════════
+                         🎯 YOUR MISSION
+═══════════════════════════════════════════════════════════════════════
+
+⏱️  TIME LIMIT: 30 minutes (real time)
+🎯 OBJECTIVE: Diagnose and fix the production deployment
+💀 STAKES: Customer CEO meeting, company reputation, your job
+
+You have access to:
+  • Claude Code (your new AI assistant)
+  • The broken deployment repository
+  • CI/CD logs
+  • Kubernetes cluster access
+
+What you DON'T have:
+  • Mike (he's panicking and useless)
+  • Senior engineers (asleep, unreachable)
+  • Time to waste
+
+
+═══════════════════════════════════════════════════════════════════════
+                         🎭 THE SCENARIO
+═══════════════════════════════════════════════════════════════════════
+
+Mike tried to deploy a "small feature update" at 2:30 AM.
+(Never deploy on Friday. Never deploy at night. He did both.)
+
+Something in the new deployment is causing all pods to crash.
+The Kubernetes cluster shows CrashLoopBackOff across all services.
+
+You need to:
+1. Understand what changed
+2. Find the bug
+3. Fix it or rollback
+4. Verify the fix works
+5. Write a post-mortem (because Sarah WILL ask)
+
+And you need to do it all FAST.
+
+
+═══════════════════════════════════════════════════════════════════════
+                     🚀 GETTING STARTED
+═══════════════════════════════════════════════════════════════════════
+
+Ready to begin? Here's how to start:
+
+1. Start your timer (you have 30 minutes):
+   ⏱️  [Press ENTER to start the clock]
+
+2. Launch Claude Code in the broken repository:
+   $ cd /path/to/broken-deployment
+   $ claude
+
+3. Your first prompt should be something like:
+   "Production is down. Help me diagnose what broke in the latest
+    deployment. Start by showing me what changed in the last commit."
+
+4. Work with Claude Code to:
+   - Analyze the deployment diff
+   - Check Kubernetes pod status
+   - Review application logs
+   - Identify the bug
+   - Implement a fix
+   - Test the fix
+   - Deploy (or rollback)
+
+
+═══════════════════════════════════════════════════════════════════════
+                      💡 LEARNING OBJECTIVES
+═══════════════════════════════════════════════════════════════════════
+
+By completing this story mode challenge, you'll learn:
+
+✓ How to use Claude Code under pressure
+✓ Debugging production issues with AI assistance
+✓ Navigating unfamiliar codebases quickly
+✓ Git operations with Claude Code
+✓ Kubernetes troubleshooting patterns
+✓ Effective AI prompting during incidents
+
+
+═══════════════════════════════════════════════════════════════════════
+                       🏆 DIFFICULTY LEVELS
+═══════════════════════════════════════════════════════════════════════
+
+Choose your difficulty:
+
+📗 NOVICE MODE
+   • 45 minute time limit
+   • Hints available every 10 minutes
+   • Bug is relatively obvious
+   • Detailed success criteria provided
+
+📘 NORMAL MODE (Recommended)
+   • 30 minute time limit
+   • 3 hints available (use wisely)
+   • Realistic complexity
+   • You figure out success criteria
+
+📙 HARD MODE
+   • 20 minute time limit
+   • 1 hint only
+   • Multiple interacting bugs
+   • No explicit success criteria
+
+📕 NIGHTMARE MODE 💀
+   • 15 minute time limit
+   • NO hints
+   • Cascading failures
+   • Partial information only
+   • Bonus: Sarah is in the chat watching you work
+
+
+═══════════════════════════════════════════════════════════════════════
+                        ⚡ REAL-TIME EVENTS
+═══════════════════════════════════════════════════════════════════════
+
+As you work, messages will appear simulating the real chaos:
+
+⏱️  @ 5 minutes:
+   💬 Sarah: "Status update?"
+
+⏱️  @ 15 minutes:
+   💬 Mike: "Should I revert my changes?"
+   💬 Sarah: "Don't touch ANYTHING Mike!"
+
+⏱️  @ 20 minutes:
+   💬 Sarah: "Customer CEO joins meeting in 10 minutes..."
+
+⏱️  @ 28 minutes:
+   💬 DataDog: 🔴 Still 99% error rate
+
+⏱️  @ 30 minutes:
+   ⚠️  TIME'S UP! Did you make it?
+
+
+═══════════════════════════════════════════════════════════════════════
+                         🎯 SUCCESS METRICS
+═══════════════════════════════════════════════════════════════════════
+
+You'll be scored on:
+
+• ⏱️  TIME (40%):
+  - <15 min: 100 points (Hero!)
+  - 15-25 min: 80 points (Strong)
+  - 25-30 min: 60 points (Made it)
+  - >30 min: 40 points (Survived)
+
+• 🎯 SOLUTION QUALITY (40%):
+  - Root cause identified correctly
+  - Fix is appropriate (not hacky)
+  - Rollback strategy considered
+  - Documentation/post-mortem
+
+• 💬 COMMUNICATION (20%):
+  - Clear prompts to Claude Code
+  - Effective use of AI assistance
+  - Good debugging methodology
+
+
+═══════════════════════════════════════════════════════════════════════
+                         💀 WHAT CAN GO WRONG
+═══════════════════════════════════════════════════════════════════════
+
+Things that might happen (depending on difficulty):
+
+• The bug isn't where you think it is
+• Multiple bugs compounding each other
+• Configuration issues vs code issues
+• Rollback doesn't work (config was updated)
+• Kubernetes manifest errors
+• Environment variable problems
+• Database migration failures
+• Third-party API issues
+
+Stay calm. Claude Code can help with all of this.
+
+
+═══════════════════════════════════════════════════════════════════════
+                      🎓 AFTER YOU COMPLETE
+═══════════════════════════════════════════════════════════════════════
+
+Once you've resolved the incident (or time runs out):
+
+1. Review the solution walkthrough
+2. Compare your approach to the optimal path
+3. Understand what Claude Code did well
+4. Learn where you could have been faster
+5. Read the post-mortem template
+6. Update your progress tracker
+
+Then move on to Chapter 7 with newfound confidence!
+
+
+═══════════════════════════════════════════════════════════════════════
+                         💬 THE AFTERMATH
+═══════════════════════════════════════════════════════════════════════
+
+If you succeeded:
+
+┌─────────────────────────────────────────────────────────────┐
+│  💬 SLACK - #incidents                                      │
+├─────────────────────────────────────────────────────────────┤
+│  DataDog: ✅ Services recovering                            │
+│  DataDog: ✅ Error rate: 0.2% (normal)                      │
+│                                                             │
+│  Sarah: "Crisis averted. Nice work @you"                    │
+│  Sarah: "Write up a post-mortem by EOD"                     │
+│  Sarah: "And Mike... we need to talk about your deploys."   │
+│                                                             │
+│  You: "☕ Time for coffee..."                               │
+└─────────────────────────────────────────────────────────────┘
+
+If you failed:
+
+┌─────────────────────────────────────────────────────────────┐
+│  💬 SLACK - #incidents                                      │
+├─────────────────────────────────────────────────────────────┤
+│  Sarah: "Customer CEO is NOT happy..."                      │
+│  Sarah: "We're bringing in the principal engineer"          │
+│  Sarah: "30 minute post-mortem meeting, my office"          │
+│                                                             │
+│  You: "😰"                                                  │
+│                                                             │
+│  [But hey, you learned something! Try again?]               │
+└─────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════
+                        🚀 READY TO BEGIN?
+═══════════════════════════════════════════════════════════════════════
+
+Your skills with Claude Code will determine:
+- Whether production gets fixed
+- If the customer stays happy
+- If you look like a hero or zero
+
+The clock is ticking.
+Sarah is waiting.
+The CEO is logging into the meeting.
+
+What do you do?
+
+
+                    [Press ENTER to start the mission]
+
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                                                                       ║
+║  "The best time to plant a tree was 20 years ago.                    ║
+║   The second best time is now.                                       ║
+║   The WORST time is during a production incident at 3 AM."           ║
+║                                        - Ancient DevOps Proverb       ║
+║                                                                       ║
+╚═══════════════════════════════════════════════════════════════════════╝

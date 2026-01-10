@@ -1,0 +1,199 @@
+{
+  "achievements": [
+    {
+      "id": "first-blood",
+      "name": "First Blood",
+      "description": "Complete your first challenge",
+      "icon": "🎯",
+      "points": 10,
+      "tier": "completion",
+      "condition": {
+        "type": "challenges_completed",
+        "operator": ">=",
+        "value": 1
+      }
+    },
+    {
+      "id": "token-economist",
+      "name": "Token Economist",
+      "description": "Complete a task using less than 500 tokens",
+      "icon": "💰",
+      "points": 20,
+      "tier": "efficiency",
+      "condition": {
+        "type": "min_tokens_used",
+        "operator": "<",
+        "value": 500
+      }
+    },
+    {
+      "id": "token-miser",
+      "name": "Token Miser",
+      "description": "Complete a task using less than 200 tokens",
+      "icon": "💸",
+      "points": 50,
+      "tier": "efficiency",
+      "condition": {
+        "type": "min_tokens_used",
+        "operator": "<",
+        "value": 200
+      }
+    },
+    {
+      "id": "speed-demon",
+      "name": "Speed Demon",
+      "description": "Complete challenge in top 10% time",
+      "icon": "⚡",
+      "points": 30,
+      "tier": "efficiency",
+      "condition": {
+        "type": "completion_time_percentile",
+        "operator": "<=",
+        "value": 0.10
+      }
+    },
+    {
+      "id": "streak-master",
+      "name": "Streak Master",
+      "description": "Maintain a 7-day learning streak",
+      "icon": "🔥",
+      "points": 50,
+      "tier": "engagement",
+      "condition": {
+        "type": "streak_days",
+        "operator": ">=",
+        "value": 7
+      }
+    },
+    {
+      "id": "streak-legend",
+      "name": "Streak Legend",
+      "description": "Maintain a 30-day learning streak",
+      "icon": "🔥🔥",
+      "points": 200,
+      "tier": "engagement",
+      "condition": {
+        "type": "streak_days",
+        "operator": ">=",
+        "value": 30
+      }
+    },
+    {
+      "id": "chapter-master",
+      "name": "Chapter Master",
+      "description": "Complete all challenges in a chapter",
+      "icon": "🏆",
+      "points": 50,
+      "tier": "completion",
+      "condition": {
+        "type": "chapter_challenges_completed",
+        "operator": "==",
+        "value": "all"
+      }
+    },
+    {
+      "id": "prompt-sensei",
+      "name": "Prompt Sensei",
+      "description": "Master all Prompt Dojo challenges",
+      "icon": "🎓",
+      "points": 100,
+      "tier": "skill",
+      "condition": {
+        "type": "challenge_series_completed",
+        "operator": "==",
+        "value": "prompt-dojo"
+      }
+    },
+    {
+      "id": "mcp-architect",
+      "name": "MCP Architect",
+      "description": "Build 3 custom MCP servers",
+      "icon": "🔌",
+      "points": 100,
+      "tier": "skill",
+      "condition": {
+        "type": "mcp_servers_built",
+        "operator": ">=",
+        "value": 3
+      }
+    },
+    {
+      "id": "dragon-slayer",
+      "name": "Dragon Slayer",
+      "description": "Defeat any Boss Battle",
+      "icon": "🐉",
+      "points": 150,
+      "tier": "boss",
+      "condition": {
+        "type": "boss_battles_completed",
+        "operator": ">=",
+        "value": 1
+      }
+    },
+    {
+      "id": "boss-conqueror",
+      "name": "Boss Conqueror",
+      "description": "Defeat all Boss Battles",
+      "icon": "👑",
+      "points": 500,
+      "tier": "boss",
+      "condition": {
+        "type": "boss_battles_completed",
+        "operator": "==",
+        "value": "all"
+      }
+    },
+    {
+      "id": "hardcore-master",
+      "name": "Hardcore Master",
+      "description": "Complete any Boss Battle on hard mode",
+      "icon": "💀",
+      "points": 300,
+      "tier": "boss",
+      "condition": {
+        "type": "hard_mode_boss_completed",
+        "operator": ">=",
+        "value": 1
+      }
+    },
+    {
+      "id": "security-guardian",
+      "name": "Security Guardian",
+      "description": "Pass all security challenges",
+      "icon": "🛡️",
+      "points": 80,
+      "tier": "skill",
+      "condition": {
+        "type": "challenge_series_completed",
+        "operator": "==",
+        "value": "security"
+      }
+    },
+    {
+      "id": "perfectionist",
+      "name": "Perfectionist",
+      "description": "Achieve 100% completion",
+      "icon": "💎",
+      "points": 500,
+      "tier": "completion",
+      "condition": {
+        "type": "completion_percentage",
+        "operator": "==",
+        "value": 100
+      }
+    },
+    {
+      "id": "graduate",
+      "name": "Graduate",
+      "description": "Complete all 10 chapters",
+      "icon": "🎓",
+      "points": 300,
+      "tier": "completion",
+      "condition": {
+        "type": "chapters_completed",
+        "operator": "==",
+        "value": 10
+      }
+    }
+  ]
+}
