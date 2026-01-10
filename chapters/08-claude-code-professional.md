@@ -1072,6 +1072,20 @@ patterns:
 
 ---
 
+### 💡 Hands-On Practice
+
+Ready to apply these concepts? The **[Claude Code Helper](https://github.com/michelabboud/claude-code-helper/tree/main/examples/agents)** repository provides 14+ production-ready agent examples:
+
+- **Android Development** - Kotlin/Java, Jetpack Compose, Room database
+- **Database Operations** - SQL, PostgreSQL, migrations, optimization
+- **REST API Development** - Authentication, testing, documentation
+- **Git Workflows** - Branch strategies, commit patterns, automation
+- **Performance Optimization** - Bundle analysis, caching, profiling
+
+Each agent includes real-world patterns and comprehensive documentation to complement the exercises above.
+
+---
+
 ## 8.11 Chapter Summary
 
 ### Key Takeaways
