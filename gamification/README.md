@@ -168,26 +168,36 @@ Your progress is tracked across multiple dimensions:
 
 ## 🏅 Leaderboards
 
-### Global Leaderboards (Optional)
+### 🚧 Coming Soon - Not Yet Implemented
+
+Global leaderboards are planned but not currently available. When implemented, you'll be able to:
+
+**Planned Global Leaderboards (Optional)**
 Submit your scores anonymously to compare with other learners:
 
 ```bash
+# ⚠️ These commands don't work yet - future feature
 python tracker.py --submit-score <challenge-id>
 python tracker.py --leaderboard
 ```
 
-**Categories**:
+**Planned Categories**:
 - Fastest completions
 - Most efficient solutions (lowest tokens)
 - Highest scores
 - Longest streaks
 
-### Local Stats Only
-Prefer privacy? All tracking works locally without internet:
+### ✅ Local Stats Only (Available Now)
+All tracking currently works locally without needing internet:
 
 ```bash
-python tracker.py --local-only
+# These commands work now:
+python tracker.py           # View dashboard
+python tracker.py summary   # Quick stats
+python tracker.py badges    # View achievements
 ```
+
+For implementation details or to contribute leaderboard functionality, see [TODO.md](TODO.md#-component-6-leaderboards).
 
 ---
 
