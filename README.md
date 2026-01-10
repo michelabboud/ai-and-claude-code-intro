@@ -223,6 +223,47 @@ Each chapter includes practical exercises:
 - [Official MCP Servers](https://github.com/modelcontextprotocol/servers)
 - [Claude Code VS Code Extension](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code)
 
+### Community Tools & Utilities
+
+#### 🛠️ Claude Code Helper - Complete Toolkit
+**Repository**: [michelabboud/claude-code-helper](https://github.com/michelabboud/claude-code-helper)
+**Author**: Michel Abboud (with AI assistance from Claude Code)
+**License**: MIT
+
+A comprehensive, production-ready toolkit that complements this guide with hands-on examples and configurations. Perfect for applying the concepts learned in Chapters 6-10.
+
+**What's Included**:
+- 📚 **Guides**: Zero-to-hero learning paths and advanced agent patterns
+- 🌐 **5 MCP Servers**: 30 specialized tools for code quality, testing, and design systems
+- 🤖 **14+ Agents**: Production-ready examples (Android, Database, API, Git, Performance)
+- 📐 **Templates**: Starter templates for skills, agents, commands, and plugins
+- ⚙️ **Config Bundle**: Production-ready global configuration with model transparency
+- 📋 **70+ TODO Items**: Roadmap for additional professional examples
+
+**Quick Start**:
+```bash
+git clone https://github.com/michelabboud/claude-code-helper.git
+cd claude-code-helper
+cat README.md
+```
+
+**How It Complements This Guide**:
+```
+Theory (This Guide)           Practice (Claude Code Helper)
+─────────────────────────────────────────────────────────────
+📖 Learn what Claude Code is → 🛠️ Get production-ready examples
+📖 Understand how it works   → 🛠️ Use professional configurations
+📖 Study AI fundamentals     → 🛠️ Apply with real agents
+📖 Explore MCP architecture  → 🛠️ Install working MCP servers
+```
+
+**Best For**:
+- Hands-on practice after completing theoretical chapters
+- Production-ready configurations for professional DevOps workflows
+- Learning multi-agent coordination patterns (supports Chapter 8)
+- Understanding MCP server implementation (supports Chapter 9)
+- Real-world integration examples for DevOps scenarios
+
 ---
 
 ## License
