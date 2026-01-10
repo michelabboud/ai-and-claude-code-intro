@@ -247,16 +247,16 @@ cd gamification/story-mode
 
 # Output:
 ╔════════════════════════════════════════════════════╗
-║  CHAPTER 6: THE MIDNIGHT DEPLOYMENT CRISIS 🚨      ║
+║  CHAPTER 6: THE MIDNIGHT DEPLOYMENT CRISIS 🚨     ║
 ╠════════════════════════════════════════════════════╣
-║  It's 2:47 AM. Your phone buzzes...               ║
+║  It's 2:47 AM. Your phone buzzes...                ║
 ║                                                    ║
-║  "Prod is DOWN. All services returning 503.       ║
-║   Client CEO is calling in 30 minutes.            ║
-║   FIX THIS NOW." - Your Team Lead                 ║
+║  "Prod is DOWN. All services returning 503.        ║
+║   Client CEO is calling in 30 minutes.             ║
+║   FIX THIS NOW." - Your Team Lead                  ║
 ║                                                    ║
-║  You grab your laptop. Thank goodness you have    ║
-║  Claude Code installed...                         ║
+║  You grab your laptop. Thank goodness you have     ║
+║  Claude Code installed...                          ║
 ╚════════════════════════════════════════════════════╝
 
 [Press ENTER to begin your mission]
@@ -303,14 +303,14 @@ Each includes:
 ║          YOUR AI DEVOPS MASTERY JOURNEY                   ║
 ╠═══════════════════════════════════════════════════════════╣
 ║                                                           ║
-║  📚 CHAPTERS:      ████████░░ 80% (8/10)                 ║
-║  🏆 CHALLENGES:    ██████░░░░ 60% (18/30)                ║
+║  📚 CHAPTERS:      ████████░░ 80% (8/10)                  ║
+║  🏆 CHALLENGES:    ██████░░░░ 60% (18/30)                 ║
 ║  🛠️  SANDBOXES:     ████░░░░░░ 40% (4/10)                 ║
-║  📖 STORY MODE:    █████░░░░░ 50% (5/10)                 ║
+║  📖 STORY MODE:    █████░░░░░ 50% (5/10)                  ║
 ║                                                           ║
 ╠═══════════════════════════════════════════════════════════╣
 ║                                                           ║
-║  🎖️  BADGES:  🎯 💰 ⚡ 🏆 🔥 🎓                            ║
+║  🎖️  BADGES:  🎯 💰 ⚡ 🏆 🔥 🎓                       ║
 ║  📊 SCORE:    2,450 points                                ║
 ║  ⏱️  TIME:     18h 42m                                    ║
 ║  🔥 STREAK:   7 days                                      ║
@@ -457,7 +457,7 @@ Part of "AI and Claude Code Guide for DevOps Engineers"
 
 ```
 ╔════════════════════════════════════════════════════╗
-║  "The best way to learn AI is to build with AI"   ║
+║  "The best way to learn AI is to build with AI"    ║
 ║                    - DevOps Wisdom                 ║
 ╚════════════════════════════════════════════════════╝
 ```
