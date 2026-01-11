@@ -120,6 +120,162 @@ CLAUDE_CODE_MAX_TOKENS     # Max output tokens
 }
 ```
 
+### Configuration Decision Framework
+
+Understanding which configuration to use and when is critical for both productivity and security. Here's how to make informed configuration decisions.
+
+#### When to Use Each Configuration Level
+
+**Project-level configuration** (.claude/config.json):
+- Settings that are specific to this project's needs
+- Team-shared standards (commit all team members)
+- Project-specific model requirements (e.g., Haiku for a simple project)
+- Custom exclude patterns for project structure
+- When onboarding should automatically apply settings
+
+Example: A Python Django project might specify `"model": "claude-haiku-4-5-20250514"` for cost savings, while a complex distributed system might use Sonnet for better reasoning.
+
+**User-level configuration** (~/.claude/config.json):
+- Personal preferences that apply across projects
+- Your API authentication
+- Your preferred output format and verbosity
+- Your default auto-approve settings for personal safety level
+- Settings you don't want to share with the team
+
+Example: You prefer `"show_tokens": true` to monitor costs, but your teammate doesn't care about tokens.
+
+**Environment variables** (temporary overrides):
+- Testing different models without changing config files
+- CI/CD pipelines with different authentication
+- Temporary debugging settings
+- Demo/presentation modes (IS_DEMO=true)
+
+Example: `CLAUDE_CODE_MODEL=claude-opus-4-5 claude` to temporarily use Opus for a complex task without changing your config.
+
+#### Security Implications of Configuration
+
+**Auto-approval settings** - Critical security consideration:
+
+```yaml
+Low Risk (Development Environment):
+  auto_approve:
+    read: true      # Safe - reading files is non-destructive
+    write: false    # Controlled - you review each file change
+    execute: false  # Controlled - you approve each command
+
+Medium Risk (Personal Projects):
+  auto_approve:
+    read: true
+    write: true     # Faster but risky - Claude can modify any file
+    execute: false  # You still control command execution
+
+High Risk (Production/Shared Systems):
+  auto_approve:
+    read: false     # You review even file reads (audit trail)
+    write: false    # Every change requires approval
+    execute: false  # Every command requires approval
+```
+
+**Real-world security example**: A developer with `write: true` auto-approve asked Claude to "clean up the config files." Claude interpreted this as deleting unused configs, including a critical `.env.production` file. The file was recovered from git, but it demonstrates why write approval matters.
+
+**Blocked commands** for safety:
+```json
+{
+  "safety": {
+    "blocked_commands": [
+      "rm -rf /",           // Catastrophic system damage
+      "mkfs",               // Filesystem formatting
+      "> /dev/sda",         // Direct disk writes
+      "dd if=/dev/zero",    // Disk wiping
+      "chmod -R 777",       // Security hole
+      "git push --force origin main"  // Dangerous for shared repos
+    ]
+  }
+}
+```
+
+#### Cost and Performance Impact of Settings
+
+**Model selection** has the biggest cost impact:
+
+```
+Scenario: Reviewing 50 files/day (average 500 lines each)
+
+Claude Opus 4.5:
+  Input:  (50 × 500 × 4 chars/token ÷ 1M) × $15  = ~$1.50/day
+  Output: (50 × 100 tokens ÷ 1M) × $75            = ~$0.38/day
+  Total: ~$1.88/day (~$40/month) ✓ High quality but expensive
+
+Claude Sonnet 4.5:
+  Input:  (50 × 500 × 4 chars/token ÷ 1M) × $3   = ~$0.30/day
+  Output: (50 × 100 tokens ÷ 1M) × $15            = ~$0.075/day
+  Total: ~$0.38/day (~$8/month) ✓ Best balance
+
+Claude Haiku 4.5:
+  Input:  (50 × 500 × 4 chars/token ÷ 1M) × $1   = ~$0.10/day
+  Output: (50 × 100 tokens ÷ 1M) × $5             = ~$0.025/day
+  Total: ~$0.13/day (~$3/month) ✓ Cheapest
+```
+
+**Decision**: For code review, Sonnet provides 90% of Opus quality at 20% of the cost. Reserve Opus for architecture decisions and complex debugging.
+
+**Context settings** affect both cost and performance:
+
+```yaml
+max_files: 10 (Small Context):
+  pros: Fast responses, lower token costs, focused answers
+  cons: May miss relevant code, requires manual file mentions
+  best_for: Small projects, specific tasks, tight budgets
+
+max_files: 50 (Medium Context):
+  pros: Balanced performance, good project understanding
+  cons: Moderate cost, occasional irrelevant files included
+  best_for: Most projects, general development work
+
+max_files: 200 (Large Context):
+  pros: Comprehensive understanding, finds related code
+  cons: Slow responses, high token costs, can overwhelm context
+  best_for: Large refactoring, architectural analysis, debugging
+```
+
+**Exclude patterns** significantly impact performance:
+
+```json
+Without excludes:
+  - Claude reads node_modules (50MB, 10,000 files)
+  - 5-10 second delay before each response
+  - Wastes tokens on dependencies
+
+With proper excludes:
+  - Claude reads only source (5MB, 200 files)
+  - <1 second indexing
+  - Focuses tokens on your code
+```
+
+**Recommended baseline** for most DevOps projects:
+```json
+{
+  "model": "claude-sonnet-4-5-20250514",
+  "auto_approve": {
+    "read": true,
+    "write": false,
+    "execute": false
+  },
+  "context": {
+    "max_files": 50,
+    "exclude_patterns": [
+      "node_modules", "vendor", ".git", "dist", "build",
+      "*.log", "*.lock", "coverage", ".terraform"
+    ]
+  },
+  "safety": {
+    "confirm_destructive": true
+  }
+}
+```
+
+This balances speed ($8-15/month for typical usage), safety (you review all changes), and effectiveness (good project understanding).
+
 ### Project-Specific Configuration
 
 ```json
@@ -222,6 +378,303 @@ As of **version 2.1.3** (January 2025), Claude Code has **fully merged slash com
 ### Creating Custom Commands
 
 Custom commands let you create reusable prompts for common tasks.
+
+### Anatomy of Effective Custom Commands
+
+Creating truly useful custom commands requires understanding what makes them effective versus just "nice to have." Here are the principles and patterns that separate production-quality commands from simple prompt templates.
+
+#### Principles of Good Command Design
+
+**1. Single Responsibility Principle**
+
+Each command should do ONE thing well. Don't create a "do-everything" command.
+
+```yaml
+Bad Command Example:
+  name: devops
+  purpose: "Handle all DevOps tasks"
+  problem: Too vague, Claude won't know what you want
+
+Good Command Examples:
+  - name: k8s-scale
+    purpose: "Scale a specific Kubernetes deployment"
+  - name: log-analysis
+    purpose: "Analyze application logs for errors"
+  - name: terraform-cost
+    purpose: "Estimate cost changes from Terraform plan"
+```
+
+**2. Context Over Instructions**
+
+Good commands provide context and constraints, not step-by-step instructions. Let Claude reason, don't script it.
+
+```markdown
+❌ Bad: Prescriptive and rigid
+---
+name: review
+---
+First, read the file.
+Then, check for errors on line 1.
+Then, check line 2.
+Then, check line 3.
+...
+
+✅ Good: Context-driven and flexible
+---
+name: review
+---
+You are a senior DevOps engineer reviewing infrastructure code.
+
+Our standards:
+- All Terraform must use remote state
+- Security groups must never allow 0.0.0.0/0 on SSH (22)
+- Resources must have Name tags with project-service-env format
+
+Review {{file}} and flag any violations of these standards.
+Also suggest improvements for maintainability and cost.
+```
+
+**3. Reusability Through Arguments**
+
+Commands should be parameterized, not hardcoded.
+
+```markdown
+❌ Bad: Hardcoded values
+---
+name: check-api-prod
+---
+Check if the production API at https://api.example.com is healthy
+
+✅ Good: Parameterized and reusable
+---
+name: check-api
+arguments:
+  - name: environment
+    description: Environment to check (dev, staging, prod)
+    required: true
+  - name: service
+    description: Service name
+    required: false
+    default: api
+---
+Check if the {{service}} service in {{environment}} is healthy.
+
+For production, also verify:
+- Response time < 200ms
+- Error rate < 0.1%
+- Certificate expiry > 30 days
+```
+
+Now you can use: `/check-api prod`, `/check-api staging`, `/check-api dev api`, etc.
+
+**4. Output Format Specification**
+
+Always specify the desired output format. This ensures consistency and makes results parseable.
+
+```markdown
+Bad: Vague output expectations
+---
+Tell me about the security issues
+
+Good: Structured output specification
+---
+Output format:
+## Security Review for {{file}}
+
+### Critical Issues (Must Fix)
+- [Line X] Issue description
+  Fix: Specific remediation
+
+### High Priority (Should Fix)
+- [Line Y] Issue description
+  Fix: Specific remediation
+
+### Recommendations (Consider)
+- General improvement suggestions
+
+### Summary
+- Total issues found: N
+- Estimated fix time: X hours
+```
+
+#### Common Mistakes to Avoid
+
+**Mistake 1: Commands That Are Just Conversation Starters**
+
+```markdown
+❌ This doesn't need to be a command:
+---
+name: help
+---
+Can you help me with my code?
+
+Just ask Claude directly in conversation!
+```
+
+**When NOT to create a command:**
+- One-time questions
+- Exploratory conversations
+- When the context is obvious from your message
+- When you need back-and-forth clarification
+
+**When TO create a command:**
+- You ask the same type of question 3+ times per week
+- Your team needs consistent outputs
+- The context is complex and takes >5 minutes to explain
+- You want standardized formatting
+
+**Mistake 2: Over-Constraining Claude**
+
+```markdown
+❌ Too rigid - doesn't let Claude think:
+---
+name: terraform-review
+---
+Read main.tf.
+Count the resources.
+If >10, say "too many".
+If <=10, say "OK".
+
+✅ Better - lets Claude analyze:
+---
+name: terraform-review
+---
+Review the Terraform configuration.
+
+Check for:
+- Resource count (>10 may indicate need for modules)
+- Security misconfigurations
+- Cost optimization opportunities
+- Best practice violations
+
+Provide analysis with specific recommendations.
+```
+
+**Mistake 3: No Error Handling Guidance**
+
+```markdown
+❌ Doesn't handle edge cases:
+---
+name: deploy-check
+---
+Run the tests and report if they pass.
+
+✅ Better - handles various scenarios:
+---
+name: deploy-check
+---
+Pre-deployment verification:
+
+1. Run the test suite
+   - If tests fail, identify which tests and why
+   - If tests don't exist, warn and suggest creating them
+   - If test command not found, show available scripts
+
+2. Check for uncommitted changes
+   - If found, list them and ask if they should be committed
+
+3. Verify environment variables are documented
+   - Compare .env.example with code usage
+   - Flag any undocumented required variables
+
+4. Check for TODO or FIXME comments added in this branch
+   - List them for review before deployment
+
+Provide a deployment readiness report with go/no-go recommendation.
+```
+
+**Mistake 4: Not Providing Examples**
+
+Commands with examples in their prompts are more reliable:
+
+```markdown
+✅ Command with examples:
+---
+name: commit-message
+---
+Generate a conventional commit message for the staged changes.
+
+Format: <type>(<scope>): <description>
+
+Types:
+- feat: New feature
+- fix: Bug fix
+- docs: Documentation only
+- refactor: Code change that neither fixes a bug nor adds a feature
+- perf: Performance improvement
+- test: Adding tests
+
+Examples:
+- feat(auth): add JWT token refresh endpoint
+- fix(api): prevent null pointer in user lookup
+- docs(readme): update installation instructions
+- refactor(db): simplify query builder interface
+
+Review staged changes and suggest an appropriate commit message.
+```
+
+#### Reusability Patterns
+
+**Pattern 1: Nested Commands for Related Tasks**
+
+```bash
+.claude/commands/
+├── k8s/
+│   ├── debug-pod.md      # /k8s/debug-pod
+│   ├── scale.md          # /k8s/scale
+│   ├── rollback.md       # /k8s/rollback
+│   └── cost-report.md    # /k8s/cost-report
+└── terraform/
+    ├── security.md       # /terraform/security
+    ├── cost.md           # /terraform/cost
+    └── compliance.md     # /terraform/compliance
+```
+
+**Pattern 2: Composable Commands**
+
+Create small, focused commands that can be chained:
+
+```bash
+# Instead of one giant "deploy" command, create:
+/pre-deploy-check   # Verifies tests, config, etc.
+/deploy staging     # Deploys to staging
+/verify staging     # Runs smoke tests
+/deploy prod        # Promotes to production
+```
+
+**Pattern 3: Team Standards Command**
+
+Create a command that encodes your team's conventions:
+
+```markdown
+// .claude/commands/team-standards.md
+---
+name: team-standards
+context: fork  # Runs in separate context to avoid pollution
+---
+When writing code for this project, always follow these standards:
+
+**Python**
+- Use type hints on all functions
+- Maximum line length: 100 characters
+- Use Black formatter
+- pytest for tests with >80% coverage
+
+**Infrastructure**
+- Terraform 1.5+ required
+- All resources must have tags: Environment, Project, Owner, CostCenter
+- Use AWS Secrets Manager, never environment variables for secrets
+- Document all security group rules
+
+**Git**
+- Branch naming: feature/TICKET-description, fix/TICKET-description
+- Conventional commits: type(scope): description
+- Squash commits before merging to main
+
+Apply these standards when reviewing or generating code.
+```
+
+Now every team member gets consistent guidance by running `/team-standards` before asking Claude to write code.
 
 ```markdown
 // .claude/commands/review.md
