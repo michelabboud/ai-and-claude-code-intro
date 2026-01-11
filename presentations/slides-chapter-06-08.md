@@ -395,7 +395,8 @@ Break into steps, refine each
 
 - Chapter 6: [claude-code-fundamentals.md](../chapters/06-claude-code-fundamentals.md)
 - Chapter 7: [claude-code-intermediate.md](../chapters/07-claude-code-intermediate.md)
-- Chapter 8: [claude-code-professional.md](../chapters/08-claude-code-professional.md)
+- Chapter 8: [skills-and-subagents.md](../chapters/08-skills-and-subagents.md)
+- Chapter 9: [hooks-and-advanced-features.md](../chapters/09-hooks-and-advanced-features.md)
 
 ---
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Chapter 10: AI for DevOps
+# Chapter 12: AI for DevOps
 # Shell Aliases and Functions for AI-Assisted DevOps
 #
 # Add these to your ~/.bashrc or ~/.zshrc

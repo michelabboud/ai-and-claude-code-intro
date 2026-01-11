@@ -43,7 +43,7 @@ style: |
 
 # AI for DevOps
 
-## Chapter 10: Practical Applications
+## Chapter 12: Practical Applications
 
 **Tips, Workflows, and Real-World Usage**
 

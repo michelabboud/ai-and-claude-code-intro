@@ -279,12 +279,12 @@ story-mode/
   - [ ] Mission: Build skills/agents to coordinate
   - [ ] Stakes: Project deadline, team morale
 
-- [ ] **Chapter 9: "Building the Integration Bridge"** 🌉
+- [ ] **Chapters 10-11: "Building the Integration Bridge"** 🌉
   - [ ] Scene: Systems don't talk to each other
   - [ ] Mission: Create MCP servers to connect them
   - [ ] Stakes: Customer satisfaction, scalability
 
-- [ ] **Chapter 10: "The Perfect Storm"** ⚡
+- [ ] **Chapter 12: "The Perfect Storm"** ⚡
   - [ ] Scene: Multiple simultaneous incidents
   - [ ] Mission: Use AI to handle all at once
   - [ ] Stakes: Ultimate test of your skills
@@ -680,8 +680,8 @@ tracker.py --export-solution <id>      # Share your solution
 - [ ] Chapter 6: "The Midnight Deployment Crisis" (800 words)
 - [ ] Chapter 7: "The Toxic Legacy Codebase" (800 words)
 - [ ] Chapter 8: "Multi-Team Coordination Disaster" (800 words)
-- [ ] Chapter 9: "Building the Integration Bridge" (800 words)
-- [ ] Chapter 10: "The Perfect Storm" (1000 words)
+- [ ] Chapters 10-11: "Building the Integration Bridge" (800 words)
+- [ ] Chapter 12: "The Perfect Storm" (1000 words)
 
 ### Challenge Briefs
 - [ ] 30 challenge README.md files

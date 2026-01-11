@@ -1,6 +1,6 @@
 {
   "$schema": "https://claude.ai/mcp-config.schema.json",
-  "_comment": "Chapter 9: MCP Server Configuration for Claude Code",
+  "_comment": "Chapters 10-11: MCP Server Configuration for Claude Code",
 
   "mcpServers": {
     "github": {

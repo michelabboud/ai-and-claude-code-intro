@@ -1,5 +1,5 @@
 /**
- * Chapter 9: MCP Deep Dive
+ * Chapters 10-11: MCP (Model Context Protocol)
  * AWS MCP Server Implementation
  *
  * This server provides AWS management capabilities to Claude Code.

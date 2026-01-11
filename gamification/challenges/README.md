@@ -30,7 +30,7 @@ Each challenge includes:
 | claude-basics-02 | File Navigation | ⭐⭐ | 15 | 10 min |
 | claude-basics-03 | Custom Command | ⭐⭐⭐ | 25 | 20 min |
 
-### 🔌 Chapter 9: MCP Servers
+### 🔌 Chapters 10-11: MCP Servers
 
 | ID | Challenge | Difficulty | Points | Time Limit |
 |----|-----------|------------|--------|------------|

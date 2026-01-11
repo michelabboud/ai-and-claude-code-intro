@@ -125,18 +125,18 @@ Read only the essential sections and TL;DRs:
 
 **Phase 1: AI Basics (45 min)**
 - [Chapter 1](./chapters/01-introduction-to-ai.md) - Full chapter (9 min)
-- [Chapter 2](./chapters/02-understanding-llms-and-tokens.md) - **TL;DR only** + §2.3 Tokens, §2.5 Costs (8 min)
-- [Chapter 3](./chapters/03-the-art-of-prompting.md) - **TL;DR only** + §3.2 CRAFT Framework, §3.4 DevOps Patterns (12 min)
+- [Chapter 2](./chapters/02-understanding-llms-and-tokens.md) - **TL;DR only** + Section2.3 Tokens, Section2.5 Costs (8 min)
+- [Chapter 3](./chapters/03-the-art-of-prompting.md) - **TL;DR only** + Section3.2 CRAFT Framework, Section3.4 DevOps Patterns (12 min)
 
 **Phase 2: Getting Started with Claude (90 min)**
-- [Chapter 5](./chapters/05-introduction-to-claude.md) - §5.1, §5.2, §5.4 (skip detailed API examples) (8 min)
+- [Chapter 5](./chapters/05-introduction-to-claude.md) - Section5.1, Section5.2, Section5.4 (skip detailed API examples) (8 min)
 - [Chapter 6](./chapters/06-claude-code-fundamentals.md) - **Full chapter** (13 min) → Do exercises!
 - [Quick Reference](./references/claude-code-quick-reference.md) - Skim for commands (10 min)
 
 **Phase 3: Professional Usage (90 min)**
-- [Chapter 7](./chapters/07-claude-code-intermediate.md) - **TL;DR** + §7.2 Custom Commands, §7.5 Workflows (10 min)
-- [Chapter 8](./chapters/08-skills-and-subagents.md) - **TL;DR** + §8.2 Skills, §8.3 Sub-Agents (10 min)
-- [Chapter 9](./chapters/09-hooks-and-advanced-features.md) - **TL;DR** + §9.1 Hooks (8 min)
+- [Chapter 7](./chapters/07-claude-code-intermediate.md) - **TL;DR** + Section7.2 Custom Commands, Section7.5 Workflows (10 min)
+- [Chapter 8](./chapters/08-skills-and-subagents.md) - **TL;DR** + Section8.2 Skills, Section8.3 Sub-Agents (10 min)
+- [Chapter 9](./chapters/09-hooks-and-advanced-features.md) - **TL;DR** + Section9.1 Hooks (8 min)
 - [Hooks Cookbook](./references/hooks-cookbook.md) - Pick 3 hooks to implement (10 min)
 
 **Phase 4: Real-World Application (90 min)**

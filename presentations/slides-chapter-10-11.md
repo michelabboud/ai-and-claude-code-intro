@@ -43,7 +43,7 @@ style: |
 
 # MCP Deep Dive
 
-## Chapter 9: Model Context Protocol
+## Chapters 10-11: Model Context Protocol
 
 **The Universal Connector for AI**
 
