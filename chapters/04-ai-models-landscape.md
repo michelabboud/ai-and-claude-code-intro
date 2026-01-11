@@ -974,6 +974,173 @@ CodeLlama 34B (self-hosted):
 └────────────────────────────────────────────────────────────────────────────┘
 ```
 
+### Hosting Decision Flowchart: Which Option Is Right for You?
+
+Choosing the right hosting option depends on your requirements, budget, and team capabilities. Use this decision tree to find your best fit.
+
+```
+START: "I need to run AI models for my DevOps workflows"
+│
+├─❓ Do you have strict data residency requirements?
+│  │   (e.g., data cannot leave your country/network)
+│  │
+│  ├─ YES → ❓ Do you have GPU infrastructure already?
+│  │  │
+│  │  ├─ YES → ✅ SELF-HOST OPEN SOURCE (Ollama/vLLM)
+│  │  │           Cost: GPU maintenance only
+│  │  │           Setup: 1-2 weeks
+│  │  │           Skill: High (need ML ops expertise)
+│  │  │
+│  │  └─ NO → ❓ Can data touch cloud provider infrastructure?
+│  │     │
+│  │     ├─ YES → ✅ AWS BEDROCK / AZURE OPENAI (VPC)
+│  │     │           Cost: ~$500-2K/month
+│  │     │           Setup: 2-3 days
+│  │     │           Skill: Medium (DevOps + cloud networking)
+│  │     │
+│  │     └─ NO → ✅ BUILD GPU CLUSTER + SELF-HOST
+│  │                Cost: $10K-50K/month
+│  │                Setup: 1-3 months
+│  │                Skill: Very High (ML ops + infrastructure)
+│  │
+│  └─ NO → ❓ What's your expected monthly token volume?
+│     │
+│     ├─ <10M tokens/month (most teams)
+│     │  │
+│     │  ├─❓ Do you need enterprise features?
+│     │  │  (SSO, private deployment, SLA guarantees)
+│     │  │  │
+│     │  │  ├─ YES → ✅ CLOUD MARKETPLACE (Bedrock/Azure)
+│     │  │  │           Cost: ~$100-1K/month
+│     │  │  │           Setup: Same day
+│     │  │  │           Skill: Low (just API integration)
+│     │  │  │
+│     │  │  └─ NO → ✅ DIRECT API (anthropic.com/openai.com)
+│     │  │             Cost: $10-500/month
+│     │  │             Setup: 1 hour
+│     │  │             Skill: Very Low (just API key)
+│     │  │
+│     │  └─ 10-50M tokens/month
+│     │     │
+│     │     ├─❓ Is workload predictable and consistent?
+│     │     │  │
+│     │     │  ├─ YES → ⚖️ COMPARE COSTS
+│     │     │  │        API: ~$1K-5K/month
+│     │     │  │        Self-hosted: ~$2K-4K/month + setup
+│     │     │  │        → Self-hosting may be cost-effective
+│     │     │  │
+│     │     │  └─ NO → ✅ STICK WITH API
+│     │     │           Spiky workloads benefit from pay-per-use
+│     │     │           Self-hosting = paying for idle capacity
+│     │     │
+│     │     └─ >50M tokens/month
+│     │        │
+│     │        └─ ✅ SELF-HOST OR MANAGED OPEN SOURCE
+│     │              At this scale, self-hosting almost always cheaper
+│     │              Options: vLLM, Together.ai, Replicate
+│     │              Break-even typically at 20-50M tokens/day
+```
+
+### Hosting Decision Examples by Team Size
+
+#### Startup (2-10 engineers, <$10K/month budget)
+
+**Best choice**: Direct API access (Anthropic/OpenAI)
+
+**Why**:
+- Setup time matters more than cost at this stage
+- Token volumes are low (<1M/month typically)
+- Team lacks ML ops expertise
+- Can always migrate later if volumes grow
+
+**Typical cost**: $50-500/month depending on usage
+
+#### Mid-size Company (50-200 engineers, $50K-200K/month budget)
+
+**Best choice**: Cloud Marketplace (AWS Bedrock / Azure OpenAI)
+
+**Why**:
+- Already using cloud provider for infrastructure
+- VPC integration simplifies networking
+- Compliance requirements easier to meet
+- Volume discounts available through cloud provider
+- SSO integration with existing identity provider
+
+**Typical cost**: $1K-10K/month depending on volume
+
+#### Enterprise (500+ engineers, high security requirements)
+
+**Best choice**: Hybrid approach
+
+**Setup**:
+- **Tier 1**: Self-hosted LLaMA 3 for high-volume, low-sensitivity tasks
+  - Cost: $10K-30K/month (GPU cluster)
+  - Use case: Code completion, documentation, log classification
+
+- **Tier 2**: Azure OpenAI (VPC) for sensitive tasks
+  - Cost: $5K-20K/month
+  - Use case: Security reviews, compliance analysis, incident response
+
+**Why**:
+- Volume justifies self-hosting economics
+- Critical tasks still use best-quality models (Claude/GPT-4)
+- Compliance satisfied by VPC deployment for sensitive data
+- Team has ML ops capacity to manage infrastructure
+
+**Total cost**: $15K-50K/month, but processing 10-100x more requests than mid-size companies
+
+### Common Mistakes to Avoid
+
+#### Mistake 1: Self-Hosting Too Early
+
+**Symptom**: "We're a 5-person startup building our own GPU cluster"
+
+**Problem**:
+- Setup cost: 2-3 months of engineering time ($50K-100K)
+- Infrastructure: $5K-10K/month for GPUs
+- You could process 10M-30M tokens/month on APIs for less
+
+**Fix**: Start with APIs. Self-host only when you hit >20M tokens/day consistently.
+
+#### Mistake 2: Using Wrong Cloud Provider
+
+**Symptom**: "We're on AWS but using Azure OpenAI because it was available first"
+
+**Problem**:
+- Cross-cloud data transfer fees ($0.01-0.12 per GB)
+- Extra networking complexity (VPN or internet transit)
+- Compliance headaches (data crosses provider boundaries)
+
+**Fix**: Use the cloud provider you're already on:
+- AWS → Use Bedrock
+- Azure → Use Azure OpenAI
+- GCP → Use Vertex AI
+
+#### Mistake 3: Not Considering Latency
+
+**Symptom**: "Self-hosted model in US-East, API requests from Asia-Pacific"
+
+**Problem**:
+- Added 200-300ms latency per request
+- For real-time features (ChatOps bots, autocomplete), this is unacceptable
+
+**Fix**:
+- For global applications, use geographically distributed APIs (providers handle this)
+- If self-hosting, deploy close to your users or use CDN-style distribution
+
+#### Mistake 4: Ignoring Maintenance Burden
+
+**Symptom**: "Self-hosting is free! We just need GPUs."
+
+**Hidden costs**:
+- Model updates (new LLaMA versions every 6 months)
+- Security patches for inference frameworks
+- GPU driver updates and compatibility issues
+- Monitoring, alerting, on-call rotation
+- Estimated: 0.5-1 FTE for small deployments, 2-4 FTE for large ones
+
+**Fix**: Factor in 20-40% of GPU costs as engineering overhead.
+
 ### Quick Setup Examples
 
 #### Using Anthropic API Directly
@@ -1068,6 +1235,225 @@ python -m vllm.entrypoints.openai.api_server \
 # Then use standard OpenAI client!
 ```
 
+### Prerequisites Matrix: What You Need Before Self-Hosting
+
+Before running `ollama install` or spinning up a vLLM server, understand what your system actually needs. Self-hosting failures usually happen because teams underestimate requirements.
+
+#### System Requirements by Model Size
+
+| Model Size | RAM Required | GPU VRAM | GPU Type | CPU Cores | Disk Space | Example Models |
+|-----------|--------------|----------|----------|-----------|------------|----------------|
+| **Tiny (1-3B)** | 8GB | 4GB | GTX 1660+ | 4+ | 10GB | Phi-2, TinyLlama |
+| **Small (7B)** | 16GB | 8GB | RTX 3060+ | 8+ | 20GB | LLaMA 2 7B, Mistral 7B |
+| **Medium (13B)** | 32GB | 16GB | RTX 4090 / A40 | 16+ | 30GB | LLaMA 2 13B, Vicuna 13B |
+| **Large (34B)** | 64GB | 24GB | A100 40GB | 32+ | 80GB | CodeLlama 34B, Yi 34B |
+| **XL (70B)** | 128GB+ | 80GB+ | 2× A100 80GB | 64+ | 150GB | LLaMA 2 70B, Falcon 180B |
+
+**Notes**:
+- VRAM is for GPU memory (most critical for inference speed)
+- RAM is for system memory (critical for model loading)
+- Disk space is for model weights + OS + dependencies
+- CPU cores matter for preprocessing and batching
+
+#### Platform-Specific Setup Requirements
+
+##### macOS (Apple Silicon M1/M2/M3)
+
+```bash
+# Works well for small-medium models thanks to unified memory
+
+System requirements:
+  - macOS 12.0+ (Monterey or later)
+  - 16GB RAM minimum (32GB recommended for 13B models)
+  - 50GB free disk space
+  - Xcode Command Line Tools
+
+Install Ollama:
+  curl -fsSL https://ollama.ai/install.sh | sh
+
+Supported model sizes:
+  - 7B models: Good performance (10-20 tokens/sec)
+  - 13B models: Acceptable (5-10 tokens/sec)
+  - 34B+ models: Too slow for interactive use (<2 tokens/sec)
+```
+
+##### Linux (NVIDIA GPU)
+
+```bash
+# Best platform for self-hosting production workloads
+
+System requirements:
+  - Ubuntu 20.04+ / Debian 11+ / RHEL 8+
+  - NVIDIA GPU with CUDA support (Compute Capability 7.0+)
+  - CUDA 11.8+ and cuDNN 8.6+
+  - Docker 20.10+ (recommended for isolation)
+
+Prerequisites check:
+  # Check NVIDIA driver
+  nvidia-smi  # Should show GPU info
+
+  # Check CUDA version
+  nvcc --version  # Should be 11.8 or higher
+
+  # Check Docker + NVIDIA runtime
+  docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi
+
+Common installation issues:
+  1. "CUDA not found" → Install nvidia-driver and cuda-toolkit
+  2. "Out of memory" → Reduce batch size or use smaller model
+  3. "Permission denied /dev/nvidia0" → Add user to 'docker' group
+```
+
+##### Windows (WSL2 or Native)
+
+```bash
+# Works but more complex than Linux
+
+WSL2 (Recommended):
+  - Windows 11 (or Windows 10 21H2+)
+  - WSL2 enabled with Ubuntu 22.04
+  - NVIDIA GeForce/RTX GPU with latest drivers (545.84+)
+  - CUDA support in WSL2 enabled
+
+Native Windows:
+  - Windows 11
+  - Visual Studio 2022 Build Tools
+  - CUDA Toolkit 11.8+
+  - Performance typically 10-15% slower than Linux
+
+Recommendation: Use WSL2 for better compatibility with ML tools
+```
+
+#### Software Dependencies Checklist
+
+Before self-hosting, ensure you have:
+
+**For Ollama** (Easiest):
+```bash
+✓ Operating system: macOS, Linux, or Windows
+✓ 16GB+ RAM
+✓ 20GB+ free disk space
+✓ Internet connection for first-time model download
+✗ GPU not required (but recommended for speed)
+```
+
+**For vLLM** (Production):
+```bash
+✓ Linux with NVIDIA GPU
+✓ Python 3.9-3.11
+✓ CUDA 11.8+
+✓ PyTorch 2.0+ with CUDA support
+✓ 32GB+ RAM
+✓ A100/A40/H100 GPU recommended
+```
+
+**For Text Generation Inference** (Hugging Face):
+```bash
+✓ Linux or WSL2
+✓ Docker + NVIDIA Container Toolkit
+✓ CUDA 11.8+
+✓ 24GB+ GPU VRAM for 7B models
+✓ NVIDIA GPU with Tensor Cores (V100+)
+```
+
+#### Common Errors and Solutions
+
+##### Error 1: "CUDA out of memory"
+
+**Symptoms**:
+```
+RuntimeError: CUDA out of memory. Tried to allocate 2.00 GiB
+(GPU 0; 23.99 GiB total capacity; 21.50 GiB already allocated)
+```
+
+**Solutions**:
+1. **Use a smaller model**: 70B → 13B → 7B
+2. **Use quantization**: FP16 → INT8 → INT4 (reduces memory by 2-4x)
+3. **Reduce batch size**: Try batch_size=1 for testing
+4. **Upgrade GPU**: Move to GPU with more VRAM
+
+**Quick fix**:
+```python
+# Use 4-bit quantization (75% memory reduction)
+from transformers import AutoModelForCausalLM, BitsAndBytesConfig
+
+model = AutoModelForCausalLM.from_pretrained(
+    "meta-llama/Llama-2-7b-hf",
+    quantization_config=BitsAndBytesConfig(load_in_4bit=True)
+)
+```
+
+##### Error 2: "Model download failed"
+
+**Symptoms**:
+```
+OSError: We couldn't connect to 'https://huggingface.co'
+```
+
+**Solutions**:
+1. **Check firewall**: Allow outbound HTTPS to huggingface.co
+2. **Use mirror**: Set HF_ENDPOINT=https://hf-mirror.com
+3. **Pre-download models**: Download on machine with internet, transfer via USB
+
+##### Error 3: "Import error: libcuda.so.1"
+
+**Symptoms**:
+```
+ImportError: libcuda.so.1: cannot open shared object file
+```
+
+**Solution**:
+```bash
+# Install NVIDIA driver properly
+sudo apt update
+sudo apt install nvidia-driver-545
+
+# Reboot required!
+sudo reboot
+
+# Verify after reboot
+nvidia-smi  # Should work now
+```
+
+##### Error 4: "Slow inference (>10 seconds per response)"
+
+**Likely causes**:
+- Running on CPU instead of GPU
+- Using unoptimized inference engine
+- Model too large for available VRAM (swapping to RAM)
+
+**Diagnostic**:
+```python
+import torch
+print(torch.cuda.is_available())  # Should be True
+print(torch.cuda.get_device_name(0))  # Should show your GPU
+```
+
+**Solution**:
+- Ensure PyTorch installed with CUDA: `pip install torch --index-url https://download.pytorch.org/whl/cu118`
+- Use optimized engine: vLLM is 2-5x faster than vanilla transformers
+- Consider smaller model or GPU upgrade
+
+#### Performance Expectations
+
+**Tokens per second** (7B model on different hardware):
+
+| Hardware | Tokens/sec | Use Case |
+|----------|-----------|----------|
+| MacBook Pro M2 (32GB) | 15-25 | Good for development |
+| RTX 3090 (24GB VRAM) | 40-60 | Good for small teams |
+| RTX 4090 (24GB VRAM) | 60-80 | Great for production (small scale) |
+| A100 (40GB VRAM) | 100-150 | Production standard |
+| A100 (80GB VRAM) | 120-180 | High-performance production |
+| 2× H100 | 300-400 | Enterprise scale |
+
+**Batch size impact** (requests processed simultaneously):
+- Batch size 1: Low throughput, low latency (~100ms)
+- Batch size 8: 4-6x throughput, medium latency (~300ms)
+- Batch size 32: 10-15x throughput, high latency (~1000ms)
+
+**Rule of thumb**: For interactive use (ChatOps), keep batch size 1-4. For background processing (log analysis), use batch size 16-32.
+
 ---
 
 ## 4.6 Model Selection Guide for DevOps
@@ -1122,6 +1508,190 @@ def recommend_model(use_case: str, constraints: dict) -> str:
         "Claude Sonnet 4.5"  # Safe default
     )
 ```
+
+### Multi-Dimensional Trade-off Matrix
+
+Model selection isn't about finding the "best" model - it's about finding the right balance of constraints. Here's how popular models stack up across critical dimensions.
+
+#### Comprehensive Model Comparison
+
+| Model | Quality | Cost | Latency | Privacy | Context | Ease of Use |
+|-------|---------|------|---------|---------|---------|-------------|
+| **Claude Opus 4.5** | ★★★★★ (Best reasoning) | $$$$$ (Most expensive) | ⏱️⏱️⏱️ (3-5s) | ❌ API only | 200K | ★★★★★ Easy |
+| **Claude Sonnet 4.5** | ★★★★☆ (Excellent) | $$$ (Moderate) | ⏱️⏱️ (1-2s) | ❌ API only | 200K | ★★★★★ Easy |
+| **Claude Haiku 4.5** | ★★★☆☆ (Good) | $ (Cheap) | ⏱️ (<1s) | ❌ API only | 200K | ★★★★★ Easy |
+| **GPT-4 Turbo** | ★★★★☆ (Excellent) | $$$$ (Expensive) | ⏱️⏱️ (2-3s) | ❌ API only | 128K | ★★★★★ Easy |
+| **GPT-4o mini** | ★★★☆☆ (Good) | $$ (Affordable) | ⏱️ (<1s) | ❌ API only | 128K | ★★★★★ Easy |
+| **Gemini Ultra** | ★★★★☆ (Excellent) | $$$ (Moderate) | ⏱️⏱️⏱️ (3-4s) | ❌ API only | 1M | ★★★★☆ Moderate |
+| **LLaMA 3 70B** | ★★★★☆ (V. Good) | $$$$ (GPU infra) | ⏱️⏱️ (2-4s) | ✅ Self-hosted | 8K | ★★☆☆☆ Hard |
+| **LLaMA 3 7B** | ★★★☆☆ (Decent) | $$ (Small GPU) | ⏱️⏱️ (1-2s) | ✅ Self-hosted | 8K | ★★★☆☆ Moderate |
+| **Mistral 7B** | ★★★☆☆ (Good) | $ (Tiny GPU) | ⏱️ (0.5-1s) | ✅ Self-hosted | 32K | ★★★★☆ Moderate |
+| **CodeLlama 34B** | ★★★★☆ (Code tasks) | $$$ (Med GPU) | ⏱️⏱️ (2-3s) | ✅ Self-hosted | 16K | ★★☆☆☆ Hard |
+
+**Legend**:
+- Quality: Reasoning ability, accuracy, safety
+- Cost: $ = <$50/month, $$ = $50-500, $$$ = $500-5K, $$$$ = $5K-20K, $$$$$ = >$20K
+- Latency: ⏱️ = <1s, ⏱️⏱️ = 1-3s, ⏱️⏱️⏱️ = >3s (for typical DevOps query)
+- Privacy: ❌ = Data leaves your infrastructure, ✅ = Stays on your servers
+- Context: Maximum input tokens supported
+
+#### Balancing Competing Constraints
+
+Most real-world scenarios require trade-offs. Here's how to think about them:
+
+##### Constraint 1: Quality vs Cost
+
+**The Trade-off**:
+```
+High Quality (Claude Opus 4.5):
+  ✓ Best reasoning for complex tasks
+  ✓ Fewer errors = less debugging time
+  ✗ 5-10x more expensive than alternatives
+
+Medium Quality (Claude Sonnet 4.5, GPT-4):
+  ✓ 90% of Opus quality at 30% of cost
+  ✓ Good enough for most production tasks
+  ✓ Sweet spot for most teams
+
+Budget Option (Claude Haiku, Mistral 7B):
+  ✓ 10-20x cheaper than Opus
+  ✓ Acceptable for simple, high-volume tasks
+  ✗ Will miss edge cases and nuances
+```
+
+**When to pay for quality**:
+- Security code reviews (missed vulnerability = $$$)
+- Incident response (wrong diagnosis = downtime)
+- Production IaC generation (errors = outages)
+- Compliance documentation (mistakes = regulatory risk)
+
+**When budget options work**:
+- Log categorization (errors are non-critical)
+- Documentation generation (human reviews anyway)
+- ChatOps simple queries ("What's the status of service X?")
+- High-volume, repetitive tasks
+
+##### Constraint 2: Latency vs Quality
+
+**The Trade-off**:
+```
+Fast (<1s):
+  Models: Claude Haiku, GPT-4o mini, Mistral 7B
+  Use cases: Real-time ChatOps, autocomplete, quick triage
+  Trade-off: Simpler reasoning, may miss nuances
+
+Medium (1-3s):
+  Models: Claude Sonnet, GPT-4 Turbo, LLaMA 3 70B
+  Use cases: Code review, log analysis, most DevOps tasks
+  Trade-off: Good balance for asynchronous workflows
+
+Slow (>3s):
+  Models: Claude Opus, complex prompts with long context
+  Use cases: Deep incident analysis, security audits
+  Trade-off: Best quality but requires async processing
+```
+
+**Decision rule**: If humans wait for the response → use fast models. If it's background processing → optimize for quality.
+
+##### Constraint 3: Privacy vs Convenience
+
+**The Trade-off**:
+```
+API Models (Claude, GPT-4):
+  ✓ Zero setup time
+  ✓ Always latest version
+  ✓ Managed scaling
+  ✗ Data leaves your network
+  ✗ Vendor dependency
+
+VPC Deployment (Bedrock, Azure OpenAI):
+  ✓ Data stays in your cloud account
+  ✓ Network isolation possible
+  ✓ Compliance-friendly
+  ✗ Slight cost markup (5-15%)
+  ✗ Limited model selection
+
+Self-Hosted (LLaMA, Mistral):
+  ✓ Complete data control
+  ✓ No per-token costs
+  ✓ Customization possible
+  ✗ Significant setup and maintenance burden
+  ✗ Need GPU infrastructure and expertise
+```
+
+**Decision framework**:
+1. **Start with**: Can data leave your network? (Most teams: yes)
+2. **If no data export**: Can it stay in your cloud provider? (Use Bedrock/Azure)
+3. **If must be on-premise**: Do you have ML ops capacity? (If no, reconsider requirements)
+
+##### Constraint 4: Context Window vs Cost
+
+**The Trade-off**:
+```
+Long Context (200K tokens):
+  Models: Claude family (200K), Gemini Ultra (1M)
+  Use case: Analyzing entire codebases, long logs
+  Cost impact: More tokens = higher cost
+  Latency: Longer processing time (3-5s+)
+
+Medium Context (32-128K tokens):
+  Models: GPT-4 Turbo (128K), Mistral (32K)
+  Use case: Most DevOps tasks (single file review, incident analysis)
+  Cost impact: Moderate
+  Latency: Fast enough (1-3s)
+
+Short Context (8K tokens):
+  Models: LLaMA 2 (8K), older models
+  Use case: Simple queries, short documents
+  Cost impact: Cheapest
+  Latency: Fastest (<1s)
+```
+
+**Optimization tip**: Don't send unnecessary context. Filter logs, summarize before sending, use RAG for retrieval instead of dumping entire docs.
+
+#### Pareto Frontier: Efficient Choices
+
+The "efficient frontier" are models where improving one dimension requires sacrificing another. These are your best options:
+
+**For Production DevOps Work**:
+1. **Claude Sonnet 4.5**: Best quality-to-cost ratio for most tasks
+2. **Claude Haiku 4.5**: Best for high-volume, latency-sensitive work
+3. **LLaMA 3 70B** (self-hosted): Best for extreme volume with privacy needs
+
+**Dominated options** (usually worse trade-offs):
+- GPT-4 Turbo: More expensive than Claude Sonnet, similar quality
+- GPT-4o mini: Claude Haiku is faster and often better quality
+- Small self-hosted models (<7B): API options usually better unless extreme privacy needs
+
+#### Real-World Trade-off Example: Code Review Bot
+
+**Scenario**: Automated PR reviews for 100 PRs/day, average 2000 tokens input, 500 tokens output.
+
+**Option 1: Claude Opus 4.5** (Maximize Quality)
+- Monthly cost: ~$33.75 (from earlier calculation)
+- Quality: Finds 98% of issues
+- Latency: 3-4s per review
+- **Verdict**: Overkill for most teams. Use for security-critical projects only.
+
+**Option 2: Claude Sonnet 4.5** (Balanced)
+- Monthly cost: ~$20.25
+- Quality: Finds 95% of issues
+- Latency: 1-2s per review
+- **Verdict**: Best choice for most teams. Great ROI.
+
+**Option 3: Claude Haiku 4.5** (Cost-Optimized)
+- Monthly cost: ~$6.75
+- Quality: Finds 85% of issues
+- Latency: <1s per review
+- **Verdict**: Good for non-critical repos or augmenting human reviews.
+
+**Option 4: Self-hosted CodeLlama 34B**
+- Monthly cost: ~$2000 (GPU) + engineering time
+- Quality: Finds 70-80% of issues
+- Latency: 2-3s per review
+- **Verdict**: Only makes sense at 1000+ PRs/day or extreme privacy needs.
+
+**The winner**: Claude Sonnet 4.5. The $14/month savings from Haiku isn't worth the 10% quality drop for code reviews.
 
 ### Cost Comparison Calculator
 
