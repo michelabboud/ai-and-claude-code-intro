@@ -51,14 +51,20 @@ Prerequisites:
 │  ├── AI models landscape and providers                         │
 │  └── Introduction to Claude                                    │
 │                                                                │
-│  CLAUDE CODE (Chapters 6-8)                                    │
-│  ├── Basic: Installation and core usage                        │
+│  CLAUDE CODE (Chapters 6-9)                                    │
+│  ├── Fundamentals: Installation and core usage                 │
 │  ├── Intermediate: Configuration and workflows                 │
-│  └── Professional: Agents, skills, sub-agents                  │
+│  ├── Skills & Sub-agents: Advanced capabilities                │
+│  └── Hooks & Advanced: Automation and CI/CD                    │
 │                                                                │
-│  ADVANCED (Chapters 9-10)                                      │
-│  ├── MCP (Model Context Protocol) deep dive                    │
-│  └── AI for DevOps: Practical applications                     │
+│  MCP INTEGRATION (Chapters 10-11)                              │
+│  ├── MCP Fundamentals: Architecture and usage                  │
+│  └── MCP Server Development: Build custom servers              │
+│                                                                │
+│  WORKFLOW AUTOMATION (Chapters 12-14)                          │
+│  ├── AI for DevOps: Practical applications                     │
+│  ├── n8n Fundamentals: Workflow automation basics              │
+│  └── n8n Advanced: AI integration and production               │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -88,14 +94,23 @@ Prerequisites:
 |---------|-------|-------------|
 | [6](./chapters/06-claude-code-fundamentals.md) | Claude Code Fundamentals | Installation, basic usage, core workflows |
 | [7](./chapters/07-claude-code-intermediate.md) | Claude Code Intermediate | Configuration, custom commands, IDE integration |
-| [8](./chapters/08-claude-code-professional.md) | Claude Code Professional | Agents, skills, sub-agents, hooks |
+| [8](./chapters/08-skills-and-subagents.md) | Skills and Sub-Agents | Custom capabilities, Task Tool, agentic workflows |
+| [9](./chapters/09-hooks-and-advanced-features.md) | Hooks and Advanced Features | Event-driven automation, memory, CI/CD integration |
 
-### Part 4: Advanced Topics
+### Part 4: MCP Integration
 
 | Chapter | Title | Description |
 |---------|-------|-------------|
-| [9](./chapters/09-mcp-deep-dive.md) | MCP Deep Dive | Model Context Protocol architecture, building servers |
-| [10](./chapters/10-ai-for-devops.md) | AI for DevOps | Practical applications, tips, real-world workflows |
+| [10](./chapters/10-mcp-fundamentals.md) | MCP Fundamentals | Model Context Protocol architecture, using MCP servers |
+| [11](./chapters/11-mcp-server-development.md) | MCP Server Development | Building custom MCP servers (TypeScript) |
+
+### Part 5: Workflow Automation
+
+| Chapter | Title | Description |
+|---------|-------|-------------|
+| [12](./chapters/12-ai-for-devops.md) | AI for DevOps | Practical applications, tips, real-world workflows |
+| [13](./chapters/13-n8n-fundamentals.md) | n8n Fundamentals | Workflow automation, installation, DevOps patterns |
+| [14](./chapters/14-n8n-advanced.md) | Advanced n8n Workflows | AI integration, production deployment, complex automations |
 
 ---
 
@@ -120,11 +135,12 @@ Read only the essential sections and TL;DRs:
 
 **Phase 3: Professional Usage (90 min)**
 - [Chapter 7](./chapters/07-claude-code-intermediate.md) - **TL;DR** + §7.2 Custom Commands, §7.5 Workflows (10 min)
-- [Chapter 8](./chapters/08-claude-code-professional.md) - **TL;DR** + §8.2 Skills, §8.6 Hooks (12 min)
+- [Chapter 8](./chapters/08-skills-and-subagents.md) - **TL;DR** + §8.2 Skills, §8.3 Sub-Agents (10 min)
+- [Chapter 9](./chapters/09-hooks-and-advanced-features.md) - **TL;DR** + §9.1 Hooks (8 min)
 - [Hooks Cookbook](./references/hooks-cookbook.md) - Pick 3 hooks to implement (10 min)
 
 **Phase 4: Real-World Application (90 min)**
-- [Chapter 10](./chapters/10-ai-for-devops.md) - **Full chapter** (14 min) → Try examples!
+- [Chapter 12](./chapters/12-ai-for-devops.md) - **Full chapter** (14 min) → Try examples!
 - **Hands-on**: Apply to your actual work (60 min)
 
 **Total: ~4-6 hours** (includes hands-on practice)
@@ -148,9 +164,9 @@ Read all chapters in order, complete all exercises, and build your own:
 
 1. Skim Chapters 1-2 for basics
 2. Read Chapter 3 (CRAFT Framework) fully
-3. **Do all exercises** in Chapters 6-8
-4. Read Chapter 10, implement 3 real-world workflows
-5. Build your own commands and hooks
+3. **Do all exercises** in Chapters 6-9
+4. Read Chapters 12-13, implement 3 real-world workflows
+5. Build your own commands, hooks, and n8n workflows
 
 **Perfect for**: Learn-by-doing DevOps engineers
 
@@ -198,8 +214,8 @@ claude
 
 ### 4. Explore Advanced Features
 - Configure custom commands (Chapter 7)
-- Set up MCP servers for your tools (Chapter 9)
-- Build automation workflows (Chapter 10)
+- Set up MCP servers for your tools (Chapters 10-11)
+- Build automation workflows (Chapters 12-14)
 
 ---
 
@@ -210,7 +226,7 @@ ai-and-claude-code-intro/
 ├── README.md                    # This file
 ├── LICENSE                      # CC BY-NC 4.0 License
 ├── CONTRIBUTING.md              # Contributor guidelines
-├── chapters/                    # Guide content (10 chapters)
+├── chapters/                    # Guide content (14 chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -218,9 +234,13 @@ ai-and-claude-code-intro/
 │   ├── 05-introduction-to-claude.md
 │   ├── 06-claude-code-fundamentals.md
 │   ├── 07-claude-code-intermediate.md
-│   ├── 08-claude-code-professional.md
-│   ├── 09-mcp-deep-dive.md
-│   └── 10-ai-for-devops.md
+│   ├── 08-skills-and-subagents.md
+│   ├── 09-hooks-and-advanced-features.md
+│   ├── 10-mcp-fundamentals.md
+│   ├── 11-mcp-server-development.md
+│   ├── 12-ai-for-devops.md
+│   ├── 13-n8n-fundamentals.md
+│   └── 14-n8n-advanced.md
 ├── presentations/               # Slides for each chapter
 │   ├── *.md                     # Marp source files
 │   └── pptx/                    # Generated PowerPoint files
@@ -232,9 +252,13 @@ ai-and-claude-code-intro/
 │   ├── chapter-05/              # Claude API examples
 │   ├── chapter-06/              # Claude Code config, commands
 │   ├── chapter-07/              # Custom commands, GitHub Actions
-│   ├── chapter-08/              # Skills, hooks, memory configs
-│   ├── chapter-09/              # MCP server implementations
-│   └── chapter-10/              # Shell aliases, incident response
+│   ├── chapter-08/              # Skills, sub-agents configurations
+│   ├── chapter-09/              # Hooks, memory, CI/CD examples
+│   ├── chapter-10/              # MCP usage examples
+│   ├── chapter-11/              # MCP server implementations
+│   ├── chapter-12/              # Shell aliases, incident response
+│   ├── chapter-13/              # n8n workflow examples
+│   └── chapter-14/              # Advanced n8n workflows
 └── assets/                      # Images and diagrams
 ```
 

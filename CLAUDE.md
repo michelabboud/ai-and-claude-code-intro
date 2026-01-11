@@ -19,7 +19,7 @@ This is **"AI and Claude Code: A Comprehensive Guide for DevOps Engineers"** - a
 
 ```
 ai-and-claude-code-intro/
-├── chapters/                    # Main guide content (10 markdown chapters)
+├── chapters/                    # Main guide content (14 markdown chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -27,9 +27,13 @@ ai-and-claude-code-intro/
 │   ├── 05-introduction-to-claude.md
 │   ├── 06-claude-code-fundamentals.md
 │   ├── 07-claude-code-intermediate.md
-│   ├── 08-claude-code-professional.md
-│   ├── 09-mcp-deep-dive.md
-│   └── 10-ai-for-devops.md
+│   ├── 08-skills-and-subagents.md
+│   ├── 09-hooks-and-advanced-features.md
+│   ├── 10-mcp-fundamentals.md
+│   ├── 11-mcp-server-development.md
+│   ├── 12-ai-for-devops.md
+│   ├── 13-n8n-fundamentals.md
+│   └── 14-n8n-advanced.md
 │
 ├── presentations/               # Marp slide decks for teaching
 │   ├── slides-chapter-*.md     # Marp markdown source files
@@ -43,9 +47,13 @@ ai-and-claude-code-intro/
 │   ├── chapter-05/             # Claude API examples
 │   ├── chapter-06/             # Claude Code configs and commands
 │   ├── chapter-07/             # Custom commands, GitHub Actions
-│   ├── chapter-08/             # Skills, hooks, memory configurations
-│   ├── chapter-09/             # MCP server implementations (TypeScript)
-│   └── chapter-10/             # Shell aliases, DevOps workflows
+│   ├── chapter-08/             # Skills, sub-agents configurations
+│   ├── chapter-09/             # Hooks, memory, CI/CD examples
+│   ├── chapter-10/             # MCP usage examples
+│   ├── chapter-11/             # MCP server implementations (TypeScript)
+│   ├── chapter-12/             # Shell aliases, DevOps workflows
+│   ├── chapter-13/             # n8n workflow examples
+│   └── chapter-14/             # Advanced n8n workflows
 │
 ├── gamification/               # 🎮 NEW: DevOps Quest learning system
 │   ├── progress-tracker/       # Track progress, achievements, streaks
@@ -69,8 +77,9 @@ The guide follows a deliberate progression:
 
 1. **Foundations (Chapters 1-3)**: AI basics, LLMs, tokenization, prompt engineering
 2. **AI Ecosystem (Chapters 4-5)**: Model landscape, Claude introduction
-3. **Claude Code Mastery (Chapters 6-8)**: From basics to professional workflows
-4. **Advanced Topics (Chapters 9-10)**: MCP protocol, real-world DevOps applications
+3. **Claude Code Mastery (Chapters 6-9)**: From basics to professional workflows with skills, sub-agents, and hooks
+4. **MCP Integration (Chapters 10-11)**: Model Context Protocol fundamentals and custom server development
+5. **Workflow Automation (Chapters 12-14)**: Real-world DevOps applications, n8n fundamentals and advanced patterns
 
 ### Key Concepts Taught
 
@@ -79,6 +88,7 @@ The guide follows a deliberate progression:
 - **Multi-Agent Workflows**: Skills, sub-agents, hooks for Claude Code
 - **MCP Integration**: Building custom Model Context Protocol servers
 - **DevOps Automation**: Incident response, infrastructure generation, code review
+- **Workflow Orchestration**: n8n automation, AI integration, production deployment
 
 ---
 
@@ -381,9 +391,10 @@ Skills/commands can now run in isolated sub-agent contexts using `context: fork`
 ### Where These Features Are Documented
 
 - **Chapter 6**: Claude Code fundamentals
-- **Chapter 7**: Custom commands/skills (unified system)
-- **Chapter 8**: Professional features (sub-agents, hooks, context forking)
-- **Chapter 9**: MCP protocol and server development
+- **Chapter 7**: Custom commands/skills (unified system), IDE integration
+- **Chapter 8**: Skills and sub-agents (Task Tool, agentic workflows)
+- **Chapter 9**: Hooks and advanced features (event-driven automation, CI/CD)
+- **Chapters 10-11**: MCP protocol fundamentals and server development
 
 ---
 
@@ -395,9 +406,9 @@ Skills/commands can now run in isolated sub-agent contexts using `context: fork`
 |----------|-----------|
 | 1-3 | AI fundamentals, LLMs, prompting |
 | 4-5 | AI models landscape, Claude intro |
-| 6-8 | Claude Code: basics → intermediate → professional |
-| 9 | MCP (Model Context Protocol) deep dive |
-| 10 | Real-world AI for DevOps applications |
+| 6-9 | Claude Code: fundamentals → intermediate → skills/sub-agents → hooks/advanced |
+| 10-11 | MCP (Model Context Protocol): fundamentals and server development |
+| 12-14 | Real-world AI for DevOps, n8n workflow automation (fundamentals and advanced) |
 
 ### Key Commands Summary
 

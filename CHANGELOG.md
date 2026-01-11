@@ -7,8 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-- **Documentation Updates for Claude Code v2.1.4**
+### Changed - Major Content Restructure
+- **Chapter Reorganization for Better Learning Flow**
+  - Split Chapter 8 (Claude Code Professional) into two focused chapters:
+    - **Chapter 8: Skills and Sub-Agents** - Custom capabilities, Task Tool, agentic workflows
+    - **Chapter 9: Hooks and Advanced Features** - Event-driven automation, memory, CI/CD integration
+  - Split old Chapter 9 (MCP Deep Dive) into two specialized chapters:
+    - **Chapter 10: MCP Fundamentals** - Architecture, using existing MCP servers
+    - **Chapter 11: MCP Server Development** - Building custom MCP servers (TypeScript)
+  - Renamed Chapter 10 to **Chapter 12: AI for DevOps**
+  - All chapters now include TL;DR sections, navigation helpers, and quick nav links
+  - Updated all cross-references throughout the guide
+
+### Added - n8n Workflow Automation
+- **Chapter 13: n8n Fundamentals** (~3,800 words)
+  - What is n8n and why it matters for DevOps
+  - Installation and setup (Docker, Docker Compose, Kubernetes, n8n Cloud)
+  - Core concepts: workflows, nodes, credentials, executions
+  - First workflow tutorial: GitHub PR → Slack notification
+  - Essential nodes for DevOps (HTTP Request, Schedule, Code, IF/Switch, Wait)
+  - DevOps workflow examples (incident response, PR review, cost monitoring)
+  - Best practices for production deployment
+  - Hands-on exercises with real-world scenarios
+
+- **Chapter 14: Advanced n8n Workflows** (~4,200 words)
+  - Advanced workflow patterns (sub-workflows, parallel execution, error workflows)
+  - Integrating n8n with AI services (Claude API, OpenAI GPT)
+  - Using AI within n8n workflows (log analysis, intelligent alerting, auto-generate infrastructure code)
+  - Complex DevOps automations (multi-stage CI/CD, infrastructure drift detection, security compliance)
+  - n8n + Claude Code bidirectional integration
+  - Database & state management (PostgreSQL, Redis)
+  - Production considerations (queue mode, HA setup, Kubernetes deployment)
+  - Monitoring and observability (Prometheus, Grafana)
+  - Real-world case studies (82% MTTR reduction, 22% cost savings)
+  - Hands-on exercises for advanced scenarios
+
+### Changed - Documentation Updates
+- **README.md**
+  - Updated learning path diagram to include 5 parts (14 chapters total)
+  - Reorganized table of contents with new chapter structure
+  - Updated Express Path, Complete Path, and Practical Path learning guides
+  - Updated Quick Start section references
+  - Updated repository structure to show 14 chapters
+  - Updated src/ folder descriptions for all chapters
+
+- **CLAUDE.md**
+  - Updated repository structure to show 14 chapters
+  - Updated learning path progression with 5 phases
+  - Added workflow orchestration to key concepts
+  - Updated "Where These Features Are Documented" section
+  - Updated "Chapter Topics at a Glance" reference table
+
+- **Documentation Updates for Claude Code v2.1.4** (from previous work)
   - Updated Chapter 8 to clarify v2.1.3 unified skills/commands system
   - Updated Chapter 7 with latest command features and v2.1.3 changes
   - Added comprehensive Claude Code version information section to CLAUDE.md
@@ -18,6 +68,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Added release channel configuration information
   - Clarified hot-reload functionality for skills
   - Added version compatibility notes throughout documentation
+
+### Technical Details
+- **Chapters**: Expanded from 10 to 14 chapters
+- **Words Added**: ~8,000+ words of new content (Chapters 13-14)
+- **New Topics**: n8n workflow automation, AI integration patterns, production deployment strategies
+- **Cross-references**: Updated throughout all chapters and documentation files
 
 ## [1.0.0] - 2026-01-10
 

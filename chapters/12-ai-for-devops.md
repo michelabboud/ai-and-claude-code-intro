@@ -1,4 +1,4 @@
-# Chapter 10: AI for DevOps
+# Chapter 12: AI for DevOps
 
 ## Practical Applications, Tips, and Real-World Workflows
 
@@ -10,7 +10,7 @@ This chapter brings everything together with practical applications of AI in the
 
 ---
 
-## 10.1 The AI-Powered DevOps Workflow
+## 12.1 The AI-Powered DevOps Workflow
 
 ### A Day in the Life of an AI-Augmented DevOps Engineer
 
@@ -57,7 +57,7 @@ This chapter brings everything together with practical applications of AI in the
 
 ---
 
-## 10.2 Infrastructure as Code with AI
+## 12.2 Infrastructure as Code with AI
 
 ### Terraform Generation
 
@@ -163,7 +163,7 @@ Make it idempotent and include handlers for service restarts.
 
 ---
 
-## 10.3 CI/CD Pipeline Development
+## 12.3 CI/CD Pipeline Development
 
 ### GitHub Actions for Full CI/CD
 
@@ -248,7 +248,7 @@ Rules:
 
 ---
 
-## 10.4 Monitoring and Observability
+## 12.4 Monitoring and Observability
 
 ### Prometheus Alert Rules
 
@@ -337,7 +337,7 @@ Features:
 
 ---
 
-## 10.5 Incident Response
+## 12.5 Incident Response
 
 ### Log Analysis Template
 
@@ -416,7 +416,7 @@ When an incident is detected:
 
 ---
 
-## 10.6 Security Automation
+## 12.6 Security Automation
 
 ### Security Scanning Pipeline
 
@@ -504,7 +504,7 @@ Output: Compliance report with pass/fail status and remediation steps.
 
 ---
 
-## 10.7 Documentation Generation
+## 12.7 Documentation Generation
 
 ### Architecture Documentation
 
@@ -597,7 +597,7 @@ Format with clear steps, commands, and expected outputs.
 
 ---
 
-## 10.8 Tips and Tricks
+## 12.8 Tips and Tricks
 
 ### Productivity Boosters
 
@@ -728,7 +728,7 @@ ai-k8s-debug() {
 
 ---
 
-## 10.9 Real-World Scenarios
+## 12.9 Real-World Scenarios
 
 ### Scenario 1: Migrating to Kubernetes
 
@@ -826,7 +826,7 @@ Generate:
 
 ---
 
-## 10.10 Building an AI-First DevOps Culture
+## 12.10 Building an AI-First DevOps Culture
 
 ### Team Adoption Strategy
 
@@ -904,7 +904,7 @@ adoption_metrics:
 
 ---
 
-## 10.11 Future of AI in DevOps
+## 12.11 Future of AI in DevOps
 
 ### Emerging Trends
 
@@ -946,7 +946,7 @@ continuous_optimization:
 
 ---
 
-## 10.12 Chapter Summary
+## 12.12 Chapter Summary
 
 ### Key Takeaways
 
