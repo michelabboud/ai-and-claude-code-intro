@@ -588,6 +588,130 @@ Note: Prices change frequently. Check current pricing.
   benefit: "User sees response faster, same token cost"
 ```
 
+### Token Budgeting Decision Framework
+
+When planning LLM integration, allocate token budgets strategically based on use case and ROI.
+
+#### Budget Allocation by Use Case
+
+| Use Case | Typical Budget | Cost/Month | Justification |
+|----------|---------------|------------|---------------|
+| **Code Review Bot** | 1-2K tokens/PR | $50-150 | High value: Catches bugs, enforces standards |
+| **Log Analysis** | 5-10K tokens/analysis | $200-500 | Medium value: Speeds incident response |
+| **Documentation Q&A** | 2-5K tokens/query | $100-300 | High value: Saves 10+ hrs/week searching |
+| **Interactive Debugging** | 10-20K tokens/session | $100-200 | High value: Reduces debugging time 50% |
+| **Automated Testing** | 3-5K tokens/test | $150-400 | Medium value: Generates edge cases |
+
+#### The 80/20 Rule for Token Budgets
+
+**Focus your budget where it delivers most value:**
+
+```python
+# ❌ Wrong: Equal budget for all tasks
+all_tasks_budget = 10000  # Same for everything
+
+# ✅ Right: Prioritize high-value tasks
+budgets = {
+    'critical_incident_response': 20000,  # 40% of budget - highest ROI
+    'code_review': 15000,                 # 30% of budget - prevents bugs
+    'documentation_qa': 10000,            # 20% of budget - saves time
+    'nice_to_have_tasks': 5000            # 10% of budget - low priority
+}
+```
+
+**Example: $500/month budget allocation**
+
+```yaml
+Monthly Budget: $500 (using Claude Sonnet 4.5)
+
+Allocation:
+  Critical (60%): $300
+    - Incident response: 100 queries × 10K tokens = $300
+    - ROI: Saves 50 hours/month @ $150/hr = $7,500 value
+    - Decision: ✅ Spend more if needed
+
+  Important (30%): $150
+    - Code reviews: 100 PRs × 1.5K tokens = $150
+    - ROI: Catches 20 bugs/month × $500/bug = $10,000 value
+    - Decision: ✅ Worth every penny
+
+  Nice-to-Have (10%): $50
+    - Documentation formatting: 50 tasks × 1K tokens = $50
+    - ROI: Saves 2 hours/month @ $150/hr = $300 value
+    - Decision: ⚠️ Borderline, consider automating differently
+```
+
+#### Context Window Budget Strategy
+
+**Claude Sonnet 4.5: 200K tokens available**
+
+```python
+# Strategic allocation for a single task
+total_context = 200000
+
+budget_allocation = {
+    'system_prompt': 1000,        # 0.5% - Instructions
+    'conversation_history': 10000, # 5% - Recent context
+    'task_context': 150000,       # 75% - Main content (files, logs, etc.)
+    'response_reserve': 39000     # 19.5% - Room for detailed response
+}
+
+# Rule of thumb: Reserve 20% for output
+# Using 100% of context = risk of truncation
+```
+
+#### Budget vs Quality Trade-offs
+
+**When to increase token budget:**
+- ✅ Critical systems (production deployments, security)
+- ✅ High-complexity tasks (architectural decisions)
+- ✅ When accuracy > cost (incident response)
+- ✅ Learning phase (gathering data on what works)
+
+**When to decrease token budget:**
+- ✅ Simple, repetitive tasks (formatting, linting)
+- ✅ Non-critical paths (nice-to-have features)
+- ✅ Tasks with high caching potential (FAQs)
+- ✅ When alternatives exist (regex, traditional scripts)
+
+#### Quick Budget Health Check
+
+**Monthly budget is too high if:**
+- Cost per task > value delivered
+- <40% cache hit rate (re-asking same questions)
+- Using Opus for tasks Haiku can handle
+- No metrics on ROI or usage patterns
+
+**Monthly budget is too low if:**
+- Engineers avoid using AI due to "wasting budget"
+- Frequent context truncation errors
+- Critical tasks queued/delayed
+- Team manually doing what AI could automate
+
+**Example: Budget health calculation**
+
+```python
+def budget_health_score(monthly_cost, time_saved_hours, engineer_rate=150):
+    """Calculate if token budget is well-spent"""
+    value_delivered = time_saved_hours * engineer_rate
+    roi = (value_delivered - monthly_cost) / monthly_cost
+
+    if roi > 10:  # 1000% ROI
+        return "✅ Excellent - Consider increasing budget"
+    elif roi > 5:  # 500% ROI
+        return "✅ Good - Budget is well-allocated"
+    elif roi > 1:  # 100% ROI
+        return "⚠️ Acceptable - Monitor closely"
+    else:
+        return "❌ Poor - Reduce budget or improve usage"
+
+# Example: Code review bot
+cost = 150  # $150/month
+time_saved = 20  # 20 hours/month saved
+print(budget_health_score(cost, time_saved))
+# Output: "✅ Excellent - Consider increasing budget" (1900% ROI)
+```
+
 ---
 
 ## 2.6 How LLMs Generate Text
@@ -890,6 +1014,285 @@ else:
         print(f"Reviewing chunk {i+1}/{len(chunks)}")
         review(chunk)
 ```
+
+### Common Token Management Mistakes
+
+Even experienced engineers make these mistakes. Learn from them to avoid costly errors and system failures.
+
+#### Mistake 1: Not Accounting for Conversation History
+
+**Symptom:** Token costs spiral after a few exchanges, hitting context limits unexpectedly
+
+**What happened:**
+```python
+# ❌ Naive implementation sends full history every time
+conversation = []
+
+for user_message in messages:
+    conversation.append(user_message)
+    response = llm.complete(conversation)  # Sends entire history
+    conversation.append(response)
+
+# After 10 exchanges:
+# Token count: 2K + 2K + 2K + ... = 20K tokens per request
+# Cost explodes exponentially
+```
+
+**Why it's wrong:**
+- Each API call includes ALL previous messages
+- Token count grows quadratically: 1 msg = 2K, 2 msgs = 4K, 10 msgs = 20K
+- Hits context limit after ~20 exchanges (200K / 10K per exchange)
+
+**Fix: Sliding Window Context**
+```python
+# ✅ Keep only recent relevant context
+def get_conversation_context(conversation, max_tokens=10000):
+    """Keep recent messages within token budget"""
+    recent_messages = []
+    token_count = 0
+
+    # Start from most recent, work backwards
+    for msg in reversed(conversation):
+        msg_tokens = count_tokens(msg)
+        if token_count + msg_tokens > max_tokens:
+            break
+        recent_messages.insert(0, msg)
+        token_count += msg_tokens
+
+    return recent_messages
+
+# Or use a summarization strategy
+def summarize_old_context(conversation):
+    """Compress old conversation into summary"""
+    if len(conversation) > 10:
+        old_messages = conversation[:-10]  # All but last 10
+        summary = llm.complete(f"Summarize this conversation: {old_messages}")
+        return [summary] + conversation[-10:]  # Summary + recent 10
+    return conversation
+```
+
+#### Mistake 2: Ignoring Token Estimation Before API Calls
+
+**Symptom:** Frequent "context length exceeded" errors in production
+
+**What happened:**
+```python
+# ❌ No pre-flight check
+def analyze_logs(log_file):
+    logs = open(log_file).read()  # Could be 500KB
+    response = llm.complete(f"Analyze these logs: {logs}")
+    # Error: "Request exceeds maximum context length"
+```
+
+**Why it's wrong:**
+- No validation before expensive API calls
+- Wastes time and partial token charges
+- Poor user experience (errors after waiting)
+
+**Fix: Pre-Flight Token Validation**
+```python
+# ✅ Validate before calling API
+def analyze_logs_safely(log_file, max_context=200000):
+    """Analyze logs with token budget validation"""
+    logs = open(log_file).read()
+    prompt = f"Analyze these logs:\n{logs}"
+
+    # Pre-flight check
+    estimated_tokens = count_tokens(prompt)
+
+    if estimated_tokens > max_context * 0.8:  # Reserve 20% for response
+        # Too large, chunk it
+        log_chunks = chunk_by_tokens(logs, chunk_size=100000)
+        results = []
+        for i, chunk in enumerate(log_chunks):
+            print(f"Analyzing chunk {i+1}/{len(log_chunks)}")
+            results.append(llm.complete(f"Analyze logs part {i+1}: {chunk}"))
+        return combine_results(results)
+    else:
+        # Within budget, proceed
+        return llm.complete(prompt)
+```
+
+#### Mistake 3: Forgetting That Tokens ≠ Characters
+
+**Symptom:** Budget planning is consistently 20-30% off, causing overages
+
+**What happened:**
+```python
+# ❌ Wrong assumption: 1 token = 1 character
+estimated_cost = len(text) / 1_000_000 * price_per_million
+
+# Reality: "Hello world!" = 3 tokens, not 12 characters
+# Estimates are 4× too high, causing under-utilization
+```
+
+**Why it's wrong:**
+- English: ~1 token = 4 characters (not 1:1)
+- Code: Varies wildly (whitespace, special chars)
+- Non-English: Can be 1 token = 1 character (Chinese) or worse
+
+**Fix: Use Actual Token Counting**
+```python
+# ✅ Use proper tokenizer
+import tiktoken
+
+def estimate_cost(text, model="gpt-4", input_price_per_m=10, output_tokens=500):
+    """Accurate cost estimation using tokenizer"""
+    encoding = tiktoken.encoding_for_model(model)
+    input_tokens = len(encoding.encode(text))
+    output_tokens = output_tokens  # Estimate based on task
+
+    input_cost = (input_tokens / 1_000_000) * input_price_per_m
+    output_cost = (output_tokens / 1_000_000) * (input_price_per_m * 3)  # Output usually 3× input
+
+    return {
+        'input_tokens': input_tokens,
+        'output_tokens': output_tokens,
+        'total_cost': input_cost + output_cost
+    }
+
+# Example
+text = open("deployment.yaml").read()
+cost = estimate_cost(text)
+print(f"Estimated cost: ${cost['total_cost']:.4f} ({cost['input_tokens']} input tokens)")
+```
+
+#### Mistake 4: No Caching for Repeated Queries
+
+**Symptom:** Same question costs $0.05 every time, team wastes $500/month on duplicates
+
+**What happened:**
+```python
+# ❌ No caching, re-computing everything
+def answer_question(question):
+    return llm.complete(question)  # Fresh API call every time
+
+# Users ask "How do I deploy?" 100× per month = $5 wasted
+```
+
+**Why it's wrong:**
+- Teams ask same questions repeatedly
+- Documentation Q&A has high repeat rate (60-80%)
+- No ROI on previously computed answers
+
+**Fix: Simple Cache with Hash**
+```python
+# ✅ Cache responses
+import hashlib
+import json
+from datetime import datetime, timedelta
+
+class LLMCache:
+    def __init__(self, ttl_hours=24):
+        self.cache = {}
+        self.ttl = timedelta(hours=ttl_hours)
+
+    def _hash_query(self, query):
+        """Create cache key from query"""
+        return hashlib.md5(query.encode()).hexdigest()
+
+    def get(self, query):
+        """Get cached response if fresh"""
+        key = self._hash_query(query)
+        if key in self.cache:
+            entry = self.cache[key]
+            if datetime.now() - entry['timestamp'] < self.ttl:
+                return entry['response']
+        return None
+
+    def set(self, query, response):
+        """Cache response"""
+        key = self._hash_query(query)
+        self.cache[key] = {
+            'response': response,
+            'timestamp': datetime.now()
+        }
+
+# Usage
+cache = LLMCache(ttl_hours=24)
+
+def answer_question_cached(question):
+    # Check cache first
+    cached = cache.get(question)
+    if cached:
+        print("Cache hit! $0 cost")
+        return cached
+
+    # Cache miss, call API
+    response = llm.complete(question)
+    cache.set(question, response)
+    return response
+
+# Result: 60% cache hit rate = 60% cost reduction
+```
+
+#### Mistake 5: Using Expensive Models for Simple Tasks
+
+**Symptom:** Monthly bill is $2K when it should be $400
+
+**What happened:**
+```python
+# ❌ Using Opus for everything
+for task in [simple_format, complex_reasoning, basic_qa]:
+    result = opus_model.complete(task)  # $15/M output tokens
+
+# Cost: $2,000/month for 100K queries
+```
+
+**Why it's wrong:**
+- Haiku ($5/M) handles 70% of tasks fine
+- Sonnet ($15/M) for 25% of tasks
+- Opus ($25/M) only for 5% of complex tasks
+- 3-5× overpaying by not tiering models
+
+**Fix: Model Routing Based on Complexity**
+```python
+# ✅ Route to appropriate model
+def smart_complete(query, context=""):
+    """Route to appropriate model based on complexity"""
+    complexity = estimate_complexity(query)
+
+    if complexity == "simple":
+        # Formatting, simple extraction, basic Q&A
+        return haiku_model.complete(query, context)
+    elif complexity == "medium":
+        # Code generation, medium reasoning
+        return sonnet_model.complete(query, context)
+    else:  # complex
+        # Architecture decisions, complex multi-step reasoning
+        return opus_model.complete(query, context)
+
+def estimate_complexity(query):
+    """Classify query complexity"""
+    # Simple heuristics
+    if any(kw in query.lower() for kw in ['format', 'list', 'what is']):
+        return "simple"
+    elif any(kw in query.lower() for kw in ['design', 'architecture', 'trade-offs']):
+        return "complex"
+    return "medium"
+
+# Result: $2,000 → $400/month (80% reduction)
+```
+
+#### Quick Troubleshooting Checklist
+
+**When hitting context limits:**
+- [ ] Are you sending full conversation history? Use sliding window
+- [ ] Is input unnecessarily large? Remove irrelevant context
+- [ ] Can you chunk the task? Split large inputs into pieces
+- [ ] Are you reserving 20% for output? Don't use 100% of context
+
+**When costs are too high:**
+- [ ] Caching enabled? Aim for 40%+ hit rate
+- [ ] Using right model tier? 70% should be Haiku
+- [ ] Batching requests? Combine small tasks
+- [ ] Monitoring usage? Track cost per task type
+
+**When quality is poor with token optimization:**
+- [ ] Did you over-optimize? Balance cost vs quality
+- [ ] Is context too small? Need minimum context for accuracy
+- [ ] Using wrong model? Some tasks need Sonnet/Opus
+- [ ] Test with more tokens first, optimize after validating
 
 ---
 
