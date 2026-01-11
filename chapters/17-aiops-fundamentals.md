@@ -1086,10 +1086,3 @@ In the next chapter, you'll see these concepts in production:
 *This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
 *Author: Michel Abboud | License: CC BY-NC 4.0*
 *Learn more: https://github.com/michelabboud/ai-and-claude-code-intro*
-- [→ Next: Chapter 18 - Advanced AIOps](18-aiops-advanced.md)
-
----
-
-*This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
-*Author: Michel Abboud | License: CC BY-NC 4.0*
-*Learn more: https://github.com/michelabboud/ai-and-claude-code-intro*
