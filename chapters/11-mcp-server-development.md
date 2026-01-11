@@ -949,6 +949,450 @@ export function registerTools(server: Server) {
 
 ---
 
+### Production Readiness: Error Handling, Security, and Testing
+
+The code examples above work, but production MCP servers require additional considerations. Here's how to make them production-ready.
+
+#### Error Handling Patterns
+
+**Problem**: Basic MCP servers often crash on unexpected inputs or API failures.
+
+```yaml
+Common failure scenarios:
+  - API returns unexpected format
+  - Network timeout
+  - Authentication expires
+  - Rate limiting hit
+  - Invalid user input
+  - Resource not found
+
+Without proper handling: Server crashes, Claude Code loses connection
+With proper handling: Graceful errors, Claude understands what went wrong
+```
+
+**Pattern: Defensive Error Handling**
+
+```typescript
+// ❌ Bad: No error handling
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  if (name === "get_pod_logs") {
+    const response = await k8sApi.readNamespacedPodLog(
+      args.name,
+      args.namespace
+    );
+    return { content: [{ type: "text", text: response.body }] };
+  }
+});
+
+// ✅ Good: Comprehensive error handling
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  try {
+    // Validate inputs
+    if (name === "get_pod_logs") {
+      if (!args.name || typeof args.name !== "string") {
+        return {
+          content: [{
+            type: "text",
+            text: JSON.stringify({
+              error: "Invalid input",
+              message: "Pod name is required and must be a string",
+              example: { name: "my-pod-123", namespace: "default" }
+            })
+          }],
+          isError: true
+        };
+      }
+
+      // API call with timeout
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+      try {
+        const response = await k8sApi.readNamespacedPodLog(
+          args.name,
+          args.namespace || "default",
+          undefined, undefined, undefined, undefined,
+          undefined, undefined, undefined, args.tailLines || 100,
+          { signal: controller.signal }
+        );
+        clearTimeout(timeoutId);
+
+        return {
+          content: [{
+            type: "text",
+            text: response.body || "(empty logs)"
+          }]
+        };
+
+      } catch (apiError) {
+        clearTimeout(timeoutId);
+
+        // Handle specific API errors
+        if (apiError.response?.statusCode === 404) {
+          return {
+            content: [{
+              type: "text",
+              text: JSON.stringify({
+                error: "Not found",
+                message: `Pod '${args.name}' not found in namespace '${args.namespace}'`,
+                suggestion: "Check pod name and namespace. List pods with: kubectl get pods -n <namespace>"
+              })
+            }],
+            isError: true
+          };
+        }
+
+        if (apiError.name === "AbortError") {
+          return {
+            content: [{
+              type: "text",
+              text: JSON.stringify({
+                error: "Timeout",
+                message: "Request took longer than 30 seconds",
+                suggestion: "Try reducing tailLines or check if cluster is responding"
+              })
+            }],
+            isError: true
+          };
+        }
+
+        throw apiError; // Re-throw unexpected errors
+      }
+    }
+
+  } catch (error) {
+    // Catch-all for unexpected errors
+    console.error("Unexpected error:", error);
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          error: "Internal server error",
+          message: error.message,
+          stack: process.env.NODE_ENV === "development" ? error.stack : undefined
+        })
+      }],
+      isError: true
+    };
+  }
+});
+```
+
+**Key principles:**
+1. **Validate inputs** before making API calls
+2. **Set timeouts** to prevent hanging
+3. **Handle specific errors** with helpful messages
+4. **Provide context** for debugging (examples, suggestions)
+5. **Never expose sensitive data** in error messages
+
+#### Security Considerations
+
+**Principle: MCP servers run with your permissions. Secure them accordingly.**
+
+```yaml
+Security checklist:
+
+1. Authentication & Authorization:
+   ✅ Use least-privilege credentials
+   ✅ Don't hardcode API keys (use environment variables)
+   ✅ Implement operation-level permissions
+   ✅ Log all operations for audit trail
+
+2. Input Validation:
+   ✅ Validate all user inputs
+   ✅ Sanitize strings (prevent injection)
+   ✅ Whitelist allowed values
+   ✅ Set reasonable limits (e.g., max log lines)
+
+3. Dangerous Operations:
+   ✅ Require confirmation for destructive actions
+   ✅ Read-only by default
+   ✅ Implement dry-run mode
+   ✅ Rate limiting for expensive operations
+
+4. Data Exposure:
+   ✅ Don't return sensitive data (passwords, keys)
+   ✅ Redact secrets in logs
+   ✅ Limit data returned (pagination)
+   ✅ Filter by user's permissions
+```
+
+**Example: Secure Destructive Operation**
+
+```typescript
+// Secure implementation of "delete_pod"
+{
+  name: "delete_pod",
+  description: "Delete a Kubernetes pod (DESTRUCTIVE - requires confirmation)",
+  inputSchema: {
+    type: "object",
+    properties: {
+      name: { type: "string" },
+      namespace: { type: "string", default: "default" },
+      confirm: {
+        type: "boolean",
+        description: "Must be set to true to actually delete"
+      }
+    },
+    required: ["name", "confirm"]
+  }
+}
+
+// Handler
+case "delete_pod": {
+  const { name, namespace = "default", confirm } = args;
+
+  // Safety check: Production namespace protection
+  const PROTECTED_NAMESPACES = ["kube-system", "production", "prod"];
+  if (PROTECTED_NAMESPACES.includes(namespace)) {
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          error: "Protected namespace",
+          message: `Cannot delete pods in '${namespace}' namespace`,
+          reason: "This namespace is marked as protected"
+        })
+      }],
+      isError: true
+    };
+  }
+
+  // Require explicit confirmation
+  if (confirm !== true) {
+    return {
+      content: [{
+        type: "text",
+        text: JSON.stringify({
+          error: "Confirmation required",
+          message: "This is a destructive operation",
+          required: "Set confirm: true to proceed",
+          warning: `This will delete pod '${name}' in namespace '${namespace}'`
+        })
+      }],
+      isError: true
+    };
+  }
+
+  // Audit log
+  console.error(`AUDIT: Deleting pod ${name} in namespace ${namespace}`);
+
+  // Perform deletion
+  await k8sApi.deleteNamespacedPod(name, namespace);
+
+  return {
+    content: [{
+      type: "text",
+      text: `Successfully deleted pod '${name}' in namespace '${namespace}'`
+    }]
+  };
+}
+```
+
+#### Testing Strategies
+
+**Layer 1: Unit Testing (Individual Tools)**
+
+```typescript
+// Example: Test individual tool handlers
+
+import { describe, it, expect, vi } from "vitest";
+import { handleGetPodLogs } from "./handlers";
+
+describe("get_pod_logs", () => {
+  it("returns logs for valid pod", async () => {
+    // Mock Kubernetes API
+    const mockK8sApi = {
+      readNamespacedPodLog: vi.fn().mockResolvedValue({
+        body: "Log line 1\nLog line 2"
+      })
+    };
+
+    const result = await handleGetPodLogs(
+      { name: "test-pod", namespace: "default" },
+      mockK8sApi
+    );
+
+    expect(result.content[0].text).toContain("Log line 1");
+    expect(mockK8sApi.readNamespacedPodLog).toHaveBeenCalledWith(
+      "test-pod",
+      "default",
+      // ... other params
+    );
+  });
+
+  it("handles 404 errors gracefully", async () => {
+    const mockK8sApi = {
+      readNamespacedPodLog: vi.fn().mockRejectedValue({
+        response: { statusCode: 404 }
+      })
+    };
+
+    const result = await handleGetPodLogs(
+      { name: "nonexistent", namespace: "default" },
+      mockK8sApi
+    );
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain("not found");
+  });
+
+  it("validates inputs", async () => {
+    const result = await handleGetPodLogs(
+      { name: "", namespace: "default" }
+    );
+
+    expect(result.isError).toBe(true);
+    expect(result.content[0].text).toContain("required");
+  });
+});
+```
+
+**Layer 2: Integration Testing (MCP Inspector)**
+
+```bash
+# Use the official MCP inspector tool
+
+# Install
+npm install -g @modelcontextprotocol/inspector
+
+# Test your server
+npx @modelcontextprotocol/inspector npx tsx your-server.ts
+
+# This opens a web UI where you can:
+# 1. See all available tools
+# 2. Test tool invocations
+# 3. Inspect responses
+# 4. Debug errors in real-time
+```
+
+**Layer 3: End-to-End Testing (With Claude Code)**
+
+```yaml
+Manual testing workflow:
+
+1. Install server locally:
+   Add to ~/.claude/mcp_servers.json
+
+2. Test in Claude Code:
+   > List all Kubernetes pods
+   > Get logs from pod X
+   > Describe deployment Y
+
+3. Verify:
+   ✅ Tools are discovered
+   ✅ Responses are formatted correctly
+   ✅ Errors are helpful
+   ✅ Performance is acceptable
+
+4. Edge cases:
+   - Non-existent resources
+   - Invalid inputs
+   - API timeouts
+   - Permission errors
+```
+
+#### Performance Optimization
+
+```yaml
+Common performance issues and solutions:
+
+Issue 1: Slow tool responses
+  Problem: Each API call takes 2-3 seconds
+  Solution:
+    - Cache static data (resources that don't change often)
+    - Implement pagination for large results
+    - Use streaming for long operations
+    - Parallel requests where possible
+
+Issue 2: High memory usage
+  Problem: Server uses 500MB+ RAM
+  Solution:
+    - Don't load all data at once
+    - Stream large responses
+    - Clear caches periodically
+    - Use generators for large datasets
+
+Issue 3: Rate limiting
+  Problem: API limits exceed often
+  Solution:
+    - Implement client-side rate limiting
+    - Cache aggressive API responses
+    - Batch requests where API supports it
+    - Exponential backoff on errors
+```
+
+**Example: Caching Strategy**
+
+```typescript
+// Simple in-memory cache with TTL
+const cache = new Map<string, { data: any; expires: number }>();
+
+function getCached<T>(key: string, ttlSeconds: number, fetcher: () => Promise<T>): Promise<T> {
+  const cached = cache.get(key);
+
+  if (cached && cached.expires > Date.now()) {
+    return Promise.resolve(cached.data);
+  }
+
+  return fetcher().then(data => {
+    cache.set(key, {
+      data,
+      expires: Date.now() + (ttlSeconds * 1000)
+    });
+    return data;
+  });
+}
+
+// Usage in tool handler
+case "list_namespaces": {
+  // Cache for 5 minutes (namespaces don't change often)
+  return getCached("namespaces", 300, async () => {
+    const response = await k8sApi.listNamespace();
+    return response.body.items.map(ns => ns.metadata?.name);
+  });
+}
+```
+
+#### Deployment Best Practices
+
+```yaml
+Deployment checklist:
+
+1. Version control:
+   ✅ Git repository
+   ✅ Tagged releases
+   ✅ CHANGELOG.md
+
+2. Documentation:
+   ✅ README with setup instructions
+   ✅ List of all tools and their usage
+   ✅ Troubleshooting guide
+   ✅ Security considerations
+
+3. Configuration:
+   ✅ Environment variables documented
+   ✅ Example configuration file
+   ✅ Validation on startup
+
+4. Monitoring:
+   ✅ Health check endpoint
+   ✅ Operation logging
+   ✅ Error tracking (Sentry, etc.)
+   ✅ Metrics collection (optional)
+
+5. Team rollout:
+   ✅ Test with 1-2 users first
+   ✅ Document common issues
+   ✅ Collect feedback
+   ✅ Iterate based on usage
+```
+
+**Rule of thumb**: If your MCP server handles production operations, treat it like production infrastructure - test thoroughly, handle errors gracefully, and monitor its usage.
 
 ---
 
