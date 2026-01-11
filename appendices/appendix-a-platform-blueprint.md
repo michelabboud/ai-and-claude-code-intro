@@ -42,8 +42,8 @@ The AI DevOps platform follows a **three-layer architecture** based on the Obser
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                    AI DEVOPS CONTROL PLANE                       │
-│  (Workflow Orchestration, Approval Gates, Circuit Breakers)    │
+│                    AI DEVOPS CONTROL PLANE                      │
+│  (Workflow Orchestration, Approval Gates, Circuit Breakers)     │
 │         n8n / Apache Airflow / Temporal                         │
 └─────────────────────────┬───────────────────────────────────────┘
                           │
@@ -52,23 +52,22 @@ The AI DevOps platform follows a **three-layer architecture** based on the Obser
         v                 v                 v
 ┌─────────────┐   ┌─────────────┐   ┌─────────────┐
 │   OBSERVE   │   │   ANALYZE   │   │     ACT     │
-│   LAYER     │──▶│   LAYER     │──▶│    LAYER    │
+│   LAYER     │──▶│   LAYER     │──▶│    LAYER   │
 └─────────────┘   └─────────────┘   └─────────────┘
       │                  │                  │
       │                  │                  │
       v                  v                  v
-
 ┌─────────────────────────────────────────────────────────────────┐
-│ Prometheus     │ Claude API     │ Kubernetes API               │
-│ Jaeger         │ (Sonnet/Haiku) │ Terraform                    │
-│ Elasticsearch  │ Pattern Engine │ AWS/GCP APIs                 │
-│ Datadog        │ Anomaly Detect │ Slack/PagerDuty             │
+│ Prometheus     │ Claude API     │ Kubernetes API                │
+│ Jaeger         │ (Sonnet/Haiku) │ Terraform                     │
+│ Elasticsearch  │ Pattern Engine │ AWS/GCP APIs                  │
+│ Datadog        │ Anomaly Detect │ Slack/PagerDuty               │
 └─────────────────────────────────────────────────────────────────┘
                           │
                           v
 ┌─────────────────────────────────────────────────────────────────┐
-│                      DATA LAYER                                  │
-│  Redis (Cache) │ PostgreSQL (Audit) │ S3 (Summaries/Archives) │
+│                      DATA LAYER                                 │
+│  Redis (Cache) │ PostgreSQL (Audit) │ S3 (Summaries/Archives)   │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
