@@ -10,6 +10,8 @@ This is **"AI and Claude Code: A Comprehensive Guide for DevOps Engineers"** - a
 
 **Author**: Michel Abboud
 **License**: CC BY-NC 4.0 (Creative Commons Attribution-NonCommercial)
+**Claude Code Version Coverage**: v2.1.4 (January 2025) and earlier
+**Last Updated**: January 2026
 
 ---
 
@@ -328,7 +330,60 @@ The guide references a companion toolkit:
 Official documentation referenced:
 - Claude Documentation: docs.anthropic.com
 - Claude Code Documentation: docs.anthropic.com/claude-code
+- Claude Code CHANGELOG: github.com/anthropics/claude-code/blob/main/CHANGELOG.md
 - MCP Specification: modelcontextprotocol.io
+
+---
+
+## Claude Code Version Information
+
+### Current Version Coverage
+
+This guide covers **Claude Code v2.1.4 (January 2025)** and earlier versions.
+
+### Key Features by Version
+
+**v2.1.4 (Latest - January 2025)**
+- `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` environment variable for disabling background tasks
+- Improved OAuth token refresh handling
+
+**v2.1.3 (January 2025)**
+- **Unified slash commands and skills** - merged into single concept, simplified mental model
+- Release channel toggle (`stable` or `latest`) in `/config`
+- Tool hook timeout increased to 10 minutes (from 60 seconds)
+- Improved permission rule detection and `/doctor` warnings
+
+**v2.1.2 (December 2024)**
+- Shift+Tab in plan mode for "auto-accept edits"
+- Source path metadata for dragged images
+- Clickable file path hyperlinks (OSC 8 support)
+- Windows Package Manager (winget) support
+
+**v2.1.0 (Major Release - November 2024)**
+- Automatic skill hot-reload from `~/.claude/skills` or `.claude/skills`
+- Sub-agent context forking (`context: fork` in frontmatter)
+- Language setting configuration
+- Real-time steering (send messages while Claude is working)
+- Unified Ctrl+B backgrounding
+- MCP `list_changed` notifications for dynamic tool updates
+
+### Important Conceptual Changes
+
+**Skills and Slash Commands (v2.1.3)**
+The guide previously distinguished between "slash commands" and "skills" as separate concepts. As of v2.1.3, they are **completely unified** - there is no difference anymore. Use either `.claude/commands/` or `.claude/skills/` directories interchangeably. Both support:
+- Custom frontmatter (arguments, description, context forking)
+- Hot-reload (automatically available without restart)
+- Same invocation pattern (`/command-name`)
+
+**Context Forking (v2.1.0)**
+Skills/commands can now run in isolated sub-agent contexts using `context: fork` in frontmatter. This prevents context pollution for long-running or resource-intensive operations.
+
+### Where These Features Are Documented
+
+- **Chapter 6**: Claude Code fundamentals
+- **Chapter 7**: Custom commands/skills (unified system)
+- **Chapter 8**: Professional features (sub-agents, hooks, context forking)
+- **Chapter 9**: MCP protocol and server development
 
 ---
 

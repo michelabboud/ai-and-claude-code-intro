@@ -113,7 +113,11 @@ human_in_the_loop:
 
 **Skills** are pre-built capabilities that extend Claude Code's functionality for specific domains or tasks.
 
-> **New in 2.1:** Skills and slash commands are now unified. Skills placed in `~/.claude/skills` or `.claude/skills` are **hot-reloaded** - they become available immediately without restarting Claude Code. Previously, you had to restart Claude Code for new skills to be recognized.
+> **New in v2.1.3 (January 2025):** Skills and slash commands are now **fully unified** - there's no conceptual difference between them anymore. This simplifies the mental model with no change in behavior. Any skill you create is automatically available as a command (e.g., `/skill-name`).
+>
+> **Skills placed in `~/.claude/skills` or `.claude/skills` are hot-reloaded** - they become available immediately without restarting Claude Code. You can also configure your preferred **release channel** (`stable` or `latest`) using `/config`.
+>
+> **Version Compatibility:** This guide covers features up to Claude Code v2.1.4 (January 2025).
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
@@ -679,7 +683,7 @@ Task(
 
 **Hooks** allow you to run custom commands at specific points in Claude Code's workflow.
 
-> **New in 2.1:** Tool hook execution timeout has been increased from 60 seconds to **10 minutes**. This allows for more complex validation and processing in hooks without timeout failures.
+> **New in v2.1.3:** Tool hook execution timeout has been increased from 60 seconds to **10 minutes**. This allows for more complex validation and processing in hooks without timeout failures.
 
 ```yaml
 # .claude/hooks.yaml
@@ -1004,6 +1008,27 @@ secret_management:
   - "Never include secrets in prompts"
   - "Use environment variables"
   - "Exclude .env files from context"
+```
+
+### Environment Variables (New in 2.1.x)
+
+```bash
+# Control Claude Code behavior via environment variables
+
+# Disable background tasks (New in v2.1.4)
+export CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1
+# Prevents:
+# - Auto-backgrounding of long-running commands
+# - Ctrl+B backgrounding shortcut
+# Useful for: CI/CD environments, demos, teaching scenarios
+
+# Demo mode - hides sensitive information (v2.1.0)
+export IS_DEMO=1
+# Use when: Recording screencasts, live demos, sharing logs
+
+# Force plugin updates (v2.1.2)
+export FORCE_AUTOUPDATE_PLUGINS=1
+# Forces: Immediate plugin/skill reload without cache
 ```
 
 ### Wildcard Bash Permissions (New in 2.1)

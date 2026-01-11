@@ -12,6 +12,8 @@
 
 > **License Notice:** This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License. Free for personal and educational use. Commercial use requires written permission from the author.
 
+> **Claude Code Version:** This guide covers features up to **Claude Code v2.1.4 (January 2025)** including the unified skills/commands system, hot-reload, sub-agent context forking, and latest environment variables. See [CLAUDE.md](./CLAUDE.md#claude-code-version-information) for detailed version information.
+
 ---
 
 Welcome to this comprehensive guide designed specifically for DevOps professionals who want to master AI tools and integrate them into their daily workflows. Whether you're new to AI or looking to advance your skills with Claude Code, this guide has you covered.

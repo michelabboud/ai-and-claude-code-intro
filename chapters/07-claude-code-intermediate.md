@@ -168,14 +168,17 @@ ANTHROPIC_BEDROCK_BASE_URL     # Bedrock endpoint override
 
 ### Understanding the Unified System
 
-As of version 2.1, Claude Code has **merged slash commands and skills** into a unified system. This simplified mental model means:
+As of **version 2.1.3** (January 2025), Claude Code has **fully merged slash commands and skills** into a unified system. This simplified mental model means:
 
-- Custom commands and skills work the same way
+- Custom commands and skills work the same way - **no conceptual difference**
 - Both are loaded from `.claude/commands/` or `.claude/skills/` directories
-- Both support the same frontmatter options
+- Both support the same frontmatter options (arguments, context forking, etc.)
 - Skills in `~/.claude/skills` or `.claude/skills` are **hot-reloaded** - available immediately without restarting Claude Code
+- You can configure your preferred **release channel** (`stable` or `latest`) using `/config`
 
 > **What Changed:** Previously, slash commands and skills were separate concepts with different behaviors. Slash commands were simpler prompt templates, while skills had additional capabilities. Now they are unified - you can use either directory and both support all features including context forking and hot-reload.
+>
+> **Version Compatibility:** This guide covers features up to Claude Code v2.1.4 (January 2025).
 
 ### Creating Custom Commands
 

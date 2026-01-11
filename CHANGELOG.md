@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+- **Documentation Updates for Claude Code v2.1.4**
+  - Updated Chapter 8 to clarify v2.1.3 unified skills/commands system
+  - Updated Chapter 7 with latest command features and v2.1.3 changes
+  - Added comprehensive Claude Code version information section to CLAUDE.md
+  - Added version coverage notice to README.md
+  - Documented new environment variables: `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS`, `IS_DEMO`, `FORCE_AUTOUPDATE_PLUGINS`
+  - Updated hook timeout documentation (60s → 10 minutes in v2.1.3)
+  - Added release channel configuration information
+  - Clarified hot-reload functionality for skills
+  - Added version compatibility notes throughout documentation
+
 ## [1.0.0] - 2026-01-10
 
 ### 🎮 Major Addition: DevOps Quest Gamification System
