@@ -623,6 +623,253 @@ async def coordinate_incident(incident_id):
 
 ---
 
+### Diagnosing Loop Types: A Practical Decision Framework
+
+When you encounter an agent loop in production, quick diagnosis is critical. Here's how to identify which type you're dealing with and respond appropriately.
+
+#### The 3-Step Diagnosis Process
+
+**Step 1: Observe the Pattern** (30 seconds)
+
+```yaml
+Look at logs and answer:
+
+Question 1: Is the agent repeating the EXACT same action?
+  Yes → Likely Type 1 (Infinite Retry)
+  No → Continue to Question 2
+
+Question 2: Are states repeating in the logs (A → B → A → B)?
+  Yes → Type 2 (State Loop)
+  No → Continue to Question 3
+
+Question 3: Do you see cascading agent spawns in logs?
+  Yes → Type 6 (Spawn Loop) - CRITICAL, kill immediately
+  No → Continue to Question 4
+
+Question 4: Are multiple agents blocking each other?
+  Yes → Type 3 (Circular Dependency)
+  No → Continue to Question 5
+
+Question 5: Are requests failing then immediately retrying with higher privileges?
+  Yes → Type 4 (Escalation Loop)
+  No → Type 5 (Token Threshold) - check token counts
+```
+
+**Step 2: Check Key Metrics** (1 minute)
+
+```python
+# Quick diagnostic script
+import json
+
+def diagnose_loop(log_file):
+    """Analyze agent logs to identify loop type"""
+
+    with open(log_file) as f:
+        logs = [json.loads(line) for line in f]
+
+    # Metric 1: Action repetition rate
+    actions = [log['action'] for log in logs if 'action' in log]
+    unique_actions = set(actions)
+    repetition_rate = (len(actions) - len(unique_actions)) / len(actions)
+
+    if repetition_rate > 0.8:
+        return "Type 1: Infinite Retry (80%+ same action)"
+
+    # Metric 2: State fingerprint collisions
+    states = [log.get('state_fingerprint') for log in logs if 'state_fingerprint' in log]
+    if len(states) > len(set(states)) * 2:
+        return "Type 2: State Loop (state revisited multiple times)"
+
+    # Metric 3: Agent spawn rate
+    spawns = [log for log in logs if log.get('event') == 'agent_spawned']
+    if len(spawns) > 10 and (logs[-1]['timestamp'] - logs[0]['timestamp']) < 60:
+        return "Type 6: Spawn Loop (>10 spawns/minute) - CRITICAL!"
+
+    # Metric 4: Dependency wait events
+    waits = [log for log in logs if 'waiting_for' in log]
+    if len(waits) > len(logs) * 0.5:
+        return "Type 3: Circular Dependency (50%+ of time waiting)"
+
+    return "Type 4 or 5: Check token usage and escalation patterns"
+
+# Usage
+diagnosis = diagnose_loop('/var/log/agent.jsonl')
+print(f"Diagnosis: {diagnosis}")
+```
+
+**Step 3: Apply Appropriate Fix** (5-30 minutes)
+
+```yaml
+Type 1 - Infinite Retry:
+  Immediate: Kill agent, add max_retries parameter
+  Long-term: Implement retryable vs permanent error classification
+  Time: 5 minutes
+
+Type 2 - State Loop:
+  Immediate: Kill agent, add StateTracker
+  Long-term: Implement state fingerprinting in all agents
+  Time: 15 minutes
+
+Type 3 - Circular Dependency:
+  Immediate: Kill all dependent agents, restart in correct order
+  Long-term: Implement dependency graph validation at startup
+  Time: 30 minutes
+
+Type 4 - Escalation Loop:
+  Immediate: Revoke escalation permissions, kill agent
+  Long-term: Implement escalation approval workflow
+  Time: 20 minutes
+
+Type 5 - Token Threshold:
+  Immediate: Increase token limit or reduce context
+  Long-term: Implement context pruning strategy
+  Time: 10 minutes
+
+Type 6 - Spawn Loop:
+  Immediate: KILL ALL AGENTS IMMEDIATELY (cascading failure)
+  Long-term: Implement spawn rate limiting at pool level
+  Time: 5 minutes + 30 minutes recovery
+```
+
+#### Common Diagnostic Mistakes
+
+**Mistake 1: Treating all loops as Type 1**
+
+```yaml
+Problem:
+  "It's retrying, so I'll just add max_retries=3"
+
+Why it fails:
+  - Type 2 loops will still repeat (different states, same outcome)
+  - Type 6 spawns will continue (retries don't stop spawns)
+  - Type 3 will deadlock (agents waiting for each other)
+
+Correct approach:
+  1. Diagnose the specific type
+  2. Apply type-specific fix
+  3. Add comprehensive loop detection
+```
+
+**Mistake 2: Not checking costs before investigating**
+
+```yaml
+Scenario: Agent loop detected at 2 PM
+
+❌ Bad response:
+  2:00 PM: Notice loop in logs
+  2:05 PM: Start debugging
+  2:30 PM: Identify root cause
+  2:45 PM: Deploy fix
+  3:00 PM: Check AWS bill → $8,000 in 1 hour
+
+✅ Good response:
+  2:00 PM: Notice loop
+  2:01 PM: KILL AGENT IMMEDIATELY
+  2:02 PM: Check API usage → stopped at $50
+  2:05 PM: Start debugging safely
+  2:30 PM: Deploy fix with safeguards
+
+Rule: Always kill first, debug second.
+Cost of 1 hour investigation during loop: $1,000-$10,000
+Cost of killing agent prematurely: $0 (just restart after fix)
+```
+
+**Mistake 3: Fixing the symptom, not the cause**
+
+```yaml
+Symptom fix:
+  "Agent retries 100 times, I'll add max_retries=3"
+
+Result:
+  - Agent fails after 3 retries
+  - Still doesn't know WHY it's failing
+  - Issue repeats with next similar scenario
+
+Root cause fix:
+  1. Why is it retrying? (Pod won't start)
+  2. Why won't pod start? (Missing ConfigMap)
+  3. Can agent detect missing ConfigMap? (Add check)
+  4. Can agent create ConfigMap? (Add capability)
+  5. If can't create, escalate to human (Add escalation)
+
+Time investment:
+  - Symptom fix: 5 minutes (repeats weekly)
+  - Root cause fix: 30 minutes (prevents all future occurrences)
+```
+
+#### Production Triage Checklist
+
+When a loop is detected in production:
+
+```yaml
+[ ] 1. STOP THE BLEEDING (30 seconds)
+      - Kill the looping agent(s)
+      - Disable auto-restart if configured
+      - Block API key if costs are spiking
+
+[ ] 2. ASSESS DAMAGE (2 minutes)
+      - Check API usage costs
+      - Check if infrastructure was modified
+      - Check if data was corrupted
+      - Alert stakeholders if needed
+
+[ ] 3. DIAGNOSE TYPE (3 minutes)
+      - Run diagnostic script
+      - Check recent deployments
+      - Review agent configuration changes
+
+[ ] 4. APPLY QUICK FIX (10 minutes)
+      - Add appropriate loop detection
+      - Patch critical vulnerability
+      - Test in dev environment
+
+[ ] 5. DEPLOY FIX (5 minutes)
+      - Deploy with extra monitoring
+      - Watch for loop recurrence
+      - Document incident
+
+[ ] 6. ROOT CAUSE ANALYSIS (later)
+      - Why did existing detection fail?
+      - What safeguard was missing?
+      - Update all agents with learnings
+```
+
+#### When to Redesign vs Patch
+
+```yaml
+Patch the existing agent when:
+  ✅ Loop is Type 1 or 5 (simple fix: max_retries or token limit)
+  ✅ Agent logic is sound, just missing safeguard
+  ✅ Occurs in <10% of scenarios
+  ✅ Fix can be deployed in <30 minutes
+
+Redesign the agent when:
+  🔄 Loop is Type 2, 3, or 6 (architectural issue)
+  🔄 Multiple loop types occurring
+  🔄 Agent has no state tracking (foundational problem)
+  🔄 Occurs in >50% of scenarios
+  🔄 Team has lost confidence in agent
+
+Example decision:
+  Scenario: Kubernetes pod restart agent loops 60% of the time
+
+  Patch approach: Add max_retries=3
+    - Stops infinite loops ✅
+    - Still fails 60% of the time ❌
+    - Band-aid on broken design ❌
+
+  Redesign approach: Add pod failure classification
+    - Classify failures: retryable vs permanent
+    - Add ConfigMap/Secret validation before restart
+    - Escalate truly unfixable scenarios to humans
+    - Stops loops AND increases success rate ✅
+    - Takes 2 hours vs 15 minutes ✅ (saves time long-term)
+```
+
+**Rule of thumb**: If the same agent loops twice in a week, redesign it. Patches aren't working.
+
+---
+
 ## Section 3: Development Workflow — Debugging Agent Loops
 
 Now that we understand loop types, let's build practical debugging skills.
