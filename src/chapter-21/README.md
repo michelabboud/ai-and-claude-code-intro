@@ -1,21 +1,20 @@
-# Chapter 21: Building Resilient Agentic Systems
+# Chapter 21: Resilience Patterns for Agents
 
-This directory contains production-ready implementations of 6 resilience patterns for building robust AI agents.
+This directory contains production-ready implementations of core resilience patterns for building robust AI agents.
 
 ## Overview
 
-**Chapter 21** teaches how to **prevent** Ralph Wiggum loops by designing resilient systems, complementing Chapter 20's loop detection techniques.
+**Chapter 21 (Part 1 of 2)** teaches the **core resilience patterns** for preventing Ralph Wiggum loops, complementing Chapter 20's loop detection techniques. Chapter 22 covers advanced patterns (exponential backoff, graceful degradation, self-healing).
 
-### Resilience Patterns Implemented
+### Resilience Patterns Implemented (Chapter 21)
 
 | Pattern | Purpose | File |
 |---------|---------|------|
 | **Circuit Breaker** | Prevent cascading failures | `src/circuit_breaker.py` |
-| **Exponential Backoff** | Retry with increasing delays | Chapter content |
-| **Idempotency** | Safe retries without duplicates | Chapter content |
-| **Checkpointing** | Crash recovery | Chapter content |
-| **Graceful Degradation** | Partial functionality on failure | Chapter content |
-| **Self-Healing** | Automatic recovery | Chapter content |
+| **Idempotency** | Safe retries without duplicates | Chapter 21 content |
+| **Checkpointing** | Crash recovery | Chapter 21 content |
+
+**Note**: Exponential Backoff, Graceful Degradation, and Self-Healing are covered in Chapter 22: Production Deployment.
 
 ## Installation
 
@@ -208,7 +207,8 @@ logger.info(f"Self-heal successful: cleared caches")
 ## Learn More
 
 - **Chapter 20**: Loop Detection & Prevention Fundamentals
-- **Chapter 21**: Building Resilient Agentic Systems (this chapter)
+- **Chapter 21**: Resilience Patterns for Agents (this chapter)
+- **Chapter 22**: Production Deployment of Agentic Systems
 - Related reading: *Release It!* by Michael Nygard, *Site Reliability Engineering* by Google
 
 ## Additional Resources
@@ -220,10 +220,11 @@ logger.info(f"Self-heal successful: cleared caches")
 ## Support
 
 For questions or issues:
-1. Review the chapter content in `chapters/21-resilient-agentic-systems.md`
-2. Check the hands-on exercise for practical implementation guidance
-3. Review the production example for complete reference implementation
+1. Review the chapter content in `chapters/21-resilience-patterns.md`
+2. See Chapter 22 for advanced patterns: `chapters/22-production-deployment.md`
+3. Check the hands-on exercise for practical implementation guidance
+4. Review the production example for complete reference implementation
 
 ---
 
-**Chapter 21 Code** | Building Resilient Agentic Systems | © 2026 Michel Abboud
+**Chapter 21 Code** | Resilience Patterns for Agents | © 2026 Michel Abboud

@@ -1,10 +1,12 @@
-# Chapter 23: Advanced RAG Patterns - Code Examples
+# Chapters 24-25: Advanced RAG - Code Examples
 
 This directory contains production-ready implementations of advanced RAG patterns for building scalable, cost-effective systems.
 
 ## Overview
 
-**Chapter 23** teaches advanced RAG patterns: hybrid search, cross-encoder re-ranking, multi-query fusion, agentic RAG, evaluation metrics, caching strategies, fine-tuning embeddings, and smart routing.
+**Chapters 24-25** teach advanced RAG patterns split into two parts:
+- **Chapter 24 (Search Optimization)**: Hybrid search, cross-encoder re-ranking, multi-query fusion
+- **Chapter 25 (Production Systems)**: Agentic RAG, RAGAS evaluation, caching strategies, fine-tuning embeddings, smart routing
 
 ### What's Included
 

@@ -1,12 +1,12 @@
-# Chapter 22: RAG Fundamentals
+# Chapter 23: RAG Fundamentals
 
-**Part 8: Advanced Agentic Development**
+**Part 9: Retrieval-Augmented Generation (RAG)**
 
 ---
 
 ## Navigation
 
-← Previous: [Chapter 21: Resilient Agentic Systems](./21-resilient-agentic-systems.md) | Next: [Chapter 23: Advanced RAG Patterns](./23-advanced-rag-patterns.md) →
+← Previous: [Chapter 22: Production Deployment of Agentic Systems](./22-production-deployment.md) | Next: [Chapter 24: RAG Search & Retrieval Optimization](./24-rag-search-optimization.md) →
 
 **Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
 
@@ -2935,7 +2935,7 @@ In Chapter 23, you'll learn:
 
 ## Navigation
 
-← Previous: [Chapter 21: Resilient Agentic Systems](./21-resilient-agentic-systems.md) | Next: [Chapter 23: Advanced RAG Patterns](./23-advanced-rag-patterns.md) →
+← Previous: [Chapter 22: Production Deployment of Agentic Systems](./22-production-deployment.md) | Next: [Chapter 24: RAG Search & Retrieval Optimization](./24-rag-search-optimization.md) →
 
 **Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
 
@@ -2943,10 +2943,10 @@ In Chapter 23, you'll learn:
 
 ## Navigation
 
-← Previous: [Chapter 21: Building Resilient Agentic Systems](./21-resilient-agentic-systems.md) | Next: [Chapter 23: Advanced RAG Patterns](./23-advanced-rag-patterns.md) →
+← Previous: [Chapter 22: Production Deployment of Agentic Systems](./22-production-deployment.md) | Next: [Chapter 24: RAG Search & Retrieval Optimization](./24-rag-search-optimization.md) →
 
 **Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
 
 ---
 
-**Chapter 22** | RAG Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+**Chapter 23** | RAG Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

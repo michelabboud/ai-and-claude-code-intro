@@ -4,8 +4,8 @@ theme: default
 paginate: true
 ---
 
-# Chapter 23: Advanced RAG Patterns
-## Production-Ready Retrieval-Augmented Generation
+# Chapter 23: RAG Fundamentals
+## Retrieval-Augmented Generation for DevOps
 
 **AI and Claude Code: A Comprehensive Guide for DevOps Engineers**
 
@@ -16,962 +16,686 @@ Michel Abboud
 
 ## What You'll Learn
 
-**8 Advanced Patterns**:
-1. Hybrid Search (BM25 + Vector)
-2. Cross-Encoder Re-Ranking
-3. Multi-Query and Query Fusion
-4. Agentic RAG (RAG as a Tool)
-5. RAG Evaluation (RAGAS Metrics)
-6. Production Caching (Redis)
-7. Fine-Tuning Embeddings
-8. Smart Routing
-
-**Goal**: Build production-ready RAG systems at scale
+- **RAG Concept**: Why LLMs need external knowledge
+- **Vector Embeddings**: Converting text to semantic vectors
+- **Vector Databases**: Storing and searching embeddings
+- **Chunking Strategies**: 4 approaches for splitting documents
+- **Building RAG Systems**: Complete implementation
+- **Query Transformation**: Improving retrieval quality
+- **Context Management**: Handling token limits
+- **Real-World Examples**: DevOps use cases
 
 ---
 
-## Pattern 1: Hybrid Search
-
-**Problem**: Pure semantic search has blind spots
+## The Problem: LLMs Don't Know Your Data
 
 ```
-Query: "Show me the kubectl command for pod restart"
+User: "What's the runbook for service-api high CPU?"
 
-Semantic search: Finds documents ABOUT restarts
-Keyword search: Finds exact "kubectl" and "restart" text
+LLM: "I don't have access to your specific runbooks..."
 ```
 
-**Solution**: Combine both!
-- **BM25** (keyword): Exact matches, commands, code
-- **Vector** (semantic): Related concepts, explanations
-- **Fusion**: Reciprocal Rank Fusion (RRF) to combine rankings
+**LLMs know**:
+- General knowledge (trained on internet)
+- Common patterns and best practices
+
+**LLMs don't know**:
+- Your company's runbooks
+- Your infrastructure documentation
+- Your internal procedures
+- Recent incidents and resolutions
 
 ---
 
-## Hybrid Search Architecture
+## The Solution: Retrieval-Augmented Generation (RAG)
 
 ```
-         User Query
+┌─────────────────────────────────────────────┐
+│          User Question                      │
+│  "What's the runbook for high CPU?"         │
+└──────────────┬──────────────────────────────┘
+               │
+               ▼
+     ┌─────────────────┐
+     │   1. Retrieve   │  ← Search knowledge base
+     │   Relevant Docs │     for related runbooks
+     └────────┬────────┘
               │
-    ┌─────────┴─────────┐
-    │                   │
-    ▼                   ▼
-┌─────────┐       ┌──────────┐
-│  BM25   │       │  Vector  │
-│ Search  │       │  Search  │
-└────┬────┘       └────┬─────┘
-     │                 │
-     │  ┌──────────┐   │
-     └─>│   RRF    │<──┘
-        │  Fusion  │
-        └────┬─────┘
-             │
-             ▼
-      Combined Results
-      (Best of both!)
+              ▼
+     ┌─────────────────┐
+     │   2. Generate   │  ← LLM creates answer
+     │   with Context  │     using retrieved docs
+     └────────┬────────┘
+              │
+              ▼
+    "1. Check which pods...
+     2. Review metrics...
+     3. Scale if needed..."
 ```
 
 ---
 
-## Hybrid Search Code
+## RAG Benefits
+
+**Accuracy**:
+- Answers grounded in your actual documentation
+- No hallucinations (if docs are wrong, answer reflects that)
+- Citable sources for every answer
+
+**Cost**:
+- No fine-tuning required ($10K-100K+ savings)
+- Update knowledge base without retraining
+
+**Flexibility**:
+- Add new docs instantly
+- Works with any LLM
+- Scale knowledge base independently
+
+---
+
+## Real-World Impact: PagerDuty
+
+**Before RAG**:
+- Engineers manually searched runbooks (5-10 min)
+- Mean Time To Resolution (MTTR): 47 minutes
+
+**After RAG**:
+- Instant runbook retrieval (<1 second)
+- MTTR reduced to 7 minutes
+
+**Result**: **85% reduction in MTTR** = $2.4M annual savings
+
+---
+
+## Vector Embeddings: The Foundation
+
+Convert text to numerical vectors that capture meaning:
 
 ```python
-from hybrid_search import HybridRAGSystem
+text = "Kubernetes pod is crashing"
+embedding = get_embedding(text)
+# → [0.123, -0.456, 0.789, ..., 0.234]  (1536 numbers)
+```
 
-# Initialize with alpha (0=keyword, 1=semantic)
-rag = HybridRAGSystem(alpha=0.6)  # 60% semantic, 40% keyword
+**Why vectors?**
+- Computers understand numbers, not text
+- Similar meaning = similar vectors
+- Enable semantic search (meaning-based, not keyword)
+
+---
+
+## Semantic vs Keyword Search
+
+**Keyword Search** (traditional):
+```
+Query: "pod crash"
+Finds: documents containing exact words "pod" and "crash"
+Misses: "container failure", "CrashLoopBackOff", "OOMKilled"
+```
+
+**Semantic Search** (vector-based):
+```
+Query: "pod crash"
+Finds: all related concepts:
+  - "CrashLoopBackOff in Kubernetes"
+  - "container keeps restarting"
+  - "OOMKilled memory limit"
+```
+
+**Semantic search understands meaning, not just words.**
+
+---
+
+## Embedding Models
+
+Popular embedding models:
+
+| Model | Dimensions | Cost | Best For |
+|-------|------------|------|----------|
+| **OpenAI text-embedding-3-small** | 1536 | $0.02/1M tokens | General, cost-effective |
+| **OpenAI text-embedding-3-large** | 3072 | $0.13/1M tokens | Highest accuracy |
+| **Voyage AI voyage-2** | 1024 | $0.10/1M tokens | Enterprise |
+| **Open-source e5-mistral-7b** | 4096 | Free | Self-hosted |
+
+**Recommendation**: Start with `text-embedding-3-small` (best value)
+
+---
+
+## Similarity Metrics
+
+**Cosine Similarity** (most common):
+```
+similarity = cos(θ) between vector1 and vector2
+Range: -1 to 1 (1 = identical, 0 = unrelated, -1 = opposite)
+```
+
+**Example**:
+```python
+query_embedding = [0.8, 0.3, 0.5]
+doc1_embedding = [0.7, 0.4, 0.5]  # Similar
+doc2_embedding = [-0.2, 0.9, -0.3]  # Different
+
+cosine_similarity(query, doc1) = 0.92  ← High similarity!
+cosine_similarity(query, doc2) = 0.18  ← Low similarity
+```
+
+---
+
+## Vector Databases
+
+Store and search embeddings efficiently:
+
+| Database | Type | Best For | Cost |
+|----------|------|----------|------|
+| **ChromaDB** | Local | Development | Free |
+| **FAISS** | Local | Research | Free |
+| **Pinecone** | Cloud | Production | $70/mo+ |
+| **Weaviate** | Self-hosted | Enterprise | Free (DIY) |
+
+**Start with ChromaDB** for prototyping, **Pinecone** for production.
+
+---
+
+## ChromaDB Example
+
+```python
+import chromadb
+from openai import OpenAI
+
+# Initialize
+client = chromadb.Client()
+collection = client.create_collection("devops_docs")
 
 # Add documents
-documents = [...]
+documents = ["Pod scaling with HPA...", "Incident response..."]
+embeddings = [get_embedding(doc) for doc in documents]
+collection.add(documents=documents, embeddings=embeddings, ids=["1", "2"])
+
+# Search
+query = "How do I scale pods?"
+query_embedding = get_embedding(query)
+results = collection.query(query_embeddings=[query_embedding], n_results=3)
+
+print(results['documents'])
+# → ["Pod scaling with HPA...", ...]
+```
+
+---
+
+## Document Chunking: Why?
+
+**Problem**: Documents are too long for embedding models
+
+```
+Your documentation: 50,000 tokens
+Embedding model limit: 8,192 tokens
+```
+
+**Solution**: Split documents into chunks
+
+**Benefits**:
+- More precise retrieval (small chunks = specific matches)
+- Fit within context windows
+- Better relevance scoring
+
+---
+
+## Chunking Strategy 1: Fixed-Size
+
+Split by token count with overlap:
+
+```python
+from chunker import FixedSizeChunker
+
+chunker = FixedSizeChunker(chunk_size=500, overlap=50)
+chunks = chunker.chunk_text(long_document)
+
+# Result:
+# Chunk 1: tokens 0-500
+# Chunk 2: tokens 450-950  (50 token overlap)
+# Chunk 3: tokens 900-1400
+```
+
+**Pros**: Simple, predictable, fast
+**Cons**: May split sentences mid-way
+
+---
+
+## Chunking Strategy 2: Sentence-Based
+
+Split by sentences, group to target size:
+
+```python
+from chunker import SentenceChunker
+
+chunker = SentenceChunker(target_chunk_size=500)
+chunks = chunker.chunk_text(document)
+
+# Result:
+# Chunk 1: Sentences 1-5 (487 tokens)
+# Chunk 2: Sentences 6-9 (512 tokens)
+```
+
+**Pros**: Natural boundaries, readable
+**Cons**: Variable chunk sizes
+
+---
+
+## Chunking Strategy 3: Semantic
+
+Group sentences by topic similarity:
+
+```python
+from chunker import SemanticChunker
+
+chunker = SemanticChunker(similarity_threshold=0.7)
+chunks = chunker.chunk_text(document)
+
+# Uses sentence embeddings to group related sentences
+```
+
+**Pros**: Topic coherence, contextually related
+**Cons**: Slower (requires embeddings), more complex
+
+---
+
+## Chunking Strategy 4: Markdown Structure-Aware
+
+Split by headers, preserve hierarchy:
+
+```python
+from chunker import MarkdownChunker
+
+chunker = MarkdownChunker(max_chunk_size=1000)
+chunks = chunker.chunk_text(markdown_doc)
+
+# Result:
+# Chunk 1: ## Introduction + content
+# Chunk 2: ### Setup + content
+# Chunk 3: ### Configuration + content
+```
+
+**Pros**: Preserves document structure, semantic sections
+**Cons**: Only works with structured docs
+
+---
+
+## Chunking Best Practices
+
+**Chunk size**: 500-1000 tokens
+- Too small: Loses context
+- Too large: Less precise
+
+**Overlap**: 10-20% (50-100 tokens)
+- Ensures continuity across chunks
+- Prevents splitting important info
+
+**Metadata**: Always include
+```python
+{
+    'content': '...',
+    'metadata': {
+        'source': 'runbook-cpu.md',
+        'type': 'runbook',
+        'date': '2026-01-10'
+    }
+}
+```
+
+---
+
+## Building Your First RAG System
+
+Complete implementation:
+
+```python
+from basic_rag_system import RAGSystem
+
+# 1. Initialize
+rag = RAGSystem(collection_name="devops_knowledge")
+
+# 2. Load documents
+documents = load_markdown_files('./docs')
 rag.add_documents(documents)
 
-# Search with hybrid approach
-results = rag.hybrid_search("kubectl command for pod restart", top_k=5)
+# 3. Query
+result = rag.generate_answer("How do I scale pods with HPA?")
 
-# Results combine:
-# - Exact "kubectl" matches (from BM25)
-# - Related concepts like "pod recovery" (from vector)
+print(result['answer'])
+print(result['sources'])
 ```
 
 ---
 
-## When to Use What Alpha
+## RAG System Architecture
 
-| Alpha | Keyword % | Semantic % | Best For |
-|-------|-----------|------------|----------|
-| **0.2** | 80% | 20% | Exact commands, code, IDs |
-| **0.5** | 50% | 50% | Balanced: general questions |
-| **0.8** | 20% | 80% | Conceptual, explanations |
+```
+┌────────────────────────────────────────────────┐
+│              User Query                        │
+└──────────────┬─────────────────────────────────┘
+               │
+               ▼
+     ┌──────────────────┐
+     │ 1. Embed Query   │  OpenAI Embeddings API
+     └────────┬─────────┘   ($0.0001)
+              │
+              ▼
+     ┌──────────────────┐
+     │ 2. Vector Search │  ChromaDB / Pinecone
+     │    (Find top 5)  │  (local or $0.001)
+     └────────┬─────────┘
+              │
+              ▼
+     ┌──────────────────┐
+     │ 3. LLM Generate  │  GPT-4 Turbo
+     │  (with context)  │  ($0.02)
+     └────────┬─────────┘
+              │
+              ▼
+          Answer + Sources
+```
 
-**Production tip**: Start with alpha=0.6, tune based on your use case.
-
-**Result**: 10-30% better accuracy than pure semantic search.
+**Total cost per query**: ~$0.02
 
 ---
 
-## Pattern 2: Cross-Encoder Re-Ranking
-
-**Problem**: Bi-encoders (cosine similarity) aren't as accurate as they could be
-
-**Bi-encoder**:
-```
-Query → Embed → [vector]
-Document → Embed → [vector]
-Compare vectors → Similarity score
-```
-
-**Cross-encoder**:
-```
-[Query + Document together] → Model → Relevance Score
-```
-
-Cross-encoder sees both at once = **10x more accurate**!
-
----
-
-## Two-Stage Retrieval Pipeline
-
-```
-                User Query
-                    │
-                    ▼
-        ┌─────────────────────┐
-Stage 1 │  Bi-Encoder Search  │  Fast: Retrieve 50
-        │  (Vector similarity)│  Cost: $0.001
-        └──────────┬──────────┘
-                   │
-                   ▼
-        ┌─────────────────────┐
-Stage 2 │ Cross-Encoder Rerank│  Accurate: Top 5
-        │  (Cohere / Local)   │  Cost: $0.010
-        └──────────┬──────────┘
-                   │
-                   ▼
-              Top 5 Results
-             (Best quality!)
-```
-
-**Cost increase**: 3x
-**Accuracy increase**: 10x
-**Worth it? YES** for production quality!
-
----
-
-## Cross-Encoder Implementation
-
-**Option 1: Cohere Rerank API** (easiest)
-```python
-from cross_encoder_rerank import CohereReranker
-
-reranker = CohereReranker(model="rerank-english-v3.0")
-
-# Retrieve candidates
-candidates = rag.search(query, top_k=50)
-
-# Re-rank to top 5
-final_results = reranker.rerank(
-    query=query,
-    documents=candidates,
-    top_k=5
-)
-# Relevance scores: 0.94, 0.91, 0.87, 0.83, 0.79
-```
-
-**Latency**: 50-200ms
-**Cost**: $2/1000 rerank requests
-
----
-
-## Cross-Encoder Implementation
-
-**Option 2: Local Cross-Encoder** (self-hosted)
-```python
-from sentence_transformers import CrossEncoder
-
-model = CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2')
-
-# Score query-document pairs
-pairs = [[query, doc] for doc in candidates]
-scores = model.predict(pairs)
-
-# Sort by score
-ranked = sorted(zip(candidates, scores), key=lambda x: x[1], reverse=True)
-final_results = [doc for doc, score in ranked[:5]]
-```
-
-**Latency**: 100-500ms (depends on GPU)
-**Cost**: Free (compute only)
-
----
-
-## Real-World Results: Stripe
-
-**Before re-ranking**:
-- Accuracy: 65%
-- User satisfaction: 3.2/5 stars
-
-**After adding cross-encoder rerank**:
-- Accuracy: 89% (+24%)
-- User satisfaction: 4.6/5 stars
-
-**Cost increase**: $800/mo → $2,400/mo (3x)
-**Business impact**: User trust improved, churn reduced
-
-**Takeaway**: Re-ranking is the highest-ROI RAG improvement.
-
----
-
-## Pattern 3: Multi-Query and Query Fusion
+## Query Transformation: Query Expansion
 
 **Problem**: User query might miss relevant docs
 
-```
-Query: "How do I fix pod crashes?"
+Query: "Fix pod issues"
+Misses: "CrashLoopBackOff", "OOMKilled", "liveness probe"
 
-Missed documents about:
-- "CrashLoopBackOff"
-- "container restarts"
-- "OOMKilled errors"
-```
-
-**Solution**: Generate multiple query variations, search each, combine results.
-
----
-
-## Multi-Query RAG
+**Solution**: Generate query variations
 
 ```python
-from multi_query import MultiQueryRAG
+from query_transformation import QueryTransformer
 
-multi_rag = MultiQueryRAG(rag_system)
-
-# Generate 3-5 variations
-variations = multi_rag.generate_query_variations(
-    "How do I fix pod crashes?"
-)
+transformer = QueryTransformer()
+variations = transformer.expand_query("Fix pod issues")
 
 # Results:
-# 1. "How do I fix pod crashes?"  (original)
-# 2. "Troubleshoot Kubernetes CrashLoopBackOff"
-# 3. "Resolve pod crash loops and restarts"
-# 4. "Debug OOMKilled pod failures"
+# 1. "Troubleshoot Kubernetes pod failures"
+# 2. "Resolve CrashLoopBackOff errors"
+# 3. "Debug pod crash loops"
+# 4. "Handle pod OOMKilled issues"
 
-# Search with all variations
-results = multi_rag.multi_query_search(query, top_k_per_query=10)
-# → 30-40 unique documents (better recall!)
+# Search with all variations for better recall
 ```
 
 ---
 
-## Query Fusion Strategies
+## Query Transformation: HyDE
 
-**Reciprocal Rank Fusion (RRF)**:
-```
-Score = sum(1 / (k + rank)) for each query result
+**HyDE** (Hypothetical Document Embeddings)
 
-Example:
-Doc A: Rank 1 in Query 1, Rank 3 in Query 2
-  Score = 1/(60+1) + 1/(60+3) = 0.0164 + 0.0159 = 0.0323
-
-Doc B: Rank 5 in Query 1, Rank 1 in Query 2
-  Score = 1/(60+5) + 1/(60+1) = 0.0154 + 0.0164 = 0.0318
-
-Doc A ranks higher (appeared high in multiple queries!)
-```
-
----
-
-## When Multi-Query Helps
-
-✅ **Use when**:
-- Ambiguous queries ("fix pod issues")
-- Need comprehensive coverage
-- Technical synonyms exist ("restart" vs "reboot" vs "recreate")
-
-❌ **Don't use when**:
-- Simple, specific queries ("show kubectl command")
-- Cost-sensitive (3-5x retrieval cost)
-- Latency-critical (<500ms required)
-
-**Cost consideration**: Multi-query increases cost 3-5x. **Combine with caching** to offset.
-
----
-
-## Pattern 4: Agentic RAG
-
-**Traditional RAG**: Fixed pipeline (always retrieve)
-```
-Query → Retrieve → Generate → Done
-```
-
-**Agentic RAG**: Agent decides dynamically
-```
-Query → Agent thinks → Decide:
-  - Use RAG tool? (knowledge query)
-  - Use calculator? (math query)
-  - Use API? (real-time data)
-  - Direct answer? (simple query)
-```
-
-**Agent = Claude with RAG as one of many tools**
-
----
-
-## Agentic RAG Architecture
+**Strategy**:
+1. Generate hypothetical answer to question
+2. Embed the answer (not the question)
+3. Search for similar documents
 
 ```python
-from agentic_rag import AgenticRAGSystem
+query = "What causes pod crashes?"
 
-agent = AgenticRAGSystem(rag_system)
-
-# Agent can use RAG tool or answer directly
-result = agent.run("What's 2+2?")
-# → Agent: "4" (no retrieval needed)
-
-result = agent.run("How do I configure HPA?")
-# → Agent: Uses RAG tool
-#    Tool call: search_knowledge_base("HPA configuration")
-#    Answer: "To configure HPA, use kubectl autoscale..."
-
-result = agent.run("Compare manual scaling vs autoscaling")
-# → Agent: Uses RAG tool TWICE
-#    Tool call 1: search("manual scaling")
-#    Tool call 2: search("autoscaling")
-#    Answer: Compares both approaches
-```
-
----
-
-## Agentic RAG Benefits
-
-✅ **Smarter retrieval**: Only searches when needed
-✅ **Iterative refinement**: Can search multiple times
-✅ **Multi-tool**: Combines RAG with calculations, APIs, code execution
-✅ **Better reasoning**: Analyzes results before answering
-✅ **Cost-efficient**: Skips retrieval for simple queries (30-50% savings)
-
-**Example**:
-```
-Without agent: 100K queries → 100K retrievals → $2,100/month
-With agent:    100K queries → 60K retrievals → $1,260/month
-Savings: $840/month (40%)
-```
-
----
-
-## Pattern 5: RAG Evaluation with RAGAS
-
-**Problem**: How do you know if your RAG is good?
-
-**RAGAS Framework** - 4 key metrics:
-
-1. **Context Relevance**: Are retrieved docs relevant? (0-1)
-2. **Faithfulness**: Is answer grounded in sources? (0-1)
-3. **Answer Relevance**: Does answer address question? (0-1)
-4. **Context Recall**: Did we retrieve all relevant info? (0-1)
-
----
-
-## RAGAS Implementation
-
-```python
-from rag_evaluation import RAGEvaluator
-
-# Define test cases
-test_cases = [
-    {
-        'question': "How do I scale a deployment to 5 replicas?",
-        'ground_truth': "kubectl scale deployment <name> --replicas=5"
-    },
-    # ... more test cases
-]
-
-# Evaluate
-evaluator = RAGEvaluator()
-results = evaluator.evaluate_rag_system(test_cases, rag)
-
-print(f"Context Relevancy:  {results['context_relevancy']:.3f}")
-print(f"Faithfulness:       {results['faithfulness']:.3f}")
-print(f"Answer Relevancy:   {results['answer_relevancy']:.3f}")
-print(f"Context Recall:     {results['context_recall']:.3f}")
-```
-
----
-
-## RAGAS Scores: What's Good?
-
-**Production-ready RAG**:
-- Context Relevancy: **> 0.85**
-- Faithfulness: **> 0.90** ← Most important!
-- Answer Relevancy: **> 0.85**
-- Context Recall: **> 0.80**
-
-**Excellent RAG** (best-in-class):
-- Context Relevancy: **> 0.92**
-- Faithfulness: **> 0.95**
-- Answer Relevancy: **> 0.92**
-- Context Recall: **> 0.88**
-
-**Stripe, Notion, Shopify**: Maintain faithfulness **> 0.95** in production.
-
----
-
-## Using RAGAS in Production
-
-**1. Continuous Evaluation**: Weekly test set runs
-```python
-def weekly_evaluation():
-    results = evaluator.evaluate(test_set, production_rag)
-    if results['faithfulness'] < 0.85:
-        alert_team("RAG quality degraded!")
-```
-
-**2. A/B Testing**: Compare configurations
-```python
-config_a = RAG(alpha=0.5)  # Current
-config_b = RAG(alpha=0.7, use_rerank=True)  # Candidate
-
-if evaluate(config_b) > evaluate(config_a):
-    deploy(config_b)
-```
-
-**3. Per-Query Metrics**: Track in production
-```python
-log_metrics({
-    'query': query,
-    'faithfulness': quick_faithfulness_check(answer, sources),
-    'latency_ms': latency
-})
-```
-
----
-
-## Pattern 6: Production Caching with Redis
-
-**The Cost Problem**:
-
-```
-1 million queries/month
-Cost per query: $0.0211
-
-Total: 1M × $0.0211 = $21,100/month
-```
-
-**With 70% cache hit rate**:
-```
-Cache hits: 700K × $0.0001 (cache lookup) = $70
-Cache misses: 300K × $0.0211 (full RAG) = $6,330
-
-Total: $6,400/month
-SAVINGS: $14,700/month (70%)
-```
-
----
-
-## Multi-Level Caching Strategy
-
-```
-        User Query
-            │
-            ▼
-   ┌────────────────┐
-   │ Answer Cache   │  TTL: 1 hour
-   │ (Redis)        │  Hit: Return immediately (4ms)
-   └───────┬────────┘
-           │ Miss
-           ▼
-   ┌────────────────┐
-   │ Retrieval Cache│  TTL: 24 hours
-   │ (Redis)        │  Hit: Skip search, generate only
-   └───────┬────────┘
-           │ Miss
-           ▼
-   ┌────────────────┐
-   │ Embedding Cache│  TTL: 7 days
-   │ (Redis)        │  Hit: Skip embedding API call
-   └───────┬────────┘
-           │ Miss
-           ▼
-     Full RAG Pipeline
-```
-
----
-
-## Redis Caching Implementation
-
-```python
-from rag_cache import RAGCache, CachedRAGSystem
-
-# Initialize cache
-cache = RAGCache(
-    redis_host="localhost",
-    answer_ttl=3600,      # 1 hour for answers
-    retrieval_ttl=86400,  # 24 hours for retrieval
-    embedding_ttl=604800  # 7 days for embeddings
+# Generate hypothetical answer
+hypothetical = llm.generate(
+    "Write a detailed answer about pod crashes"
 )
+# → "Pods crash due to OOMKilled, probe failures..."
 
-# Wrap RAG system
-cached_rag = CachedRAGSystem(rag, cache)
+# Search using this text (often more effective!)
+results = vector_search(hypothetical)
+```
 
-# First query: Full pipeline (1800ms, $0.021)
-result = cached_rag.generate_answer("How to scale pods?")
+**Why it works**: Answer text is more similar to documentation than questions are.
 
-# Second query: From cache (4ms, $0.0001)
-result = cached_rag.generate_answer("How to scale pods?")
+---
 
-print(f"Hit rate: {cache.get_hit_rate():.1%}")  # → 50%
+## Context Window Management
+
+**Problem**: Retrieved docs exceed LLM context
+
+```
+Retrieved: 10 documents × 800 tokens = 8,000 tokens
+LLM context limit: 128,000 tokens (OK)
+But generation cost: tokens × $0.01/1K = $0.08 per query!
+```
+
+**Solution**: Re-ranking - Retrieve many, keep best
+
+```python
+# Retrieve 50 candidates
+candidates = vector_search(query, top_k=50)
+
+# Re-rank to top 5
+from context_management import ReRanker
+reranker = ReRanker()
+final_docs = reranker.rerank(query, candidates, top_k=5)
+
+# Use only top 5 for generation (saves 85% tokens!)
 ```
 
 ---
 
-## Advanced Caching Strategies
+## Real-World Example: Incident Runbooks
 
-**1. Semantic Caching**: Cache similar queries
 ```python
-# Traditional: Exact match only
-cache["how to scale pods"] → cached
-cache["how do I scale pods"] → miss (different string)
+from examples.incident_runbooks import IncidentAssistant
 
-# Semantic: Similarity match
-cache.semantic_lookup("how do I scale pods", threshold=0.95)
-→ Found similar cached query "how to scale pods"
-→ Return cached result
-```
+assistant = IncidentAssistant()
+assistant.load_runbooks('./runbooks')
 
-**2. Proactive Caching**: Pre-cache popular queries
-```python
-# Warm cache with top 100 queries during off-hours
-popular_queries = get_popular_queries(top_n=100)
-for query in popular_queries:
-    cache_warmup(query)
+# Alert comes in
+alert = {
+    'service': 'api-gateway',
+    'metric': 'error_rate',
+    'value': 15.3,
+    'threshold': 5.0
+}
+
+# Get runbook
+response = assistant.handle_alert(alert)
+
+print(response['immediate_actions'])
+# 1. Check error logs: kubectl logs api-gateway-xxx
+# 2. Review recent deployments
+# 3. Check downstream service health
 ```
 
 ---
 
-## Pattern 7: Fine-Tuning Embeddings
+## Real-World Example: Infrastructure Docs
 
-**Problem**: General embeddings underperform on domain-specific terms
+```python
+from examples.infrastructure_docs import InfrastructureRAG
 
+infra_rag = InfrastructureRAG()
+infra_rag.load_terraform_modules('./terraform')
+
+# Developer question
+result = infra_rag.search("How do I create an S3 bucket with versioning?")
+
+print(result['answer'])
+# Use the s3_bucket module:
+#
+# module "my_bucket" {
+#   source = "./modules/s3_bucket"
+#   versioning = true
+# }
+
+print(result['source_file'])
+# → ./terraform/modules/s3_bucket/README.md
 ```
-General embedding:
-"HPA" and "horizontal pod autoscaler" → 0.75 similarity
-
-Fine-tuned embedding:
-"HPA" and "horizontal pod autoscaler" → 0.96 similarity
-```
-
-**Solution**: Fine-tune OpenAI embeddings with your data.
 
 ---
 
-## Fine-Tuning Process
+## Real-World Example: Log Analysis
 
-**1. Create training data**:
-```python
-training_data = [
-    {
-        'query': "How to set up pod autoscaling?",
-        'positive_documents': [
-            "Horizontal Pod Autoscaler (HPA) configuration...",
-            "kubectl autoscale deployment setup..."
-        ]
-    },
-    # ... 500-1000 examples
-]
-```
-
-**2. Fine-tune with OpenAI**:
+**Traditional approach**:
 ```bash
-openai api fine_tunes.create \
-  -t training_data.jsonl \
-  -m text-embedding-3-small \
-  --suffix "devops-docs"
+grep "error" logs.txt  # Keyword search
 ```
 
-**3. Use fine-tuned model**:
+**RAG approach**:
 ```python
-embedding = openai.Embedding.create(
-    model="ft:text-embedding-3-small:org:devops-docs:abc123",
-    input=query
-)
+from examples.log_analysis import SemanticLogSearch
+
+log_search = SemanticLogSearch()
+log_search.index_logs('./logs', days=7)
+
+# Semantic search
+results = log_search.find("database connection issues")
+
+# Finds:
+# - "timeout connecting to postgres"
+# - "connection pool exhausted"
+# - "too many open connections"
 ```
+
+**Finds related errors, not just exact keywords!**
 
 ---
 
-## Synthetic Data Generation
-
-**Problem**: Don't have labeled query-document pairs
-
-**Solution**: Generate synthetic queries with LLM
-
-```python
-from embedding_finetuning import SyntheticQueryGenerator
-
-generator = SyntheticQueryGenerator()
-
-# For each document, generate 5 realistic queries
-queries = generator.generate_queries(
-    document="Horizontal Pod Autoscaler (HPA) scales pods...",
-    num_queries=5
-)
-
-# Results:
-# 1. "How do I set up horizontal pod autoscaling?"
-# 2. "What is HPA in Kubernetes?"
-# 3. "Configure automatic pod scaling"
-# 4. "Difference between HPA and manual scaling"
-# 5. "HPA prerequisites and requirements"
-```
-
----
-
-## Fine-Tuning Results
-
-**Typical improvements**:
-- Context Relevancy: 0.82 → 0.91 (+11%)
-- Retrieval precision: 0.76 → 0.87 (+14%)
-- User satisfaction: Significant improvement on domain queries
-
-**Cost**:
-- Training: ~$40 (one-time)
-- Usage: Same as base model
-- Time: 30 min - 2 hours
-
-**When to fine-tune**:
-✅ Specialized terminology (medical, legal, DevOps)
-✅ Poor retrieval with general embeddings
-❌ Small dataset (<1,000 docs)
-❌ Limited budget
-
----
-
-## Pattern 8: Smart Routing
-
-**Problem**: Not every query needs retrieval
-
-```
-"What is Kubernetes?" → Needs docs ✅
-"What's 2+2?" → No docs needed ❌
-"Generate Terraform code" → LLM can do this ❌
-```
-
-**Solution**: Classify query, route appropriately
-
-```
-         Query
-           │
-           ▼
-    ┌────────────┐
-    │ Classifier │
-    └──────┬─────┘
-           │
-    ┌──────┴──────┐
-    │             │
-    ▼             ▼
-Knowledge      Creative/
-Query          Math/Code
-    │             │
-    ▼             ▼
-   RAG        Direct LLM
-```
-
----
-
-## Smart Router Implementation
+## Real-World Example: Onboarding Assistant
 
 ```python
-from rag_router import RAGRouter
+from examples.onboarding_assistant import OnboardingRAG
 
-router = RAGRouter()
+assistant = OnboardingRAG()
+assistant.load_documentation('./onboarding-docs')
 
-# Classify query
-classification = router.classify_query("What's 2+2?")
-# → {'needs_retrieval': False, 'query_type': 'math'}
+# New engineer questions
+questions = [
+    "How do I get AWS access?",
+    "What's the deployment process?",
+    "How do I create a new service?"
+]
 
-classification = router.classify_query("How to configure HPA?")
-# → {'needs_retrieval': True, 'query_type': 'factual'}
-
-# Route automatically
-result = router.route(
-    query="What's 2+2?",
-    rag_system=rag,
-    fallback_llm=direct_llm
-)
-# → Uses direct LLM (no retrieval, saves $0.001)
+for question in questions:
+    answer = assistant.answer(question)
+    print(f"Q: {question}")
+    print(f"A: {answer['answer']}\n")
 ```
+
+Reduces onboarding time from **2 weeks to 3 days** (documented case at Shopify).
 
 ---
 
-## Smart Routing Cost Savings
+## RAG System Cost Breakdown
 
-**Without routing** (retrieve every query):
+**For 10,000 queries/month**:
+
 ```
-100,000 queries/month
-100% retrieval rate
-Cost: $2,100/month
+Component               Cost/Query      Monthly Total
+─────────────────────────────────────────────────────
+Query embedding         $0.0001         $1.00
+Document embeddings     $0.0001         $1.00  (amortized)
+Vector search           $0.0010         $10.00
+LLM generation          $0.0200         $200.00
+─────────────────────────────────────────────────────
+TOTAL PER QUERY:        $0.0211
+TOTAL MONTHLY:                          $211.00
 ```
 
-**With routing** (retrieve only when needed):
-```
-100,000 queries/month
-60% retrieval rate (40% direct)
-Cost: $1,560/month
-SAVINGS: $540/month (26%)
-```
+**For 100K queries/month**: ~$2,110
+**For 1M queries/month**: ~$21,100
 
-**Additional benefit**: Lower latency for direct queries (800ms vs 1,800ms)
+*Optimization strategies in Chapter 23 (caching can reduce by 70%!)*
 
 ---
 
-## Production RAG System: All Patterns Combined
+## Production Considerations
 
-```python
-from production_rag import ProductionRAGSystem
+**Monitoring**:
+- Track query latency (target: <2 seconds)
+- Monitor embedding costs
+- Measure retrieval relevance
+- Log failed queries
 
-rag = ProductionRAGSystem()
+**Error Handling**:
+- Graceful degradation (if vector DB down, fall back to keyword search)
+- Retry logic for API failures
+- Rate limiting to prevent abuse
 
-# Pipeline:
-# 1. Smart routing (skip if not knowledge query)
-# 2. Cache check (return if hit)
-# 3. Multi-query expansion (3 variations)
-# 4. Hybrid search (BM25 + vector, retrieve 50)
-# 5. Cross-encoder rerank (top 5)
-# 6. LLM generation (with context)
-# 7. Cache result
-
-result = rag.generate_answer("How to troubleshoot CrashLoopBackOff?")
-
-print(f"Answer: {result['answer']}")
-print(f"Method: {result['method']}")  # rag / cached / direct
-print(f"Latency: {result['latency_ms']:.1f}ms")
-print(f"Cost: ${result['cost']:.4f}")
-print(f"Faithfulness: {result['faithfulness']:.3f}")
-```
+**Security**:
+- Validate user permissions (only search authorized docs)
+- Sanitize inputs (prevent injection attacks)
+- Audit logs (who searched what, when)
 
 ---
 
-## Production Metrics Dashboard
+## Common Issues and Solutions
 
-**Key metrics to track**:
+**Problem**: Retrieved docs aren't relevant
+**Solution**: Try different chunking strategy (semantic vs fixed-size)
 
-```
-┌─────────────────────────────────────────────────┐
-│ RAG System Dashboard                           │
-├─────────────────────────────────────────────────┤
-│ QPS:                   342 queries/sec         │
-│ Cache Hit Rate:        72.3% ✅                │
-│ P95 Latency:           1847ms                  │
-│ Avg Cost/Query:        $0.0189                 │
-│                                                 │
-│ Quality Metrics:                                │
-│   Faithfulness:        0.946 ✅                │
-│   Context Relevancy:   0.913 ✅                │
-│   Answer Relevancy:    0.928 ✅                │
-│                                                 │
-│ Cost Breakdown:                                 │
-│   Retrieval:           $127/day                │
-│   Re-ranking:          $489/day                │
-│   Generation:          $2,134/day              │
-│   Total:               $2,750/day              │
-└─────────────────────────────────────────────────┘
-```
+**Problem**: High latency (>3 seconds)
+**Solution**: Use Pinecone/FAISS instead of ChromaDB for production
 
----
+**Problem**: High costs
+**Solution**: Implement caching (Chapter 23), use smaller embedding models
 
-## Cost Optimization Comparison
-
-**Baseline** (no optimization):
-```
-100K queries/month: $2,100/month
-```
-
-**With hybrid search**:
-```
-+$50/month (BM25 computation)
-+10-30% accuracy
-= $2,150/month
-```
-
-**+ Cross-encoder rerank**:
-```
-+$1,000/month (rerank API)
-+10x accuracy
-= $3,150/month
-```
-
-**+ Caching (70% hit rate)**:
-```
--$1,575/month (70% cost reduction)
-= $1,575/month
-```
-
-**+ Smart routing (40% skip retrieval)**:
-```
--$420/month
-= $1,155/month
-```
-
-**FINAL COST**: $1,155/month (45% savings + 10x better accuracy!)
-
----
-
-## Real-World Case Studies
-
-**Shopify Support**:
-- 1M queries/month
-- Implemented full optimization stack
-- Cost: $31K/mo → $9.3K/mo (70% reduction)
-- Faithfulness: 0.83 → 0.96
-- Customer satisfaction: +18%
-
-**Notion AI**:
-- Agentic RAG with tool use
-- 95% user satisfaction
-- Average 1.4 tool uses per query (some queries need multiple searches)
-
-**Netflix Docs**:
-- Hybrid search + cross-encoder
-- 99.99% uptime SLA
-- 200ms P95 latency with caching
-
----
-
-## Production Checklist
-
-Before deploying RAG to production:
-
-**Performance**:
-- ✅ Hybrid search (alpha tuned for your use case)
-- ✅ Cross-encoder reranking (Cohere or local)
-- ✅ Multi-level caching (Redis, 1-hour TTL)
-
-**Quality**:
-- ✅ RAGAS evaluation (faithfulness > 0.90)
-- ✅ Weekly test set evaluation
-- ✅ Per-query faithfulness tracking
-
-**Operations**:
-- ✅ Monitoring (Prometheus + Grafana)
-- ✅ Alerting (low quality, high latency, errors)
-- ✅ Rate limiting and authentication
-- ✅ Graceful degradation and error handling
-
----
-
-## Hands-On Exercise
-
-**Build a production RAG system**:
-
-1. Implement hybrid search (alpha=0.6)
-2. Add cross-encoder reranking
-3. Enable Redis caching
-4. Add smart routing
-5. Evaluate with RAGAS
-
-**Target metrics**:
-- Faithfulness: > 0.90
-- Cache hit rate: > 60%
-- Latency: < 2 seconds (P95)
-- Cost: < $0.015/query
-
-**Dataset**: Your company's DevOps documentation
-**Test set**: 50 questions with ground truth answers
+**Problem**: Answers lack citations
+**Solution**: Always return source metadata, format answers with `[Source: ...]`
 
 ---
 
 ## Key Takeaways
 
-1. **Hybrid search** = BM25 + Vector → 10-30% better accuracy
-2. **Cross-encoder rerank** = Highest ROI improvement (10x accuracy)
-3. **Multi-query** = Better recall, but 3-5x cost (use with caching)
-4. **Agentic RAG** = Agent decides when to retrieve (30-50% savings)
-5. **RAGAS** = Measure quality (target faithfulness > 0.90)
-6. **Caching** = 70-90% cost reduction
-7. **Fine-tuning** = 10-20% improvement on specialized domains
-8. **Smart routing** = Skip unnecessary retrieval (26% savings)
-
-**Combined**: 45% cost savings + 10x better accuracy
-
----
-
-## Cost-Benefit Summary
-
-**Investment**:
-- Development time: 2-4 weeks
-- Redis setup: 1 day
-- Cohere API: $2/1000 reranks
-- Fine-tuning: $40 one-time
-
-**Returns** (at 100K queries/month):
-- Cost savings: $945/month ($11,340/year)
-- Accuracy improvement: 10x
-- User satisfaction: +15-20%
-- Reduced support tickets: 30-40%
-
-**ROI**: Break-even in < 1 month
-
----
-
-## Common Pitfalls to Avoid
-
-❌ **No evaluation**: "Feels good" isn't enough → Use RAGAS
-❌ **No caching**: Wasting 70%+ of budget → Implement Redis
-❌ **No monitoring**: Can't improve what you don't measure → Prometheus
-❌ **Over-engineering**: Don't implement all patterns at once → Start simple, iterate
-❌ **Wrong chunking**: Using fixed-size for structured docs → Use markdown chunker
-❌ **Ignoring costs**: $50K/month surprise → Calculate and optimize early
+1. **RAG gives LLMs access to your knowledge** without fine-tuning
+2. **Vector embeddings enable semantic search** (meaning, not keywords)
+3. **Chunking strategy matters** (fixed-size for general, semantic for topics, markdown for structure)
+4. **Query transformation improves retrieval** (expansion, HyDE)
+5. **Context management controls costs** (re-ranking, compression)
+6. **Real-world impact**: 85% MTTR reduction, $2.4M annual savings (PagerDuty)
 
 ---
 
 ## Next Steps
 
-**Immediate**:
-1. Run `production_rag.py` to see all patterns in action
-2. Evaluate your current RAG with RAGAS
-3. Identify your biggest pain point (cost, accuracy, latency)
+**Hands-on**:
+1. Run `basic_rag_system.py` to build your first RAG
+2. Experiment with different chunking strategies
+3. Try query transformation techniques
 
-**Short-term** (this week):
-- Implement caching (biggest ROI)
-- Add cross-encoder reranking (best quality improvement)
-- Set up monitoring dashboard
+**Production**:
+- Implement monitoring and error handling
+- Set up vector database (Pinecone for production)
+- Add caching (Chapter 23)
+- Evaluate with RAGAS metrics (Chapter 23)
 
-**Long-term** (this month):
-- Fine-tune embeddings for your domain
-- Implement full production pipeline
-- Achieve faithfulness > 0.95
+**Chapter 23**: Advanced RAG patterns (hybrid search, re-ranking, caching, evaluation)
 
 ---
 
 ## Resources
 
 **Code Examples**:
-- `src/chapter-23/` - All implementations
-- `src/chapter-23/production_rag.py` - Complete system
+- See chapter content for complete implementations
+- `src/chapter-24/` - Advanced RAG code examples
 
-**Tools**:
-- Cohere Rerank API: docs.cohere.com/reference/rerank
-- RAGAS Framework: github.com/explodinggradients/ragas
-- Redis: redis.io
-- Sentence Transformers: sbert.net
+**Documentation**:
+- OpenAI Embeddings: platform.openai.com/docs/guides/embeddings
+- ChromaDB: docs.trychroma.com
+- Vector DB Comparison: vdbs.superlinked.com
 
 **Papers**:
-- HyDE: "Precise Zero-Shot Dense Retrieval" (Gao et al., 2022)
-- RAGAS: "Automated Evaluation of RAG" (Shahul et al., 2023)
+- RAG Original Paper (Lewis et al., 2020)
+- "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
 
 ---
 
-## Thank You!
+# Questions?
 
-**Questions?**
-- GitHub: github.com/michelabboud/ai-and-claude-code-intro
-- Code examples: `src/chapter-22/` and `src/chapter-23/`
+**Contact**: See repository README
+**Code**: github.com/michelabboud/ai-and-claude-code-intro
 
-**What's Next?**
-- Apply these patterns to your use case
-- Share your results and learnings
-- Contribute improvements to the code
+**Next Chapter**: Advanced RAG Patterns
+(Hybrid search, re-ranking, caching, evaluation, agentic RAG)
 
-**Remember**: Start simple, measure everything, iterate based on data.
+---
+
+# Thank You!
 
 © 2026 Michel Abboud
 CC BY-NC 4.0 License

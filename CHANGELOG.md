@@ -7,6 +7,68 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.1] - 2026-01-11
+
+### Changed - Chapter Restructure for Better Learning Experience
+
+**Rationale**: Split 2 mega-chapters (14,740 and 12,706 words) into smaller, more digestible parts (6,000-7,500 words each) for improved learner experience. User feedback indicated content was valuable but needed "smaller bites."
+
+#### Structural Changes
+
+**Part 8: Advanced Agentic Development** (NEW - separated from Part 7)
+- **Chapter 21: Resilience Patterns for Agents** (~7,400 words) - Part 1 of 2
+  - Focus: Core resilience patterns (Circuit Breaker, Idempotency, Checkpointing)
+  - Includes: Pattern selection framework, production-ready implementations
+  - Previously: First half of "Building Resilient Agentic Systems"
+
+- **Chapter 22: Production Deployment of Agentic Systems** (~7,340 words) - Part 2 of 2
+  - Focus: Advanced patterns (Exponential Backoff, Graceful Degradation, Self-Healing)
+  - Includes: Real-world incident response agent, staged rollout strategy, ROI measurement
+  - Previously: Second half of "Building Resilient Agentic Systems"
+
+**Part 9: Retrieval-Augmented Generation (RAG)** (RENUMBERED from Part 8)
+- **Chapter 23: RAG Fundamentals** (2,952 lines) - Renumbered from Chapter 22
+  - No content changes, updated navigation and chapter references
+
+- **Chapter 24: RAG Search & Retrieval Optimization** (~6,350 words) - Part 1 of 2
+  - Focus: Search optimization (Hybrid Search, Cross-Encoder Re-Ranking, Multi-Query Fusion)
+  - Includes: Pattern selection framework, cost optimization strategies
+  - Previously: Sections 1-3 of "Advanced RAG Patterns"
+
+- **Chapter 25: Production RAG Systems** (~6,356 words) - Part 2 of 2
+  - Focus: Production patterns (Agentic RAG, RAGAS Evaluation, Caching, Fine-Tuning, Routing)
+  - Includes: Hands-on exercise, production anti-patterns, scaling guidance
+  - Previously: Sections 4-8 of "Advanced RAG Patterns"
+
+#### Impact Summary
+
+**Before Restructure:**
+- Chapter 21: 14,740 words (longest chapter)
+- Chapter 23: 12,706 words (second longest)
+- Reading time: ~60-65 minutes per chapter
+
+**After Restructure:**
+- Chapter 21: ~7,400 words (Part 1 of 2)
+- Chapter 22: ~7,340 words (Part 2 of 2)
+- Chapter 24: ~6,350 words (Part 1 of 2)
+- Chapter 25: ~6,356 words (Part 2 of 2)
+- Reading time: ~25-35 minutes per chapter
+
+**Benefits:**
+- ✅ More digestible learning chunks (50% reduction in per-chapter length)
+- ✅ Clearer topical focus (core patterns vs production deployment)
+- ✅ Better Part organization (Advanced Agentic Development gets its own Part)
+- ✅ Maintained all content and educational enhancements from v1.4.0
+- ✅ Improved navigation with clear "Part X of Y" indicators
+
+**Files Changed:**
+- Split: `21-resilient-agentic-systems.md` → `21-resilience-patterns.md` + `22-production-deployment.md`
+- Renamed: `22-rag-fundamentals.md` → `23-rag-fundamentals.md`
+- Split: `23-advanced-rag-patterns.md` → `24-rag-search-optimization.md` + `25-production-rag-systems.md`
+- Updated: Navigation links in Chapters 20-25
+- Updated: README.md table of contents with new Part structure
+- Deleted: Old files `21-resilient-agentic-systems.md`, `23-advanced-rag-patterns.md`
+
 ## [1.4.0] - 2026-01-11
 
 ### Enhanced - Educational Content Enrichment (10 Chapters)

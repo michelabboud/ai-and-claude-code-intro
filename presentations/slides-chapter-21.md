@@ -8,11 +8,11 @@ color: #ffffff
 
 <!-- _class: lead -->
 
-# Chapter 21
+# Chapters 21-22
 
-# Building Resilient Agentic Systems
+# Resilient Agentic Systems
 
-## From Detection to Prevention
+## Part 1: Resilience Patterns | Part 2: Production Deployment
 
 ### AI and Claude Code Guide for DevOps Engineers
 
@@ -23,14 +23,17 @@ color: #ffffff
 **Prevention > Detection**
 
 - Chapter 20: **Detect** Ralph Wiggum loops when they happen
-- Chapter 21: **Prevent** loops by designing resilient systems
+- Chapters 21-22: **Prevent** loops by designing resilient systems
 
-**6 Resilience Patterns:**
+**6 Resilience Patterns Across Two Chapters:**
 
+**Chapter 21 (Core Patterns):**
 1. Circuit Breaker
-2. Exponential Backoff + Jitter
-3. Idempotency
-4. State Checkpointing
+2. Idempotency
+3. State Checkpointing
+
+**Chapter 22 (Advanced Patterns):**
+4. Exponential Backoff + Jitter
 5. Graceful Degradation
 6. Self-Healing
 
@@ -818,8 +821,8 @@ def test_circuit_opens_after_threshold():
 - Google: Handling Overload
 
 **Code:**
-- `src/chapter-21/` - Production implementations
-- Examples in chapter materials
+- `src/chapter-21/` - Core pattern implementations
+- `chapters/22-production-deployment.md` - Advanced patterns
 - Hands-on exercise starter code
 
 ---
@@ -828,7 +831,7 @@ def test_circuit_opens_after_threshold():
 
 # Questions?
 
-## Chapter 21: Building Resilient Agentic Systems
+## Chapters 21-22: Resilient Agentic Systems
 
 ### Ready to build production-ready AI agents that never loop!
 

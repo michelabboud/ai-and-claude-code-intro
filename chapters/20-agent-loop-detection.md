@@ -6,7 +6,7 @@
 
 ## Navigation
 
-← Previous: [Chapter 19: Team Transformation](./19-team-transformation.md) | Next: [Chapter 21: Building Resilient Agentic Systems](./21-resilient-agentic-systems.md) →
+← Previous: [Chapter 19: Team Transformation](./19-team-transformation.md) | Next: [Chapter 21: Resilience Patterns for Agents](./21-resilience-patterns.md) →
 
 **Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
 
@@ -3466,15 +3466,15 @@ Congratulations! You've completed Chapter 20. Here's what you've learned:
 
 ## What's Next?
 
-In **Chapter 21: Building Resilient Agentic Systems**, you'll learn:
+In **Chapters 21-22 (Resilience Patterns and Production Deployment)**, you'll learn:
 
-- **Circuit breaker pattern** for production agents
-- **Idempotency** and state checkpointing
-- **Graceful degradation** strategies
-- **Advanced retry logic** with exponential backoff and jitter
-- **Self-healing architectures** that recover without human intervention
+- **Circuit breaker pattern** for production agents (Chapter 21)
+- **Idempotency** and state checkpointing (Chapter 21)
+- **Graceful degradation** strategies (Chapter 22)
+- **Advanced retry logic** with exponential backoff and jitter (Chapter 22)
+- **Self-healing architectures** that recover without human intervention (Chapter 22)
 
-The patterns in Chapter 20 detect loops. Chapter 21 teaches you how to **prevent** them in the first place.
+The patterns in Chapter 20 detect loops. Chapters 21-22 teach you how to **prevent** them in the first place.
 
 ---
 
@@ -3501,7 +3501,7 @@ The patterns in Chapter 20 detect loops. Chapter 21 teaches you how to **prevent
 
 ## Navigation
 
-← Previous: [Chapter 19: Team Transformation](./19-team-transformation.md) | Next: [Chapter 21: Building Resilient Agentic Systems](./21-resilient-agentic-systems.md) →
+← Previous: [Chapter 19: Team Transformation](./19-team-transformation.md) | Next: [Chapter 21: Resilience Patterns for Agents](./21-resilience-patterns.md) →
 
 **Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
 

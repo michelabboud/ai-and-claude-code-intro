@@ -144,14 +144,21 @@ Prerequisites:
 |---------|-------|-------------|
 | [19](./chapters/19-team-transformation.md) | Team Transformation | Leading organizational change, upskilling teams, measuring success |
 | [20](./chapters/20-agent-loop-detection.md) | Agent Loop Detection & Prevention | Ralph Wiggum loops, 6 loop types, detection strategies, DoW protection, production monitoring |
-| [21](./chapters/21-resilient-agentic-systems.md) | Building Resilient Agentic Systems | Circuit breakers, exponential backoff, idempotency, checkpointing, graceful degradation, self-healing |
 
-### Part 8: Retrieval-Augmented Generation (RAG)
+### Part 8: Advanced Agentic Development
 
 | Chapter | Title | Description |
 |---------|-------|-------------|
-| [22](./chapters/22-rag-fundamentals.md) | RAG Fundamentals | Vector embeddings, vector databases, chunking strategies, building RAG systems, query transformation, real-world DevOps use cases |
-| [23](./chapters/23-advanced-rag-patterns.md) | Advanced RAG Patterns | Hybrid search, cross-encoder re-ranking, multi-query fusion, agentic RAG, RAGAS evaluation, production caching, fine-tuning, smart routing |
+| [21](./chapters/21-resilience-patterns.md) | Resilience Patterns for Agents | Circuit breakers, idempotency, state checkpointing, pattern selection framework (Part 1 of 2) |
+| [22](./chapters/22-production-deployment.md) | Production Deployment of Agentic Systems | Exponential backoff with jitter, graceful degradation, self-healing, staged rollouts, ROI measurement (Part 2 of 2) |
+
+### Part 9: Retrieval-Augmented Generation (RAG)
+
+| Chapter | Title | Description |
+|---------|-------|-------------|
+| [23](./chapters/23-rag-fundamentals.md) | RAG Fundamentals | Vector embeddings, vector databases, chunking strategies, building RAG systems, query transformation, real-world DevOps use cases |
+| [24](./chapters/24-rag-search-optimization.md) | RAG Search & Retrieval Optimization | Hybrid search (BM25 + vector), cross-encoder re-ranking, multi-query fusion, pattern selection (Part 1 of 2) |
+| [25](./chapters/25-production-rag-systems.md) | Production RAG Systems | Agentic RAG, RAGAS evaluation, production caching, fine-tuning embeddings, smart routing, scaling patterns (Part 2 of 2) |
 
 ### Appendices
 
