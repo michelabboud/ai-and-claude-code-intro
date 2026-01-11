@@ -1459,6 +1459,69 @@ claude
 > Remove the old session-based code that's no longer used.
 ```
 
+#### Execution Pattern: Multi-File Refactoring
+
+Understanding how Claude Code maintains context across multiple steps is key to successful refactoring.
+
+**Context Carryover:**
+Claude retains the entire conversation history, including:
+- Files it has read (full contents cached)
+- Changes it has suggested (even if you rejected them)
+- Test results and error messages
+- Your feedback ("no, use async/await instead")
+
+This means each step builds on previous knowledge. When you say "Now update the login endpoint," Claude already knows:
+- The JWT utility module it just created
+- The structure of your endpoints
+- What you accepted/rejected in previous steps
+
+**Error Recovery:**
+
+```yaml
+Scenario: Test failure in Step 4
+Error: TypeError: Cannot read property 'user' of undefined
+
+Recovery workflow:
+1. Claude sees the error automatically (if it ran the tests)
+2. You ask: "Fix the failing tests"
+3. Claude already knows:
+   - Which files were changed (causing the error)
+   - The test code (it read it earlier)
+   - Your authentication patterns (from refactoring context)
+4. Claude suggests specific fix with line numbers
+5. You review and apply
+6. Re-run tests automatically
+
+No need to explain the entire project again!
+```
+
+**Real Output Example:**
+
+```bash
+> Let's start with step 1: Create the new JWT utility module.
+
+I'll create a new JWT utility module with token generation and validation.
+
+[Claude creates src/auth/jwt_utils.py]
+
+✓ Created src/auth/jwt_utils.py (45 lines)
+  - generate_token(user_id, expires_in)
+  - validate_token(token)
+  - refresh_token(token)
+
+Dependencies needed: Add to requirements.txt:
+  - PyJWT==2.8.0
+  - cryptography==41.0.7
+
+Should I update requirements.txt now? (Yes/No/Wait)
+```
+
+Notice how Claude:
+- Provides concrete line counts
+- Lists specific functions created
+- Identifies dependencies proactively
+- Asks permission before modifying more files (unless auto-approve is enabled)
+
 ### Workflow 2: Infrastructure Migration
 
 ```bash
@@ -1488,6 +1551,93 @@ claude
 # Step 5: Test plan
 > Create a testing checklist for validating the migration.
 ```
+
+#### Execution Pattern: Infrastructure Migration
+
+Infrastructure migrations require careful state management and validation at each step. Here's how Claude Code handles the complexity.
+
+**Context Carryover:**
+
+The key advantage: Claude maintains a mental model of your infrastructure throughout the migration.
+
+```yaml
+After Step 1 (Diagram current state):
+Claude knows:
+  - VPC structure and subnets
+  - EC2 instance types and counts
+  - Security groups and ingress rules
+  - Load balancer configuration
+  - Data persistence strategy
+
+In Step 3 (Create EKS module):
+Claude automatically:
+  - Reuses the same VPC and subnet IDs
+  - Mirrors security group patterns
+  - Maintains consistent tagging
+  - Preserves IAM role naming conventions
+
+You don't need to repeat any of this information!
+```
+
+**Error Recovery:**
+
+```yaml
+Scenario: terraform plan fails in Step 3
+Error: Invalid VPC reference
+
+Problem identification:
+> The terraform plan failed. Here's the error: [paste error]
+
+Claude's analysis (using context):
+"I see the issue. In Step 1, I identified your VPC as vpc-abc123,
+but in the EKS module I used a variable reference that doesn't
+match your existing terraform.tfvars structure.
+
+Your project uses direct VPC IDs, not variables. I'll fix the
+eks_cluster.tf to use: vpc_id = \"vpc-abc123\" directly."
+
+Fix applied automatically, no need to re-explain your project structure.
+```
+
+**Real Output Example:**
+
+```bash
+> Analyze all Terraform files in infrastructure/ and create
+  a diagram (ASCII) of the current AWS architecture.
+
+I'll analyze your Terraform configuration and map the architecture.
+
+Reading infrastructure files...
+✓ Read infrastructure/vpc.tf
+✓ Read infrastructure/ec2.tf
+✓ Read infrastructure/rds.tf
+✓ Read infrastructure/alb.tf
+
+Current Architecture:
+┌─────────────────────────────────────────────────────────┐
+│  AWS Region: us-east-1                                  │
+│  ┌──────────────────────────────────────────────────┐   │
+│  │ VPC: 10.0.0.0/16 (vpc-abc123)                    │   │
+│  │  ├─ Public Subnet: 10.0.1.0/24 (3 AZs)           │   │
+│  │  │  └─ ALB: app-lb (Internet-facing)             │   │
+│  │  │     ├─ Target: EC2 instances                  │   │
+│  │  │                                                │   │
+│  │  ├─ Private Subnet: 10.0.10.0/24 (3 AZs)         │   │
+│  │  │  ├─ EC2: t3.medium × 4 (Auto Scaling)         │   │
+│  │  │  │  └─ App: Python API (Port 8000)            │   │
+│  │  │                                                │   │
+│  │  └─ Data Subnet: 10.0.20.0/24 (3 AZs)            │   │
+│  │     └─ RDS: PostgreSQL 14 (db.t3.medium)         │   │
+│  └──────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+
+Resources: 4 EC2, 1 ALB, 1 RDS, 6 Security Groups
+Estimated monthly cost: ~$450
+
+Ready for migration planning?
+```
+
+Notice: Claude extracted specific details (VPC CIDR, instance types, RDS version) that it will use in subsequent steps without you re-specifying them.
 
 ### Workflow 3: Automated Code Review Pipeline
 
@@ -1565,6 +1715,101 @@ jobs:
             });
 ```
 
+#### Execution Pattern: Automated Code Review Pipeline
+
+CI/CD integration requires understanding how Claude Code behaves in non-interactive environments and how it maintains audit trails.
+
+**Context Carryover in CI/CD:**
+
+Unlike interactive sessions, CI runs are stateless. However, Claude uses git context effectively:
+
+```yaml
+What Claude knows automatically:
+  - Branch name and base branch (from git)
+  - Changed files (git diff)
+  - Commit messages (git log)
+  - PR description (via GitHub API if available)
+  - Project files (read directly)
+
+What Claude doesn't know (must be provided):
+  - Your team's coding standards (→ use custom /pr-review command)
+  - Previous review comments (→ not in scope unless fetched)
+  - Deployment configuration (→ not analyzing infrastructure)
+```
+
+**Error Recovery in CI:**
+
+```yaml
+Scenario: Review command fails in CI
+
+Common failure: API rate limiting
+
+Error in workflow:
+  Error: Rate limit exceeded. Retry after 42 seconds.
+
+Handling in .github/workflows/claude-review.yaml:
+  - name: Run Review
+    uses: nick-invision/retry@v2  # Retry action
+    with:
+      timeout_minutes: 10
+      max_attempts: 3
+      retry_wait_seconds: 60
+      command: |
+        claude --output pr-review.md "/pr-review"
+
+This automatically retries with exponential backoff.
+```
+
+**Real Output Example:**
+
+```markdown
+# PR Review: Feature/add-user-authentication
+
+## Summary
+Added JWT-based authentication with refresh tokens.
+Files changed: 8 files (+450, -80)
+
+## Security Findings
+
+### 🔴 Critical Issues (1)
+- **File**: src/auth/jwt.py:45
+  **Issue**: JWT secret key is hardcoded
+  **Risk**: Anyone with access to code can forge tokens
+  **Fix**:
+  ```python
+  # Current (INSECURE):
+  SECRET_KEY = "super-secret-key-123"
+
+  # Fix:
+  SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
+  if not SECRET_KEY:
+      raise ValueError("JWT_SECRET_KEY environment variable required")
+  ```
+
+### 🟡 Medium Priority (2)
+- **File**: src/api/routes.py:78
+  **Issue**: No rate limiting on login endpoint
+  **Risk**: Brute force attacks possible
+  **Suggestion**: Add rate limiting decorator (see Django Ratelimit)
+
+- **File**: src/models/user.py:34
+  **Issue**: Password stored with MD5 hash
+  **Risk**: MD5 is cryptographically broken
+  **Fix**: Use bcrypt or Argon2
+
+## Code Quality
+
+✅ Tests added for new auth functions (98% coverage)
+✅ Error handling is comprehensive
+⚠️  Missing API documentation for new endpoints
+
+## Recommendation
+**DO NOT MERGE** until Critical issue is resolved.
+Estimated fix time: 15 minutes.
+```
+
+Notice the structured output makes it easy for both humans and automation to parse the results.
+
 ### Workflow 4: Incident Response Automation
 
 ```bash
@@ -1603,6 +1848,135 @@ Incident Response for {{service}}:
 
 Provide findings in incident report format.
 ```
+
+#### Execution Pattern: Incident Response Automation
+
+Incident response requires speed and accuracy. Here's how Claude Code handles time-critical debugging under pressure.
+
+**Context Carryover During Incidents:**
+
+The advantage: Claude maintains situational awareness throughout the investigation, reducing cognitive load when you're stressed.
+
+```yaml
+Initial context gathering (Step 1):
+> /incident api-service
+
+Claude runs automatically:
+  ✓ git log --oneline -10 (recent changes)
+  ✓ kubectl get pods -n production
+  ✓ kubectl logs api-service-xyz --tail=100
+
+Claude now knows:
+  - Last deployment was 15 minutes ago (deploy-v2.3.4)
+  - 2 of 5 pods are CrashLoopBackOff
+  - Error in logs: "Database connection refused"
+
+In follow-up questions (Step 2-4):
+> Check database connectivity
+
+Claude already knows:
+  - Service name (api-service)
+  - Namespace (production)
+  - Recent changes (v2.3.4 deployment)
+  - Current error pattern (connection refused)
+
+So it intelligently checks:
+  1. Database service is running
+  2. Environment variables match
+  3. Network policies allow connection
+  4. Changes in v2.3.4 related to DB
+
+You don't waste time re-explaining the situation!
+```
+
+**Error Recovery Under Pressure:**
+
+```yaml
+Scenario: Command fails during incident
+
+> Check the database pod status
+
+Error: kubectl command not found in PATH
+
+Claude's response (context-aware):
+"I see kubectl isn't available in your current environment.
+
+Alternative diagnostic approaches:
+1. If you have access to AWS console: Check RDS status
+2. If using Docker: docker ps | grep database
+3. If using systemd: systemctl status postgresql
+
+Which method can you use? Or should I suggest different diagnostics?"
+
+Claude adapts to your environment instead of blocking on one tool.
+```
+
+**Real Output Example:**
+
+```bash
+> /incident api-service
+
+🚨 INCIDENT RESPONSE: api-service
+
+═══════════════════════════════════════════════════════
+PHASE 1: Information Gathering
+═══════════════════════════════════════════════════════
+
+✓ Recent Deployments:
+  45f8b3c (15 min ago) - deploy: api-service v2.3.4
+  a83d4fe (3 hours ago) - config: update database connection pool
+  92c4f1b (1 day ago) - feat: add caching layer
+
+✓ Pod Status:
+  api-service-7d9f8-abc12  Running      (Restart: 0)
+  api-service-7d9f8-def34  Running      (Restart: 0)
+  api-service-7d9f8-ghi56  Running      (Restart: 0)
+  api-service-7d9f8-jkl78  CrashLoopBackOff  (Restart: 4)
+  api-service-7d9f8-mno90  CrashLoopBackOff  (Restart: 5)
+
+✓ Recent Logs (Last 50 lines):
+  [ERROR] 2026-01-11 10:15:23 - Database connection refused
+  [ERROR] Connection to postgres-prod.cluster.local:5432 failed
+  [INFO]  Retry attempt 1/5
+  [ERROR] Still unable to connect after 5 retries
+  [FATAL] Service shutting down
+
+═══════════════════════════════════════════════════════
+PHASE 2: Initial Assessment
+═══════════════════════════════════════════════════════
+
+🔍 User Impact:
+  - 2 of 5 pods failing = ~40% capacity loss
+  - 3 healthy pods can handle load temporarily
+  - Status: DEGRADED but operational
+
+⏰ Timeline:
+  - Started: ~15 minutes ago (correlates with v2.3.4 deploy)
+  - Recent change: Database connection pool configuration
+
+🎯 Leading Theory:
+  Deployment v2.3.4 introduced connection pool changes
+  that may be incompatible with current database settings.
+
+═══════════════════════════════════════════════════════
+PHASE 3: Diagnostic Steps
+═══════════════════════════════════════════════════════
+
+Next actions:
+1. ✅ Check database is accessible (I'll run: kubectl exec -it api-service-7d9f8-abc12 -- nc -zv postgres-prod.cluster.local 5432)
+2. ⏳ Compare v2.3.4 vs v2.3.3 database config
+3. ⏳ Check if database hit connection limit
+4. ⏳ Verify network policies haven't changed
+
+Should I proceed with step 1? (Yes/No)
+```
+
+Notice:
+- Structured incident format (easy to copy to incident ticket)
+- Concrete evidence (logs, pod names, timestamps)
+- Impact assessment (40% capacity loss, but not total outage)
+- Actionable next steps with specific commands
+- Asks permission before running potentially disruptive commands
 
 ---
 
