@@ -7,6 +7,140 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-01-11
+
+### Enhanced - Educational Content Enrichment (10 Chapters)
+
+**Overview**: Major educational enhancement across 10 high code-ratio chapters (>250%), adding ~24,000 words of decision frameworks, troubleshooting guides, ROI analyses, and production patterns. Goal: Transform reference-style chapters into teaching-focused content while maintaining practical code examples.
+
+#### Phase 1: Foundation Chapters (3 chapters, ~10,350 words added)
+
+- **Chapter 04: AI Models Landscape** (876.7% → improved)
+  - Added decision tree rationale with real cost calculations
+  - Added real-world model comparison (same task across 3 models with quality/cost/latency metrics)
+  - Added hosting decision flowchart (API vs self-hosted with compliance mapping)
+  - Added prerequisites matrix (system requirements, GPU specs, common errors)
+  - Added trade-off matrix (multi-dimensional comparison, Pareto frontier analysis)
+
+- **Chapter 06: Claude Code Fundamentals** (651.2% → improved)
+  - Added troubleshooting guide (5 common issues with step-by-step solutions)
+  - Installation problems, PATH configuration, permissions, version conflicts
+  - Updated navigation and formatting for consistency
+
+- **Chapter 07: Claude Code Intermediate** (410.2% → improved)
+  - Added configuration decision framework (when to use each config level, security implications)
+  - Added anatomy of effective custom commands (design principles, common mistakes, reusability patterns)
+  - Added browser vs CLI decision guide (comparative workflow examples, migration paths)
+  - Added IDE integration strategy (comparison matrix, decision criteria)
+  - Added 4 execution pattern sections (context carryover, error recovery, real output examples)
+
+#### Phase 2: Advanced Pattern Chapters (6 chapters, ~12,700 words added)
+
+- **Chapter 11: MCP Server Development** (433.3% → improved)
+  - Added "When to Build vs Use Existing MCP Servers" decision framework
+  - MVP approach: build 3-5 core operations in week 1, expand based on feedback
+  - Added production readiness section (error handling, input validation, timeouts)
+  - Comprehensive error handling patterns with TypeScript examples
+
+- **Chapter 12: AI for DevOps** (706.2% → improved)
+  - Added decision framework for when to apply AI in DevOps (7 scenarios with ROI)
+  - Added CI/CD complexity analysis (when AI helps vs overkill)
+  - Added incident response patterns (5 phases, 10-minute MTTR example)
+  - Added IaC generation patterns (Terraform/CloudFormation with validation)
+  - Added team resistance strategies (pilot program, metrics-driven adoption)
+
+- **Chapter 20: Agent Loop Detection** (317.1% → improved)
+  - Added "Diagnosing Loop Types" framework (3-step diagnostic process)
+  - Production triage guide with Python diagnostic script
+  - Added cost-benefit analysis for monitoring (ROI formula, tier recommendations)
+  - Break-even calculations and monthly value assessments
+
+- **Chapter 21: Resilient Agentic Systems** (302.5% → improved)
+  - Added resilience pattern selection framework (4 scenarios with time investments)
+  - Multi-step infrastructure provisioning example with checkpointing
+  - Added staged rollout strategy (Dev → Staging → Pre-Prod → Prod over 4 weeks)
+  - Gradual feature deployment with risk mitigation (5% → 100% rollout)
+
+- **Chapter 22: RAG Fundamentals** (253.9% → improved)
+  - Added "When to Use RAG vs Alternatives" decision matrix
+  - Cost-benefit example: 58,700% ROI for 50-person team, <1 day break-even
+  - RAG vs fine-tuning comparison (3× cheaper setup, 20× cheaper maintenance)
+  - Added hybrid approach pattern (RAG + Tools + System Prompts)
+  - Added "Common RAG Mistakes and Troubleshooting" (5 mistakes with fixes)
+  - Chunk size optimization, metadata filtering (40% accuracy improvement)
+  - Quality monitoring with RAGMonitor implementation
+  - Confidence thresholds to prevent hallucinations
+
+- **Chapter 23: Advanced RAG Patterns** (275.8% → improved)
+  - Added advanced RAG pattern selection framework (8 patterns with cost impacts)
+  - 3-phase implementation priority (must-have → high-ROI → specialized)
+  - Pattern combination examples: Incident Response, Documentation, Compliance/Legal
+  - ROI calculation example: 29× ROI, 1.6-month break-even for cross-encoder
+  - Added production anti-patterns and scaling pitfalls (5 anti-patterns)
+  - Premature multi-query (5× cost → 40% with conditional logic)
+  - Cache invalidation strategy (SmartRAGCache with doc tracking)
+  - Tail latency monitoring (p99 tracking with percentiles)
+  - Edge case testing (pytest suite for production failures)
+  - Graceful degradation and fallback strategies
+  - Scaling checklist: Reliability, Performance, Cost, Quality, Operations
+
+#### Phase 3: Fundamentals Chapter (1 chapter, ~930 words added)
+
+- **Chapter 02: Understanding LLMs and Tokens** (390.4% → improved)
+  - Added token budgeting decision framework (budget allocation by use case)
+  - 80/20 rule for token budgets (60% critical, 30% important, 10% nice-to-have)
+  - $500/month budget allocation example with ROI calculations
+  - Context window budget strategy (reserve 20% for output to avoid truncation)
+  - Budget health check criteria (when too high, when too low, scoring function)
+  - Example: 1900% ROI for code review bot
+  - Added common token management mistakes (5 mistakes with comprehensive fixes)
+  - Conversation history quadratic growth (sliding window and summarization fixes)
+  - Pre-flight token validation to prevent context exceeded errors
+  - Tokens ≠ characters (use proper tokenizer, not character count)
+  - Caching for repeated queries (60% hit rate = 60% cost reduction, LLMCache implementation)
+  - Model routing by complexity (80% cost reduction: 70% Haiku, 25% Sonnet, 5% Opus)
+  - Quick troubleshooting checklists (context limits, high costs, poor quality)
+
+### Statistics
+
+**Total Enhancements**:
+- Chapters enhanced: 10
+- Total words added: ~24,000
+- Decision frameworks: 20+
+- ROI calculations: 15+
+- Troubleshooting guides: 8
+- Production checklists: 6
+
+**Key Insights Documented**:
+- RAG vs Fine-tuning: 3× cheaper setup, 20× cheaper maintenance
+- Caching achieves 60-70% hit rate = 60-70% cost reduction
+- Model routing: 80% cost reduction with proper tiering
+- Cross-encoder re-ranking: 29× ROI, 1.6-month break-even
+- Conditional multi-query: 60% cost savings vs blanket application
+- Token budgeting: Reserve 20% context for output to avoid truncation
+- Conversation history grows quadratically without sliding window
+- Pattern selection: Must-have (caching) → High-ROI (hybrid search, re-ranking) → Specialized (fine-tuning)
+
+**Ratios Achieved**:
+- Target: Reduce ratios to 250-300% range (acceptable per project guidelines)
+- Result: All enhanced chapters now closer to or within acceptable range
+- Focus: Quality over quantity—substantial, high-value educational content
+
+### Educational Focus
+
+All enhancements prioritize:
+- ✅ Decision-making frameworks (when to use X vs Y)
+- ✅ ROI calculations with real numbers
+- ✅ Production troubleshooting guides
+- ✅ Cost-benefit analyses
+- ✅ Scaling checklists and anti-patterns
+- ✅ Real-world DevOps scenarios
+- ✅ Concrete metrics and thresholds
+
+### Impact
+
+This enhancement transforms the guide from reference documentation into a comprehensive teaching resource for DevOps engineers, providing not just "what" and "how" but critically "when" and "why"—essential for real-world decision-making.
+
 ## [1.3.1] - 2026-01-11
 
 ### Fixed - Chapter Consistency and Navigation
