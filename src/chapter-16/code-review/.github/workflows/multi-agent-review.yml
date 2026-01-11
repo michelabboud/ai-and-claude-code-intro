@@ -1,0 +1,134 @@
+# Chapter 16: Advanced Multi-Agent Workflows
+# Multi-Agent Code Review Pipeline
+#
+# Deploys 5 specialist agents to review every pull request:
+# 1. Security Agent: OWASP vulnerabilities, secrets detection
+# 2. Performance Agent: Algorithmic complexity, N+1 queries
+# 3. Style Agent: Code style, naming conventions, documentation
+# 4. Test Coverage Agent: Missing tests, test quality
+# 5. Documentation Agent: Missing docs, outdated examples
+#
+# Part of: AI and Claude Code - A Comprehensive Guide for DevOps Engineers
+# Created by: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
+# Copyright: © 2026 Michel Abboud. All rights reserved.
+# License: CC BY-NC 4.0
+
+name: Multi-Agent Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+# Ensure only one review runs per PR at a time
+concurrency:
+  group: review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  multi-agent-review:
+    name: Multi-Agent Analysis
+    runs-on: ubuntu-latest
+
+    # Require ANTHROPIC_API_KEY secret
+    # Set this in: Settings → Secrets and variables → Actions
+    if: ${{ secrets.ANTHROPIC_API_KEY }}
+
+    permissions:
+      pull-requests: write
+      contents: read
+
+    steps:
+      - name: Checkout PR code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for better context
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic PyGithub
+
+      - name: Get PR diff
+        id: pr_diff
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Get diff and save to file
+          gh pr diff ${{ github.event.pull_request.number }} > pr_diff.txt
+
+          # Get file list
+          gh pr diff ${{ github.event.pull_request.number }} --name-only > changed_files.txt
+
+          echo "Files changed: $(wc -l < changed_files.txt)"
+
+      - name: Run Multi-Agent Code Review
+        id: review
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          REPO_FULL_NAME: ${{ github.repository }}
+        run: |
+          python scripts/multi-agent-review.py \
+            --pr-number $PR_NUMBER \
+            --repo $REPO_FULL_NAME \
+            --diff-file pr_diff.txt \
+            --changed-files changed_files.txt \
+            --output review_result.json
+
+      - name: Post Review Comment
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          # Check if review succeeded
+          if [ -f review_result.json ]; then
+            # Extract summary from JSON
+            SUMMARY=$(jq -r '.summary' review_result.json)
+            CRITICAL_COUNT=$(jq -r '.critical_issues_count' review_result.json)
+
+            # Post comment with results
+            gh pr comment $PR_NUMBER --body "$SUMMARY"
+
+            # Set status check
+            if [ "$CRITICAL_COUNT" -gt 0 ]; then
+              echo "❌ Found $CRITICAL_COUNT critical issues"
+              exit 1
+            else
+              echo "✅ All checks passed"
+            fi
+          else
+            echo "⚠️  Review failed to complete"
+            exit 1
+          fi
+
+      - name: Upload review artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: review-results-${{ github.event.pull_request.number }}
+          path: |
+            review_result.json
+            pr_diff.txt
+            changed_files.txt
+          retention-days: 30
+
+# Optional: Notify Slack on completion
+# - name: Notify Slack
+#   if: always()
+#   uses: slackapi/slack-github-action@v1
+#   with:
+#     payload: |
+#       {
+#         "pr_number": "${{ github.event.pull_request.number }}",
+#         "status": "${{ job.status }}",
+#         "critical_issues": "${{ steps.review.outputs.critical_count }}"
+#       }
+#   env:
+#     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

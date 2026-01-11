@@ -1,0 +1,601 @@
+{
+  "name": "Multi-Agent Incident Response Swarm",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "incident-alert",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "webhookId": "incident-response-webhook"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "incident_id",
+              "value": "={{ $json.incident_id }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $now }}"
+            },
+            {
+              "name": "logs_url",
+              "value": "={{ $json.logs_url }}"
+            },
+            {
+              "name": "metrics_url",
+              "value": "={{ $json.metrics_url }}"
+            },
+            {
+              "name": "commits_url",
+              "value": "={{ $json.commits_url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Set Variables",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "batchSize": 5,
+        "options": {}
+      },
+      "name": "Split Into Batches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [650, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.logs_url }}",
+        "options": {}
+      },
+      "name": "Fetch Logs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [850, 100]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-haiku-20240307",
+        "prompt": "Analyze these error logs for patterns:\\n\\n{{ $json.logs }}\\n\\nFind:\\n1. Most common error messages (count occurrences)\\n2. Error frequency over time\\n3. Affected endpoints/services\\n4. Correlation patterns\\n\\nOutput JSON with keys: common_errors, frequency_pattern, affected_services, correlations",
+        "options": {
+          "maxTokens": 1024
+        }
+      },
+      "name": "Agent 1 - Log Analyzer",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [1050, 100],
+      "credentials": {
+        "anthropicApi": {
+          "id": "1",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.metrics_url }}",
+        "options": {}
+      },
+      "name": "Fetch Metrics",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [850, 250]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-haiku-20240307",
+        "prompt": "Analyze these Prometheus metrics:\\n\\n{{ $json.metrics }}\\n\\nIdentify:\\n1. Anomalous spikes or drops\\n2. Resource exhaustion signals (CPU, memory, disk)\\n3. Performance degradation patterns\\n4. Correlation with error rate\\n\\nOutput JSON with keys: anomalies, resource_issues, performance_degradation, error_correlation",
+        "options": {
+          "maxTokens": 1024
+        }
+      },
+      "name": "Agent 2 - Metrics Analyzer",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [1050, 250],
+      "credentials": {
+        "anthropicApi": {
+          "id": "1",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $json.commits_url }}",
+        "options": {}
+      },
+      "name": "Fetch Recent Commits",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [850, 400]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "prompt": "Analyze recent code changes for incident correlation:\\n\\nRecent commits (last 6 hours):\\n{{ $json.commits }}\\n\\nIdentify:\\n1. Risky changes (database schema, API changes, authentication)\\n2. Changes to affected endpoints/services\\n3. Deployment timing correlation\\n4. Potential rollback candidates (commit SHAs)\\n\\nOutput JSON with keys: risky_changes, affected_changes, deployment_timing, rollback_candidates",
+        "options": {
+          "maxTokens": 2048
+        }
+      },
+      "name": "Agent 3 - Code Analyzer",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [1050, 400],
+      "credentials": {
+        "anthropicApi": {
+          "id": "1",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://k8s-api.example.com/api/v1/pods?namespace=production",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "kubernetesApi",
+        "options": {}
+      },
+      "name": "Get K8s Infrastructure State",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [850, 550]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-5-sonnet-20241022",
+        "prompt": "Check infrastructure for issues:\\n\\nCurrent state:\\n{{ $json.body }}\\n\\nValidate:\\n1. Pod/container health status\\n2. Database connections and replication lag\\n3. Network connectivity and DNS\\n4. Resource availability (CPU, memory, disk)\\n5. External service dependencies (API status)\\n\\nOutput JSON with keys: container_health, database_status, network_status, resource_availability, external_dependencies",
+        "options": {
+          "maxTokens": 2048
+        }
+      },
+      "name": "Agent 4 - Infrastructure Checker",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [1050, 550],
+      "credentials": {
+        "anthropicApi": {
+          "id": "1",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://cost-api.example.com/current-usage",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "awsApi",
+        "options": {}
+      },
+      "name": "Get Cost Data",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [850, 700]
+    },
+    {
+      "parameters": {
+        "model": "claude-3-haiku-20240307",
+        "prompt": "Estimate cost impact of this incident:\\n\\nCost data:\\n{{ $json.body }}\\n\\nCalculate:\\n1. Lost revenue (downtime * average transaction rate * revenue per transaction)\\n2. Wasted compute (failed requests * compute cost per request)\\n3. Customer impact (affected users, potential churn)\\n4. Estimated total financial impact\\n\\nOutput JSON with keys: lost_revenue, wasted_compute, customer_impact, total_impact",
+        "options": {
+          "maxTokens": 1024
+        }
+      },
+      "name": "Agent 5 - Cost Impact Analyzer",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [1050, 700],
+      "credentials": {
+        "anthropicApi": {
+          "id": "1",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "name": "Merge Agent Results",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 1,
+      "position": [1250, 400]
+    },
+    {
+      "parameters": {
+        "functionCode": "const analyses = $input.all().map(item => ({\n  agent: item.json.agent_type,\n  findings: item.json.analysis\n}));\n\nconst combined = analyses.map(a => \n  `=== ${a.agent} ===\\n${a.findings}`\n).join('\\n\\n');\n\nreturn {\n  json: {\n    incident_id: items[0].json.incident_id,\n    all_analyses: combined,\n    timestamp: new Date().toISOString()\n  }\n};"
+      },
+      "name": "Aggregate Findings",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [1450, 400]
+    },
+    {
+      "parameters": {
+        "model": "claude-opus-4-5-20251101",
+        "prompt": "You are the coordinator agent synthesizing findings from 5 specialist agents analyzing incident {{ $json.incident_id }}.\\n\\nAll agent findings:\\n{{ $json.all_analyses }}\\n\\nProvide a comprehensive analysis with:\\n\\n1. **Root Cause Determination** (with confidence %)\\n   - Primary root cause\\n   - Contributing factors\\n   - Confidence level (0-100%)\\n\\n2. **Immediate Remediation Steps** (prioritized 1-5)\\n   - Action to take\\n   - Expected impact\\n   - Estimated time to execute\\n\\n3. **Prevention Recommendations** (long-term fixes)\\n   - What to change\\n   - Why it will prevent recurrence\\n   - Implementation timeline\\n\\n4. **Estimated MTTR**\\n   - Time to implement immediate remediation\\n   - Confidence in estimate\\n\\n5. **Business Impact Summary**\\n   - Financial impact\\n   - User impact\\n   - Reputational impact\\n\\nBe decisive. Choose the most likely root cause based on agent consensus.\\nOutput as structured JSON.",
+        "options": {
+          "maxTokens": 4096
+        }
+      },
+      "name": "Coordinator Synthesis",
+      "type": "n8n-nodes-base.anthropic",
+      "typeVersion": 1,
+      "position": [1650, 400],
+      "credentials": {
+        "anthropicApi": {
+          "id": "1",
+          "name": "Anthropic API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "channel": "#incidents",
+        "text": "🚨 *Incident {{ $json.incident_id }} Analysis Complete*",
+        "attachments": [
+          {
+            "color": "={{ $json.severity === 'critical' ? 'danger' : 'warning' }}",
+            "title": "Multi-Agent Analysis Results",
+            "text": "{{ $json.coordinator_synthesis }}",
+            "fields": [
+              {
+                "title": "Analysis Time",
+                "value": "{{ $json.analysis_time }}",
+                "short": true
+              },
+              {
+                "title": "Root Cause",
+                "value": "{{ $json.root_cause }}",
+                "short": true
+              }
+            ]
+          }
+        ],
+        "otherOptions": {}
+      },
+      "name": "Post to Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [1850, 300],
+      "credentials": {
+        "slackApi": {
+          "id": "2",
+          "name": "Slack API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.severity }}",
+              "operation": "equals",
+              "value2": "critical"
+            }
+          ]
+        }
+      },
+      "name": "IF Critical",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [1850, 500]
+    },
+    {
+      "parameters": {
+        "title": "Multi-Agent Analysis: {{ $json.root_cause }}",
+        "urgency": "high",
+        "description": "{{ $json.coordinator_synthesis }}",
+        "additionalFields": {
+          "body": {
+            "details": "Full analysis available at {{ $json.analysis_url }}"
+          }
+        }
+      },
+      "name": "Create PagerDuty Incident",
+      "type": "n8n-nodes-base.pagerDuty",
+      "typeVersion": 1,
+      "position": [2050, 500],
+      "credentials": {
+        "pagerDutyApi": {
+          "id": "3",
+          "name": "PagerDuty API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO incident_analyses (incident_id, analysis_time, all_findings, coordinator_synthesis, created_at) VALUES ('{{ $json.incident_id }}', '{{ $json.analysis_time }}', '{{ $json.all_findings }}', '{{ $json.coordinator_synthesis }}', NOW())",
+        "options": {}
+      },
+      "name": "Store in Database",
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 1,
+      "position": [1850, 700],
+      "credentials": {
+        "postgres": {
+          "id": "4",
+          "name": "PostgreSQL"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {}
+      },
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [2050, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Variables": {
+      "main": [
+        [
+          {
+            "node": "Split Into Batches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Into Batches": {
+      "main": [
+        [
+          {
+            "node": "Fetch Logs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Metrics",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Recent Commits",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get K8s Infrastructure State",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Cost Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Logs": {
+      "main": [
+        [
+          {
+            "node": "Agent 1 - Log Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent 1 - Log Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Merge Agent Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Metrics": {
+      "main": [
+        [
+          {
+            "node": "Agent 2 - Metrics Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent 2 - Metrics Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Merge Agent Results",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Fetch Recent Commits": {
+      "main": [
+        [
+          {
+            "node": "Agent 3 - Code Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent 3 - Code Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Merge Agent Results",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Get K8s Infrastructure State": {
+      "main": [
+        [
+          {
+            "node": "Agent 4 - Infrastructure Checker",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent 4 - Infrastructure Checker": {
+      "main": [
+        [
+          {
+            "node": "Merge Agent Results",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Get Cost Data": {
+      "main": [
+        [
+          {
+            "node": "Agent 5 - Cost Impact Analyzer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Agent 5 - Cost Impact Analyzer": {
+      "main": [
+        [
+          {
+            "node": "Merge Agent Results",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Merge Agent Results": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Findings",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Findings": {
+      "main": [
+        [
+          {
+            "node": "Coordinator Synthesis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Coordinator Synthesis": {
+      "main": [
+        [
+          {
+            "node": "Post to Slack",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IF Critical",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Store in Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Slack": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF Critical": {
+      "main": [
+        [
+          {
+            "node": "Create PagerDuty Incident",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "multi-agent",
+      "createdAt": "2026-01-11T00:00:00.000Z",
+      "updatedAt": "2026-01-11T00:00:00.000Z"
+    },
+    {
+      "name": "incident-response",
+      "createdAt": "2026-01-11T00:00:00.000Z",
+      "updatedAt": "2026-01-11T00:00:00.000Z"
+    }
+  ],
+  "meta": {
+    "instanceId": "example-instance-id"
+  }
+}
