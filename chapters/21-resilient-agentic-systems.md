@@ -445,6 +445,253 @@ Call 22: ✅ {'status': 'success'}
 
 ---
 
+### Resilience Pattern Selection: A Decision Framework
+
+Understanding which resilience patterns to combine is crucial. Here's how to make the right architectural decisions for your agents.
+
+#### The Pattern Selection Matrix
+
+| Scenario | Circuit Breaker | Retry Logic | Idempotency | Checkpointing |
+|----------|----------------|-------------|-------------|---------------|
+| **API calls to Claude** | ✅ Required | ✅ Required | ⚠️ Complex | ❌ Optional |
+| **Database operations** | ✅ Required | ✅ Required | ✅ Critical | ⚠️ Situational |
+| **Kubernetes operations** | ✅ Required | ✅ Required | ✅ Required | ⚠️ Recommended |
+| **File system ops** | ❌ No | ✅ Simple retry | ✅ Recommended | ✅ Yes |
+| **Long-running workflows** | ⚠️ Per-step | ✅ Per-step | ✅ Per-step | ✅ Critical |
+| **In-memory calculations** | ❌ No | ✅ Maybe | N/A | ❌ No |
+
+#### Real-World Pattern Combinations
+
+**Scenario 1: Kubernetes Pod Auto-Remediation Agent**
+
+```yaml
+Problem: Agent restarts failing pods
+
+Required patterns:
+  ✅ Circuit Breaker:
+     Why: Prevent hammering Kubernetes API if cluster is degraded
+     Config: 5 failures → open for 60 seconds
+
+  ✅ Retry Logic with Exponential Backoff:
+     Why: Transient failures (network hiccups) should retry
+     Config: Max 3 retries, 2^n seconds wait
+
+  ✅ Idempotency:
+     Why: Safe to restart same pod multiple times
+     Implementation: Check pod status before restart
+
+  ❌ Checkpointing:
+     Why: Operation is quick (<30s), not worth overhead
+     Alternative: Log actions for audit trail
+
+Pattern combination:
+  1. Check if circuit is open (fast fail)
+  2. Attempt pod restart (idempotent)
+  3. If fails, retry with backoff (max 3)
+  4. If still fails, open circuit
+  5. Log all actions
+
+Time investment: 4-6 hours to implement all patterns
+Benefit: Prevents 90%+ of cascading failures
+```
+
+**Scenario 2: Multi-Step Infrastructure Provisioning**
+
+```yaml
+Problem: Agent provisions VPC → Subnet → EC2 → RDS (20 min workflow)
+
+Required patterns:
+  ✅ Circuit Breaker:
+     Why: AWS API calls can fail, protect against rate limits
+     Config: Per-service breaker (VPC breaker, EC2 breaker, etc.)
+
+  ✅ Retry Logic:
+     Why: AWS eventually consistent, may need retries
+     Config: Different per resource type
+
+  ✅ Idempotency:
+     Why: CRITICAL - can't create duplicate infrastructure
+     Implementation: Check existence before create
+
+  ✅ Checkpointing:
+     Why: Don't want to recreate VPC if EC2 step fails
+     Implementation: Save state after each successful step
+
+Workflow with all patterns:
+  Step 1: Create VPC
+    - Check if VPC exists (idempotency)
+    - Circuit breaker protects AWS API
+    - Retry if fails (max 3)
+    - Checkpoint: Save VPC ID
+
+  Step 2: Create Subnet
+    - Load checkpoint (get VPC ID)
+    - Check if subnet exists
+    - Circuit breaker active
+    - Retry if fails
+    - Checkpoint: Save subnet ID
+
+  (Continue for each step)
+
+Recovery scenario:
+  Agent crashes at Step 3 (EC2 creation)
+  On restart:
+    - Load checkpoint
+    - VPC and Subnet already exist (don't recreate)
+    - Resume from EC2 creation
+    - Complete RDS without starting over
+
+Time investment: 8-12 hours for full implementation
+Benefit: Can recover from any point without duplicating $1000+ of infrastructure
+```
+
+**Scenario 3: Log Analysis Agent (Read-Only Operations)**
+
+```yaml
+Problem: Agent analyzes CloudWatch logs and suggests fixes
+
+Required patterns:
+  ✅ Circuit Breaker:
+     Why: CloudWatch API has rate limits
+     Config: 10 failures → open for 30 seconds
+
+  ✅ Retry Logic:
+     Why: Transient network issues
+     Config: Max 5 retries (read operations are cheap)
+
+  ⚠️ Idempotency:
+     Why: Somewhat - reading logs multiple times is safe but wasteful
+     Implementation: Cache results to avoid re-reading
+
+  ❌ Checkpointing:
+     Why: Analysis is fast (<2 min), restart from scratch is fine
+
+Simplified pattern:
+  - Circuit breaker for API protection
+  - Simple retry for transient failures
+  - Results caching (optional idempotency)
+  - No checkpointing needed
+
+Time investment: 2-3 hours
+Benefit: Reliable analysis with minimal overhead
+```
+
+#### When to Skip Patterns (Cost-Benefit Analysis)
+
+```yaml
+Skip Circuit Breaker when:
+  Situation: Operation takes <1 second, fails <1% of time
+  Cost: 4 hours implementation + testing
+  Benefit: Saves ~10 failed retries/month = 10 seconds
+  Decision: NOT worth it
+
+  Better approach: Simple max_retries=3
+
+Skip Checkpointing when:
+  Situation: Workflow takes <5 minutes, failures rare
+  Cost: 8 hours implementation + 10% performance overhead
+  Benefit: Saves 5 min restart once/month
+  Decision: NOT worth it for most cases
+
+  Exception: If failure common (>10%), implement checkpointing
+
+Skip Idempotency when:
+  Situation: Pure read operations
+  Cost: 3 hours adding existence checks
+  Benefit: Prevents... nothing (reads don't have side effects)
+  Decision: Skip unless caching results
+
+Skip Retry Logic when:
+  Situation: Operation MUST be manual (e.g., production deployment)
+  Cost: Could auto-retry and cause issues
+  Benefit: None (need human approval anyway)
+  Decision: Explicitly no retries
+```
+
+#### Common Pattern Mistakes
+
+**Mistake 1: Implementing all patterns for everything**
+
+```yaml
+Problem:
+  Junior engineer adds circuit breaker + retry + idempotency + checkpointing
+  to simple file read operation
+
+Result:
+  - 500 lines of code for 10-line operation
+  - 2 weeks of development time
+  - Harder to debug
+  - No actual benefit
+
+Fix:
+  Match patterns to risk:
+    Low risk (file read): Simple error handling
+    Medium risk (API call): Circuit breaker + retry
+    High risk (infrastructure): All patterns
+```
+
+**Mistake 2: Circuit breaker without retry**
+
+```yaml
+Problem:
+  Circuit breaker opens immediately on first failure
+  No retries attempted
+
+Result:
+  Transient failures (1-second network hiccup) → circuit opens
+  Agent disabled for 60 seconds unnecessarily
+
+Fix:
+  Retry FIRST, then circuit breaker
+  Example: 3 retries with backoff → if all fail → count as 1 failure toward circuit threshold
+```
+
+**Mistake 3: Idempotency without existence checks**
+
+```yaml
+Problem:
+  Code assumes idempotency but doesn't verify
+
+  async def create_resource_idempotent(name):
+      """Claims to be idempotent"""
+      return await api.create(name)  # Actually fails on duplicate
+
+Result:
+  Agent retries → duplicate error → circuit opens
+
+Fix:
+  Implement proper idempotency:
+    1. Check if exists
+    2. If exists, return existing
+    3. If not, create
+    4. Handle race conditions
+```
+
+#### Quick Decision Tree
+
+```
+Need resilience for operation?
+│
+├─ Operation takes <10 seconds?
+│  ├─ Yes → Circuit Breaker + Simple Retry (3-4 hours)
+│  └─ No → Continue below
+│
+├─ Operation is read-only?
+│  ├─ Yes → Circuit Breaker + Retry + Caching (4-6 hours)
+│  └─ No → Continue below
+│
+├─ Operation creates/modifies resources?
+│  ├─ Yes → Circuit Breaker + Retry + Idempotency (6-8 hours)
+│  └─ No → Just Circuit Breaker + Retry
+│
+└─ Workflow takes >10 minutes?
+   └─ Yes → Add Checkpointing (+4-6 hours)
+```
+
+**Rule of thumb**: Start with circuit breaker + retry (minimum viable resilience). Add idempotency if operation has side effects. Add checkpointing only if workflow is long and failure is common.
+
+---
+
 ## Section 2: Idempotency — Safe to Retry
 
 ### What is Idempotency?
