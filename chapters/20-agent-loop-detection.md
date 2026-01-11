@@ -2113,6 +2113,211 @@ docker-compose restart prometheus
 kubectl rollout restart -n monitoring statefulset/prometheus-monitoring-kube-prometheus-prometheus
 ```
 
+### Cost-Benefit Analysis: How Much Monitoring Is Enough?
+
+Production monitoring has costs (infrastructure, maintenance, alert fatigue). Here's how to right-size your monitoring investment.
+
+#### The Monitoring ROI Formula
+
+```
+Monitoring Value = (Cost of Undetected Loop) × (Loop Probability) - (Monitoring Cost)
+
+Example calculation:
+  Undetected loop cost: $10,000 average
+  Loop probability: 5% per month (based on historical data)
+  Expected loss without monitoring: $10,000 × 0.05 = $500/month
+
+  Monitoring costs:
+    Prometheus + Grafana: $50/month (hosted)
+    Setup time: 8 hours × $150/hr = $1,200 (one-time)
+    Maintenance: 2 hours/month × $150/hr = $300/month
+
+  Break-even analysis:
+    Month 1: -$1,200 - $350 + $500 = -$1,050 (investment)
+    Month 2: -$350 + $500 = +$150 (positive ROI)
+    Month 3+: +$150/month ongoing savings
+
+  Decision: Implement monitoring (pays for itself in 2 months)
+```
+
+#### Monitoring Tiers: What to Implement When
+
+**Tier 1: Minimum Viable Monitoring** (Free, 2 hours setup)
+
+```yaml
+What you get:
+  - Basic loop detection in code (StateTracker)
+  - Log-based alerts (grep for "loop detected")
+  - Manual cost checks (AWS/Anthropic dashboards)
+
+When sufficient:
+  - Development/staging environments
+  - Low-stakes agents (documentation, code review)
+  - Budget: $0-$100/month in agent costs
+
+Implementation:
+  ✅ Add StateTracker to all agents
+  ✅ Set up daily log review
+  ✅ Configure cost alerts in billing dashboard
+```
+
+**Tier 2: Production Monitoring** ($50-200/month, 8 hours setup)
+
+```yaml
+What you add:
+  - Prometheus metrics collection
+  - Grafana dashboards
+  - Automated alerting (PagerDuty/Slack)
+  - Cost tracking per agent
+
+When necessary:
+  - Production agents handling infrastructure
+  - Budget: $500-$5,000/month in agent costs
+  - Team size: 3+ engineers
+
+Implementation:
+  ✅ Deploy Prometheus + Grafana
+  ✅ Instrument agents with metrics
+  ✅ Create 3-5 key dashboards
+  ✅ Set up alerting rules
+```
+
+**Tier 3: Enterprise Monitoring** ($500-2,000/month, 40 hours setup)
+
+```yaml
+What you add:
+  - Distributed tracing (Jaeger/DataDog)
+  - Advanced anomaly detection (ML-based)
+  - Cost forecasting and budgets
+  - Multi-region monitoring
+  - Compliance and audit logging
+
+When necessary:
+  - Critical production agents (payment, security)
+  - Budget: $10,000+/month in agent costs
+  - Team size: 10+ engineers
+  - Regulatory requirements (SOC 2, HIPAA)
+
+Implementation:
+  ✅ Full observability stack (Datadog/New Relic)
+  ✅ Custom anomaly detection models
+  ✅ Integration with incident management
+  ✅ Automated remediation workflows
+```
+
+#### Common Monitoring Mistakes
+
+**Mistake 1: Over-monitoring in development**
+
+```yaml
+Problem:
+  Team spends 40 hours setting up full Prometheus stack for dev environment
+  Agents only cost $50/month
+  Time investment: 40 hrs × $150 = $6,000
+  ROI: Never (overkill)
+
+Better approach:
+  Use Tier 1 monitoring (2 hours)
+  Graduate to Tier 2 when agent costs hit $500/month
+```
+
+**Mistake 2: Alert fatigue from unnecessary alerts**
+
+```yaml
+Problem:
+  Alert on EVERY loop detection
+  Dev environment triggers 50 alerts/day
+  Team starts ignoring alerts
+  Real production loop goes unnoticed
+
+Better approach:
+  Tier alerts by severity:
+    - CRITICAL: Production loop or cost >$100/hour
+    - WARNING: Staging loop or cost >$10/hour
+    - INFO: Dev loop (log only, no alert)
+
+  Alert routing:
+    - Critical: PagerDuty (wakes on-call)
+    - Warning: Slack (during business hours)
+    - Info: Log aggregation only
+```
+
+**Mistake 3: Monitoring but not acting**
+
+```yaml
+Scenario:
+  Grafana dashboard shows agent loops increasing
+  Week 1: 5 loops
+  Week 2: 12 loops
+  Week 3: 25 loops
+  Week 4: Production incident
+
+Problem: Saw the trend, didn't act
+
+Solution: Automated response thresholds
+  - 5 loops/week: Team review (30 min meeting)
+  - 10 loops/week: Mandatory fix sprint
+  - 15 loops/week: Disable agent until fixed
+
+Monitoring without action = expensive dashboard art
+```
+
+#### Decision Framework: When to Upgrade Monitoring
+
+```
+Current State: Tier 1 (Basic)
+Evaluate monthly:
+
+Upgrade to Tier 2 if ANY of:
+  ✅ Agent costs >$500/month
+  ✅ 3+ loop incidents in past month
+  ✅ Team size >3 engineers
+  ✅ Agents in production (not just dev)
+  ✅ Loop caused >$1,000 in costs
+
+Upgrade to Tier 3 if ANY of:
+  ✅ Agent costs >$10,000/month
+  ✅ Critical infrastructure automation
+  ✅ Regulatory compliance requirements
+  ✅ Multi-team/multi-region deployment
+  ✅ Loop caused service outage
+```
+
+#### Real-World Cost Example
+
+**Startup: TechCorp (30 engineers, 5 production agents)**
+
+```yaml
+Monitoring evolution:
+
+Month 1 (Tier 1 - Basic):
+  Setup: 2 hours
+  Cost: $0
+  Agent spend: $150
+  Loops detected: 0
+  Status: ✅ Appropriate
+
+Month 3 (Tier 1):
+  Agent spend: $800
+  Loops detected: 2 (caught by StateTracker)
+  Costs avoided: ~$2,000
+  Status: ✅ Still appropriate
+
+Month 6 (Agent costs hit $2,500/month):
+  Decision: Upgrade to Tier 2
+  Setup: 8 hours over 2 weeks
+  Monthly cost: $100 (Grafana Cloud)
+  Benefit: Real-time detection vs daily log review
+
+Month 12:
+  Agent spend: $6,000/month
+  Monitoring prevented 3 major loops
+  Estimated savings: $15,000
+  Monitoring ROI: ($15,000 - $1,400) / $1,400 = 971% ROI
+```
+
+**Key insight**: Monitoring investment scales with agent usage. Don't over-invest early, but don't delay when agents reach production scale.
+
 ---
 
 ## Section 5: DevSecOps — Security Implications of Agent Loops
