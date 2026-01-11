@@ -1,5 +1,18 @@
 # Chapter 2: Understanding Large Language Models (LLMs) and Tokens
 
+**Part 1: AI Fundamentals**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 1: Introduction to AI](./01-introduction-to-ai.md) | Next: [Chapter 3: The Art of Prompting](./03-the-art-of-prompting.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## The Technology Powering Modern AI Assistants
 
 **📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~20 minutes
@@ -1029,3 +1042,15 @@ Temperature 1.2:
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 1: Introduction to AI](./01-introduction-to-ai.md) | Next: [Chapter 3: The Art of Prompting](./03-the-art-of-prompting.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 2** | Understanding LLMs and Tokens | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

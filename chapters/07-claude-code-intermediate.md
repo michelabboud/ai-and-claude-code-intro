@@ -1,5 +1,18 @@
 # Chapter 7: Claude Code Intermediate
 
+**Part 3: Claude Code Mastery**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 6: Claude Code Fundamentals](./06-claude-code-fundamentals.md) | Next: [Chapter 8: Skills and Sub-Agents](./08-skills-and-subagents.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Leveling Up Your Claude Code Skills
 
 **📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~40 minutes
@@ -1160,3 +1173,15 @@ Document your setup and workflow.
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 6: Claude Code Fundamentals](./06-claude-code-fundamentals.md) | Next: [Chapter 8: Skills and Sub-Agents](./08-skills-and-subagents.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 7** | Claude Code Intermediate | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

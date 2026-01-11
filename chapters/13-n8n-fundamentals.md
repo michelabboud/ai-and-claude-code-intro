@@ -1,5 +1,18 @@
 # Chapter 13: n8n Fundamentals
 
+**Part 5: Workflow Automation**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 12: AI for DevOps](./12-ai-for-devops.md) | Next: [Chapter 14: Advanced n8n Workflows](./14-n8n-advanced.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Low-Code Workflow Automation for DevOps
 
 **📖 Reading time:** ~14 minutes | **⚙️ Hands-on time:** ~45 minutes
@@ -941,3 +954,15 @@ Bonus:
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)
 **Copyright**: © 2026 Michel Abboud. All rights reserved.
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 12: AI for DevOps](./12-ai-for-devops.md) | Next: [Chapter 14: Advanced n8n Workflows](./14-n8n-advanced.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 13** | n8n Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

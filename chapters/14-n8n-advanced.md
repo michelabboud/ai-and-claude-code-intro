@@ -1,4 +1,17 @@
 # Chapter 14: Advanced n8n Workflows
+
+**Part 5: Workflow Automation**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 13: n8n Fundamentals](./13-n8n-fundamentals.md) | Next: [Chapter 15: Multi-Agent Fundamentals](./15-multi-agent-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
 ## AI Integration and Production DevOps Automation
 
 **📖 Reading time:** ~17 minutes | **⚙️ Hands-on time:** ~90 minutes
@@ -1429,3 +1442,15 @@ This chapter covered the transformation of n8n from a simple automation tool int
 *This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
 *Author: Michel Abboud | License: CC BY-NC 4.0*
 *Learn more: https://github.com/michelabboud/ai-and-claude-code-intro*
+
+---
+
+## Navigation
+
+← Previous: [Chapter 13: n8n Fundamentals](./13-n8n-fundamentals.md) | Next: [Chapter 15: Multi-Agent Fundamentals](./15-multi-agent-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 14** | Advanced n8n Workflows | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

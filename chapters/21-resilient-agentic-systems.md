@@ -1,5 +1,17 @@
 # Chapter 21: Building Resilient Agentic Systems
 
+**Part 7: Advanced Agentic Development & Leadership**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 20: Agent Loop Detection & Prevention](./20-agent-loop-detection.md) | Next: [Chapter 22: RAG Fundamentals](./22-rag-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
 ## Learning Objectives
 
 By the end of this chapter, you will:
@@ -3954,3 +3966,27 @@ In this chapter, we learned how to **prevent** Ralph Wiggum loops by building re
 ---
 
 **Chapter 21 Complete!** You now have the tools to build production-ready resilient agentic systems. ✅
+
+---
+
+## Navigation
+
+← Previous: [Chapter 20: Agent Loop Detection & Prevention](./20-agent-loop-detection.md) | Next: [Chapter 22: RAG Fundamentals](./22-rag-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 21** | Building Resilient Agentic Systems | © 2026 Michel Abboud
+
+---
+
+## Navigation
+
+← Previous: [Chapter 20: Agent Loop Detection & Prevention](./20-agent-loop-detection.md) | Next: [Chapter 22: RAG Fundamentals](./22-rag-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 21** | Building Resilient Agentic Systems | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

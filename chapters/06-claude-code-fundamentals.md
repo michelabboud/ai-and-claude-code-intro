@@ -1,5 +1,18 @@
 # Chapter 6: Claude Code Fundamentals
 
+**Part 3: Claude Code Mastery**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 5: Introduction to Claude](./05-introduction-to-claude.md) | Next: [Chapter 7: Claude Code Intermediate](./07-claude-code-intermediate.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Your AI Pair Programmer for the Terminal
 
 **📖 Reading time:** ~13 minutes | **⚙️ Hands-on time:** ~30 minutes
@@ -912,3 +925,15 @@ claude
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 5: Introduction to Claude](./05-introduction-to-claude.md) | Next: [Chapter 7: Claude Code Intermediate](./07-claude-code-intermediate.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 6** | Claude Code Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

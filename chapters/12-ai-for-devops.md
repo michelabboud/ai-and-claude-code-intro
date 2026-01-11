@@ -1,5 +1,18 @@
 # Chapter 12: AI for DevOps
 
+**Part 5: Workflow Automation**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 11: MCP Server Development](./11-mcp-server-development.md) | Next: [Chapter 13: n8n Fundamentals](./13-n8n-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Practical Applications, Tips, and Real-World Workflows
 
 **📖 Reading time:** ~14 minutes | **⚙️ Hands-on time:** ~variable (practical application)**🎯 Quick nav:** [AI Workflow](#101-the-ai-powered-devops-workflow) | [Infrastructure as Code](#102-infrastructure-as-code-with-ai) | [CI/CD](#103-cicd-pipeline-development) | [Monitoring](#104-monitoring-and-observability) | [Incident Response](#105-incident-response)
@@ -1040,3 +1053,15 @@ Your DevOps knowledge + AI = Superhuman productivity
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 11: MCP Server Development](./11-mcp-server-development.md) | Next: [Chapter 13: n8n Fundamentals](./13-n8n-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 12** | AI for DevOps | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

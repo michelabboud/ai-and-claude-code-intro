@@ -1,5 +1,18 @@
 # Chapter 20: Agent Loop Detection & Prevention Fundamentals
 
+**Part 7: Advanced Agentic Development & Leadership**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 19: Team Transformation](./19-team-transformation.md) | Next: [Chapter 21: Building Resilient Agentic Systems](./21-resilient-agentic-systems.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Learning Objectives
 
 By the end of this chapter, you will:
@@ -3030,8 +3043,16 @@ The patterns in Chapter 20 detect loops. Chapter 21 teaches you how to **prevent
 - Discord: #loop-detection channel
 - Office Hours: Weekly Q&A sessions (Fridays 2pm PT)
 
+*Created with Claude AI | © 2026 Michel Abboud | CC BY-NC 4.0*
+
 ---
 
-**End of Chapter 20**
+## Navigation
 
-*Created with Claude AI | © 2026 Michel Abboud | CC BY-NC 4.0*
+← Previous: [Chapter 19: Team Transformation](./19-team-transformation.md) | Next: [Chapter 21: Building Resilient Agentic Systems](./21-resilient-agentic-systems.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 20** | Agent Loop Detection & Prevention | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

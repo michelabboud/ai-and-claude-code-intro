@@ -1,5 +1,18 @@
 # Chapter 4: AI Models Landscape
 
+**Part 2: The AI Ecosystem**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 3: The Art of Prompting](./03-the-art-of-prompting.md) | Next: [Chapter 5: Introduction to Claude](./05-introduction-to-claude.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Navigating the World of AI Models and Providers
 
 **📖 Reading time:** ~14 minutes
@@ -927,3 +940,15 @@ ollama run codellama "Write a Kubernetes CronJob that runs a backup script daily
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 3: The Art of Prompting](./03-the-art-of-prompting.md) | Next: [Chapter 5: Introduction to Claude](./05-introduction-to-claude.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 4** | AI Models Landscape | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

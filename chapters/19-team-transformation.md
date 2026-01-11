@@ -1,5 +1,18 @@
 # Chapter 19: Team Transformation - Leading the AI DevOps Revolution
 
+**Part 7: Advanced Agentic Development & Leadership**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 18: Advanced AIOps](./18-aiops-advanced.md) | Next: [Chapter 20: Agent Loop Detection & Prevention](./20-agent-loop-detection.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 **How to Successfully Transform Your Team for the AI-Powered Future**
 
 ---
@@ -1764,3 +1777,15 @@ From AI fundamentals (Chapter 1) to team transformation (Chapter 19), you now ha
 
 *This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
 *Author: Michel Abboud | License: CC BY-NC 4.0*
+
+---
+
+## Navigation
+
+← Previous: [Chapter 18: Advanced AIOps](./18-aiops-advanced.md) | Next: [Chapter 20: Agent Loop Detection & Prevention](./20-agent-loop-detection.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 19** | Team Transformation | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

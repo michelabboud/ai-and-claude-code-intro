@@ -1,4 +1,17 @@
 # Chapter 17: AI-Powered Observability - AIOps Fundamentals
+
+**Part 6: Multi-Agent Orchestration & AIOps**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 16: Advanced Multi-Agent Workflows](./16-multi-agent-advanced.md) | Next: [Chapter 18: Advanced AIOps](./18-aiops-advanced.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
 ## From Traditional Monitoring to Intelligent Operations
 
 **📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~90 minutes
@@ -1086,3 +1099,15 @@ In the next chapter, you'll see these concepts in production:
 *This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
 *Author: Michel Abboud | License: CC BY-NC 4.0*
 *Learn more: https://github.com/michelabboud/ai-and-claude-code-intro*
+
+---
+
+## Navigation
+
+← Previous: [Chapter 16: Advanced Multi-Agent Workflows](./16-multi-agent-advanced.md) | Next: [Chapter 18: Advanced AIOps](./18-aiops-advanced.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 17** | AIOps Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

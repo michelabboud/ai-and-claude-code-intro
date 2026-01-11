@@ -1,5 +1,18 @@
 # Chapter 9: Hooks and Advanced Features
 
+**Part 3: Claude Code Mastery**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 8: Skills and Sub-Agents](./08-skills-and-subagents.md) | Next: [Chapter 10: MCP Fundamentals](./10-mcp-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Automation, CI/CD Integration, and Professional Best Practices
 
 **📖 Reading time:** ~9 minutes | **⚙️ Hands-on time:** ~45 minutes
@@ -688,3 +701,15 @@ export IS_DEMO=1  # For presentations
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 8: Skills and Sub-Agents](./08-skills-and-subagents.md) | Next: [Chapter 10: MCP Fundamentals](./10-mcp-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 9** | Hooks and Advanced Features | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

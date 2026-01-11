@@ -1,4 +1,17 @@
 # Chapter 16: Advanced Multi-Agent Workflows
+
+**Part 6: Multi-Agent Orchestration & AIOps**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 15: Multi-Agent Fundamentals](./15-multi-agent-fundamentals.md) | Next: [Chapter 17: AIOps Fundamentals](./17-aiops-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
 ## Production Implementation and Real-World Applications
 
 **📖 Reading time:** ~16 minutes | **⚙️ Hands-on time:** ~90 minutes
@@ -1582,3 +1595,15 @@ Organizations using multi-agent systems report:
 *This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
 *Author: Michel Abboud | License: CC BY-NC 4.0*
 *Learn more: https://github.com/michelabboud/ai-and-claude-code-intro*
+
+---
+
+## Navigation
+
+← Previous: [Chapter 15: Multi-Agent Fundamentals](./15-multi-agent-fundamentals.md) | Next: [Chapter 17: AIOps Fundamentals](./17-aiops-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 16** | Advanced Multi-Agent Workflows | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

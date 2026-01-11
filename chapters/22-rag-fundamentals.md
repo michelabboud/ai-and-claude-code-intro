@@ -1,5 +1,17 @@
 # Chapter 22: RAG Fundamentals
 
+**Part 8: Advanced Agentic Development**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 21: Resilient Agentic Systems](./21-resilient-agentic-systems.md) | Next: [Chapter 23: Advanced RAG Patterns](./23-advanced-rag-patterns.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
 ## Introduction to Retrieval-Augmented Generation
 
 **TL;DR:** Learn how to give AI agents access to custom knowledge bases through RAG (Retrieval-Augmented Generation). Build production-ready RAG systems that search documentation, runbooks, and logs to provide accurate, context-aware responses.
@@ -2509,3 +2521,23 @@ In Chapter 23, you'll learn:
 ---
 
 **Chapter 22 Complete!** You now have a solid foundation in RAG. Ready to build advanced RAG systems in Chapter 23! ✅
+
+---
+
+## Navigation
+
+← Previous: [Chapter 21: Resilient Agentic Systems](./21-resilient-agentic-systems.md) | Next: [Chapter 23: Advanced RAG Patterns](./23-advanced-rag-patterns.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+## Navigation
+
+← Previous: [Chapter 21: Building Resilient Agentic Systems](./21-resilient-agentic-systems.md) | Next: [Chapter 23: Advanced RAG Patterns](./23-advanced-rag-patterns.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 22** | RAG Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

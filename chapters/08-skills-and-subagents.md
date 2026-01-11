@@ -1,5 +1,18 @@
 # Chapter 8: Skills and Sub-Agents
 
+**Part 3: Claude Code Mastery**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 7: Claude Code Intermediate](./07-claude-code-intermediate.md) | Next: [Chapter 9: Hooks and Advanced Features](./09-hooks-and-advanced-features.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Extending Claude Code with Custom Capabilities
 
 **📖 Reading time:** ~9 minutes | **⚙️ Hands-on time:** ~40 minutes
@@ -845,3 +858,15 @@ Ready to apply these concepts? The **[Claude Code Helper](https://github.com/mic
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 7: Claude Code Intermediate](./07-claude-code-intermediate.md) | Next: [Chapter 9: Hooks and Advanced Features](./09-hooks-and-advanced-features.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 8** | Skills and Sub-Agents | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

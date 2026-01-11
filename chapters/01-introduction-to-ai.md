@@ -1,5 +1,18 @@
 # Chapter 1: Introduction to Artificial Intelligence
 
+**Part 1: AI Fundamentals**
+
+---
+
+## Navigation
+
+← Previous: [README](../README.md) | Next: [Chapter 2: Understanding LLMs and Tokens](./02-understanding-llms-and-tokens.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Welcome, DevOps Engineer!
 
 **📖 Reading time:** ~9 minutes | **⚙️ Hands-on time:** ~15 minutes
@@ -568,3 +581,15 @@ In Chapter 2, we'll dive deep into **Large Language Models (LLMs)** - the techno
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [README](../README.md) | Next: [Chapter 2: Understanding LLMs and Tokens](./02-understanding-llms-and-tokens.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 1** | Introduction to AI | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

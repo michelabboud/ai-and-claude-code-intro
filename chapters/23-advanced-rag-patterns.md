@@ -3192,4 +3192,12 @@ print(f"Cost per query: ${costs['cost_per_query']:.4f}")
 
 ---
 
-**Chapter 23** | Advanced RAG Patterns | © 2026 Michel Abboud
+## Navigation
+
+← Previous: [Chapter 22: RAG Fundamentals](./22-rag-fundamentals.md) | Next: TBD →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 23** | Advanced RAG Patterns | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

@@ -1,5 +1,18 @@
 # Chapter 10: MCP (Model Context Protocol) Fundamentals
 
+**Part 4: MCP Integration**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 9: Hooks and Advanced Features](./09-hooks-and-advanced-features.md) | Next: [Chapter 11: MCP Server Development](./11-mcp-server-development.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Connecting Claude Code to External Systems
 
 **📖 Reading time:** ~9 minutes | **⚙️ Hands-on time:** ~30 minutes
@@ -855,3 +868,15 @@ claude
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 9: Hooks and Advanced Features](./09-hooks-and-advanced-features.md) | Next: [Chapter 11: MCP Server Development](./11-mcp-server-development.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 10** | MCP Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

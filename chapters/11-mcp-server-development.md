@@ -1,5 +1,18 @@
 # Chapter 11: MCP Server Development
 
+**Part 4: MCP Integration**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 10: MCP Fundamentals](./10-mcp-fundamentals.md) | Next: [Chapter 12: AI for DevOps](./12-ai-for-devops.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Building Custom Integrations for Your Tools
 
 **📖 Reading time:** ~9 minutes | **⚙️ Hands-on time:** ~60 minutes
@@ -853,3 +866,15 @@ npm publish
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 10: MCP Fundamentals](./10-mcp-fundamentals.md) | Next: [Chapter 12: AI for DevOps](./12-ai-for-devops.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 11** | MCP Server Development | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

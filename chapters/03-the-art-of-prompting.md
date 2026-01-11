@@ -1,5 +1,18 @@
 # Chapter 3: The Art of Prompting
 
+**Part 1: AI Fundamentals**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 2: Understanding LLMs and Tokens](./02-understanding-llms-and-tokens.md) | Next: [Chapter 4: AI Models Landscape](./04-ai-models-landscape.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Mastering the Skill of Communicating with AI
 
 **📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~30 minutes
@@ -1141,3 +1154,15 @@ Prompt (uses Step 3 output):
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 2: Understanding LLMs and Tokens](./02-understanding-llms-and-tokens.md) | Next: [Chapter 4: AI Models Landscape](./04-ai-models-landscape.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 3** | The Art of Prompting | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

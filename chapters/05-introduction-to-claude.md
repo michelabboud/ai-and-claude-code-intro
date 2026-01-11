@@ -1,5 +1,18 @@
 # Chapter 5: Introduction to Claude
 
+**Part 2: The AI Ecosystem**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 4: AI Models Landscape](./04-ai-models-landscape.md) | Next: [Chapter 6: Claude Code Fundamentals](./06-claude-code-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+
 ## Meet Your AI Colleague
 
 **📖 Reading time:** ~13 minutes
@@ -1008,3 +1021,15 @@ Write a Python script that:
 **Created by**: Michel Abboud with Claude Sonnet 4.5 (Anthropic)  
 **Copyright**: © 2026 Michel Abboud. All rights reserved.  
 **License**: CC BY-NC 4.0
+
+---
+
+## Navigation
+
+← Previous: [Chapter 4: AI Models Landscape](./04-ai-models-landscape.md) | Next: [Chapter 6: Claude Code Fundamentals](./06-claude-code-fundamentals.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 5** | Introduction to Claude | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)

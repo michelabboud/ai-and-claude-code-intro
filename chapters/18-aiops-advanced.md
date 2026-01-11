@@ -1,4 +1,17 @@
 # Chapter 18: Advanced AIOps
+
+**Part 6: Multi-Agent Orchestration & AIOps**
+
+---
+
+## Navigation
+
+← Previous: [Chapter 17: AIOps Fundamentals](./17-aiops-fundamentals.md) | Next: [Chapter 19: Team Transformation](./19-team-transformation.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
 ## Auto-Remediation, Self-Healing, and Production Implementation
 
 **📖 Reading time:** ~20 minutes | **⚙️ Hands-on time:** ~120 minutes
@@ -3276,3 +3289,15 @@ In Appendix A, we'll provide:
 
 *This chapter is part of "AI and Claude Code: A Comprehensive Guide for DevOps Engineers"*
 *Author: Michel Abboud | License: CC BY-NC 4.0*
+
+---
+
+## Navigation
+
+← Previous: [Chapter 17: AIOps Fundamentals](./17-aiops-fundamentals.md) | Next: [Chapter 19: Team Transformation](./19-team-transformation.md) →
+
+**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
+
+---
+
+**Chapter 18** | Advanced AIOps | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
