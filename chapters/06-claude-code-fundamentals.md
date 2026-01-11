@@ -1428,7 +1428,432 @@ claude
 
 ---
 
-## 6.11 Chapter Summary
+## 6.11 Troubleshooting Common Issues
+
+Even with the best tools, things can go wrong. Here's how to diagnose and fix common Claude Code problems.
+
+### Issue 1: Claude Can't See My Files
+
+**Symptoms**:
+```bash
+> read src/app.js
+Claude: I don't see that file. Let me check what files are available...
+# Lists wrong directory or says file doesn't exist
+```
+
+**Causes & Solutions**:
+
+**Cause 1: Wrong working directory**
+```bash
+# Problem: Started Claude Code in wrong directory
+pwd  # Shows /home/user instead of /home/user/myproject
+
+# Solution: Exit and restart in project root
+/exit
+cd /path/to/your/project
+claude
+```
+
+**Cause 2: File outside allowed paths**
+```bash
+# Problem: Trying to access files outside project
+> read /etc/passwd
+Claude: Access denied - file outside project directory
+
+# Solution: Claude Code restricts access to:
+# - Current directory and subdirectories
+# - Home directory config (~/.claude/)
+# - Explicitly allowed paths in config
+
+# To allow additional paths, edit ~/.claude/config.json:
+{
+  "allowed_paths": [
+    "/path/to/project",
+    "/path/to/shared/configs"
+  ]
+}
+```
+
+**Cause 3: .gitignore or .claudeignore blocking files**
+```bash
+# Problem: Claude respects .gitignore by default
+# Check if file is ignored:
+git check-ignore -v src/secrets.env
+# Output: .gitignore:5:*.env    src/secrets.env
+
+# Solution 1: Override for specific session
+/config
+> respect_gitignore: false
+
+# Solution 2: Create .claudeignore (overrides .gitignore)
+# .claudeignore
+!src/secrets.env  # Allow this specific file
+```
+
+### Issue 2: Claude's Responses Are Slow or Timing Out
+
+**Symptoms**:
+- Responses take >30 seconds
+- "Request timed out" errors
+- Claude stops mid-response
+
+**Diagnostic steps**:
+```bash
+# Check your internet connection
+ping api.anthropic.com
+
+# Check API status
+curl https://status.anthropic.com
+
+# Check your token usage (might be rate-limited)
+/cost
+# Shows: "Rate limit: 45/50 requests per minute"
+```
+
+**Solutions**:
+
+**Solution 1: Reduce context size**
+```bash
+# Problem: Sending too many files in context
+> /clear  # Clear conversation history
+
+# Or: Be more specific about which files to include
+> review ONLY src/api/users.js, don't read other files
+
+# Check context window usage:
+/cost
+# Shows: "Context: 185K / 200K tokens" ← Close to limit!
+```
+
+**Solution 2: Switch to faster model**
+```bash
+# Check current model
+/model
+# Shows: "claude-opus-4-5" ← Slowest but highest quality
+
+# Switch to faster model for quick tasks
+/model sonnet  # or /model haiku for fastest
+
+# Model speed comparison:
+# Haiku:  0.5-1s per response (best for quick queries)
+# Sonnet: 1-2s per response (balanced)
+# Opus:   3-5s per response (deepest reasoning)
+```
+
+**Solution 3: Check for proxy/firewall issues**
+```bash
+# Corporate firewall blocking requests?
+# Check if you can reach Anthropic API:
+curl -I https://api.anthropic.com
+
+# If blocked, configure proxy:
+export HTTPS_PROXY=http://proxy.company.com:8080
+export HTTP_PROXY=http://proxy.company.com:8080
+
+# Or use AWS Bedrock if available:
+export CLAUDE_CODE_PROVIDER=bedrock
+export AWS_REGION=us-east-1
+```
+
+### Issue 3: Claude Makes Wrong Changes
+
+**Symptoms**:
+- Claude edits the wrong file
+- Changes break existing functionality
+- Claude misunderstands requirements
+
+**Prevention strategies**:
+
+**Strategy 1: Always ask for plan first**
+```bash
+# Instead of:
+> add error handling to the API
+
+# Do this:
+> before making changes, show me your plan for adding error handling
+
+# Review the plan, then:
+> proceed with the plan
+# OR
+> actually, also add logging. Update the plan
+```
+
+**Strategy 2: Work incrementally**
+```bash
+# Instead of:
+> refactor the entire authentication system
+
+# Do this:
+> First, show me the current structure of the auth system
+> Now suggest how to refactor it
+> Let's start with just the login function
+> Test that before moving to registration
+```
+
+**Strategy 3: Use explicit file references**
+```bash
+# Ambiguous (Claude might guess wrong file):
+> fix the database connection
+
+# Explicit (no ambiguity):
+> fix the database connection in src/db/connection.js
+```
+
+**Recovery if changes are wrong**:
+```bash
+# Option 1: Git reset (if changes were committed)
+git reset --hard HEAD~1
+
+# Option 2: Git stash (if not committed)
+git stash
+
+# Option 3: Ask Claude to revert
+> undo the last changes you made to src/api/users.js
+
+# Option 4: Manual fix
+> the error handling you added breaks the /login endpoint.
+  Remove the try-catch block from lines 45-52 only.
+```
+
+### Issue 4: "Permission Denied" Errors
+
+**Symptoms**:
+```bash
+> run npm install
+Claude: Permission denied: Cannot execute npm
+
+> write to /usr/local/bin/my-script
+Claude: Permission denied: Cannot write to /usr/local/bin
+```
+
+**Solutions**:
+
+**For command execution**:
+```bash
+# Check execution permissions
+/config
+# Look for: "allow_shell_execution": false
+
+# Enable shell execution (if disabled):
+/config
+> allow_shell_execution: true
+
+# For specific commands, you might need to:
+chmod +x script.sh  # Make script executable first
+```
+
+**For file writes**:
+```bash
+# Problem: Trying to write to protected directory
+> create a file in /etc/nginx/sites-available/
+
+# Solution 1: Use sudo (if you have permissions)
+> create the file in my home directory, I'll copy it to /etc/nginx with sudo
+
+# Solution 2: Change ownership
+sudo chown $USER /path/to/directory
+```
+
+**For project-specific restrictions**:
+```bash
+# Check .claude/config.json in project
+cat .claude/config.json
+
+# Might show:
+{
+  "read_only": true,  # ← Restricts all writes!
+  "allowed_commands": ["git", "npm test"]  # ← Only these commands allowed
+}
+
+# Modify as needed
+```
+
+### Issue 5: Claude Suggests Outdated or Incorrect Code
+
+**Symptoms**:
+- Uses deprecated APIs
+- Suggests packages that don't exist
+- Code doesn't match your project's patterns
+
+**Why this happens**:
+- Claude's training data has a cutoff date
+- Doesn't know your specific project conventions
+- May not have latest framework versions
+
+**Solutions**:
+
+**Solution 1: Provide explicit version context**
+```bash
+# Instead of:
+> create a React component
+
+# Do this:
+> create a React component using React 18 with hooks (we use functional components, not classes)
+
+# Or reference existing code:
+> create a new component similar to src/components/UserCard.jsx
+```
+
+**Solution 2: Correct and guide**
+```bash
+> The lodash method you used (_. camelCase) is deprecated.
+  Use the modern ES6 approach instead: myString.replace(/-./g, x => x[1].toUpperCase())
+
+# Claude will learn from your correction and adapt
+```
+
+**Solution 3: Provide project context file**
+```bash
+# Create .claude/project-context.md in your repo:
+# Project Context for Claude Code
+
+## Tech Stack
+- Node.js 20
+- Express 4.x
+- PostgreSQL 15
+- Jest for testing
+
+## Coding Standards
+- Use async/await, not callbacks
+- All functions must have JSDoc comments
+- Use our logger from src/utils/logger.js
+
+## Common Patterns
+- Error handling: use src/utils/errors.js ApiError class
+- Database: use src/db/connection.js pool
+- Authentication: JWT tokens, check with src/middleware/auth.js
+
+# Now Claude will reference this automatically!
+```
+
+### Issue 6: Claude Code Crashes or Freezes
+
+**Symptoms**:
+- Terminal becomes unresponsive
+- Claude Code exits unexpectedly
+- "Segmentation fault" or similar errors
+
+**Immediate recovery**:
+```bash
+# If frozen:
+Ctrl+C  # Try to cancel current operation
+
+# If that doesn't work:
+Ctrl+Z  # Suspend process
+kill %1  # Kill the suspended job
+
+# Restart:
+claude
+
+# Resume your session:
+/resume my-session-name
+```
+
+**Common causes**:
+
+**Cause 1: Out of memory**
+```bash
+# Check memory usage:
+/stats
+
+# If high memory usage:
+/clear  # Clear conversation history
+# Or restart Claude Code
+
+# Prevent by working in smaller batches:
+> analyze files in src/api/ (just this directory, not the whole project)
+```
+
+**Cause 2: Corrupted session**
+```bash
+# Delete session file and start fresh:
+rm ~/.claude/sessions/corrupted-session.json
+
+# Or clear all sessions:
+rm -rf ~/.claude/sessions/
+```
+
+**Cause 3: File system issues**
+```bash
+# Check if project directory has issues:
+cd /path/to/project && ls -la
+# If errors appear, fix filesystem issues first
+
+# Check disk space:
+df -h  # Should have at least 1GB free
+
+# Check for permission issues:
+ls -la ~/.claude/
+# Should show: drwx------ (only you can access)
+```
+
+### Issue 7: Changes Not Being Applied
+
+**Symptoms**:
+```bash
+> add logging to src/app.js
+Claude: I've added logging to src/app.js
+# But when you check the file, nothing changed
+```
+
+**Diagnostic**:
+```bash
+# Check if changes were proposed but not approved:
+# Look at Claude's output - did it show:
+# "I'll make these changes: [y/n/e]?"
+# If you said 'n', changes weren't applied!
+
+# Check if file is write-protected:
+ls -la src/app.js
+# -r--r--r-- ← Read-only! Claude can't write
+
+# Fix:
+chmod u+w src/app.js
+```
+
+**Solution**: Always review Claude's output carefully
+```bash
+# Claude will show:
+# "I'll edit src/app.js:"
+# [shows diff]
+# [y/n/e]?
+
+# You need to type 'y' and press Enter!
+
+# For auto-approval (use carefully):
+/config
+> auto_approve_edits: true  # Skip confirmation for file edits
+```
+
+### Getting Help
+
+**Built-in diagnostics**:
+```bash
+/doctor  # Checks for common configuration issues
+/help    # Shows all available commands
+/config  # Shows current configuration
+```
+
+**Check Claude Code version**:
+```bash
+claude --version
+# If outdated, update:
+npm update -g @anthropic-ai/claude-code
+```
+
+**Community resources**:
+- Official docs: https://docs.anthropic.com/claude-code
+- GitHub issues: https://github.com/anthropics/claude-code/issues
+- Changelog: Check what's new in latest version
+
+**When to file a bug report**:
+- Reproducible crashes
+- Incorrect behavior that persists after restart
+- Security issues (report privately to security@anthropic.com)
+
+---
+
+## 6.12 Chapter Summary
 
 ### Key Takeaways
 
