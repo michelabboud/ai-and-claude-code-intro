@@ -106,13 +106,18 @@ jobs:
           gh pr merge ${{ steps.create-pr.outputs.pull-request-number }} --auto --squash --repo ${{ github.repository }}
 
       - name: Auto-approve PR (if PAT available)
-        if: ${{ inputs.commit_files == 'true' && steps.create-pr.outputs.pull-request-number && secrets.PAT_FOR_PR_APPROVAL }}
+        if: ${{ inputs.commit_files == 'true' && steps.create-pr.outputs.pull-request-number }}
         env:
-          GH_TOKEN: ${{ secrets.PAT_FOR_PR_APPROVAL }}
+          GH_TOKEN: ${{ secrets.PAT_FOR_PR_APPROVAL || secrets.GITHUB_TOKEN }}
         run: |
-          echo "Approving PR #${{ steps.create-pr.outputs.pull-request-number }} with PAT"
-          gh pr review ${{ steps.create-pr.outputs.pull-request-number }} --approve --repo ${{ github.repository }}
-          echo "✅ PR approved and will auto-merge"
+          if [ -n "${{ secrets.PAT_FOR_PR_APPROVAL }}" ]; then
+            echo "Approving PR #${{ steps.create-pr.outputs.pull-request-number }} with PAT"
+            gh pr review ${{ steps.create-pr.outputs.pull-request-number }} --approve --repo ${{ github.repository }}
+            echo "✅ PR approved and will auto-merge"
+          else
+            echo "⚠️  No PAT_FOR_PR_APPROVAL secret found - skipping auto-approval"
+            echo "Manual approval required for PR to merge"
+          fi
 
       - name: PR Summary
         if: ${{ inputs.commit_files == 'true' && steps.create-pr.outputs.pull-request-number }}
