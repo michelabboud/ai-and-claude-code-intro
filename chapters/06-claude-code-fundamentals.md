@@ -217,6 +217,252 @@ windows_native:
     - "Windows ARM64 supported via x64 emulation"
 ```
 
+### Installation Method Selection: Which One Should You Use?
+
+Choosing the right installation method depends on your environment, team needs, and update preferences. Here's how to decide.
+
+#### Decision Matrix: Installation Methods
+
+| Scenario | Best Method | Why | Trade-offs |
+|----------|-------------|-----|------------|
+| **Individual developer, Node.js already installed** | npm install | Easiest updates (`npm update -g`), integrates with existing Node.js workflow | Requires Node.js 18+ |
+| **Mac user without Node.js** | Homebrew | Native package manager, automatic updates via `brew upgrade` | macOS only |
+| **Windows user** | winget | Native Windows package manager, integrates with Windows updates | Windows 11 or recent Windows 10 only |
+| **Team standardization** | npm install | Consistent across all platforms, can version-lock in package.json | Everyone needs Node.js |
+| **Air-gapped/restricted environment** | Direct download | No package manager needed, works offline | Manual updates required |
+| **Docker/containerized** | Direct download | Smallest footprint, no runtime dependencies | Must manage binaries yourself |
+
+#### Common Installation Issues and Fixes
+
+##### Issue 1: "command not found: claude" (After npm install)
+
+**Symptom**:
+```bash
+$ npm install -g @anthropic-ai/claude-code
+# Installation succeeds but...
+$ claude
+command not found: claude
+```
+
+**Cause**: npm global bin directory not in PATH
+
+**Solution**:
+```bash
+# Find where npm installs global packages
+npm config get prefix  # Example output: /usr/local
+
+# Add to PATH (bash)
+echo 'export PATH="$(npm config get prefix)/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+
+# Add to PATH (zsh)
+echo 'export PATH="$(npm config get prefix)/bin:$PATH"' >> ~/.zshrc
+source ~/.zshrc
+
+# Verify
+claude --version
+```
+
+**Alternative**: Use npx (no PATH configuration needed)
+```bash
+npx @anthropic-ai/claude-code
+```
+
+##### Issue 2: npm Permission Errors (EACCES)
+
+**Symptom**:
+```bash
+$ npm install -g @anthropic-ai/claude-code
+npm ERR! code EACCES
+npm ERR! syscall mkdir
+npm ERR! path /usr/local/lib/node_modules
+npm ERR! errno -13
+```
+
+**Cause**: Insufficient permissions for global npm directory
+
+**Solutions**:
+
+**Option 1: Fix npm permissions** (Recommended)
+```bash
+# Create a directory for global packages in your home
+mkdir ~/.npm-global
+
+# Configure npm to use the new directory
+npm config set prefix '~/.npm-global'
+
+# Add to PATH
+echo 'export PATH=~/.npm-global/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+
+# Now install (no sudo needed)
+npm install -g @anthropic-ai/claude-code
+```
+
+**Option 2: Use sudo** (Not recommended - security risk)
+```bash
+sudo npm install -g @anthropic-ai/claude-code
+# This can cause permission issues later
+```
+
+**Option 3: Use a different method** (Easiest)
+```bash
+# macOS: Use Homebrew instead
+brew install claude-code
+
+# Windows: Use winget instead
+winget install Anthropic.ClaudeCode
+
+# Linux: Download binary directly
+curl -fsSL https://claude.ai/download/claude-code/linux-x64 -o claude
+chmod +x claude && sudo mv claude /usr/local/bin/
+```
+
+##### Issue 3: Node.js Version Mismatch
+
+**Symptom**:
+```bash
+$ npm install -g @anthropic-ai/claude-code
+npm ERR! engine Unsupported engine
+npm ERR! engine Node.js version 16.x not supported
+npm ERR! Required: >=18.0.0
+```
+
+**Solution**: Upgrade Node.js
+```bash
+# Using nvm (Node Version Manager) - Recommended
+nvm install 20
+nvm use 20
+nvm alias default 20
+
+# Using Homebrew (macOS)
+brew upgrade node
+
+# Using apt (Ubuntu/Debian)
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
+# Verify
+node --version  # Should show v20.x.x or v18.x.x
+```
+
+##### Issue 4: Antivirus/Security Software Blocks Installation (Windows)
+
+**Symptom**: Installation hangs or fails with cryptic errors on Windows
+
+**Cause**: Windows Defender or enterprise antivirus blocking executable download
+
+**Solution**:
+```powershell
+# Temporarily disable real-time protection (run as Administrator)
+Set-MpPreference -DisableRealtimeMonitoring $true
+
+# Install
+winget install Anthropic.ClaudeCode
+
+# Re-enable protection
+Set-MpPreference -DisableRealtimeMonitoring $false
+
+# OR: Add exception for npm cache directory
+# Windows Defender > Virus & threat protection > Manage settings > Exclusions
+# Add: C:\Users\YourName\AppData\Local\npm-cache
+```
+
+##### Issue 5: Firewall Blocks Download
+
+**Symptom**: Installation times out or fails with network errors
+
+**Common in**: Corporate environments with restrictive firewalls
+
+**Solution**:
+```bash
+# Check if you can reach npm registry
+curl https://registry.npmjs.org/@anthropic-ai/claude-code
+
+# If blocked, configure npm to use corporate proxy
+npm config set proxy http://proxy.company.com:8080
+npm config set https-proxy http://proxy.company.com:8080
+
+# Or download binary manually and transfer
+# On machine with internet:
+curl -fsSL https://claude.ai/download/claude-code/linux-x64 -o claude
+
+# Transfer via USB/internal network
+# On target machine:
+chmod +x claude && sudo mv claude /usr/local/bin/
+```
+
+#### Update Strategies by Installation Method
+
+| Method | Update Command | Auto-update? | Check for Updates |
+|--------|---------------|--------------|-------------------|
+| **npm** | `npm update -g @anthropic-ai/claude-code` | No | `npm outdated -g` |
+| **Homebrew** | `brew upgrade claude-code` | No | `brew update && brew outdated` |
+| **winget** | `winget upgrade Anthropic.ClaudeCode` | No | `winget list --upgrade-available` |
+| **Direct download** | Re-download and replace binary | No | Check release notes manually |
+
+**Pro tip**: Set up a weekly reminder to check for updates:
+```bash
+# Add to cron (Linux/macOS)
+# Check for updates every Monday at 9am
+0 9 * * 1 npm outdated -g | grep claude-code && echo "Claude Code update available!"
+
+# Or create an alias for quick checks
+echo 'alias claude-update="npm update -g @anthropic-ai/claude-code && claude --version"' >> ~/.bashrc
+```
+
+#### Team Installation Best Practices
+
+**For Small Teams (2-10 developers)**:
+- Use npm installation for consistency
+- Document in README: "Requires Node.js 18+, install with `npm install -g @anthropic-ai/claude-code`"
+- Create onboarding script:
+```bash
+#!/bin/bash
+# setup-dev-environment.sh
+
+# Check Node.js version
+if ! node --version | grep -E "v(18|19|20|21|22)" > /dev/null; then
+    echo "Error: Node.js 18+ required"
+    exit 1
+fi
+
+# Install Claude Code
+npm install -g @anthropic-ai/claude-code
+
+# Verify
+claude --version || {
+    echo "Installation failed. Check PATH configuration."
+    exit 1
+}
+
+echo "✓ Claude Code installed successfully"
+```
+
+**For Large Teams/Enterprise**:
+- Consider hosting binaries internally (air-gapped environments)
+- Use configuration management (Ansible, Chef, Puppet) to deploy
+- Example Ansible playbook:
+```yaml
+# deploy-claude-code.yml
+- name: Install Claude Code on developer workstations
+  hosts: developers
+  tasks:
+    - name: Download Claude Code binary
+      get_url:
+        url: https://internal-repo.company.com/tools/claude-code-linux-x64
+        dest: /usr/local/bin/claude
+        mode: '0755'
+
+    - name: Verify installation
+      command: claude --version
+      register: claude_version
+
+    - name: Print version
+      debug:
+        msg: "Claude Code {{ claude_version.stdout }} installed"
+```
+
 ---
 
 ## 6.3 Authentication
@@ -264,6 +510,333 @@ export AWS_PROFILE=your-profile  # Or use IAM role
 
 # Bedrock requires appropriate IAM permissions
 # See AWS documentation for setup
+```
+
+### Authentication Security Best Practices
+
+Understanding authentication methods and their security implications is critical for DevOps teams. Here's what you need to know.
+
+#### Security Comparison: Authentication Methods
+
+| Method | Security Level | Use Case | Risk Profile |
+|--------|---------------|----------|--------------|
+| **Interactive Login** (`claude login`) | ★★★★★ High | Individual developers | Low - Tokens stored encrypted, automatic refresh |
+| **API Key in Environment Variable** | ★★★☆☆ Medium | CI/CD pipelines, automation | Medium - Visible in process list, logged in shell history |
+| **API Key in Config File** | ★★☆☆☆ Low | Not recommended | High - Plaintext file, easy to accidentally commit |
+| **AWS Bedrock (IAM Roles)** | ★★★★★ High | Enterprise production | Very Low - No long-lived credentials, AWS manages rotation |
+
+#### Method 1: Interactive Login (Recommended for Developers)
+
+**How it works**:
+```bash
+claude login
+# Opens browser → Authenticate with Anthropic → Token stored securely
+```
+
+**What happens under the hood**:
+1. Creates OAuth token tied to your Anthropic account
+2. Stores in system keychain (macOS: Keychain, Linux: Secret Service, Windows: Credential Manager)
+3. Token automatically refreshes before expiration
+4. Can be revoked from Anthropic console
+
+**Security benefits**:
+- ✅ Token never visible in shell history
+- ✅ Encrypted at rest in system keychain
+- ✅ Automatic expiration and rotation
+- ✅ Can revoke from Anthropic dashboard
+- ✅ Tied to your account (audit trail)
+
+**When to use**: Default choice for human developers working on their local machines
+
+#### Method 2: Environment Variable (For Automation)
+
+**How to set securely**:
+```bash
+# DON'T do this (exposed in shell history):
+export ANTHROPIC_API_KEY="sk-ant-api03-..."
+
+# DO this instead (prompt for key):
+read -s ANTHROPIC_API_KEY
+export ANTHROPIC_API_KEY
+
+# Or load from secure store:
+export ANTHROPIC_API_KEY=$(aws secretsmanager get-secret-value \
+    --secret-id prod/anthropic/api-key \
+    --query SecretString \
+    --output text)
+```
+
+**Security implications**:
+- ⚠️ **Visible in process list**: Anyone with access can see it via `ps aux | grep ANTHROPIC`
+- ⚠️ **Logged in shell history**: `history | grep ANTHROPIC_API_KEY` exposes it
+- ⚠️ **Inherited by child processes**: Any script/command inherits the variable
+- ⚠️ **May appear in error logs**: Stack traces can expose environment variables
+
+**When to use**: CI/CD pipelines where interactive login isn't possible
+
+**Mitigation strategies**:
+```bash
+# 1. Load from secrets manager (best practice)
+export ANTHROPIC_API_KEY=$(kubectl get secret anthropic-key -o jsonpath='{.data.key}' | base64 -d)
+
+# 2. Use dedicated service account API keys (not your personal key)
+# Create service account key at https://console.anthropic.com
+
+# 3. Restrict key permissions (read-only for production)
+# Configure in Anthropic console: API Key → Permissions → Read Only
+
+# 4. Rotate keys regularly
+# Set reminder to rotate every 90 days
+
+# 5. Never log the variable
+set +x  # Disable bash debugging before loading secrets
+export ANTHROPIC_API_KEY=$(get-secret)
+set -x  # Re-enable after loading
+```
+
+#### Method 3: Configuration File (NOT RECOMMENDED)
+
+**Why it's risky**:
+```bash
+# ~/.claude/config.json
+{
+  "api_key": "sk-ant-api03-..."  # ← Plaintext, easy to leak
+}
+```
+
+**Common leak scenarios**:
+1. **Accidental git commit**:
+   ```bash
+   git add . && git commit -m "update config"
+   # Oops, just committed API key to GitHub
+   ```
+
+2. **Backup/sync tools**:
+   ```bash
+   # Dropbox, Google Drive sync entire home directory
+   # Your API key is now in the cloud
+   ```
+
+3. **File permissions**:
+   ```bash
+   ls -la ~/.claude/config.json
+   # -rw-r--r-- ← Other users can read this!
+   ```
+
+**If you must use config file** (please don't):
+```bash
+# At minimum, restrict permissions
+chmod 600 ~/.claude/config.json  # Only you can read/write
+
+# Add to .gitignore BEFORE creating
+echo ".claude/config.json" >> ~/.gitignore
+
+# Better: Use placeholder and load at runtime
+cat > ~/.claude/config.json <<EOF
+{
+  "api_key_path": "/secure/secrets/anthropic-key"
+}
+EOF
+```
+
+#### Method 4: AWS Bedrock with IAM Roles (Best for Production)
+
+**How it works**:
+```bash
+# No API key needed! Uses AWS IAM
+export CLAUDE_CODE_PROVIDER=bedrock
+export AWS_REGION=us-east-1
+
+# Claude Code uses your AWS credentials
+# (IAM role, instance profile, or AWS_PROFILE)
+```
+
+**Security benefits**:
+- ✅ No long-lived API keys to manage
+- ✅ AWS handles credential rotation automatically
+- ✅ Fine-grained IAM permissions
+- ✅ CloudTrail audit log of all API calls
+- ✅ Can restrict by IP, VPC, time of day
+
+**Example IAM policy** (least privilege):
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "bedrock:InvokeModel"
+      ],
+      "Resource": "arn:aws:bedrock:us-east-1::foundation-model/anthropic.claude-sonnet-4-5-*",
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": ["10.0.0.0/8"]  // Only from internal network
+        },
+        "DateGreaterThan": {
+          "aws:CurrentTime": "2025-01-01T00:00:00Z"
+        },
+        "DateLessThan": {
+          "aws:CurrentTime": "2025-12-31T23:59:59Z"
+        }
+      }
+    }
+  ]
+}
+```
+
+**When to use**: Production environments, enterprise teams, compliance requirements
+
+#### Common Authentication Mistakes
+
+##### Mistake 1: Using Personal API Key in CI/CD
+
+**Problem**:
+```yaml
+# .github/workflows/ci.yml
+env:
+  ANTHROPIC_API_KEY: sk-ant-api03-your-personal-key  # ← Bad!
+```
+
+**Why it's bad**:
+- Tied to individual's account (what if they leave?)
+- Hard to rotate (need to update everywhere)
+- No separation of permissions (same key for dev and prod)
+- Audit trails show individual's name, not service
+
+**Solution**: Use service account API keys
+```yaml
+# .github/workflows/ci.yml
+env:
+  ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_SERVICE_ACCOUNT_KEY }}
+
+# Create service account at https://console.anthropic.com
+# Name it clearly: "github-actions-prod" or "ci-cd-pipeline"
+```
+
+##### Mistake 2: Committing API Keys to Git
+
+**Symptoms**: You pushed a commit and realized seconds later your API key is in the history
+
+**Immediate action**:
+```bash
+# 1. REVOKE THE KEY IMMEDIATELY
+# Go to https://console.anthropic.com/api-keys → Revoke
+
+# 2. Remove from git history (if just pushed)
+git reset --hard HEAD~1
+git push --force  # Only if no one else pulled yet
+
+# 3. If others already pulled or it's been a while:
+# Use BFG Repo Cleaner or git-filter-repo
+# See: https://rtyley.github.io/bfg-repo-cleaner/
+
+# 4. Generate new API key
+# Go to Anthropic console → Create New Key
+
+# 5. Add proper .gitignore
+echo ".env" >> .gitignore
+echo ".claude/config.json" >> .gitignore
+git add .gitignore && git commit -m "prevent api key leaks"
+```
+
+**Prevention**: Use pre-commit hooks
+```bash
+# Install pre-commit framework
+pip install pre-commit
+
+# Create .pre-commit-config.yaml
+cat > .pre-commit-config.yaml <<EOF
+repos:
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.4.0
+    hooks:
+      - id: detect-secrets
+        args: ['--baseline', '.secrets.baseline']
+EOF
+
+# Install hook
+pre-commit install
+
+# Now commits with API keys are blocked!
+```
+
+##### Mistake 3: Storing Keys in Docker Images
+
+**Problem**:
+```dockerfile
+# Dockerfile
+FROM node:20
+ENV ANTHROPIC_API_KEY=sk-ant-api03-...  # ← Baked into image!
+```
+
+**Why it's bad**:
+- Anyone with access to image can extract the key
+- Key persists even if you change it later
+- Image layers are cached and reused
+
+**Solution**: Pass secrets at runtime
+```dockerfile
+# Dockerfile (correct)
+FROM node:20
+# NO API KEY HERE!
+
+# At runtime:
+docker run -e ANTHROPIC_API_KEY=$(get-secret) myimage
+
+# Or use Docker secrets (Swarm/Kubernetes)
+kubectl create secret generic anthropic-key --from-literal=key=$(get-secret)
+
+# In pod spec:
+env:
+  - name: ANTHROPIC_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: anthropic-key
+        key: key
+```
+
+#### Team Authentication Strategy
+
+**For Development Environments**:
+```bash
+# Each developer uses their own account
+claude login
+
+# Benefits:
+# - Individual audit trails
+# - Easy to revoke if developer leaves
+# - No shared credentials to manage
+```
+
+**For Staging/Production**:
+```bash
+# Use AWS Bedrock with IAM roles (best)
+export CLAUDE_CODE_PROVIDER=bedrock
+
+# OR: Use service account API keys
+# Stored in secrets manager (AWS Secrets Manager, HashiCorp Vault, etc.)
+```
+
+**For CI/CD Pipelines**:
+```yaml
+# GitHub Actions example
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Claude Code
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_CI_KEY }}
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude "run tests"
+
+# Key best practices:
+# 1. Use GitHub Secrets (encrypted at rest)
+# 2. Limit secret access to specific workflows
+# 3. Rotate keys quarterly
+# 4. Use different keys for different environments
 ```
 
 ---
