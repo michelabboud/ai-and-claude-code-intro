@@ -70,6 +70,9 @@ Prerequisites:
 │  ├── Multi-Agent Fundamentals: Agent teams & coordination      │
 │  └── Advanced Multi-Agent: Production workflows & monitoring   │
 │                                                                │
+│  AIOPS & OBSERVABILITY (Chapter 17)                           │
+│  └── AI-Powered Monitoring: Anomaly detection, predictions    │
+│                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
 
@@ -122,6 +125,7 @@ Prerequisites:
 |---------|-------|-------------|
 | [15](./chapters/15-multi-agent-fundamentals.md) | Multi-Agent Fundamentals | Agent teams, communication protocols, specialist agents |
 | [16](./chapters/16-multi-agent-advanced.md) | Advanced Multi-Agent Workflows | Production workflows, incident response swarms, monitoring |
+| [17](./chapters/17-aiops-fundamentals.md) | AI-Powered Observability (AIOps) | Anomaly detection, predictive alerting, intelligent correlation |
 
 ---
 

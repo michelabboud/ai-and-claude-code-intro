@@ -415,6 +415,7 @@ Skills/commands can now run in isolated sub-agent contexts using `context: fork`
 | 10-11 | MCP (Model Context Protocol): fundamentals and server development |
 | 12-14 | Real-world AI for DevOps, n8n workflow automation (fundamentals and advanced) |
 | 15-16 | Multi-Agent Orchestration: agent teams, specialist agents, production swarms |
+| 17 | AI-Powered Observability (AIOps): anomaly detection, predictive alerting, alert correlation |
 
 ### Key Commands Summary
 
@@ -436,4 +437,4 @@ source src/chapter-10/shell-aliases.sh
 
 ---
 
-**Last Updated**: 2026-01-10
+**Last Updated**: 2026-01-11

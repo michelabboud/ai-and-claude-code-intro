@@ -301,110 +301,66 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 
 ### Chapter 17: AI-Powered Observability & AIOps (Priority: HIGH)
 
-**Status**: Not started
-**Estimated effort**: 4,500-5,500 words (~2-3 weeks)
+**Status**: ✅ COMPLETED (2026-01-11)
+**Actual size**: 5,500 words (~18 min reading)
+**Dependencies**: Chapters 12, 15-16 (DevOps AI, Multi-Agent Systems)
 
-#### Outline
-- [ ] **16.1 From Monitoring to Intelligence**
-  - [ ] Traditional monitoring limitations
-  - [ ] What is AIOps?
-  - [ ] Benefits: noise reduction, prediction, automation
-  - [ ] Industry adoption and ROI data
+**Note**: Focused on fundamentals - Chapter 18 will cover advanced AIOps topics
 
-- [ ] **16.2 Anomaly Detection with AI**
-  - [ ] Beyond static thresholds
-  - [ ] Time-series analysis with ML
-  - [ ] Baseline learning and drift detection
-  - [ ] Seasonal pattern recognition
-  - [ ] Code example: Claude analyzing Prometheus metrics
+#### Completed Sections
+- [x] **17.1 Introduction to AIOps**
+  - [x] Traditional monitoring limitations
+  - [x] What is AIOps?
+  - [x] Benefits: noise reduction, prediction, automation
+  - [x] Industry adoption and ROI data
 
-- [ ] **16.3 Predictive Alerting**
-  - [ ] Leading indicators of incidents
-  - [ ] Trend analysis and forecasting
-  - [ ] Capacity planning automation
-  - [ ] "Alert before failure" patterns
-  - [ ] Integration with PagerDuty/Opsgenie
+- [x] **17.2 Anomaly Detection with AI**
+  - [x] Beyond static thresholds
+  - [x] Statistical baseline + AI analysis
+  - [x] Confidence scoring and severity assessment
+  - [x] Code example: Claude analyzing Prometheus metrics
 
-- [ ] **16.4 Intelligent Alert Correlation**
-  - [ ] Grouping related alerts
-  - [ ] Root cause analysis with AI
-  - [ ] Alert fatigue reduction (case study: 80% reduction)
-  - [ ] Smart escalation policies
+- [x] **17.3 Predictive Alerting**
+  - [x] Time-series forecasting with Prophet
+  - [x] Predicting threshold breaches hours in advance
+  - [x] Proactive alert generation
+  - [x] Integration with Slack
 
-- [ ] **16.5 Auto-Remediation Workflows**
-  - [ ] Safe vs. unsafe remediations
-  - [ ] Approval gates and circuit breakers
-  - [ ] Common remediation patterns:
-    - [ ] Restart failing pods
-    - [ ] Scale up resources
-    - [ ] Clear cache
-    - [ ] Rotate credentials
-    - [ ] Rollback deployments
-  - [ ] AI decides which action to take
+- [x] **17.4 Intelligent Alert Correlation**
+  - [x] Grouping concurrent alerts (5-min window)
+  - [x] Root cause vs. symptom identification
+  - [x] Service topology awareness
+  - [x] Alert fatigue reduction (80-90%)
 
-- [ ] **16.6 Self-Healing Infrastructure**
-  - [ ] Architecture for self-healing systems
-  - [ ] Kubernetes Operators + AI
-  - [ ] Chaos engineering integration
-  - [ ] Testing self-healing before production
-  - [ ] Monitoring the monitors
+- [x] **17.5 Tool Integration Guide**
+  - [x] Prometheus + Claude AI integration
+  - [x] Grafana webhook enrichment
+  - [x] Datadog, New Relic patterns
+  - [x] Custom integrations
 
-- [ ] **16.7 Log Analysis at Scale**
-  - [ ] Structured vs. unstructured logs
-  - [ ] AI-powered log parsing
-  - [ ] Pattern detection (errors, anomalies, security)
-  - [ ] Natural language queries on logs
-  - [ ] Integration with ELK/Splunk
+- [x] **17.6 Hands-On Exercises**
+  - [x] Exercise 1: Deploy anomaly detector
+  - [x] Exercise 2: Build predictive alerting
+  - [x] Exercise 3: Implement alert correlation
 
-- [ ] **16.8 Metrics Intelligence**
-  - [ ] Prometheus + Claude integration
-  - [ ] PromQL query generation with AI
-  - [ ] Automated dashboard creation
-  - [ ] SLI/SLO recommendations
-  - [ ] Custom metric suggestions
+- [x] **17.7 Chapter Summary**
 
-- [ ] **16.9 Distributed Tracing with AI**
-  - [ ] Jaeger/Zipkin trace analysis
-  - [ ] Identifying performance bottlenecks
-  - [ ] Microservice dependency mapping
-  - [ ] AI-suggested optimizations
+#### Deferred to Chapter 18 (Advanced AIOps)
+- [ ] Auto-remediation workflows (safe vs. unsafe)
+- [ ] Self-healing infrastructure patterns
+- [ ] Log analysis at scale
+- [ ] Distributed tracing with AI
+- [ ] Production case studies (3 detailed)
 
-- [ ] **16.10 Production Implementation**
-  - [ ] **Case Study 1: E-commerce Platform**
-    - [ ] Challenge: 500+ daily false alerts
-    - [ ] Solution: AI alert correlation
-    - [ ] Result: 85% alert reduction, 60% faster MTTR
-
-  - [ ] **Case Study 2: SaaS Startup**
-    - [ ] Challenge: Unplanned downtime cost $50K/incident
-    - [ ] Solution: Predictive alerting + auto-remediation
-    - [ ] Result: 90% reduction in customer-impacting incidents
-
-  - [ ] **Case Study 3: Financial Services**
-    - [ ] Challenge: Compliance requires 99.99% uptime
-    - [ ] Solution: Self-healing Kubernetes cluster
-    - [ ] Result: Zero downtime for 6 months
-
-- [ ] **16.11 Tool Integration Guide**
-  - [ ] Datadog + Claude Code
-  - [ ] New Relic + n8n workflows
-  - [ ] Grafana alerts → AI analysis
-  - [ ] Splunk queries with AI assistance
-  - [ ] Custom integrations
-
-- [ ] **16.12 Hands-On Exercises**
-  - [ ] Exercise 1: Build anomaly detection for your metrics
-  - [ ] Exercise 2: Create auto-remediation workflow
-  - [ ] Exercise 3: AI-powered log analysis dashboard
-
-- [ ] **16.13 Chapter Summary**
-
-#### Code Examples
-- [ ] `src/chapter-16/anomaly-detection/prometheus-ai-analyzer.py`
-- [ ] `src/chapter-16/remediation/auto-heal-kubernetes.yaml`
-- [ ] `src/chapter-16/log-analysis/structured-log-parser.py`
-- [ ] `src/chapter-16/workflows/predictive-alerting.json` (n8n)
-- [ ] `src/chapter-16/dashboards/grafana-ai-dashboard.json`
+#### Code Examples Created
+- [x] `src/chapter-17/anomaly-detector/anomaly_detector.py` (~400 lines)
+- [x] `src/chapter-17/predictive-alerting/predictive_alerter.py` (~450 lines)
+- [x] `src/chapter-17/alert-correlation/alert_correlator.py` (~400 lines)
+- [x] `src/chapter-17/monitoring-integration/prometheus_ai.py` (~350 lines)
+- [x] `src/chapter-17/monitoring-integration/grafana_webhook.py` (~350 lines)
+- [x] `src/chapter-17/README.md` - Complete usage guide
+- [x] `src/chapter-17/requirements.txt` - Python dependencies
+- [x] Sample data files (alerts.json, service-topology.yaml)
 
 ---
 
