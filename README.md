@@ -119,13 +119,26 @@ Prerequisites:
 | [13](./chapters/13-n8n-fundamentals.md) | n8n Fundamentals | Workflow automation, installation, DevOps patterns |
 | [14](./chapters/14-n8n-advanced.md) | Advanced n8n Workflows | AI integration, production deployment, complex automations |
 
-### Part 6: Multi-Agent Orchestration
+### Part 6: Multi-Agent Orchestration & AIOps
 
 | Chapter | Title | Description |
 |---------|-------|-------------|
 | [15](./chapters/15-multi-agent-fundamentals.md) | Multi-Agent Fundamentals | Agent teams, communication protocols, specialist agents |
 | [16](./chapters/16-multi-agent-advanced.md) | Advanced Multi-Agent Workflows | Production workflows, incident response swarms, monitoring |
-| [17](./chapters/17-aiops-fundamentals.md) | AI-Powered Observability (AIOps) | Anomaly detection, predictive alerting, intelligent correlation |
+| [17](./chapters/17-aiops-fundamentals.md) | AIOps Fundamentals | Anomaly detection, predictive alerting, intelligent correlation |
+| [18](./chapters/18-aiops-advanced.md) | Advanced AIOps | Auto-remediation, self-healing, chaos engineering, production implementation |
+
+### Part 7: Implementation & Leadership
+
+| Chapter | Title | Description |
+|---------|-------|-------------|
+| [19](./chapters/19-team-transformation.md) | Team Transformation | Leading organizational change, upskilling teams, measuring success |
+
+### Appendices
+
+| Appendix | Title | Description |
+|----------|-------|-------------|
+| [A](./appendices/appendix-a-platform-blueprint.md) | AI DevOps Platform Blueprint | Complete reference architecture, tech stacks, roadmap, cost modeling |
 
 ---
 
@@ -162,28 +175,33 @@ Read only the essential sections and TL;DRs:
 
 ---
 
-### 📖 Complete Path (12-15 hours)
+### 📖 Complete Path (15-20 hours)
 **For comprehensive understanding and mastery**
 
-Read all chapters in order, complete all exercises, and build your own:
+Read all 19 chapters in order, complete all exercises, and build your own:
 - Custom commands for your team
 - MCP servers for your tools
 - Automated workflows with hooks
+- Multi-agent orchestration systems
+- Production AIOps platform with auto-remediation
+- Team transformation strategies
 
-**Perfect for**: Team leads, those building AI tooling, comprehensive learning
+**Perfect for**: Team leads, platform engineers, those building AI-powered DevOps platforms
 
 ---
 
-### 🎯 Practical Path (6-8 hours)
+### 🎯 Practical Path (8-12 hours)
 **Skip theory, focus on hands-on**
 
 1. Skim Chapters 1-2 for basics
 2. Read Chapter 3 (CRAFT Framework) fully
 3. **Do all exercises** in Chapters 6-9
-4. Read Chapters 12-13, implement 3 real-world workflows
-5. Build your own commands, hooks, and n8n workflows
+4. Read Chapters 12-14, implement 3 real-world workflows
+5. Explore Chapters 17-18 for advanced AIOps patterns
+6. Review Appendix A for production platform architecture
+7. Build your own commands, hooks, workflows, and auto-remediation systems
 
-**Perfect for**: Learn-by-doing DevOps engineers
+**Perfect for**: Learn-by-doing DevOps engineers, SREs building AI-powered platforms
 
 ---
 
@@ -231,6 +249,9 @@ claude
 - Configure custom commands (Chapter 7)
 - Set up MCP servers for your tools (Chapters 10-11)
 - Build automation workflows (Chapters 12-14)
+- Implement multi-agent orchestration (Chapters 15-16)
+- Deploy production AIOps with auto-remediation (Chapters 17-18)
+- Lead team transformation (Chapter 19)
 
 ---
 
@@ -241,7 +262,7 @@ ai-and-claude-code-intro/
 ├── README.md                    # This file
 ├── LICENSE                      # CC BY-NC 4.0 License
 ├── CONTRIBUTING.md              # Contributor guidelines
-├── chapters/                    # Guide content (16 chapters)
+├── chapters/                    # Guide content (19 chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -257,7 +278,12 @@ ai-and-claude-code-intro/
 │   ├── 13-n8n-fundamentals.md
 │   ├── 14-n8n-advanced.md
 │   ├── 15-multi-agent-fundamentals.md
-│   └── 16-multi-agent-advanced.md
+│   ├── 16-multi-agent-advanced.md
+│   ├── 17-aiops-fundamentals.md
+│   ├── 18-aiops-advanced.md
+│   └── 19-team-transformation.md
+├── appendices/                  # Reference architectures and blueprints
+│   └── appendix-a-platform-blueprint.md
 ├── presentations/               # Slides for each chapter
 │   ├── *.md                     # Marp source files
 │   └── pptx/                    # Generated PowerPoint files
@@ -277,7 +303,9 @@ ai-and-claude-code-intro/
 │   ├── chapter-13/              # n8n workflow examples
 │   ├── chapter-14/              # Advanced n8n workflows
 │   ├── chapter-15/              # Multi-agent fundamentals (coordination, agents)
-│   └── chapter-16/              # Advanced multi-agent (swarms, monitoring)
+│   ├── chapter-16/              # Advanced multi-agent (swarms, monitoring)
+│   ├── chapter-17/              # AIOps fundamentals (monitoring integration)
+│   └── chapter-18/              # Advanced AIOps (auto-remediation, self-healing)
 └── assets/                      # Images and diagrams
 ```
 
