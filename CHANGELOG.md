@@ -7,6 +7,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.1] - 2026-01-11
+
+### Fixed - Chapter Consistency and Navigation
+
+- **Standardized navigation across all 23 chapters**
+  - Added consistent top navigation to all chapters with Part headers
+  - Added consistent bottom navigation to all chapters
+  - Separated Quick Nav to its own line for improved readability
+  - Fixed navigation links to match actual chapter filenames
+
+- **Standardized footers with licensing**
+  - Updated all chapter footers to include CC BY-NC 4.0 license link
+  - Format: `**Chapter X** | Title | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)`
+  - Ensures proper attribution and licensing visibility
+
+- **Created automated maintenance tools**
+  - `src/fix_all_chapters.py` - Automated script to standardize navigation and footers
+  - `src/check_chapter_consistency.py` - Validation script to check all chapters for consistency
+  - `src/analyze_chapters.py` - Analysis script for word counts and code-to-text ratios
+  - `CHAPTER_CONSISTENCY_REPORT.md` - Comprehensive report of all chapters with statistics
+
+### Technical Details
+
+**Issues Fixed**: 41 consistency issues (22 missing top nav, 11 missing bottom nav, 8 missing footers)
+**Chapters Updated**: All 23 chapters
+**New Scripts**: 3 Python automation scripts for chapter maintenance
+**Format Standard**: Based on Chapter 23 as the gold standard template
+
 ## [1.3.0] - 2026-01-11
 
 ### Added - Retrieval-Augmented Generation (Chapters 22-23)
