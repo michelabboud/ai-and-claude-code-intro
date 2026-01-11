@@ -22,11 +22,13 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 
 ## 🎯 Phase 1: Core Content Expansion (2-4 weeks)
 
-### Chapter 15: Multi-Agent Orchestration (Priority: HIGH)
+### Chapter 15: Multi-Agent Orchestration - Fundamentals (Priority: HIGH)
 
-**Status**: Not started
-**Estimated effort**: 4,000-5,000 words (~2 weeks)
+**Status**: ✅ COMPLETED (2026-01-11)
+**Actual size**: 3,053 words (~12 min reading)
 **Dependencies**: Chapters 8-9 (Skills and Sub-Agents)
+
+**Note**: Split into two chapters for better digestibility
 
 #### Outline
 - [ ] **15.1 Introduction to Multi-Agent Systems**
@@ -249,11 +251,55 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 - [ ] `appendices/platform-blueprint/workflows/` - Sample n8n workflows
 - [ ] `appendices/platform-blueprint/IMPLEMENTATION_GUIDE.md`
 
+
+---
+
+### Chapter 16: Advanced Multi-Agent Workflows (Priority: HIGH)
+
+**Status**: ✅ COMPLETED (2026-01-11)
+**Actual size**: 2,670 words (~11 min reading)
+**Dependencies**: Chapter 15 (Multi-Agent Fundamentals)
+
+**Note**: Continuation of Chapter 15 focusing on production implementation
+
+#### Completed Sections
+- [x] **16.1 Production Multi-Agent Workflows**
+  - [x] Example 1: Intelligent Incident Response Swarm
+  - [x] Example 2: Automated Code Review Pipeline
+  - [x] Example 3: Multi-Cloud Cost Optimization Squad
+  
+- [x] **16.2 Monitoring and Observability**
+  - [x] Agent metrics with Prometheus
+  - [x] Grafana dashboards
+  
+- [x] **16.3 Implementation with n8n**
+  - [x] Multi-agent workflow design
+  - [x] Complete n8n workflow export
+  
+- [x] **16.4 Hands-On Exercises**
+  - [x] Exercise 1: 3-agent code review system
+  - [x] Exercise 2: Incident response swarm
+  - [x] Exercise 3: Multi-cloud cost optimization
+  
+- [x] **16.5 Best Practices and Pitfalls**
+  - [x] When NOT to use multiple agents
+  - [x] Avoiding circular dependencies
+  - [x] Token budget management
+  
+- [x] **16.6 Chapter Summary**
+
+#### Code Examples Created
+- Complete Python implementation for incident response swarm
+- Code review pipeline GitHub Actions workflow
+- Multi-cloud cost optimization framework
+- Prometheus metrics exporters
+- n8n workflow exports
+
 ---
 
 ## 🚀 Phase 2: Advanced Topics (1-2 months)
 
-### Chapter 16: AI-Powered Observability & AIOps (Priority: HIGH)
+### Chapter 17: AI-Powered Observability & AIOps (Priority: HIGH)
 
 **Status**: Not started
 **Estimated effort**: 4,500-5,500 words (~2-3 weeks)
@@ -362,7 +408,7 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 
 ---
 
-### Chapter 17: The AI DevOps Team Transformation (Priority: MEDIUM)
+### Chapter 18: The AI DevOps Team Transformation (Priority: MEDIUM)
 
 **Status**: Not started
 **Estimated effort**: 3,500-4,000 words (~1-2 weeks)
@@ -453,7 +499,7 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 
 ---
 
-### Chapter 18: The Future - Autonomous DevOps (Priority: LOW)
+### Chapter 19: The Future - Autonomous DevOps (Priority: LOW)
 
 **Status**: Not started
 **Estimated effort**: 2,500-3,000 words (~1 week)
