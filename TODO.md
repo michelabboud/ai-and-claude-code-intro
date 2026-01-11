@@ -615,9 +615,8 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 
 ### Q2 2026 (Apr-Jun)
 - [ ] Enhanced gamification (challenges 5-15)
-- [ ] Presentation slides for Chapters 15-19
+- [x] Presentation slides for Chapters 15-19 ✅
 - [ ] Interactive cloud labs (Labs 1-3)
-- [ ] Video series (10 videos)
 - [ ] Appendix B: Real-world case studies
 - [ ] Chapter 20: The Future (optional)
 
@@ -627,6 +626,7 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
 - [ ] Community building (Discord, newsletter)
 
 ### Q4 2026 (Oct-Dec)
+- [ ] Video series (10 videos) - Deferred from Q2
 - [ ] Certification program
 - [ ] Community building initiatives
 - [ ] v2.0.0 release (The Ultimate Guide)
@@ -693,6 +693,14 @@ This document tracks planned additions to make "AI and Claude Code" the **ultima
   - Enhanced Chapter 16 based on feedback (+139% expansion)
   - Guide now comprehensive: 19 chapters + appendix = v1.2.0
   - Next priority: Presentation slides for chapters 15-19
+
+- **2026-01-11 (Late Evening)**: Presentation slides COMPLETED ✅
+  - Created slides-chapter-15-16.md (Multi-Agent Orchestration)
+  - Created slides-chapter-17-18.md (AIOps)
+  - Created slides-chapter-19.md (Team Transformation)
+  - Total: 160+ slides across 3 presentation decks
+  - Fixed GitHub Actions workflow to create PRs (respects branch protection)
+  - Decision: Defer video series to Q4 (high effort, validate demand first)
 
 ### Open Questions
 - [ ] Should we create separate guides for different company sizes?
