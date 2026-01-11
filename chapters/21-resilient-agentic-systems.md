@@ -3926,6 +3926,242 @@ Step 4: Verifying fix...
 💾 Checkpoint saved: step 4
 ```
 
+### From Development to Production: A Staged Rollout Strategy
+
+Implementing all these resilience patterns at once is overwhelming and risky. Here's how successful teams deploy resilient agents incrementally.
+
+#### The 4-Stage Rollout
+
+**Stage 1: Development (Week 1) - Basic Resilience**
+
+```yaml
+Implement:
+  ✅ Circuit Breaker (most critical pattern)
+  ✅ Simple retry logic (max_retries=3)
+  ✅ Basic logging
+
+Skip for now:
+  ⏸️ Idempotency (will add in Stage 2)
+  ⏸️ Checkpointing (Stage 3)
+  ⏸️ Graceful degradation (Stage 4)
+
+Test in:
+  - Local development environment
+  - Synthetic failure injection
+
+Goal: Agent doesn't crash or loop
+Time: 4-6 hours
+Success metric: Zero crashes in 100 test runs
+```
+
+**Stage 2: Staging (Week 2) - Add Idempotency**
+
+```yaml
+Add:
+  ✅ Idempotency checks before all state-changing operations
+  ✅ Action deduplication
+  ✅ Enhanced error messages
+
+Test in:
+  - Staging environment with real(ish) data
+  - Chaos engineering (kill agent mid-execution)
+
+Goal: Safe to retry any operation
+Time: 6-8 hours
+Success metric: Agent recovers correctly from 10 random kills
+```
+
+**Stage 3: Pre-Production (Week 3) - Long-Running Workflows**
+
+```yaml
+Add:
+  ✅ Checkpointing for multi-step workflows
+  ✅ State persistence (Redis/PostgreSQL)
+  ✅ Recovery workflow testing
+
+Test in:
+  - Pre-production environment
+  - Simulate extended failures (database down for 10 min)
+
+Goal: Resume from any failure point
+Time: 8-12 hours
+Success metric: Complete 20-minute workflow despite 3 random crashes
+```
+
+**Stage 4: Production (Week 4+) - Polish & Monitor**
+
+```yaml
+Add:
+  ✅ Graceful degradation for non-critical features
+  ✅ Self-healing capabilities
+  ✅ Production monitoring dashboards
+  ✅ Automated alerting
+
+Deploy:
+  - Start with 5% traffic
+  - Monitor for 48 hours
+  - Increase to 25% → 50% → 100% over 2 weeks
+
+Goal: Production-hardened agent
+Time: 12-16 hours
+Success metric: 99.9% success rate over 1 month
+```
+
+#### Rollback Strategy (Critical for Production)
+
+```yaml
+Plan your rollback BEFORE deploying:
+
+Quick Rollback (< 5 minutes):
+  Problem: Agent causing cascading failures
+  Action:
+    - Disable agent (feature flag or kill switch)
+    - Rollback to previous version
+    - Investigate offline
+
+Partial Rollback (10-30 minutes):
+  Problem: Specific pattern causing issues (e.g., checkpointing)
+  Action:
+    - Disable problematic pattern
+    - Keep running with remaining patterns
+    - Fix and redeploy only that pattern
+
+No Rollback Needed (The goal!):
+  Situation: All patterns working correctly
+  Evidence:
+    - Error rate <0.1%
+    - No loops detected
+    - Cost within budget
+    - Team confidence high
+```
+
+#### Common Deployment Mistakes
+
+**Mistake 1: Big Bang Deployment**
+
+```yaml
+Bad approach:
+  Monday: Write all 6 patterns
+  Friday: Deploy to production
+  Saturday: Agent causes outage
+  Sunday: Rollback, team loses confidence
+
+Result: 40 hours wasted, agent shelved for months
+
+Better approach:
+  Week 1: Circuit breaker only → deploy to dev
+  Week 2: Add retry → deploy to staging
+  Week 3: Add idempotency → deploy to pre-prod
+  Week 4: Add checkpointing → deploy to prod (5% traffic)
+
+Result: Same time investment, but incremental confidence building
+```
+
+**Mistake 2: No Monitoring Before Patterns**
+
+```yaml
+Problem:
+  Deploy resilient agent without baseline metrics
+  Can't tell if patterns are working or causing issues
+
+Fix:
+  Before implementing ANY patterns:
+    1. Add basic metrics (success/failure counts)
+    2. Run agent for 1 week
+    3. Establish baseline (90% success rate? 95%?)
+    4. Then add resilience patterns
+    5. Measure improvement (95% → 99%?)
+
+This proves ROI of resilience investment
+```
+
+**Mistake 3: Over-Engineering for Low-Stakes Agents**
+
+```yaml
+Scenario: Documentation generation agent
+  - Runs once per day
+  - Failure just means docs delayed by 24 hours
+  - Total cost: $5/month
+
+Over-engineering:
+  Implement all 6 patterns (40 hours of work)
+  Complex monitoring (8 hours)
+  Total: 48 hours × $150/hr = $7,200 investment
+
+ROI calculation:
+  Prevented failures: ~1/month
+  Time saved per failure: 5 minutes
+  Annual savings: 12 failures × 5 min × $150/hr = $150
+
+  ROI: ($150 - $7,200) / $7,200 = -98% (terrible!)
+
+Right-sizing:
+  Implement: Circuit breaker + retry only (4 hours)
+  Skip: Idempotency, checkpointing, etc.
+  Cost: $600
+  ROI: Still negative, but reasonable for peace of mind
+```
+
+#### Measuring Resilience Success
+
+```yaml
+Track these metrics to prove resilience patterns are working:
+
+Pre-Resilience Baseline (Week 0):
+  Success rate: 85%
+  Average failures per day: 15
+  Manual interventions: 3/week
+  Downtime: 2 hours/month
+  Team confidence: Low
+
+Post-Resilience (Week 6):
+  Success rate: 99.5%
+  Average failures per day: 0.5 (handled automatically)
+  Manual interventions: 0.2/week
+  Downtime: 5 minutes/month
+  Team confidence: High
+
+ROI Calculation:
+  Development time: 40 hours × $150 = $6,000
+  Manual intervention time saved: 3 hrs/week × 52 weeks × $150 = $23,400
+  Downtime cost saved: (2 hrs - 0.08 hrs) × 12 months × $2,000/hr = $46,080
+
+  Total value: $69,480
+  Net ROI: ($69,480 - $6,000) / $6,000 = 1,058%
+
+  Conclusion: Resilience patterns pay for themselves in ~2 weeks
+```
+
+#### Team Adoption Strategy
+
+```yaml
+Phase 1: Proof of Concept (1 engineer, 1 week)
+  - Choose least critical agent
+  - Implement basic resilience (circuit breaker + retry)
+  - Demo improvement to team
+
+Phase 2: Template Creation (2 engineers, 2 weeks)
+  - Extract resilience patterns into reusable library
+  - Document integration guide
+  - Create before/after examples
+
+Phase 3: Team Rollout (All engineers, 4 weeks)
+  - Train team on patterns (2-hour workshop)
+  - Each engineer upgrades 1-2 agents
+  - Weekly sync to share learnings
+
+Phase 4: Standard Practice (Ongoing)
+  - All new agents include resilience from day 1
+  - Peer review checks for pattern usage
+  - Metrics dashboard shows agent health
+```
+
+**Success indicators:**
+- ✅ All production agents have at least circuit breaker + retry
+- ✅ High-risk agents have full resilience suite
+- ✅ Team can implement basic resilience in <4 hours
+- ✅ Agent failure rate <1%
+
 ### Key Architectural Decisions
 
 **1. Circuit Breaker Placement**
