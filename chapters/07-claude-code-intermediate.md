@@ -829,6 +829,153 @@ claude
 
 ## 7.3 Claude Code in the Browser
 
+### Browser vs CLI Decision Guide
+
+Understanding when to use the browser versus CLI version of Claude Code is crucial for productivity. Each has distinct strengths, and choosing correctly can save significant time.
+
+#### Workflow Comparison
+
+**Scenario 1: Quick Code Review (5-10 minutes)**
+
+**Browser wins:**
+```
+Situation: Your teammate sends you a PR link during a meeting
+You're on a work laptop without Claude Code installed
+
+Browser workflow:
+1. Click PR link → Open in claude.ai
+2. Copy code snippets or upload files
+3. Ask Claude for review
+4. Share findings in PR comments
+Total time: 2 minutes
+
+CLI workflow:
+1. Install Node.js and Claude Code
+2. Clone the repository
+3. Start Claude Code session
+4. Navigate to files
+Total time: 15+ minutes (if not already set up)
+
+Decision: Use browser
+```
+
+**Scenario 2: Multi-File Refactoring (30+ minutes)**
+
+**CLI wins:**
+```
+Situation: Refactoring authentication across 15 files
+Need to run tests after each change
+Must commit incrementally
+
+CLI workflow:
+1. claude (already installed)
+2. "Refactor auth to use JWT across the codebase"
+3. Claude modifies files, you review diffs
+4. Run tests directly
+5. Git commit with Claude's help
+Total time: 30 minutes
+
+Browser workflow:
+1. Upload 15 files individually
+2. Ask Claude for changes
+3. Download modified files
+4. Manually copy changes to local files
+5. Switch to terminal for tests
+6. Switch back to browser for next change
+Total time: 90+ minutes (tedious manual work)
+
+Decision: Use CLI
+```
+
+**Scenario 3: Learning/Exploring New Code**
+
+**Browser wins:**
+```
+Situation: Understanding how an open-source library works
+No need to modify anything
+Just want explanations
+
+Browser workflow:
+1. Clone repo or download files
+2. Drag folder into claude.ai
+3. Ask questions, get visual explanations
+4. See syntax-highlighted code with inline comments
+Total time: 5 minutes
+
+CLI workflow:
+Same effectiveness, but terminal-only interface
+Less visual, more typing
+
+Decision: Use browser for visual learning
+```
+
+**Scenario 4: DevOps Incident Response**
+
+**CLI wins:**
+```
+Situation: Production API is down
+Need to check logs, restart services, verify configs
+
+CLI workflow:
+1. SSH to server or use kubectl
+2. Start Claude Code in terminal
+3. "Check recent logs for errors"
+4. Claude runs commands, analyzes output
+5. "Restart the service and verify health"
+6. All actions happen immediately
+Total time: Minutes
+
+Browser workflow:
+1. Copy logs to local machine
+2. Upload to claude.ai
+3. Get analysis
+4. Switch to terminal to run commands
+5. Copy new logs back for verification
+Total time: Much longer (constant context switching)
+
+Decision: Use CLI for operational tasks
+```
+
+#### Team Collaboration Patterns
+
+**Pattern 1: Distributed Team Code Review**
+
+Use **browser** for async review and sharing:
+- Create review session in browser
+- Share claude.ai URL with team
+- Team members can see the conversation context
+- No local setup required for reviewers
+
+**Pattern 2: Pair Programming**
+
+Use **CLI** for real-time collaboration:
+- Screen share your terminal
+- Both developers can suggest prompts
+- Changes happen in real-time in the actual codebase
+- Run tests immediately to verify
+
+**Pattern 3: Onboarding New Engineers**
+
+Use **browser** initially, migrate to **CLI**:
+- Week 1: Browser for learning codebase (low friction)
+- Week 2: Install CLI for actual development
+- Week 3+: Primarily CLI with browser for documentation
+
+#### Decision Matrix Summary
+
+| Factor | Browser Better | CLI Better |
+|--------|---------------|------------|
+| **Installation** | ✅ Zero setup | ❌ Requires npm/node |
+| **Quick tasks** | ✅ Instant access | Neutral |
+| **Multi-file changes** | ❌ Manual sync | ✅ Automatic |
+| **Running commands** | ❌ Not possible | ✅ Full shell access |
+| **Visual learning** | ✅ Syntax highlighting | Neutral |
+| **Git integration** | ❌ Manual | ✅ Automatic |
+| **Automation/CI** | ❌ Not suitable | ✅ Scriptable |
+| **Cost** | Same | Same |
+
+**Rule of thumb**: If you'll run any commands or modify more than 2-3 files, use CLI. Otherwise, browser is often faster.
+
 ### Claude Code Web Interface
 
 Claude Code is also available in browser at **claude.ai** with enhanced capabilities.
@@ -905,6 +1052,202 @@ cli_claude_code:
 ---
 
 ## 7.4 IDE Integration
+
+### IDE Integration Strategy
+
+Choosing how to integrate Claude Code with your development environment significantly impacts your workflow. Here's how to decide which approach fits your needs.
+
+#### Comparison Matrix: All IDE Options
+
+| Factor | VS Code Extension | JetBrains Plugin | Vim/Neovim Plugin | CLI + tmux | Browser (claude.ai) |
+|--------|------------------|------------------|-------------------|------------|---------------------|
+| **Setup Complexity** | Low (1-click install) | Low (marketplace) | Medium (config) | Low (native) | None |
+| **Context Awareness** | ✅ Full workspace | ✅ Full project | ✅ Full project | ✅ Full file system | ❌ Manual upload |
+| **Inline Suggestions** | ✅ Yes | ✅ Yes | ⚠️ Limited | ❌ No | ❌ No |
+| **Command Execution** | ✅ Yes | ✅ Yes | ✅ Yes | ✅ Native | ❌ No |
+| **Performance** | Fast | Fast | Very fast | Fastest | Depends on network |
+| **Keyboard Shortcuts** | Customizable | Customizable | Native Vim | Full control | Limited |
+| **Team Sharing** | ❌ Local only | ❌ Local only | ❌ Local only | ❌ Local only | ✅ Shareable URLs |
+| **Learning Curve** | Low | Low | High | Medium | None |
+| **Best For** | General dev | IntelliJ users | Vim experts | Terminal power users | Quick reviews |
+
+#### Decision Criteria for Choosing Integration
+
+**Choose VS Code Extension when:**
+- You primarily use VS Code for development
+- You want visual diff views for changes
+- You prefer mouse + keyboard workflows
+- You want inline code suggestions while typing
+- Your team uses VS Code (consistent experience)
+
+**Real scenario**: React developer working on frontend, wants to see syntax highlighting and component previews while asking Claude about refactoring.
+
+**Choose JetBrains Plugin when:**
+- You use IntelliJ, PyCharm, or other JetBrains IDEs
+- You need language-specific refactoring tools
+- You prefer integrated debugger + Claude workflows
+- Your team standardizes on JetBrains
+
+**Real scenario**: Java developer using IntelliJ's advanced refactoring tools wants Claude's help without leaving the IDE.
+
+**Choose Vim/Neovim Plugin when:**
+- You're a Vim power user and won't switch
+- You have custom Vim workflows and keybindings
+- You work primarily over SSH (terminal-based)
+- You value keyboard-only workflows
+
+**Real scenario**: SRE who lives in terminal, SSH'd into multiple servers, uses tmux + vim for all work.
+
+**Choose CLI + tmux when:**
+- You work across multiple editors/tools
+- You want editor-agnostic workflow
+- You frequently switch between code and terminal commands
+- You do significant DevOps/infrastructure work
+
+**Real scenario**: DevOps engineer who switches between Terraform files (VS Code), Kubernetes configs (vim), and shell scripts (nano), wants Claude available regardless of editor.
+
+**Choose Browser (claude.ai) when:**
+- You don't have local setup permission (corporate laptop)
+- You're doing quick reviews without needing to run code
+- You want to share sessions with non-technical stakeholders
+- You're on a machine you don't control
+
+**Real scenario**: Security auditor reviewing code on multiple client systems, can't install tools, needs to share findings with clients.
+
+#### Integration Workflow Patterns
+
+**Pattern 1: Hybrid Workflow (Most Flexible)**
+
+```yaml
+Primary: VS Code Extension
+  - Daily development
+  - Code writing and refactoring
+  - Quick questions
+
+Backup: CLI in Terminal Pane
+  - When you need to run complex shell commands
+  - For automated scripts
+  - When VS Code extension has issues
+
+Occasional: Browser
+  - Sharing findings with team
+  - Working from untrusted machines
+  - Quick reviews during meetings
+```
+
+**Pattern 2: Terminal-First Workflow (Power Users)**
+
+```yaml
+Primary: CLI + tmux
+  Layout:
+    - Pane 1: Editor (vim/emacs)
+    - Pane 2: Claude Code CLI
+    - Pane 3: Shell for commands
+    - Pane 4: Test runner/logs
+
+  Workflow:
+    1. Edit code in Pane 1
+    2. Ask Claude in Pane 2
+    3. Claude suggests changes
+    4. Apply in Pane 1
+    5. Test in Pane 3, monitor in Pane 4
+```
+
+**Pattern 3: IDE-Centric Workflow (Visual Developers)**
+
+```yaml
+Primary: IDE Extension (VS Code/JetBrains)
+  - Never leave the IDE
+  - Use inline suggestions
+  - Visual diff reviews
+  - Integrated terminal for commands Claude runs
+
+Workflow:
+  1. Select code → Right click → "Ask Claude"
+  2. Review inline suggestions
+  3. Accept/reject with keyboard shortcuts
+  4. Use IDE's built-in git tools for commits
+```
+
+#### Common Integration Mistakes
+
+**Mistake 1: Running Multiple Instances Simultaneously**
+
+```
+Problem: Running VS Code extension AND CLI at the same time
+Result: Confusing context, doubled API costs, conflicts
+
+Solution: Choose ONE primary interface per work session
+```
+
+**Mistake 2: Not Configuring Keybindings**
+
+```
+Problem: Using default keybindings that conflict with your workflow
+Result: Constant friction, slower than necessary
+
+Solution:
+VS Code: Settings → Claude Code → Keybindings
+- Avoid conflicts with your existing shortcuts
+- Use memorable patterns (Ctrl+Shift+C for Claude)
+```
+
+**Mistake 3: Forgetting to Set Up Project Context**
+
+```
+Problem: IDE extension doesn't know about your project structure
+Result: Claude suggests code that doesn't match your patterns
+
+Solution:
+- Add .claude/config.json with project instructions
+- Configure include/exclude patterns
+- Use @-mentions for critical files
+```
+
+#### Migration Paths
+
+**From Browser → IDE Integration:**
+
+```yaml
+Week 1: Learn in browser
+  - No setup, focus on understanding Claude Code
+  - Try different prompt styles
+  - Learn what works
+
+Week 2: Install IDE extension
+  - Install in your IDE
+  - Configure with same patterns from browser
+  - Use for simple tasks first
+
+Week 3+: Full IDE workflow
+  - Make IDE extension your primary interface
+  - Keep browser for team sharing
+  - Optimize keybindings for speed
+```
+
+**From IDE Extension → CLI (for Automation):**
+
+```yaml
+Phase 1: Recognize the need
+  - You find yourself repeating same commands
+  - You want to script reviews
+  - You need CI/CD integration
+
+Phase 2: Learn CLI basics
+  - Install CLI: npm install -g @anthropic-ai/claude-code
+  - Try same commands from IDE in CLI
+  - Compare workflows
+
+Phase 3: Automate
+  - Create scripts for repetitive tasks
+  - Add to pre-commit hooks
+  - Integrate into GitHub Actions
+
+Phase 4: Hybrid approach
+  - IDE for interactive development
+  - CLI for automation and scripts
+  - Best of both worlds
+```
 
 ### VS Code Integration
 
