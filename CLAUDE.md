@@ -19,7 +19,7 @@ This is **"AI and Claude Code: A Comprehensive Guide for DevOps Engineers"** - a
 
 ```
 ai-and-claude-code-intro/
-├── chapters/                    # Main guide content (14 markdown chapters)
+├── chapters/                    # Main guide content (16 markdown chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -33,7 +33,9 @@ ai-and-claude-code-intro/
 │   ├── 11-mcp-server-development.md
 │   ├── 12-ai-for-devops.md
 │   ├── 13-n8n-fundamentals.md
-│   └── 14-n8n-advanced.md
+│   ├── 14-n8n-advanced.md
+│   ├── 15-multi-agent-fundamentals.md
+│   └── 16-multi-agent-advanced.md
 │
 ├── presentations/               # Marp slide decks for teaching
 │   ├── slides-chapter-*.md     # Marp markdown source files
@@ -53,7 +55,9 @@ ai-and-claude-code-intro/
 │   ├── chapter-11/             # MCP server implementations (TypeScript)
 │   ├── chapter-12/             # Shell aliases, DevOps workflows
 │   ├── chapter-13/             # n8n workflow examples
-│   └── chapter-14/             # Advanced n8n workflows
+│   ├── chapter-14/             # Advanced n8n workflows
+│   ├── chapter-15/             # Multi-agent fundamentals (agents, coordination, pools)
+│   └── chapter-16/             # Advanced multi-agent (incident swarms, code review, monitoring)
 │
 ├── gamification/               # 🎮 NEW: DevOps Quest learning system
 │   ├── progress-tracker/       # Track progress, achievements, streaks
@@ -80,6 +84,7 @@ The guide follows a deliberate progression:
 3. **Claude Code Mastery (Chapters 6-9)**: From basics to professional workflows with skills, sub-agents, and hooks
 4. **MCP Integration (Chapters 10-11)**: Model Context Protocol fundamentals and custom server development
 5. **Workflow Automation (Chapters 12-14)**: Real-world DevOps applications, n8n fundamentals and advanced patterns
+6. **Multi-Agent Orchestration (Chapters 15-16)**: Agent teams, specialist agents, production incident response swarms
 
 ### Key Concepts Taught
 
@@ -409,6 +414,7 @@ Skills/commands can now run in isolated sub-agent contexts using `context: fork`
 | 6-9 | Claude Code: fundamentals → intermediate → skills/sub-agents → hooks/advanced |
 | 10-11 | MCP (Model Context Protocol): fundamentals and server development |
 | 12-14 | Real-world AI for DevOps, n8n workflow automation (fundamentals and advanced) |
+| 15-16 | Multi-Agent Orchestration: agent teams, specialist agents, production swarms |
 
 ### Key Commands Summary
 

@@ -66,6 +66,10 @@ Prerequisites:
 │  ├── n8n Fundamentals: Workflow automation basics              │
 │  └── n8n Advanced: AI integration and production               │
 │                                                                │
+│  MULTI-AGENT SYSTEMS (Chapters 15-16)                         │
+│  ├── Multi-Agent Fundamentals: Agent teams & coordination      │
+│  └── Advanced Multi-Agent: Production workflows & monitoring   │
+│                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
 
@@ -111,6 +115,13 @@ Prerequisites:
 | [12](./chapters/12-ai-for-devops.md) | AI for DevOps | Practical applications, tips, real-world workflows |
 | [13](./chapters/13-n8n-fundamentals.md) | n8n Fundamentals | Workflow automation, installation, DevOps patterns |
 | [14](./chapters/14-n8n-advanced.md) | Advanced n8n Workflows | AI integration, production deployment, complex automations |
+
+### Part 6: Multi-Agent Orchestration
+
+| Chapter | Title | Description |
+|---------|-------|-------------|
+| [15](./chapters/15-multi-agent-fundamentals.md) | Multi-Agent Fundamentals | Agent teams, communication protocols, specialist agents |
+| [16](./chapters/16-multi-agent-advanced.md) | Advanced Multi-Agent Workflows | Production workflows, incident response swarms, monitoring |
 
 ---
 
@@ -226,7 +237,7 @@ ai-and-claude-code-intro/
 ├── README.md                    # This file
 ├── LICENSE                      # CC BY-NC 4.0 License
 ├── CONTRIBUTING.md              # Contributor guidelines
-├── chapters/                    # Guide content (14 chapters)
+├── chapters/                    # Guide content (16 chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -240,7 +251,9 @@ ai-and-claude-code-intro/
 │   ├── 11-mcp-server-development.md
 │   ├── 12-ai-for-devops.md
 │   ├── 13-n8n-fundamentals.md
-│   └── 14-n8n-advanced.md
+│   ├── 14-n8n-advanced.md
+│   ├── 15-multi-agent-fundamentals.md
+│   └── 16-multi-agent-advanced.md
 ├── presentations/               # Slides for each chapter
 │   ├── *.md                     # Marp source files
 │   └── pptx/                    # Generated PowerPoint files
@@ -258,7 +271,9 @@ ai-and-claude-code-intro/
 │   ├── chapter-11/              # MCP server implementations
 │   ├── chapter-12/              # Shell aliases, incident response
 │   ├── chapter-13/              # n8n workflow examples
-│   └── chapter-14/              # Advanced n8n workflows
+│   ├── chapter-14/              # Advanced n8n workflows
+│   ├── chapter-15/              # Multi-agent fundamentals (coordination, agents)
+│   └── chapter-16/              # Advanced multi-agent (swarms, monitoring)
 └── assets/                      # Images and diagrams
 ```
 
