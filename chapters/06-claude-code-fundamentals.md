@@ -2,6 +2,11 @@
 
 ## Your AI Pair Programmer for the Terminal
 
+**📖 Reading time:** ~13 minutes | **⚙️ Hands-on time:** ~30 minutes
+**🎯 Quick nav:** [What is Claude Code?](#61-what-is-claude-code) | [Installation](#62-installation) | [Basic Usage](#64-basic-usage) | [Core Workflows](#65-core-workflows) | [DevOps Examples](#66-devops-examples)
+
+---
+
 Claude Code is Anthropic's command-line interface that brings Claude directly into your development workflow. Unlike web interfaces, Claude Code can read your files, execute commands, and make changes to your codebase.
 
 ---

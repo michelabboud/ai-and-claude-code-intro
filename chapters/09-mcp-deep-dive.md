@@ -2,6 +2,32 @@
 
 ## The Universal Connector for AI Applications
 
+**📖 Reading time:** ~18 minutes | **⚙️ Hands-on time:** ~45 minutes
+**🎯 Quick nav:** [What is MCP?](#91-what-is-mcp) | [Architecture](#92-mcp-architecture) | [Using MCP](#93-using-mcp-in-claude-code) | [Building Servers](#94-building-custom-mcp-servers) | [🏋️ Skip to Exercises](#98-hands-on-exercises)
+
+---
+
+## 📋 TL;DR (5-Minute Version)
+
+**What you'll learn:** MCP is an open protocol that lets Claude Code connect to external tools and data sources (databases, AWS, Kubernetes, etc.) through a standardized interface. Instead of custom integrations, you build once and use everywhere.
+
+**Key concepts:**
+- **MCP = Universal adapter** for AI to access external systems
+- **MCP servers** provide tools, resources, and prompts to Claude Code
+- **Three main components:** Resources (read data), Tools (take actions), Prompts (templates)
+- **Use existing servers** from the community or **build your own** in TypeScript/Python
+- **Perfect for DevOps:** AWS management, K8s operations, database queries, monitoring integrations
+
+**Most important takeaway:** MCP transforms Claude Code from a code editor into a complete DevOps automation platform by giving it access to your infrastructure.
+
+**Hands-on:** [Jump to exercises](#98-hands-on-exercises) to install official MCP servers and build your first custom server.
+
+---
+
+*💡 Need the full deep dive? Keep reading. Just need the essentials? You're done – try the exercises!*
+
+---
+
 The **Model Context Protocol (MCP)** is one of the most powerful features of Claude Code. It's an open standard that allows AI systems to connect with external data sources and tools. This chapter provides a comprehensive exploration of MCP for DevOps professionals.
 
 ---

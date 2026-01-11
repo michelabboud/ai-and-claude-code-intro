@@ -2,6 +2,11 @@
 
 ## Navigating the World of AI Models and Providers
 
+**📖 Reading time:** ~14 minutes
+**🎯 Quick nav:** [What are Models?](#41-understanding-models) | [Major Providers](#42-major-ai-companies-and-their-models) | [Proprietary vs Open Source](#43-proprietary-vs-open-source-models) | [Model Selection](#46-model-selection-guide-for-devops)
+
+---
+
 Understanding the AI ecosystem helps you make informed decisions about which tools to use for different tasks. This chapter covers the major players, model types, and how to choose the right model for your needs.
 
 ---

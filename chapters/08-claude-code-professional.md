@@ -2,6 +2,32 @@
 
 ## Mastering Agents, Skills, Sub-Agents, and Advanced Features
 
+**📖 Reading time:** ~17 minutes | **⚙️ Hands-on time:** ~60 minutes
+**🎯 Quick nav:** [Agents](#81-understanding-agents-in-claude-code) | [Skills](#82-skills-system) | [Sub-Agents](#83-sub-agents-and-task-delegation) | [Hooks](#86-hooks-system) | [🏋️ Skip to Exercises](#810-hands-on-exercises)
+
+---
+
+## 📋 TL;DR (5-Minute Version)
+
+**What you'll learn:** Claude Code isn't just an AI assistant – it's an autonomous agent that can plan, execute, and verify complex multi-step tasks. This chapter teaches you to extend its capabilities with skills, spawn sub-agents for parallel work, and automate workflows with hooks.
+
+**Key concepts:**
+- **Skills** = Custom knowledge/capabilities for specific domains (Kubernetes, AWS, your company's standards)
+- **Sub-agents** = Spawn specialized instances for parallel or isolated work (e.g., security audit while you keep coding)
+- **Hooks** = Automated triggers (run linters on save, validate configs before deployment, log all commands)
+- **Context forking** = Run skills in isolated environments to prevent context pollution
+- **Skills and commands are now unified** (v2.1.3) - same thing, simpler mental model
+
+**Most important takeaway:** Transform Claude Code from a helpful assistant into a fully autonomous DevOps platform that knows your infrastructure, follows your standards, and works on multiple tasks simultaneously.
+
+**Hands-on:** [Jump to exercises](#810-hands-on-exercises) to build a custom skill, set up hooks, and orchestrate multi-agent workflows.
+
+---
+
+*💡 Need the full mastery guide? Keep reading. Ready to build? Jump to exercises!*
+
+---
+
 This chapter covers the most powerful features of Claude Code: the agentic capabilities that enable autonomous task completion, specialized skills, and the ability to spawn sub-agents for complex workflows.
 
 ---

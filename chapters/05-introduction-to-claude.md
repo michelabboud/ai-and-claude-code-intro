@@ -2,6 +2,11 @@
 
 ## Meet Your AI Colleague
 
+**📖 Reading time:** ~13 minutes
+**🎯 Quick nav:** [What is Claude?](#51-what-is-claude) | [Model Family](#52-the-claude-model-family) | [Capabilities](#53-claudes-capabilities) | [How to Access](#54-how-to-access-claude) | [Using Effectively](#55-using-claude-effectively)
+
+---
+
 Claude is Anthropic's family of AI assistants, designed to be helpful, harmless, and honest. In this chapter, we'll explore what makes Claude unique and how to use it effectively for DevOps tasks.
 
 ---

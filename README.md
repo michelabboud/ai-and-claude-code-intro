@@ -99,6 +99,77 @@ Prerequisites:
 
 ---
 
+## 🎯 Learning Paths
+
+Choose the learning path that fits your needs and schedule:
+
+### 🚀 Express Path (4-6 hours)
+**For busy DevOps engineers who need practical skills fast**
+
+Read only the essential sections and TL;DRs:
+
+**Phase 1: AI Basics (45 min)**
+- [Chapter 1](./chapters/01-introduction-to-ai.md) - Full chapter (9 min)
+- [Chapter 2](./chapters/02-understanding-llms-and-tokens.md) - **TL;DR only** + §2.3 Tokens, §2.5 Costs (8 min)
+- [Chapter 3](./chapters/03-the-art-of-prompting.md) - **TL;DR only** + §3.2 CRAFT Framework, §3.4 DevOps Patterns (12 min)
+
+**Phase 2: Getting Started with Claude (90 min)**
+- [Chapter 5](./chapters/05-introduction-to-claude.md) - §5.1, §5.2, §5.4 (skip detailed API examples) (8 min)
+- [Chapter 6](./chapters/06-claude-code-fundamentals.md) - **Full chapter** (13 min) → Do exercises!
+- [Quick Reference](./references/claude-code-quick-reference.md) - Skim for commands (10 min)
+
+**Phase 3: Professional Usage (90 min)**
+- [Chapter 7](./chapters/07-claude-code-intermediate.md) - **TL;DR** + §7.2 Custom Commands, §7.5 Workflows (10 min)
+- [Chapter 8](./chapters/08-claude-code-professional.md) - **TL;DR** + §8.2 Skills, §8.6 Hooks (12 min)
+- [Hooks Cookbook](./references/hooks-cookbook.md) - Pick 3 hooks to implement (10 min)
+
+**Phase 4: Real-World Application (90 min)**
+- [Chapter 10](./chapters/10-ai-for-devops.md) - **Full chapter** (14 min) → Try examples!
+- **Hands-on**: Apply to your actual work (60 min)
+
+**Total: ~4-6 hours** (includes hands-on practice)
+
+---
+
+### 📖 Complete Path (12-15 hours)
+**For comprehensive understanding and mastery**
+
+Read all chapters in order, complete all exercises, and build your own:
+- Custom commands for your team
+- MCP servers for your tools
+- Automated workflows with hooks
+
+**Perfect for**: Team leads, those building AI tooling, comprehensive learning
+
+---
+
+### 🎯 Practical Path (6-8 hours)
+**Skip theory, focus on hands-on**
+
+1. Skim Chapters 1-2 for basics
+2. Read Chapter 3 (CRAFT Framework) fully
+3. **Do all exercises** in Chapters 6-8
+4. Read Chapter 10, implement 3 real-world workflows
+5. Build your own commands and hooks
+
+**Perfect for**: Learn-by-doing DevOps engineers
+
+---
+
+### 🎮 Gamified Path (Variable)
+**Make learning fun with DevOps Quest**
+
+Complete challenges, earn achievements, track your progress:
+```bash
+cd gamification/progress-tracker
+python tracker.py init
+python tracker.py
+```
+
+See [gamification/README.md](./gamification/README.md) for the full quest system!
+
+---
+
 ## Quick Start
 
 ### 1. Read the Fundamentals

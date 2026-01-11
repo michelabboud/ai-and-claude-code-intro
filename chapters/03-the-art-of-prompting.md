@@ -2,6 +2,33 @@
 
 ## Mastering the Skill of Communicating with AI
 
+**📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~30 minutes
+**🎯 Quick nav:** [What is a Prompt?](#31-what-is-a-prompt) | [CRAFT Framework](#32-the-craft-framework-for-effective-prompts) | [Techniques](#33-prompting-techniques) | [DevOps Patterns](#34-devops-specific-prompting-patterns) | [🏋️ Skip to Exercises](#39-hands-on-exercises)
+
+---
+
+## 📋 TL;DR (5-Minute Version)
+
+**What you'll learn:** Prompting is the #1 skill for working with AI. This chapter teaches the CRAFT framework—a structured approach to writing prompts that consistently produce excellent results. Think of it as "Infrastructure as Code" but for AI communication.
+
+**Key concepts:**
+- **CRAFT Framework** = **C**ontext, **R**ole, **A**ction, **F**ormat, **T**arget (your secret weapon for perfect prompts)
+- **Context** = Environment, constraints, what AI needs to know (versions, tech stack, current state)
+- **Role** = Who should AI be? (Senior DevOps engineer, security expert, Terraform specialist)
+- **Action** = Specific task to perform (not vague "help me" but precise "generate", "review", "debug")
+- **Format** = Desired output structure (JSON, YAML, Terraform, step-by-step guide)
+- **Target** = Success criteria (must work on K8s 1.28, follow company standards, use specific modules)
+
+**Most important takeaway:** Vague prompts = vague results. CRAFT prompts = production-ready code on first try. 10 minutes on a good prompt saves hours of iteration.
+
+**Hands-on:** [Jump to exercises](#39-hands-on-exercises) to practice improving prompts, building templates, and chaining complex workflows.
+
+---
+
+*💡 Want to master CRAFT? Keep reading. Ready to practice? Jump to exercises!*
+
+---
+
 As a DevOps engineer, you already know that clear communication with machines (code, configs, scripts) is essential. Prompting is the same skill applied to AI—the better your input, the better your output.
 
 ---

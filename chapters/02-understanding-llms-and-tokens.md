@@ -2,6 +2,32 @@
 
 ## The Technology Powering Modern AI Assistants
 
+**📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~20 minutes
+**🎯 Quick nav:** [What is an LLM?](#21-what-is-a-large-language-model) | [How LLMs Work](#22-how-llms-actually-work) | [Tokens](#23-understanding-tokens) | [Context Window](#24-the-context-window) | [Costs](#25-token-economics-understanding-costs) | [🏋️ Skip to Exercises](#29-hands-on-exercises)
+
+---
+
+## 📋 TL;DR (5-Minute Version)
+
+**What you'll learn:** LLMs are trained on vast amounts of text to predict the next word. They don't "think" - they're incredibly sophisticated pattern matchers. Understanding tokens (how LLMs count text) is crucial for managing costs and working within context limits.
+
+**Key concepts:**
+- **LLMs** = Massive neural networks trained to predict next tokens based on patterns (not databases, not search engines)
+- **Tokens** ≈ 4 characters or ¾ of a word. "Hello DevOps!" = ~3 tokens, not 2 words
+- **Context window** = Maximum tokens LLM can "remember" (Claude Sonnet 4.5 = 200K tokens ≈ 150K words)
+- **Costs** = Charged per token: input tokens (what you send) + output tokens (what AI generates)
+- **Optimization** = Shorter prompts = lower cost. But too short = worse results. Balance matters.
+
+**Most important takeaway:** Tokens = money and memory. Every character counts. Understanding token economics helps you use AI effectively without blowing your budget. A 10K token prompt on Sonnet costs ~$0.30 - small, but adds up at scale.
+
+**Hands-on:** [Jump to exercises](#29-hands-on-exercises) to practice token counting, plan context windows, and experiment with model behavior.
+
+---
+
+*💡 Want to understand the internals? Keep reading. Just need token basics? You're good - try the exercises!*
+
+---
+
 As a DevOps engineer, understanding how LLMs work will help you use them more effectively, estimate costs, troubleshoot issues, and make informed decisions about integrating AI into your workflows.
 
 ---

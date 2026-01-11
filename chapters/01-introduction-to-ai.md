@@ -2,6 +2,11 @@
 
 ## Welcome, DevOps Engineer!
 
+**📖 Reading time:** ~9 minutes | **⚙️ Hands-on time:** ~15 minutes
+**🎯 Quick nav:** [What is AI?](#11-what-is-ai) | [AI History](#12-a-brief-history-of-ai) | [Types of AI](#13-types-of-ai) | [AI for DevOps](#16-how-ai-fits-into-devops) | [🏋️ Skip to Exercise](#19-hands-on-exercise)
+
+---
+
 As a DevOps professional, you're already familiar with automation, scripting, and making systems work smarter. AI is the next evolution of that mindset—teaching machines to make intelligent decisions without explicit programming for every scenario.
 
 ---

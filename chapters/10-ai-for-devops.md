@@ -2,6 +2,10 @@
 
 ## Practical Applications, Tips, and Real-World Workflows
 
+**📖 Reading time:** ~14 minutes | **⚙️ Hands-on time:** ~variable (practical application)**🎯 Quick nav:** [AI Workflow](#101-the-ai-powered-devops-workflow) | [Infrastructure as Code](#102-infrastructure-as-code-with-ai) | [CI/CD](#103-cicd-pipeline-development) | [Monitoring](#104-monitoring-and-observability) | [Incident Response](#105-incident-response)
+
+---
+
 This chapter brings everything together with practical applications of AI in the DevOps ecosystem. You'll find real-world examples, tips and tricks, and workflows that you can start using immediately.
 
 ---

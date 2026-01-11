@@ -2,6 +2,32 @@
 
 ## Leveling Up Your Claude Code Skills
 
+**📖 Reading time:** ~15 minutes | **⚙️ Hands-on time:** ~40 minutes
+**🎯 Quick nav:** [Configuration](#71-configuration-deep-dive) | [Custom Commands](#72-custom-slash-commands-skills) | [IDE Integration](#74-ide-integration) | [Workflows](#75-advanced-workflows) | [🏋️ Skip to Exercises](#79-hands-on-exercises)
+
+---
+
+## 📋 TL;DR (5-Minute Version)
+
+**What you'll learn:** Beyond basic usage, Claude Code becomes exponentially more powerful when you customize it for your workflow. This chapter teaches configuration, creating reusable commands, integrating with your IDE/browser, and building automated review pipelines.
+
+**Key concepts:**
+- **Custom commands/skills** = Reusable prompt templates for common tasks (unified system as of v2.1.3)
+- **Configuration** = Fine-tune behavior, permissions, auto-approve patterns, model selection
+- **IDE integration** = Use Claude Code inside VS Code, Cursor, IntelliJ with full context
+- **Browser mode** = claude.ai for lightweight access (no local commands, but great for quick questions)
+- **Automated workflows** = PR reviews, incident response, deployment checks
+
+**Most important takeaway:** The difference between "using Claude Code" and "mastering Claude Code" is customization. Create commands for your team's workflows, configure permissions for safety, and integrate into your existing tools.
+
+**Hands-on:** [Jump to exercises](#79-hands-on-exercises) to create custom DevOps commands, integrate with your IDE, and build an automated review pipeline.
+
+---
+
+*💡 Need configuration details? Keep reading. Ready to customize? Jump to exercises!*
+
+---
+
 Now that you've mastered the basics, let's explore intermediate features that will make you more productive with Claude Code. This chapter covers configuration, custom commands, browser and IDE integration, and advanced workflows.
 
 ---
