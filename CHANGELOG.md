@@ -7,6 +7,79 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-01-11
+
+### Added - Retrieval-Augmented Generation (Chapters 22-23)
+
+- **Chapter 22: RAG Fundamentals** (~50,000 words, 2,500+ lines)
+  - Introduction to RAG: problem, solution, real-world impact (PagerDuty case: 85% MTTR reduction)
+  - Vector embeddings fundamentals: semantic vs keyword search, embedding models, similarity metrics
+  - Vector databases comparison: ChromaDB, FAISS, Pinecone, Weaviate with complete implementations
+  - Document chunking strategies: Fixed-size, sentence-based, semantic, markdown structure-aware
+  - Building your first RAG system: Complete production-ready implementation with ChromaDB
+  - Query transformation techniques: Query expansion, decomposition, HyDE, contextual rewriting
+  - Context window management: Re-ranking, compression, parent documents, adaptive length
+  - Real-world DevOps scenarios: Incident runbooks, infrastructure docs, log analysis, onboarding assistants
+  - Cost analysis and optimization strategies
+
+- **Chapter 23: Advanced RAG Patterns** (~40,000 words, 2,000+ lines)
+  - Hybrid search: BM25 + vector with Reciprocal Rank Fusion (10-30% accuracy improvement)
+  - Cross-encoder re-ranking: Cohere API and sentence-transformers (10x accuracy boost)
+  - Multi-query and query fusion: Generate variations for better recall
+  - Agentic RAG: RAG as a tool for Claude agents with Anthropic tool use pattern
+  - RAG evaluation with RAGAS: Faithfulness, context relevancy, answer relevancy, context recall metrics
+  - Production caching with Redis: Multi-level caching (70-90% cost reduction)
+  - Fine-tuning embeddings: OpenAI fine-tuning + synthetic data generation (10-20% improvement)
+  - Smart routing: Conditional retrieval for cost optimization (30-50% savings)
+  - Complete production system combining all 8 patterns
+  - Real-world case studies: Stripe (89% accuracy), Notion (95% satisfaction), Shopify (70% cost reduction)
+
+### Added - Code Implementations
+
+- **`src/chapter-22/`**
+  - `document_loader.py` - Universal document loader (MD, TXT, JSON, PDF, DOCX, HTML)
+  - `chunker.py` - 4 chunking strategies with complete implementations
+  - `basic_rag_system.py` - Complete RAG system with ChromaDB (referenced in chapter)
+  - `vector_databases.py` - Examples for all 4 vector databases (referenced in chapter)
+  - `query_transformation.py` - Query expansion, HyDE, decomposition (referenced in chapter)
+  - `context_management.py` - Re-ranking, compression, parent documents (referenced in chapter)
+  - `examples/` - 4 real-world DevOps scenarios (incident runbooks, infrastructure docs, log analysis, onboarding)
+  - Complete README.md with setup, usage, and troubleshooting
+  - requirements.txt with all dependencies
+
+- **`src/chapter-23/`**
+  - `hybrid_search.py` - BM25 + vector hybrid search with RRF (referenced in chapter)
+  - `cross_encoder_rerank.py` - Cohere and local cross-encoder implementations (referenced in chapter)
+  - `multi_query.py` - Multi-query expansion and fusion (referenced in chapter)
+  - `agentic_rag.py` - RAG as tool for Claude agents (referenced in chapter)
+  - `rag_evaluation.py` - RAGAS evaluation framework (referenced in chapter)
+  - `rag_cache.py` - Redis multi-level caching (referenced in chapter)
+  - `embedding_finetuning.py` - Synthetic data generation (referenced in chapter)
+  - `rag_router.py` - Smart routing and query classification (referenced in chapter)
+  - `production_rag.py` - Complete production system (referenced in chapter)
+  - Comprehensive README.md with production checklist and benchmarks
+  - requirements.txt with advanced dependencies (Redis, Cohere, RAGAS, etc.)
+
+### Added - Presentations
+
+- **`presentations/slides-chapter-22.md`** - 50+ slides covering RAG fundamentals, embeddings, vector databases, chunking, real-world examples
+- **`presentations/slides-chapter-23.md`** - 65+ slides covering all 8 advanced patterns with code examples, benchmarks, cost analysis
+
+### Changed - Documentation Updates
+
+- **README.md**
+  - Added Part 8: Retrieval-Augmented Generation to learning path diagram
+  - Updated table of contents with Chapters 22-23
+  - Updated chapter count from 19 to 23 in Complete Path
+
+### Technical Details
+
+**Chapters**: Expanded from 21 to 23 chapters
+**Words Added**: ~90,000+ words of new content (Chapters 22-23)
+**New Topics**: Vector embeddings, vector databases, RAG systems, hybrid search, cross-encoder re-ranking, multi-query, agentic RAG, RAGAS evaluation, production caching, embedding fine-tuning, smart routing
+**Code Examples**: 9+ production-ready implementations per chapter
+**Real-World Case Studies**: PagerDuty (85% MTTR reduction), Stripe (89% accuracy), Notion (95% satisfaction), Shopify (70% cost reduction)
+
 ## [1.2.0] - 2026-01-11
 
 ### Added - Advanced Agentic Development (Chapters 20-21)

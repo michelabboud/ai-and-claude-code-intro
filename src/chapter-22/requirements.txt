@@ -1,0 +1,49 @@
+# Chapter 22: RAG Fundamentals - Dependencies
+
+# Core RAG dependencies
+openai>=1.12.0              # OpenAI API (embeddings + generation)
+tiktoken>=0.6.0             # Token counting
+python-dotenv>=1.0.0        # Environment variable management
+
+# Vector databases
+chromadb>=0.4.22            # Local vector database (default)
+faiss-cpu>=1.7.4            # Facebook's similarity search library
+pinecone-client>=3.0.0      # Pinecone managed vector DB
+weaviate-client>=4.4.0      # Weaviate open-source vector DB
+
+# Document processing
+nltk>=3.8.1                 # Natural language processing (sentence tokenization)
+beautifulsoup4>=4.12.3      # HTML parsing
+markdown>=3.5.2             # Markdown parsing
+pypdf>=4.0.1                # PDF parsing
+python-docx>=1.1.0          # Word document parsing
+
+# Text chunking and semantic analysis
+sentence-transformers>=2.3.1  # Semantic chunking and embeddings
+scikit-learn>=1.4.0          # Cosine similarity, clustering
+
+# Query transformation
+langchain>=0.1.6            # LLM framework utilities
+langchain-openai>=0.0.5     # OpenAI integration for LangChain
+
+# Re-ranking (optional, for advanced patterns)
+cohere>=4.47                # Cohere Rerank API
+
+# Data handling
+numpy>=1.26.3               # Numerical operations
+pandas>=2.2.0               # Data manipulation
+pydantic>=2.6.0             # Data validation
+
+# Utilities
+tqdm>=4.66.1                # Progress bars
+colorama>=0.4.6             # Colored terminal output
+
+# Testing (optional)
+pytest>=8.0.0               # Testing framework
+pytest-cov>=4.1.0           # Coverage reporting
+pytest-asyncio>=0.23.4      # Async test support
+
+# Development (optional)
+black>=24.1.1               # Code formatting
+flake8>=7.0.0               # Linting
+mypy>=1.8.0                 # Type checking

@@ -1,0 +1,31 @@
+# Chapter 23: Advanced RAG Patterns - Dependencies
+
+# Inherits all dependencies from Chapter 22
+-r ../chapter-22/requirements.txt
+
+# Advanced RAG patterns
+rank-bm25>=0.2.2            # BM25 keyword search for hybrid RAG
+redis>=5.0.1                # Redis client for caching
+hiredis>=2.3.2              # C parser for Redis (performance)
+
+# Re-ranking
+cohere>=4.47                # Cohere Rerank API
+sentence-transformers>=2.3.1  # Cross-encoder models (local re-ranking)
+torch>=2.1.2                # PyTorch for sentence-transformers
+
+# Evaluation
+ragas>=0.1.0                # RAG evaluation framework
+datasets>=2.16.1            # HuggingFace datasets for RAGAS
+langchain-openai>=0.0.5     # LangChain OpenAI integration
+
+# Agentic RAG
+anthropic>=0.18.0           # Anthropic Claude API for tool use
+
+# Monitoring and observability
+prometheus-client>=0.19.0   # Prometheus metrics
+psutil>=5.9.7               # System metrics
+
+# Additional utilities
+asyncio>=3.4.3              # Async support
+aioredis>=2.0.1             # Async Redis client
+httpx>=0.26.0               # Async HTTP client

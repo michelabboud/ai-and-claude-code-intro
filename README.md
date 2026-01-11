@@ -74,9 +74,14 @@ Prerequisites:
 │  ├── AIOps Fundamentals: Anomaly detection, predictions       │
 │  └── Advanced AIOps: Auto-remediation, self-healing           │
 │                                                                │
-│  ADVANCED AGENTIC & LEADERSHIP (Chapters 19-20)               │
+│  ADVANCED AGENTIC & LEADERSHIP (Chapters 19-21)               │
 │  ├── Team Transformation: Leading AI adoption                 │
-│  └── Loop Detection: Ralph Wiggum loops, security, monitoring │
+│  ├── Loop Detection: Ralph Wiggum loops, security, monitoring │
+│  └── Resilient Systems: Circuit breakers, self-healing        │
+│                                                                │
+│  RETRIEVAL-AUGMENTED GENERATION (Chapters 22-23)              │
+│  ├── RAG Fundamentals: Embeddings, vector DBs, chunking       │
+│  └── Advanced RAG: Hybrid search, re-ranking, caching         │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -141,6 +146,13 @@ Prerequisites:
 | [20](./chapters/20-agent-loop-detection.md) | Agent Loop Detection & Prevention | Ralph Wiggum loops, 6 loop types, detection strategies, DoW protection, production monitoring |
 | [21](./chapters/21-resilient-agentic-systems.md) | Building Resilient Agentic Systems | Circuit breakers, exponential backoff, idempotency, checkpointing, graceful degradation, self-healing |
 
+### Part 8: Retrieval-Augmented Generation (RAG)
+
+| Chapter | Title | Description |
+|---------|-------|-------------|
+| [22](./chapters/22-rag-fundamentals.md) | RAG Fundamentals | Vector embeddings, vector databases, chunking strategies, building RAG systems, query transformation, real-world DevOps use cases |
+| [23](./chapters/23-advanced-rag-patterns.md) | Advanced RAG Patterns | Hybrid search, cross-encoder re-ranking, multi-query fusion, agentic RAG, RAGAS evaluation, production caching, fine-tuning, smart routing |
+
 ### Appendices
 
 | Appendix | Title | Description |
@@ -185,7 +197,7 @@ Read only the essential sections and TL;DRs:
 ### 📖 Complete Path (15-20 hours)
 **For comprehensive understanding and mastery**
 
-Read all 19 chapters in order, complete all exercises, and build your own:
+Read all 23 chapters in order, complete all exercises, and build your own:
 - Custom commands for your team
 - MCP servers for your tools
 - Automated workflows with hooks
