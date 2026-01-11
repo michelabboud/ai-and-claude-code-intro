@@ -70,8 +70,13 @@ Prerequisites:
 │  ├── Multi-Agent Fundamentals: Agent teams & coordination      │
 │  └── Advanced Multi-Agent: Production workflows & monitoring   │
 │                                                                │
-│  AIOPS & OBSERVABILITY (Chapter 17)                           │
-│  └── AI-Powered Monitoring: Anomaly detection, predictions    │
+│  AIOPS & OBSERVABILITY (Chapters 17-18)                       │
+│  ├── AIOps Fundamentals: Anomaly detection, predictions       │
+│  └── Advanced AIOps: Auto-remediation, self-healing           │
+│                                                                │
+│  ADVANCED AGENTIC & LEADERSHIP (Chapters 19-20)               │
+│  ├── Team Transformation: Leading AI adoption                 │
+│  └── Loop Detection: Ralph Wiggum loops, security, monitoring │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -128,11 +133,13 @@ Prerequisites:
 | [17](./chapters/17-aiops-fundamentals.md) | AIOps Fundamentals | Anomaly detection, predictive alerting, intelligent correlation |
 | [18](./chapters/18-aiops-advanced.md) | Advanced AIOps | Auto-remediation, self-healing, chaos engineering, production implementation |
 
-### Part 7: Implementation & Leadership
+### Part 7: Advanced Agentic Development & Leadership
 
 | Chapter | Title | Description |
 |---------|-------|-------------|
 | [19](./chapters/19-team-transformation.md) | Team Transformation | Leading organizational change, upskilling teams, measuring success |
+| [20](./chapters/20-agent-loop-detection.md) | Agent Loop Detection & Prevention | Ralph Wiggum loops, 6 loop types, detection strategies, DoW protection, production monitoring |
+| [21](./chapters/21-resilient-agentic-systems.md) | Building Resilient Agentic Systems | Circuit breakers, exponential backoff, idempotency, checkpointing, graceful degradation, self-healing |
 
 ### Appendices
 

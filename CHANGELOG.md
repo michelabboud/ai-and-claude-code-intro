@@ -7,6 +7,71 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-01-11
+
+### Added - Advanced Agentic Development (Chapters 20-21)
+
+- **Chapter 20: Agent Loop Detection & Prevention** (~25,000 words, 3,036 lines)
+  - Ralph Wiggum loops explained (named after The Simpsons character)
+  - 6 loop types identified and demonstrated: infinite retry, state loop, circular dependency, escalation loop, token threshold loop, spawn loop
+  - Real-world $12K AWS bill incident case study
+  - Production loop detection implementation with Python
+  - Loop detector module with action repetition tracking, state fingerprinting, call stack analysis
+  - Prometheus + Grafana monitoring setup for loop detection
+  - DevSecOps focus: Denial of Wallet (DoW) attack protection, rate limiting, input validation
+  - HashiCorp Vault integration for secrets management
+  - SOC 2, GDPR, PCI-DSS compliant audit logging with PII redaction
+  - Kubernetes pod restart scenario with hands-on exercise
+  - Complete test suite with pytest
+  - 40+ slide Marp presentation
+
+- **Chapter 21: Building Resilient Agentic Systems** (~30,000 words, 3,956 lines)
+  - Philosophy: Prevention > Detection (complement to Chapter 20)
+  - 6 resilience patterns for production agents:
+    1. **Circuit Breaker Pattern** - Netflix Hystrix-based implementation with CLOSED/OPEN/HALF_OPEN states
+    2. **Idempotency** - Mathematical approach (f(f(x)) = f(x)) with SHA-256 hashing for safe retries
+    3. **State Checkpointing** - Crash recovery for long-running workflows
+    4. **Exponential Backoff + Jitter** - AWS-recommended patterns with 4 jitter types (none, full, equal, decorrelated)
+    5. **Graceful Degradation** - 5-level degradation hierarchy (full → slight → moderate → minimal → failed)
+    6. **Self-Healing Architectures** - Google Borg/Kubernetes patterns with automatic recovery
+  - Real-world production incident response agent combining all 6 patterns
+  - Netflix example: 99.99% uptime with graceful degradation (10x cost reduction)
+  - Google example: Millions of containers with self-healing (MTTR: 30min → 30sec)
+  - Complete production implementation with circuit breakers, retry strategies, idempotency tracking
+  - Database migration agent hands-on exercise
+  - Chaos engineering and testing strategies
+  - Production configuration guidelines and monitoring metrics
+  - 46-slide Marp presentation
+
+### Added - Code Implementations
+
+- **`src/chapter-20/`**
+  - `src/loop_detector.py` - Core loop detection module with configurable thresholds
+  - `src/monitored_agent.py` - Prometheus metrics integration (executions, loops, duration, cost tracking)
+  - `src/secure_agent.py` - DoW protection with rate limiting and input validation
+  - `src/secrets_manager.py` - HashiCorp Vault integration with automatic key rotation
+  - `src/compliance_logger.py` - SOC 2/GDPR/PCI-DSS compliant logging with PII redaction
+  - `examples/basic_loop.py` - Intentionally broken agent demonstrating infinite loops
+  - `examples/fixed_loop.py` - Same agent with loop detection and human escalation
+  - `tests/test_loop_detector.py` - Comprehensive unit test suite
+  - Complete README.md with setup instructions and troubleshooting
+
+- **`src/chapter-21/`**
+  - `src/circuit_breaker.py` - Production-ready circuit breaker implementation
+  - Complete requirements.txt with all dependencies
+  - Comprehensive README.md with usage examples and production considerations
+
+### Added - Presentations
+
+- **`presentations/slides-chapter-20.md`** - 40+ slides covering loop detection, monitoring, security
+- **`presentations/slides-chapter-21.md`** - 46 slides covering all 6 resilience patterns with code examples
+
+### Changed - Documentation Updates
+
+- **README.md**
+  - Added Chapters 20-21 to Part 7: Advanced Agentic Development & Leadership
+  - Updated table of contents with comprehensive descriptions
+
 ## [1.1.0] - 2026-01-11
 
 ### Changed - Major Content Restructure
