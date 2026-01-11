@@ -1,0 +1,82 @@
+[
+  {
+    "id": "alert-001",
+    "timestamp": "2026-01-11T10:00:00Z",
+    "service": "database",
+    "severity": "critical",
+    "message": "Database connection pool exhausted - max connections reached",
+    "labels": {
+      "service": "database",
+      "instance": "db-primary-01",
+      "severity": "critical"
+    },
+    "annotations": {
+      "description": "PostgreSQL connection pool at 100% utilization",
+      "dashboard": "https://grafana.company.com/d/db-overview"
+    }
+  },
+  {
+    "id": "alert-002",
+    "timestamp": "2026-01-11T10:00:30Z",
+    "service": "api-server",
+    "severity": "high",
+    "message": "API response time degraded - p95 latency >5s",
+    "labels": {
+      "service": "api-server",
+      "instance": "api-01",
+      "severity": "high"
+    },
+    "annotations": {
+      "description": "API endpoints responding slowly, p95 latency increased to 5.2s",
+      "query": "histogram_quantile(0.95, rate(http_request_duration_seconds_bucket[5m]))"
+    }
+  },
+  {
+    "id": "alert-003",
+    "timestamp": "2026-01-11T10:01:00Z",
+    "service": "api-server",
+    "severity": "high",
+    "message": "High error rate - 15% of requests failing",
+    "labels": {
+      "service": "api-server",
+      "instance": "api-02",
+      "severity": "high"
+    },
+    "annotations": {
+      "description": "HTTP 500 errors increased to 15% of total requests",
+      "runbook": "https://wiki.company.com/runbooks/api-errors"
+    }
+  },
+  {
+    "id": "alert-004",
+    "timestamp": "2026-01-11T10:01:30Z",
+    "service": "frontend",
+    "severity": "medium",
+    "message": "Frontend timeouts increasing - 10% of API calls timing out",
+    "labels": {
+      "service": "frontend",
+      "instance": "frontend-01",
+      "severity": "medium"
+    },
+    "annotations": {
+      "description": "React app experiencing API timeout errors",
+      "impact": "User-facing"
+    }
+  },
+  {
+    "id": "alert-005",
+    "timestamp": "2026-01-11T10:02:00Z",
+    "service": "frontend",
+    "severity": "medium",
+    "message": "User session errors - authentication failures",
+    "labels": {
+      "service": "frontend",
+      "instance": "frontend-02",
+      "severity": "medium"
+    },
+    "annotations": {
+      "description": "Users unable to maintain authenticated sessions",
+      "customer_reports": "3 tickets opened"
+    }
+  }
+]

@@ -1,0 +1,23 @@
+# Chapter 17: AI-Powered Observability & AIOps
+# Python dependencies for all examples
+
+# Claude AI
+anthropic>=0.39.0
+
+# Prometheus integration
+prometheus-api-client>=0.5.3
+
+# Time-series forecasting
+prophet>=1.1.5
+pandas>=2.0.0
+numpy>=1.24.0
+scipy>=1.10.0
+
+# Slack notifications
+slack-sdk>=3.23.0
+
+# Web server (for webhooks)
+flask>=3.0.0
+
+# Configuration
+pyyaml>=6.0

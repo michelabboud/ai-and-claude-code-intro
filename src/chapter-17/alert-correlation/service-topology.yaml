@@ -1,0 +1,41 @@
+# Service dependency topology for alert correlation
+# Defines which services depend on which other services
+
+frontend:
+  description: "React-based web application"
+  depends_on:
+    - api-server
+    - cdn
+  owned_by: "frontend-team"
+
+api-server:
+  description: "REST API backend"
+  depends_on:
+    - database
+    - redis
+    - auth-service
+  owned_by: "backend-team"
+
+auth-service:
+  description: "Authentication and authorization service"
+  depends_on:
+    - database
+    - redis
+  owned_by: "platform-team"
+
+database:
+  description: "PostgreSQL primary database"
+  depends_on: []
+  owned_by: "database-team"
+  critical: true
+
+redis:
+  description: "Redis cache and session store"
+  depends_on: []
+  owned_by: "platform-team"
+
+cdn:
+  description: "CloudFront CDN for static assets"
+  depends_on: []
+  owned_by: "infrastructure-team"
+  external: true
