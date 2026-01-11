@@ -1,0 +1,340 @@
+#
+# Chaos Engineering Experiments for Testing Self-Healing Systems
+# Uses Chaos Mesh (https://chaos-mesh.org)
+#
+# Part of Chapter 18: Advanced AIOps
+#
+# Installation:
+#   kubectl create ns chaos-mesh
+#   helm install chaos-mesh chaos-mesh/chaos-mesh -n chaos-mesh --version 2.6.0
+#
+# Apply experiments:
+#   kubectl apply -f chaos_experiment.yaml
+#
+
+---
+#
+# Experiment 1: Pod Failure - Kill 20% of API server pods
+#
+# This tests if the self-healing operator can detect and restart failed pods.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: PodChaos
+metadata:
+  name: pod-failure-test
+  namespace: production
+  annotations:
+    description: "Kill 20% of API server pods to test self-healing"
+spec:
+  action: pod-failure  # Kill pods
+  mode: fixed-percent
+  value: "20"          # Kill 20% of matching pods
+  duration: "5m"       # Run experiment for 5 minutes
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: api-server  # Target pods with label app=api-server
+
+  # Optional: Schedule experiment
+  scheduler:
+    cron: "@every 1h"  # Run every hour (for continuous validation)
+
+---
+#
+# Experiment 2: Memory Stress - Inject memory pressure
+#
+# This tests if AI can detect OOMKilled pods and increase memory limits.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: memory-stress-test
+  namespace: production
+  annotations:
+    description: "Inject memory stress to trigger OOMKills"
+spec:
+  mode: one  # Affect one pod
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: recommendation-engine
+
+  # Memory stress configuration
+  stressors:
+    memory:
+      workers: 4         # Number of workers
+      size: "512MB"      # Memory to allocate per worker
+      options: ["--vm-keep"]  # Keep memory allocated
+
+  duration: "3m"
+
+---
+#
+# Experiment 3: Network Latency - Add 500ms latency to database connections
+#
+# This tests if AI can detect slow database queries and recommend optimizations.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-latency-test
+  namespace: production
+  annotations:
+    description: "Add network latency to database connections"
+spec:
+  action: delay
+  mode: all  # Affect all matching pods
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: user-service
+
+  # Latency configuration
+  delay:
+    latency: "500ms"
+    correlation: "25"  # 25% correlation between delays
+    jitter: "100ms"    # ±100ms jitter
+
+  # Target specific traffic
+  direction: to
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - production
+      labelSelectors:
+        app: postgresql
+
+  duration: "10m"
+
+---
+#
+# Experiment 4: CPU Stress - Max out CPU to test autoscaling
+#
+# This tests if AI can detect high CPU and trigger pod scaling.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: StressChaos
+metadata:
+  name: cpu-stress-test
+  namespace: production
+  annotations:
+    description: "Max out CPU to test autoscaling detection"
+spec:
+  mode: fixed-percent
+  value: "30"  # Affect 30% of pods
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: api-server
+
+  # CPU stress configuration
+  stressors:
+    cpu:
+      workers: 4  # Spawn 4 CPU workers
+      load: 100   # 100% CPU load per worker
+
+  duration: "5m"
+
+---
+#
+# Experiment 5: Bad Deployment - Deploy crashloop image
+#
+# This tests if AI can detect crashloop and rollback deployment.
+#
+# Note: This is manual - create a bad deployment, observe AI rollback
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crashloop-test-deployment
+  namespace: production
+  labels:
+    experiment: crashloop
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crashloop-test
+  template:
+    metadata:
+      labels:
+        app: crashloop-test
+    spec:
+      containers:
+      - name: crashloop
+        image: busybox:latest
+        command: ["sh", "-c", "exit 1"]  # Immediately exit with error
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+
+---
+#
+# Experiment 6: Network Partition - Simulate network split
+#
+# This tests how services handle network partitions.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: NetworkChaos
+metadata:
+  name: network-partition-test
+  namespace: production
+  annotations:
+    description: "Partition network between services"
+spec:
+  action: partition
+  mode: all
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: recommendation-engine
+
+  # Partition from user-service
+  direction: both
+  target:
+    mode: all
+    selector:
+      namespaces:
+        - production
+      labelSelectors:
+        app: user-service
+
+  duration: "2m"
+
+---
+#
+# Experiment 7: Disk Fill - Fill up disk space
+#
+# This tests if AI can detect disk full and trigger cleanup/scaling.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: IOChaos
+metadata:
+  name: disk-fill-test
+  namespace: production
+  annotations:
+    description: "Fill disk space to test disk full handling"
+spec:
+  action: faults
+  mode: one
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: log-collector
+
+  # Disk fill configuration
+  volumePath: /var/log
+  path: /var/log/large-file
+  percent: 80  # Fill to 80% capacity
+
+  duration: "5m"
+
+---
+#
+# Experiment 8: HTTP Abort - Simulate 500 errors from database
+#
+# This tests error handling and circuit breaker logic.
+#
+apiVersion: chaos-mesh.org/v1alpha1
+kind: HTTPChaos
+metadata:
+  name: http-abort-test
+  namespace: production
+  annotations:
+    description: "Inject HTTP 500 errors from database service"
+spec:
+  mode: all
+  selector:
+    namespaces:
+      - production
+    labelSelectors:
+      app: postgresql-proxy
+
+  # HTTP fault injection
+  target: Request
+  port: 5432
+  path: "*"
+  abort: true
+  statusCode: 500  # Return 500 Internal Server Error
+
+  duration: "3m"
+
+---
+#
+# Success Criteria Checklist
+#
+# After running experiments, validate:
+#
+# ✓ Experiment 1 (Pod Failure):
+#   - AI detected failed pods within 30 seconds
+#   - Pods restarted successfully
+#   - Service availability maintained
+#
+# ✓ Experiment 2 (Memory Stress):
+#   - AI detected OOMKills
+#   - Memory limits increased appropriately
+#   - Pods stabilized after fix
+#
+# ✓ Experiment 3 (Network Latency):
+#   - AI detected slow database queries
+#   - Recommended caching or optimization
+#   - No cascading failures
+#
+# ✓ Experiment 4 (CPU Stress):
+#   - AI detected high CPU usage
+#   - Triggered appropriate scaling or optimization
+#   - CPU normalized after remediation
+#
+# ✓ Experiment 5 (Bad Deployment):
+#   - AI detected crashloop within 2 minutes
+#   - Deployment rolled back automatically
+#   - Service restored to previous version
+#
+# ✓ Experiment 6 (Network Partition):
+#   - Services handled partition gracefully
+#   - Alerts generated for degraded state
+#   - Recovery after partition healed
+#
+# ✓ Experiment 7 (Disk Fill):
+#   - AI detected disk space issue
+#   - Triggered cleanup or alert
+#   - Disk usage reduced below threshold
+#
+# ✓ Experiment 8 (HTTP Abort):
+#   - Circuit breakers activated
+#   - Fallback logic engaged
+#   - No complete service outage
+#
+---
+#
+# Schedule: Production Chaos Engineering
+#
+# Recommended schedule for continuous validation:
+#
+# Daily:
+#   - Pod failure test (Experiment 1)
+#   - Memory stress test (Experiment 2)
+#
+# Weekly:
+#   - Network latency test (Experiment 3)
+#   - CPU stress test (Experiment 4)
+#   - HTTP abort test (Experiment 8)
+#
+# Monthly:
+#   - Bad deployment test (Experiment 5)
+#   - Network partition test (Experiment 6)
+#   - Disk fill test (Experiment 7)
+#
+# GameDay (quarterly):
+#   - Run all experiments simultaneously
+#   - Validate end-to-end resilience
+#   - Measure MTTR improvements
+#
