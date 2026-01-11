@@ -47,6 +47,203 @@ This chapter teaches you to build custom MCP servers, turning any tool or system
 
 ## 11.1 Building Custom MCP Servers
 
+### When to Build a Custom MCP Server
+
+Understanding when to build custom vs use existing servers saves significant development time. Here's the decision framework.
+
+#### Decision Matrix: Build vs Use Existing
+
+| Factor | Use Existing Server | Build Custom Server |
+|--------|-------------------|---------------------|
+| **Tool has public server** | Yes (github.com/modelcontextprotocol/servers) | N/A |
+| **Tool is popular** | Likely exists, search first | Only if no match |
+| **Internal/proprietary tool** | N/A | Required |
+| **Specific workflow** | Existing might not fit | Tailored to your needs |
+| **Team resources** | Low dev time | 4-8 hours initial + maintenance |
+| **Security requirements** | Trust third-party code | Full control |
+| **Complexity** | Tool has 20+ operations | Tool has 3-5 operations |
+
+#### Real-World Decision Examples
+
+**Example 1: GitHub Integration**
+
+```yaml
+Situation: Need GitHub PR review capabilities
+
+Decision: USE EXISTING
+Reason:
+  - Official @modelcontextprotocol/server-github exists
+  - Well-maintained by Anthropic
+  - Handles authentication, rate limiting
+  - Covers 90% of use cases
+
+Action:
+  npm install @modelcontextprotocol/server-github
+  # Configure in claude_desktop_config.json
+
+Time saved: 8-12 hours development
+```
+
+**Example 2: Internal Deployment System**
+
+```yaml
+Situation: Your company's custom deployment tool ("DeployMaster")
+
+Decision: BUILD CUSTOM
+Reason:
+  - No public server exists (internal tool)
+  - Specific to your workflows
+  - Needs company SSO integration
+  - Only 5 operations needed: deploy, rollback, status, logs, approve
+
+Action:
+  - Create MCP server (4-6 hours)
+  - Expose 5 tools
+  - Connect to DeployMaster API
+
+Time investment: 6 hours initial, 1 hour/month maintenance
+Value: Team of 10 saves 30 min/week each = 130 hours/year saved
+```
+
+**Example 3: Kubernetes Management**
+
+```yaml
+Situation: Need Kubernetes cluster operations
+
+Decision: EVALUATE THEN DECIDE
+
+Step 1: Check existing servers
+  - Search: github.com/modelcontextprotocol/servers
+  - Search: "kubernetes mcp server" on GitHub
+  - Result: Maybe community servers exist
+
+Step 2: Evaluate existing vs custom
+  Existing server pros:
+    ✅ Saves development time
+    ❌ May not have your specific operations
+    ❌ Might not follow your security model
+
+  Custom server pros:
+    ✅ Exactly the operations you need
+    ✅ Integrates with your auth system
+    ❌ Takes time to build and maintain
+
+Step 3: Make informed decision
+  If existing covers 80%+ of needs → Use existing
+  If custom workflows critical → Build custom
+```
+
+#### The "Minimum Viable MCP Server" Approach
+
+Don't build everything at once. Start small and expand based on actual usage.
+
+```yaml
+Phase 1: Core Operations (Week 1)
+  Build 3-5 most common operations
+  Example for AWS:
+    - list_ec2_instances
+    - describe_instance
+    - get_cloudwatch_metrics
+
+  Goal: Usable, not complete
+  Time: 4-6 hours
+
+Phase 2: Feedback & Expansion (Weeks 2-4)
+  Track what team asks AI to do
+  Add operations for frequent requests
+  Example additions:
+    - start_instance
+    - stop_instance
+    - update_tags
+
+  Goal: Cover 90% of use cases
+  Time: 2-3 hours per addition
+
+Phase 3: Polish (Month 2+)
+  Add error handling edge cases
+  Improve response formatting
+  Add caching for expensive operations
+  Documentation
+
+  Goal: Production-ready
+  Time: 4-8 hours
+```
+
+#### Common Mistakes in Server Development
+
+**Mistake 1: Building Too Much Upfront**
+
+```yaml
+❌ Bad approach:
+  "I'll build a complete AWS management server with all services!"
+
+  Result:
+    - 3 weeks of development
+    - 50+ tools implemented
+    - Team only uses 5 of them
+    - Maintenance burden
+
+✅ Good approach:
+  "I'll build tools for the AWS services we actually use daily"
+
+  Result:
+    - 1 day of development
+    - 5 carefully chosen tools
+    - High adoption
+    - Easy to maintain
+```
+
+**Mistake 2: Not Considering Existing Solutions**
+
+```yaml
+❌ Bad approach:
+  Jump straight to building custom server
+
+✅ Good approach:
+  1. Search for existing servers (5 minutes)
+  2. Test if existing meets 80%+ of needs (30 minutes)
+  3. If yes: use existing, contribute improvements if needed
+  4. If no: build custom for the gaps
+
+Time saved: Hours to days
+```
+
+**Mistake 3: No Security Consideration**
+
+```yaml
+❌ Dangerous:
+  MCP server with full AWS admin permissions
+  No audit logging
+  No input validation
+
+✅ Secure:
+  MCP server with least-privilege IAM role
+  All operations logged
+  Input validated and sanitized
+  Read-only operations by default
+  Write operations require confirmation
+
+Security is not optional for production!
+```
+
+#### Quick Decision Flowchart
+
+```
+Need tool integration?
+│
+├─ Popular tool (GitHub, GitLab, Jira)?
+│  └─ Search existing servers → Likely exists → USE EXISTING
+│
+├─ Internal/proprietary tool?
+│  └─ Must BUILD CUSTOM
+│
+└─ Standard tool (AWS, Kubernetes, Docker)?
+   ├─ Check community servers
+   ├─ Evaluate fit
+   └─ If 80%+ match → USE/EXTEND EXISTING
+      If <80% match → BUILD CUSTOM
+```
+
 ### MCP Server Anatomy
 
 ```typescript
