@@ -139,6 +139,123 @@ MTTR: 5 minutes
 
 **Impact:** 85% reduction in MTTR (Mean Time To Resolution)
 
+### When to Use RAG vs Alternatives
+
+Before implementing RAG, evaluate if it's the right solution for your problem. Here's a decision framework:
+
+#### Decision Matrix
+
+| Scenario | Best Approach | Why |
+|----------|--------------|-----|
+| **Internal docs/runbooks change frequently** | ✅ **RAG** | Always syncs with latest docs, no retraining needed |
+| **Need AI to know company-specific information** | ✅ **RAG** | Fine-tuning requires labeled data + time; RAG uses existing docs |
+| **Knowledge is spread across many sources** | ✅ **RAG** | Unifies wikis, tickets, Slack, code comments into one search |
+| **Small, static knowledge base (<50 docs)** | ⚠️ **Prompt Engineering** | Just include docs in context window (cheaper, simpler) |
+| **Need AI to change its behavior/style** | ❌ **Fine-Tuning** | RAG provides knowledge, not personality/tone |
+| **Real-time data (logs, metrics, APIs)** | ⚠️ **RAG + Tools** | RAG for historical patterns, tools for live queries |
+| **Budget <$50/month** | ⚠️ **Evaluate carefully** | Embedding costs add up at scale |
+
+#### Cost-Benefit Example
+
+**Scenario:** Documentation for 50-person engineering team (500 documents, 1000 queries/month)
+
+**RAG Implementation:**
+```yaml
+One-time setup:
+  Engineering time: 40 hours @ $150/hr = $6,000
+  Vector DB setup: 8 hours @ $150/hr = $1,200
+  Total: $7,200
+
+Monthly costs:
+  Embeddings: (500 docs × 2000 tokens) × $0.02/1M = $0.02
+  Vector DB: Weaviate (self-hosted) = $0 or Pinecone = $70
+  LLM queries: (1000 queries × 5000 tokens avg) × $3/1M = $15
+  Total: $15-$85/month
+
+Time savings:
+  Doc searches saved: 1000 queries × 20 min = 333 hours/month
+  Value: 333 hours × $150/hr = $50,000/month
+
+ROI: ($50,000 - $85) / $85 = 58,700% monthly ROI
+Break-even: < 1 day
+```
+
+**Alternative: Fine-Tuning:**
+```yaml
+One-time setup:
+  Data labeling: 80 hours @ $150/hr = $12,000
+  Training: GPU costs = $500
+  Engineering: 60 hours @ $150/hr = $9,000
+  Total: $21,500
+
+Monthly costs:
+  Model hosting: $200-$1000/month
+  Retraining (monthly): 20 hours @ $150/hr = $3,000
+
+Drawbacks:
+  - Docs outdated within weeks
+  - Can't cite sources
+  - Requires retraining for updates
+```
+
+**Decision:** RAG wins for documentation use cases (3× cheaper setup, 20× cheaper maintenance, always up-to-date).
+
+#### When NOT to Use RAG
+
+**1. You need behavioral changes**
+- ❌ "Make the AI respond like a pirate"
+- ✅ Solution: System prompts or fine-tuning
+
+**2. Your knowledge fits in context window**
+- ❌ 5-page deployment guide
+- ✅ Solution: Just paste it in the prompt (Claude: 200K tokens = ~150K words)
+
+**3. You need real-time data**
+- ❌ Current Kubernetes pod status
+- ✅ Solution: Use MCP tools or direct API calls (RAG for historical patterns only)
+
+**4. Your docs are highly structured (database-like)**
+- ❌ Employee directory, product catalog
+- ✅ Solution: Use SQL/NoSQL database with semantic layer
+
+**5. Extreme cost sensitivity (<100 queries/month)**
+- ❌ Personal project with rare use
+- ✅ Solution: Manual search or prompt engineering
+
+#### The Hybrid Approach
+
+**Best of all worlds:** Combine RAG with other techniques
+
+```python
+def smart_assistant(query: str) -> str:
+    """Intelligent routing based on query type"""
+
+    # Real-time data → Use tools
+    if is_realtime_query(query):
+        return query_live_apis(query)
+
+    # Static knowledge → Check context size
+    elif is_static_knowledge(query):
+        if fits_in_context(query):
+            return answer_with_prompt(query)  # Simpler, cheaper
+        else:
+            return answer_with_rag(query)     # Too big for context
+
+    # Behavioral/style → Use system prompt
+    elif is_behavioral(query):
+        return answer_with_custom_system_prompt(query)
+
+    # Default: RAG for knowledge retrieval
+    else:
+        return answer_with_rag(query)
+```
+
+**Production pattern:**
+- **RAG:** Historical runbooks, documentation, past incidents
+- **Tools:** Live metrics, current pod status, API data
+- **System Prompts:** Tone, format, personality
+- **Result:** Agent with knowledge, real-time data, and appropriate behavior
+
 ---
 
 ## 2. Understanding Vector Embeddings
@@ -2455,6 +2572,298 @@ for question in questions:
     print(f"A: {response['answer'][:200]}...")
     print(f"Related: {', '.join(response['suggested_topics'])}")
 ```
+
+---
+
+## 9. Common RAG Mistakes and Troubleshooting
+
+Even experienced engineers make these mistakes when implementing RAG. Here's how to avoid and fix them.
+
+### Mistake 1: Chunks Too Large or Too Small
+
+**Symptom:** Irrelevant results or cut-off context
+
+**Problem:**
+```python
+# ❌ Chunks too large (>1500 tokens)
+chunks = chunk_by_tokens(doc, chunk_size=2000)
+# Result: Embedding loses semantic precision, retrieval returns irrelevant content
+
+# ❌ Chunks too small (<200 tokens)
+chunks = chunk_by_tokens(doc, chunk_size=100)
+# Result: Insufficient context, answers incomplete
+```
+
+**Solution:**
+```python
+# ✅ Sweet spot: 400-600 tokens with 10% overlap
+chunks = chunk_by_tokens(doc, chunk_size=500, overlap=50)
+
+# Test your chunk size
+def evaluate_chunk_size(chunk_sizes: List[int], test_queries: List[str]):
+    """Test different chunk sizes to find optimal"""
+    results = {}
+
+    for size in chunk_sizes:
+        chunks = chunk_by_tokens(doc, chunk_size=size)
+        rag = RAGSystem(chunks)
+
+        # Measure retrieval quality
+        scores = []
+        for query in test_queries:
+            results = rag.search(query, top_k=5)
+            # Human evaluation: rate 1-5 for relevance
+            score = human_rate_relevance(results)
+            scores.append(score)
+
+        results[size] = sum(scores) / len(scores)
+
+    return results  # Use size with highest average score
+```
+
+**Quick test:** If your RAG returns "I don't know" for questions you *know* are in the docs, your chunks are likely too small or too semantically mixed.
+
+### Mistake 2: No Metadata Filtering
+
+**Symptom:** RAG returns outdated docs or wrong environment info
+
+**Problem:**
+```python
+# ❌ No metadata tracking
+collection.add(
+    documents=["kubectl apply -f deployment.yaml"],
+    ids=["doc1"]
+)
+
+# Result: Can't filter by date, environment, or doc type
+```
+
+**Solution:**
+```python
+# ✅ Rich metadata
+collection.add(
+    documents=["kubectl apply -f deployment.yaml"],
+    metadatas=[{
+        "source": "k8s-deploy.md",
+        "environment": "production",
+        "last_updated": "2026-01-10",
+        "doc_type": "runbook",
+        "team": "platform",
+        "verified": True
+    }],
+    ids=["doc1"]
+)
+
+# Query with filtering
+results = collection.query(
+    query_texts=["how to deploy"],
+    n_results=5,
+    where={
+        "$and": [
+            {"environment": {"$eq": "production"}},
+            {"verified": {"$eq": True}},
+            {"last_updated": {"$gte": "2025-01-01"}}  # Only recent docs
+        ]
+    }
+)
+```
+
+**Impact:** 40% improvement in retrieval accuracy (measured in production incident response)
+
+### Mistake 3: Forgetting to Normalize/Clean Text
+
+**Symptom:** Can't find docs with minor formatting differences
+
+**Problem:**
+```python
+# ❌ Raw text with inconsistent formatting
+doc1 = "Deploy to Production: kubectl apply -f prod.yaml"
+doc2 = "deploy to production: KUBECTL APPLY -F PROD.YAML"
+# Different embeddings despite same meaning
+```
+
+**Solution:**
+```python
+# ✅ Normalize before embedding
+import re
+
+def normalize_text(text: str) -> str:
+    """Normalize text for consistent embeddings"""
+    # Lowercase (preserves meaning for most text)
+    text = text.lower()
+
+    # Remove extra whitespace
+    text = re.sub(r'\s+', ' ', text)
+
+    # Optionally: Remove special chars (be careful with code!)
+    # text = re.sub(r'[^\w\s-]', '', text)
+
+    return text.strip()
+
+# Apply before embedding
+normalized_doc = normalize_text(raw_doc)
+embedding = embed_model.encode(normalized_doc)
+```
+
+**When NOT to normalize:**
+- Code blocks (case-sensitive: `kubectl` ≠ `KUBECTL`)
+- URLs, file paths
+- Proper nouns
+
+### Mistake 4: Ignoring Retrieval Quality Monitoring
+
+**Symptom:** RAG quality degrades over time without noticing
+
+**Problem:** No metrics tracking retrieval performance
+
+**Solution:** Implement quality monitoring
+
+```python
+"""Monitor RAG retrieval quality in production"""
+
+class RAGMonitor:
+    def __init__(self, rag_system):
+        self.rag = rag_system
+        self.metrics = []
+
+    def track_query(self, query: str, results: List[Dict], user_satisfied: bool):
+        """Track each query for quality analysis"""
+        metric = {
+            'timestamp': datetime.now(),
+            'query': query,
+            'num_results': len(results),
+            'top_similarity_score': results[0]['score'] if results else 0,
+            'user_satisfied': user_satisfied,  # From user feedback
+            'retrieval_time_ms': results[0].get('time_ms', 0)
+        }
+        self.metrics.append(metric)
+
+        # Alert if quality drops
+        if len(self.metrics) > 100:
+            recent_satisfaction = sum(
+                m['user_satisfied'] for m in self.metrics[-100:]
+            ) / 100
+
+            if recent_satisfaction < 0.7:  # <70% satisfaction
+                self.alert_quality_degradation(recent_satisfaction)
+
+    def alert_quality_degradation(self, satisfaction_rate: float):
+        """Alert when RAG quality drops"""
+        print(f"⚠️ RAG quality alert: {satisfaction_rate:.1%} satisfaction")
+        print("Common causes:")
+        print("  - Docs outdated (re-index needed)")
+        print("  - New doc types not embedded")
+        print("  - Queries outside training distribution")
+
+# Usage in production
+monitor = RAGMonitor(rag)
+
+results = rag.search(query)
+# ... show results to user ...
+
+# Collect feedback (thumbs up/down, or implicit - did they click result?)
+user_satisfied = get_user_feedback()
+monitor.track_query(query, results, user_satisfied)
+```
+
+**Key metrics to track:**
+- **Retrieval success rate:** % queries returning relevant results
+- **Top-1 accuracy:** First result is most relevant
+- **Latency:** Time to retrieve (<100ms good, <500ms acceptable)
+- **User satisfaction:** Implicit (clicks) or explicit (ratings)
+
+**Alert thresholds:**
+- Success rate drops below 80% → Re-index or adjust chunking
+- Latency >1s → Optimize database or upgrade hardware
+- Satisfaction <70% → User study to identify issues
+
+### Mistake 5: Not Handling "I Don't Know"
+
+**Symptom:** RAG hallucinates answers for out-of-scope questions
+
+**Problem:**
+```python
+# ❌ Always tries to answer, even with low-confidence retrieval
+results = rag.search("What's the weather today?", top_k=5)
+# Returns random docs about "today's deployment" and LLM invents weather
+```
+
+**Solution:**
+```python
+# ✅ Confidence threshold
+def search_with_confidence(
+    query: str,
+    rag_system,
+    confidence_threshold: float = 0.7
+) -> Dict:
+    """Only answer if retrieval confidence is high"""
+    results = rag_system.search(query, top_k=5)
+
+    if not results:
+        return {"answer": "I don't have information about that.", "confidence": 0}
+
+    # Check top result similarity score
+    top_score = results[0].get('score', 0)  # Cosine similarity
+
+    if top_score < confidence_threshold:
+        return {
+            "answer": "I couldn't find relevant documentation for that question. "
+                     "Try rephrasing or contact #platform-team.",
+            "confidence": top_score,
+            "suggested_rephrases": generate_rephrase_suggestions(query)
+        }
+
+    # High confidence, generate answer
+    context = "\n\n".join([r['content'] for r in results])
+    answer = generate_with_context(query, context)
+
+    return {
+        "answer": answer,
+        "confidence": top_score,
+        "sources": [r['metadata']['source'] for r in results]
+    }
+
+# Usage
+response = search_with_confidence("How do I deploy?", rag)
+if response['confidence'] > 0.7:
+    print(response['answer'])
+else:
+    print(f"Low confidence ({response['confidence']:.2f}): {response['answer']}")
+```
+
+**Calibrating threshold:**
+- Start with 0.7 (works for most cases)
+- Too many "I don't know" responses → Lower to 0.6
+- Too many hallucinations → Raise to 0.8
+- Measure false positive (wrong answer) vs false negative (missed answer) rates
+
+### Quick Diagnostic Checklist
+
+When RAG isn't working well, run through this checklist:
+
+**1. Retrieval Issues (returns wrong docs)**
+- [ ] Check chunk size (400-600 tokens ideal)
+- [ ] Verify metadata filtering is working
+- [ ] Test with simpler, more direct queries
+- [ ] Re-index if docs were recently updated
+
+**2. Answer Quality Issues (retrieval is correct, answer is wrong)**
+- [ ] Check if LLM has enough context (token limit)
+- [ ] Verify prompt includes "use only provided context"
+- [ ] Lower LLM temperature (<0.3 for factual answers)
+- [ ] Add explicit citations requirement in prompt
+
+**3. Performance Issues (slow responses)**
+- [ ] Check vector DB query time (<100ms expected)
+- [ ] Reduce top_k (5 is usually enough)
+- [ ] Use cheaper embedding model (text-embedding-3-small)
+- [ ] Cache frequent queries
+
+**4. Cost Issues (bills too high)**
+- [ ] Reduce embedding frequency (batch updates, not real-time)
+- [ ] Use smaller embedding model
+- [ ] Implement query caching (50% reduction typical)
+- [ ] Reduce context sent to LLM (re-ranking helps)
 
 ---
 
