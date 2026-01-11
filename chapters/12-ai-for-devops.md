@@ -68,6 +68,182 @@ This chapter brings everything together with practical applications of AI in the
 └────────────────────────────────────────────────────────────────────────────┘
 ```
 
+### When to Apply AI in DevOps: Decision Framework
+
+Understanding when to use AI versus traditional methods is crucial for productivity. AI is powerful, but not every task benefits from it. Here's how to decide.
+
+#### Decision Matrix: AI vs Traditional Approach
+
+| Task Type | Use AI When | Use Traditional When | Why |
+|-----------|-------------|---------------------|-----|
+| **Code Generation** | Creating new infrastructure from scratch | Modifying existing, well-documented code | AI excels at bootstrapping, humans excel at understanding existing context |
+| **Code Review** | Reviewing for common patterns/security | Reviewing business logic correctness | AI catches mechanical issues, humans understand intent |
+| **Debugging** | Unknown error with large logs | Known issue with clear solution | AI helps parse complexity, experience handles familiarity |
+| **Documentation** | Generating initial drafts | Explaining strategic decisions | AI documents "what", humans document "why" |
+| **Routine Tasks** | Repetitive with clear patterns | Requires human judgment | AI automates predictable work |
+| **Learning** | Understanding new tech/code | Mastering core concepts | AI accelerates exposure, traditional learning builds depth |
+
+#### Real-World Application Examples
+
+**Scenario 1: New Microservice Deployment**
+
+✅ **Use AI for:**
+```yaml
+Initial setup:
+  - Generate Kubernetes manifests from requirements
+  - Create Terraform for AWS resources
+  - Generate Prometheus alerting rules
+  - Create initial CI/CD pipeline
+
+Estimated time saved: 4-6 hours → 30 minutes (with review)
+Quality: 85-90% complete, requires 10-15% human refinement
+```
+
+❌ **Don't use AI for:**
+```yaml
+Strategic decisions:
+  - Which database to use (PostgreSQL vs MongoDB)
+  - Choosing between ECS vs EKS
+  - Setting business-appropriate SLOs
+  - Defining team-specific naming conventions
+
+Why: These require business context and long-term implications understanding
+```
+
+**Scenario 2: Production Incident**
+
+✅ **Use AI for:**
+```yaml
+Initial triage:
+  - Parsing 10,000 lines of logs for errors
+  - Correlating events across services
+  - Suggesting similar past incidents
+  - Generating impact timeline
+
+Time saved: 15-20 minutes → 2-3 minutes
+Accuracy: Finds 90%+ of relevant data points
+```
+
+❌ **Don't use AI for:**
+```yaml
+Critical decisions:
+  - Whether to trigger DR failover
+  - Communicating outage to customers
+  - Deciding rollback vs forward fix
+  - Determining root cause with political implications
+
+Why: High-stakes decisions require human accountability and judgment
+```
+
+#### The "AI Amplification" Rule
+
+The most effective pattern: **AI generates, human refines.**
+
+```yaml
+Effective workflow:
+  1. AI generates initial solution (70-80% complete)
+  2. Human reviews for:
+     - Business requirements alignment
+     - Security implications
+     - Cost optimization opportunities
+     - Team/org specific standards
+  3. Human refines (adds the missing 20-30%)
+  4. Result: 3-5x faster than manual, same or better quality
+
+Ineffective workflows:
+  ❌ AI generates, human blindly accepts → Accumulates technical debt
+  ❌ Human does everything manually → Wastes AI capabilities
+  ❌ AI generates multiple times without human guidance → Iterative waste
+```
+
+#### Common Mistakes in AI Application
+
+**Mistake 1: Using AI Without Context**
+
+```bash
+❌ Bad: Generic prompt without project context
+> Create a Kubernetes deployment
+
+Result: Generic YAML that doesn't match your standards
+
+✅ Good: Contextualized prompt
+> Create a Kubernetes deployment following our team standards:
+  - All images from our ECR registry (123456789.dkr.ecr.us-east-1.amazonaws.com)
+  - Resource requests: CPU 100m, Memory 128Mi (standard small service)
+  - Always include: livenessProbe, readinessProbe, PodDisruptionBudget
+  - Labels: app, version, team, cost-center
+  - Use our external-secrets operator for secrets
+
+Result: YAML that matches your patterns, requires minimal changes
+```
+
+**Mistake 2: Over-Relying on AI for Critical Paths**
+
+```yaml
+Production deployment checklist:
+
+✅ Good balance:
+  - AI reviews code for common issues
+  - AI generates deployment manifest updates
+  - HUMAN reviews all changes before applying
+  - HUMAN triggers production deployment
+  - AI monitors deployment health
+  - HUMAN makes rollback decision if needed
+
+❌ Dangerous: Full automation without checkpoints
+  - AI reviews, generates, and deploys without human verification
+  - No approval gates
+  - Risk: AI doesn't understand business-critical constraints
+```
+
+**Mistake 3: Not Iterating on Prompts**
+
+```yaml
+Learning curve pattern:
+
+Week 1: Generic prompts
+  - "Create a Terraform module"
+  - Results: Mediocre, requires heavy editing
+
+Week 2-3: Adding context
+  - "Create a Terraform module following AWS best practices"
+  - Results: Better, but still generic
+
+Week 4+: Refined prompts with team standards
+  - "Create a Terraform module for our organization:
+     - Use our standard naming: <env>-<region>-<service>-<resource>
+     - Tag with: Environment, Project, Owner, CostCenter, ManagedBy
+     - Use our approved versions (AWS provider 5.x)
+     - Reference our shared VPC module (module.vpc.vpc_id)
+     - Include our standard monitoring (CloudWatch alarms)"
+  - Results: 90%+ ready to use
+
+**Save refined prompts in .claude/commands/ for reuse!**
+```
+
+#### Measuring AI Effectiveness
+
+Track these metrics to determine if AI is actually helping:
+
+```yaml
+Time metrics:
+  - Time to first working solution: AI should reduce by 60-80%
+  - Time to production-ready: AI should reduce by 40-60%
+  - Time spent on revisions: Should not increase significantly
+
+Quality metrics:
+  - Issues caught in review: AI should catch 80%+ of mechanical issues
+  - Post-deployment incidents: Should not increase
+  - Code consistency: Should improve (AI follows patterns better)
+
+Team metrics:
+  - Time freed for strategic work: Should increase
+  - Team satisfaction: Should improve (less tedious work)
+  - Learning velocity: Should increase (AI helps explore new patterns)
+```
+
+**Rule of thumb**: If you're spending more time fixing AI output than writing from scratch, your prompts need refinement or the task isn't suitable for AI.
+
 ---
 
 ## 12.2 Infrastructure as Code with AI
