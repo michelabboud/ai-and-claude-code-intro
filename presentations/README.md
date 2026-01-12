@@ -62,5 +62,12 @@ marp -s .
 | [slides-chapter-03.md](./slides-chapter-03.md) | 3 | The Art of Prompting |
 | [slides-chapter-04-05.md](./slides-chapter-04-05.md) | 4-5 | AI Models & Introduction to Claude |
 | [slides-chapter-06-08.md](./slides-chapter-06-08.md) | 6-8 | Claude Code (Basic to Professional) |
-| [slides-chapter-09.md](./slides-chapter-09.md) | 9 | MCP Deep Dive |
-| [slides-chapter-10.md](./slides-chapter-10.md) | 10 | AI for DevOps |
+| [slides-chapter-10-11.md](./slides-chapter-10-11.md) | 10-11 | MCP Protocol (Fundamentals & Server Development) |
+| [slides-chapter-12.md](./slides-chapter-12.md) | 12 | AI for DevOps |
+| [slides-chapter-15-16.md](./slides-chapter-15-16.md) | 15-16 | Multi-Agent Orchestration |
+| [slides-chapter-17-18.md](./slides-chapter-17-18.md) | 17-18 | AIOps (Fundamentals & Advanced) |
+| [slides-chapter-19.md](./slides-chapter-19.md) | 19 | Team Transformation |
+| [slides-chapter-20.md](./slides-chapter-20.md) | 20 | Agent Loop Detection & Prevention |
+| [slides-chapter-21.md](./slides-chapter-21.md) | 21 | Resilience Patterns for Agents |
+| [slides-chapter-23.md](./slides-chapter-23.md) | 23 | RAG Fundamentals |
+| [slides-chapter-24.md](./slides-chapter-24.md) | 24 | RAG Search & Retrieval Optimization |
