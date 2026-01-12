@@ -2250,19 +2250,2018 @@ Style: Futuristic but professional, forward-looking optimism, tech industry aest
 
 ## Chapter 05: Introduction to Claude
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Claude AI assistant, model family, capabilities, access options, effective usage
+- **Total Images**: 7
+- **Animation Candidates**: 1
+
+---
+
+### Image 05-01: Chapter Header
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-01-header-introduction-to-claude.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title, before "Meet Your AI Colleague" |
+| **Alt Text** | "Welcoming illustration of Claude as an AI assistant, represented as a friendly, professional digital entity ready to help with DevOps tasks" |
+
+**Prompt:**
+```
+A warm, professional hero illustration introducing Claude as an AI assistant for DevOps engineers.
+
+CENTRAL CONCEPT:
+A friendly, approachable representation of Claude as an AI entity - not a robot or human, but an abstract digital presence that feels helpful and trustworthy.
+
+VISUAL REPRESENTATION OF CLAUDE:
+- Abstract glowing form or avatar - could be a warm orb, constellation of particles, or stylized assistant icon
+- Should feel intelligent but approachable
+- Warm orange/coral tones (Anthropic brand colors)
+- Subtle neural network or intelligence patterns within
+- "Eyes" or focal point that feels attentive without being literal
+
+SURROUNDING ELEMENTS (DevOps context):
+- Floating DevOps icons approaching Claude for help:
+  - Kubernetes wheel
+  - Docker whale
+  - Terraform logo shape
+  - Code brackets
+  - Terminal window
+  - Cloud infrastructure symbols
+- These elements are "being helped" - receiving solutions, fixes, documentation
+
+INTERACTION VISUALIZATION:
+- Light rays or connection lines from Claude to the DevOps elements
+- Shows Claude understanding and responding
+- Helpful aura or assistance visualization
+
+MOOD ELEMENTS:
+- Professional but warm
+- Trustworthy and capable
+- Ready to assist
+- Intelligent but not intimidating
+
+BACKGROUND:
+- Clean, professional gradient
+- Subtle tech patterns
+- Could suggest a digital workspace
+
+Color palette: Warm oranges and corals (#ff6d00, #ff9100) for Claude, tech blues (#1a73e8, #4285f4) for DevOps elements, creating harmony between the assistant and the technical domain.
+
+Style: Modern tech illustration, warm and approachable, professional yet friendly, suitable as "meet your new AI colleague" intro image. The feeling should be welcoming and competent.
+```
+
+---
+
+### Image 05-02: Claude at a Glance
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-02-info-claude-overview.png` |
+| **Type** | Info (Infographic) |
+| **Aspect Ratio** | 4:3 or 16:9 |
+| **Placement** | Replace or accompany the ASCII "Claude at a Glance" box in section 5.1 (around line 34-60) |
+| **Alt Text** | "Infographic overview of Claude: creator Anthropic, key differentiators including Constitutional AI, 200K context, and access methods" |
+
+**Prompt:**
+```
+A clean infographic providing a quick overview of Claude's key characteristics and access methods.
+
+LAYOUT: Central Claude representation with radiating information sections
+
+CENTER:
+- Claude icon/avatar (warm, glowing)
+- "Claude" label area
+- Anthropic creator indicator
+
+SECTION 1 - CREATOR INFO (Top):
+- Anthropic logo area (stylized)
+- Founded: 2021
+- Mission: AI safety research
+- Visual: Safety/research icons
+
+SECTION 2 - KEY DIFFERENTIATORS (Left):
+Six key points with icons:
+1. Constitutional AI icon - trained with safety principles
+2. Honesty icon - transparent about limitations
+3. 200K token icon - massive context window
+4. Brain icon - strong reasoning capabilities
+5. Instruction icon - excellent at following complex instructions
+6. Conversation icon - natural communication style
+
+SECTION 3 - ACCESS METHODS (Right):
+Five access options with icons:
+1. claude.ai - web browser icon
+2. API - code/terminal icon
+3. AWS Bedrock - AWS cloud icon
+4. Google Vertex AI - GCP icon
+5. Claude Code - CLI/terminal icon
+
+VISUAL ELEMENTS:
+- Clean connecting lines from center to sections
+- Each point has a small, clear icon
+- Color-coded sections
+- Professional but approachable design
+
+Color palette: Warm Anthropic orange for Claude center, tech blues for differentiators, greens for access methods.
+
+Style: Modern quick-reference infographic, scannable design, suitable for "at a glance" understanding, clean icons and minimal text.
+```
+
+---
+
+### Image 05-03: The Three H's - Helpful, Harmless, Honest
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-03-concept-three-hs.png` |
+| **Type** | Concept |
+| **Aspect Ratio** | 16:9 or 1:1 |
+| **Placement** | After section 5.1 "Claude's Design Philosophy" (around line 64-90) |
+| **Alt Text** | "Three pillars diagram showing Claude's core values: Helpful (provides working solutions), Harmless (avoids dangerous outputs), Honest (transparent about limitations)" |
+
+**Prompt:**
+```
+A memorable diagram illustrating Claude's three core design principles: Helpful, Harmless, Honest.
+
+LAYOUT OPTIONS:
+- Three pillars supporting a structure
+- Three interlocking circles (Venn diagram style)
+- Three points of a triangle/shield
+- Three ascending steps
+
+THREE H'S:
+
+H1 - HELPFUL (First):
+- Icon: Lightbulb, wrench, helping hand
+- Visual: Claude providing working solutions
+- Examples shown:
+  - Working code output
+  - Clarifying questions being asked
+  - Alternative suggestions offered
+- Color: Warm orange/gold (positive action)
+- Mood: Proactive, useful, practical
+
+H2 - HARMLESS (Second):
+- Icon: Shield, checkmark, safety barrier
+- Visual: Claude blocking harmful outputs
+- Examples shown:
+  - Rejecting malicious requests
+  - Warning about security risks
+  - Considering implications
+- Color: Green (safety)
+- Mood: Protective, careful, responsible
+
+H3 - HONEST (Third):
+- Icon: Eye, truth symbol, transparency indicator
+- Visual: Claude being transparent
+- Examples shown:
+  - Admitting uncertainty
+  - Acknowledging limitations
+  - Distinguishing fact from opinion
+- Color: Blue (trust, clarity)
+- Mood: Transparent, trustworthy, humble
+
+CENTER/CONNECTING ELEMENT:
+- Claude icon at the intersection
+- Shows all three principles working together
+- "Constitutional AI" connection if space permits
+
+BALANCE VISUALIZATION:
+- All three equally important
+- Each supports the others
+- Together they create a reliable assistant
+
+Style: Clean, memorable diagram, each H distinct but connected, suitable for understanding Claude's design philosophy, professional color palette, minimal text with clear icons.
+```
+
+---
+
+### Image 05-04: Claude Model Family
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-04-compare-claude-models.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Replace or accompany the ASCII model family boxes in section 5.2 (around line 99-138) |
+| **Alt Text** | "Three-tier comparison of Claude models: Opus 4.5 (The Powerhouse), Sonnet 4.5 (The Sweet Spot), and Haiku 4.5 (The Speed Demon)" |
+
+**Prompt:**
+```
+A three-panel comparison showing the Claude 4.5 model family with their distinct characteristics and use cases.
+
+THREE HORIZONTAL PANELS (or vertical tiers):
+
+PANEL 1 - CLAUDE SONNET 4.5 "The Sweet Spot" (CENTER/HIGHLIGHTED):
+- Position: Center or most prominent (recommended default)
+- Visual: Balanced scale, golden/optimal indicator
+- Icon: Star or "recommended" badge
+- Key attributes:
+  - Best balance indicator
+  - Code generation icon
+  - Complex reasoning icon
+  - 200K context icon
+  - Vision capability icon
+- Color: Rich blue with gold accents (premium but accessible)
+- Badge: "Recommended for most DevOps tasks"
+- Mood: Optimal, balanced, professional choice
+
+PANEL 2 - CLAUDE OPUS 4.5 "The Powerhouse" (TOP):
+- Position: Top or premium tier
+- Visual: Crown, power symbol, strongest indicator
+- Icon: Trophy or maximum power gauge
+- Key attributes:
+  - Most capable indicator
+  - Complex analysis icon
+  - Architecture decisions icon
+  - Higher cost indicator
+  - "Quality matters most" indicator
+- Color: Deep purple/gold (premium)
+- Badge: "For complex analysis and critical decisions"
+- Mood: Premium, powerful, for important tasks
+
+PANEL 3 - CLAUDE HAIKU 4.5 "The Speed Demon" (BOTTOM):
+- Position: Bottom or efficiency tier
+- Visual: Lightning bolt, speed indicator, efficiency
+- Icon: Speedometer or rocket
+- Key attributes:
+  - Fastest response icon
+  - Cost-effective icon
+  - High volume icon
+  - Chatbot/quick query icon
+  - Automation icon
+- Color: Teal/cyan (efficient, light)
+- Badge: "For high-volume and simple tasks"
+- Mood: Fast, efficient, scalable
+
+COMPARISON ELEMENTS:
+- Speed indicator: Haiku fastest, Opus slowest
+- Cost indicator: Haiku cheapest, Opus most expensive
+- Capability indicator: Opus highest, Haiku lowest
+- Sweet spot highlight on Sonnet
+
+VISUAL FLOW:
+- Clear hierarchy from premium to budget
+- Each model clearly distinguished
+- Recommendation visible for default choice
+
+Style: Clean comparison cards, tier-based visualization, clear use case guidance, suitable for model selection decisions, professional color palette.
+```
+
+---
+
+### Image 05-05: Claude Capabilities vs Limitations
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-05-compare-can-cannot.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 5.3 covering capabilities and limitations (around line 250-292) |
+| **Alt Text** | "Split comparison showing what Claude can do (code generation, debugging, documentation) versus limitations (no real-time data, no code execution, no internet access)" |
+
+**Prompt:**
+```
+A split-screen comparison showing Claude's capabilities and limitations for DevOps engineers.
+
+SPLIT LAYOUT:
+
+LEFT SIDE - "WHAT CLAUDE EXCELS AT" (Green/positive):
+- Header: Checkmark icon, "Excellent" badge
+- Section style: Green accents, achievement indicators
+
+Categories with icons:
+1. CODE GENERATION - Excellent
+   - Terraform modules icon
+   - Kubernetes manifests icon
+   - CI/CD pipelines icon
+   - Monitoring scripts icon
+
+2. CODE REVIEW - Excellent
+   - Security scan icon
+   - Performance suggestions icon
+   - Best practices icon
+
+3. DEBUGGING - Excellent
+   - Log analysis icon
+   - Error tracing icon
+   - Root cause icon
+
+4. DOCUMENTATION - Excellent
+   - README icon
+   - API docs icon
+   - Runbooks icon
+
+5. LONG CONTEXT - Industry-leading
+   - 200K tokens badge
+   - "Analyze entire log files" indicator
+
+RIGHT SIDE - "WHAT CLAUDE CANNOT DO" (Yellow/informative):
+- Header: Info icon, "Limitations" badge
+- Section style: Yellow accents, awareness indicators
+
+Categories with icons and workarounds:
+1. REAL-TIME DATA - No access
+   - Clock with X icon
+   - Workaround: "Provide data in prompt"
+
+2. EXECUTE CODE - Generate only
+   - Terminal with X icon
+   - Exception: "Claude Code CAN execute"
+
+3. INTERNET ACCESS - No browsing
+   - Globe with X icon
+   - Workaround: "Paste content in prompt"
+
+4. MEMORY BETWEEN SESSIONS - Fresh start
+   - Brain with X icon
+   - Workaround: "Save context for reuse"
+
+5. DIRECT SYSTEM ACCESS - No SSH
+   - Server with X icon
+   - Exception: "Claude Code for local files"
+
+CENTER DIVIDER:
+- "Know both sides to use effectively"
+- Balance indicator
+
+Style: Clear capabilities/limitations layout, informative not negative, workarounds visible, suitable for setting realistic expectations, green/yellow color coding.
+```
+
+---
+
+### Image 05-06: Claude Access Options
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-06-flow-access-options.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 5.4 header "How to Access Claude" (around line 296) |
+| **Alt Text** | "Five access paths to Claude: Web Interface (claude.ai), Direct API, AWS Bedrock, Google Vertex AI, and Claude Code CLI" |
+
+**Prompt:**
+```
+A flow diagram showing five different ways to access Claude, with guidance on when to use each.
+
+LAYOUT: Central Claude node with five branching access paths
+
+CENTER:
+- Claude icon/avatar
+- "Access Claude" label
+- Connection point for all paths
+
+FIVE ACCESS PATHS (radiating outward):
+
+PATH 1 - CLAUDE.AI WEB INTERFACE (Top):
+- Icon: Browser window
+- Tiers shown: Free → Pro → Max
+- Best for: "Quick questions, exploration, learning"
+- Color: Light blue (easy access)
+- Complexity: Lowest
+
+PATH 2 - ANTHROPIC API (Right-top):
+- Icon: Code/terminal with API symbol
+- Code snippet visual: Python import anthropic
+- Best for: "Automation, custom integrations"
+- Color: Purple (developer)
+- Complexity: Medium
+
+PATH 3 - AWS BEDROCK (Right-bottom):
+- Icon: AWS cloud symbol
+- Features: VPC, IAM, CloudTrail
+- Best for: "Enterprise, compliance, AWS shops"
+- Color: Orange (AWS)
+- Complexity: Medium-high
+
+PATH 4 - GOOGLE VERTEX AI (Left-bottom):
+- Icon: GCP cloud symbol
+- Features: GCP integration
+- Best for: "GCP-based organizations"
+- Color: Google blue/green
+- Complexity: Medium-high
+
+PATH 5 - CLAUDE CODE CLI (Left-top):
+- Icon: Terminal/command line
+- Features: File access, code execution
+- Best for: "DevOps coding, local development"
+- Color: Green (power user)
+- Complexity: Low-medium
+- "Covered in next chapters" indicator
+
+DECISION GUIDANCE:
+- Quick path highlighted for "Most users start here"
+- Enterprise path for compliance needs
+- Developer path for automation
+
+VISUAL ELEMENTS:
+- Each path clearly labeled
+- Complexity/ease indicators
+- Best use case visible
+- Cost tier hints where relevant
+
+Style: Clean radial flow diagram, clear access options, actionable guidance, suitable for choosing the right access method, color-coded by provider/type.
+```
+
+---
+
+### Image 05-07: Vision Capabilities for DevOps
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-05-img-07-concept-vision-capabilities.png` |
+| **Type** | Concept |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 5.6 "Claude's Vision Capabilities" (around line 786) |
+| **Alt Text** | "Four examples of Claude's vision capabilities for DevOps: analyzing architecture diagrams, error screenshots, log images, and network topology diagrams" |
+
+**Prompt:**
+```
+An illustration showing four practical DevOps use cases for Claude's vision/image analysis capabilities.
+
+LAYOUT: Four quadrants or panels showing different vision use cases
+
+PANEL 1 - ARCHITECTURE DIAGRAMS:
+- Input visual: A stylized cloud architecture diagram (boxes, arrows, AWS icons)
+- Arrow pointing to Claude processing
+- Output visual: Terraform code blocks
+- Caption area: "Upload diagram → Get infrastructure code"
+- Color: Blue (infrastructure)
+
+PANEL 2 - ERROR SCREENSHOTS:
+- Input visual: Grafana/monitoring dashboard screenshot style
+- Arrow pointing to Claude processing
+- Output visual: Analysis text, identified issues
+- Caption area: "Share dashboard → Get incident analysis"
+- Color: Red/orange (alerts/errors)
+
+PANEL 3 - LOG IMAGES (Slack sharing scenario):
+- Input visual: Screenshot of log output (when someone shares via Slack)
+- Arrow pointing to Claude processing
+- Output visual: Extracted text, identified error
+- Caption area: "Log screenshot → Transcribed and analyzed"
+- Color: Green (logs)
+
+PANEL 4 - NETWORK TOPOLOGY:
+- Input visual: Network diagram (nodes, connections, firewalls)
+- Arrow pointing to Claude processing
+- Output visual: Security analysis, improvement suggestions
+- Caption area: "Network diagram → Security review"
+- Color: Purple (security)
+
+CENTER ELEMENT:
+- Claude's "eye" or vision capability icon
+- "Claude Vision" label
+- Connection to all four use cases
+
+VISUAL FLOW:
+- Image input → Claude processing → Actionable output
+- Each panel shows the transformation
+- Practical, real-world DevOps scenarios
+
+Style: Clean four-panel layout, practical examples, shows image-to-insight transformation, suitable for understanding vision capabilities in DevOps context, professional documentation quality.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing an architecture diagram being "scanned" by Claude and transforming into Terraform code output.
 
 ---
 
 ## Chapter 06: Claude Code Fundamentals
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Claude Code CLI introduction, installation, authentication, basic usage, core workflows, DevOps examples
+- **Total Images**: 10
+- **Animation Candidates**: 2
+
+---
+
+### Image 06-01: Chapter Header
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-01-header-claude-code-fundamentals.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title, before "Your AI Pair Programmer for the Terminal" |
+| **Alt Text** | "Developer at terminal with Claude Code running, showing AI-assisted code generation and file operations in a professional DevOps environment" |
+
+**Prompt:**
+```
+A dynamic hero illustration showing Claude Code as an AI pair programmer integrated into the terminal/command-line environment.
+
+CENTRAL COMPOSITION:
+A stylized terminal window that serves as the gateway between the developer and AI assistance, with energy and productivity flowing through it.
+
+TERMINAL REPRESENTATION:
+- Large, prominent terminal/CLI window as the focal point
+- Clean, modern terminal aesthetic (dark theme with syntax highlighting)
+- Claude Code interface visible within:
+  - Input prompt area
+  - AI response area with code
+  - File tree sidebar suggestion
+- Glowing cursor or input indicator showing active interaction
+
+LEFT SIDE - DEVELOPER CONTEXT:
+- Abstract developer presence (hands on keyboard, or silhouette)
+- Surrounding DevOps artifacts floating nearby:
+  - Kubernetes YAML files
+  - Docker compose files
+  - GitHub/Git icons
+  - CI/CD pipeline symbols
+  - Cloud infrastructure diagrams
+- These represent the "input" - what the developer works with
+
+RIGHT SIDE - AI ASSISTANCE OUTPUT:
+- Code blocks being generated in real-time
+- File operations being performed:
+  - Files being created (new document icons)
+  - Files being edited (edit symbols)
+  - Tests running (checkmarks)
+- Commands being executed (terminal symbols)
+- These represent the "output" - what Claude Code produces
+
+CONNECTING ELEMENTS:
+- Data flow visualization between developer input and AI output
+- The terminal as the bridge/conduit
+- Energy particles or light streams showing active processing
+- Anthropic orange glow emanating from AI processing areas
+
+VISUAL METAPHOR:
+- The terminal as a "portal" to AI assistance
+- Developer and AI working as one team
+- Productivity and capability amplification
+
+BACKGROUND:
+- Professional workspace atmosphere
+- Subtle code patterns or git graph visualization
+- Dark, focused environment suitable for coding
+
+Color palette: Deep terminal blacks and grays, Anthropic orange (#ff6d00) for AI elements, tech blues (#1a73e8) for code/DevOps elements, green (#4caf50) for success/output indicators.
+
+Style: Modern tech illustration, dynamic and productive feeling, shows the power of CLI-based AI assistance, professional DevOps context, suitable as chapter hero image introducing Claude Code.
+```
+
+---
+
+### Image 06-02: Claude Code Capabilities Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-02-diagram-capabilities-overview.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Replace or accompany the ASCII capabilities diagram in section 6.1 (around line 34-63) |
+| **Alt Text** | "Three-category diagram of Claude Code capabilities: Read & Understand, Execute & Modify, and Automate & Assist" |
+
+**Prompt:**
+```
+A clean three-section diagram illustrating Claude Code's core capability categories.
+
+LAYOUT: Three vertical columns or horizontal sections, each representing a capability category
+
+SECTION 1 - READ & UNDERSTAND (Left):
+- Header icon: Eye or magnifying glass over documents
+- Color: Blue tones (information gathering)
+- Four capability icons with labels:
+  1. "Read files in your project" - File/document icon
+  2. "Understand codebase structure" - Tree/hierarchy icon
+  3. "Navigate directories" - Folder navigation icon
+  4. "Search for patterns across files" - Search/grep icon
+- Visual: Documents flowing into an understanding/brain visualization
+- Mood: Observational, analytical
+
+SECTION 2 - EXECUTE & MODIFY (Center):
+- Header icon: Wrench/tool or edit symbol
+- Color: Orange/amber tones (action/modification)
+- Four capability icons with labels:
+  1. "Run shell commands" - Terminal/command icon
+  2. "Edit existing files" - Pencil/edit icon
+  3. "Create new files" - Plus/new document icon
+  4. "Run tests and builds" - Checkmark/build icon
+- Visual: Code being actively modified, commands executing
+- Mood: Active, productive
+
+SECTION 3 - AUTOMATE & ASSIST (Right):
+- Header icon: Robot arm or automation gear
+- Color: Green/teal tones (automation/efficiency)
+- Four capability icons with labels:
+  1. "Complete multi-step tasks autonomously" - Multi-step workflow icon
+  2. "Git operations (commit, branch, PR)" - Git branch icon
+  3. "Debug issues with access to real data" - Bug fix icon
+  4. "Refactor code across multiple files" - Refactor/multi-file icon
+- Visual: Multiple tasks being coordinated, autonomous workflow
+- Mood: Efficient, autonomous
+
+CONNECTING ELEMENTS:
+- Arrows or flow showing how capabilities work together
+- Central Claude Code icon connecting all three sections
+- "Your AI Pair Programmer" label
+- Shows progression from understanding to action to automation
+
+VISUAL STYLE:
+- Clean, modern icons
+- Distinct color coding per section
+- Professional documentation quality
+- Each capability clearly bounded and labeled
+
+Style: Clean capability diagram, three distinct categories, professional icons, suitable for quick understanding of what Claude Code can do, minimal text with clear visual hierarchy.
+```
+
+---
+
+### Image 06-03: Claude.ai vs Claude Code Comparison
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-03-compare-claudeai-claudecode.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Replace or accompany the ASCII comparison table in section 6.1 (around line 67-96) |
+| **Alt Text** | "Split comparison showing Claude.ai (web browser, copy-paste workflow) versus Claude Code (terminal, direct file access, command execution)" |
+
+**Prompt:**
+```
+A split-screen comparison illustration contrasting Claude.ai web interface with Claude Code CLI for development work.
+
+SPLIT LAYOUT:
+
+LEFT SIDE - CLAUDE.AI (Web Interface):
+- Header: Browser window frame with claude.ai
+- Visual representation: Chat interface in browser
+- Workflow steps shown:
+  1. "You paste the file content" - Copy icon
+  2. "Claude suggests changes" - Chat bubble with code
+  3. "You manually copy and apply changes" - Manual copy icon
+  4. "You run tests yourself" - Separate terminal icon
+- Color scheme: Light blues, web aesthetic
+- Icons: Browser, clipboard, chat bubbles
+- Workflow indicators: Manual, multi-step, copy-paste
+- Label: "Session-based, manual workflow"
+
+CENTER DIVIDER:
+- "VS" or comparison indicator
+- "Same AI, Different Interface" tagline
+- Shows task example: "Add error handling to database module"
+
+RIGHT SIDE - CLAUDE CODE (Terminal):
+- Header: Terminal window frame
+- Visual representation: CLI interface with commands
+- Workflow steps shown:
+  1. "Claude reads the database module directly" - Direct file access
+  2. "Claude edits the file in place" - Direct edit icon
+  3. "Claude runs the tests" - Integrated test icon
+  4. "Claude fixes any issues found" - Automatic fix icon
+- Color scheme: Dark theme, terminal green/orange
+- Icons: Terminal, file system, direct arrows
+- Workflow indicators: Automatic, integrated, direct
+- Label: "Project context, automated workflow"
+
+COMPARISON METRICS:
+- Speed indicator: Claude Code faster
+- Steps required: Claude Code fewer
+- Context awareness: Claude Code automatic
+- Integration: Claude Code superior
+
+VISUAL METAPHOR:
+- Claude.ai: Multiple disconnected windows/tools
+- Claude Code: Single integrated environment
+- Arrows showing workflow difference (multi-hop vs direct)
+
+KEY DIFFERENCES TABLE (visual):
+- Web browser ↔ Terminal
+- Copy-paste ↔ Direct access
+- Manual commands ↔ Automatic execution
+- Session-based ↔ Project context
+
+Style: Clear side-by-side comparison, workflow visualization, professional documentation style, highlights the efficiency advantage of CLI integration.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing the same task being done in both interfaces, with Claude Code completing faster with fewer steps.
+
+---
+
+### Image 06-04: Installation Methods Decision Flow
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-04-flow-installation-methods.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 6.2 "Installation Method Selection" (around line 223-234) |
+| **Alt Text** | "Decision flowchart for choosing Claude Code installation method: npm, Homebrew, winget, or direct download based on environment and requirements" |
+
+**Prompt:**
+```
+A decision flowchart helping users choose the right Claude Code installation method.
+
+FLOWCHART STRUCTURE:
+
+START NODE:
+- "Install Claude Code"
+- Entry point, neutral color
+
+DECISION 1 - PLATFORM:
+- Question: "What's your operating system?"
+- Three branches: macOS, Windows, Linux
+- Color-coded paths
+
+macOS PATH:
+- Decision: "Node.js already installed?"
+  - YES → "npm install -g @anthropic-ai/claude-code" (Recommended)
+  - NO → Decision: "Prefer package manager?"
+    - YES → "brew install claude-code" (Homebrew)
+    - NO → "Direct download" (Binary)
+
+WINDOWS PATH:
+- Decision: "Using WSL?"
+  - YES → Follow Linux path
+  - NO → "winget install Anthropic.ClaudeCode" (Native)
+
+LINUX PATH:
+- Decision: "Node.js already installed?"
+  - YES → "npm install -g @anthropic-ai/claude-code" (Recommended)
+  - NO → Decision: "Want to install Node.js?"
+    - YES → Install Node.js first → npm install
+    - NO → "Direct download" (Binary)
+
+ENDPOINT BOXES (color-coded by method):
+
+NPM (Blue - most common):
+- Icon: npm logo stylized
+- Command: `npm install -g @anthropic-ai/claude-code`
+- Pros: "Easy updates, cross-platform"
+- Best for: "Most developers"
+
+HOMEBREW (Orange - macOS):
+- Icon: Homebrew stylized
+- Command: `brew install claude-code`
+- Pros: "Native macOS, auto-updates"
+- Best for: "Mac users without Node.js"
+
+WINGET (Blue - Windows):
+- Icon: Windows stylized
+- Command: `winget install Anthropic.ClaudeCode`
+- Pros: "Native Windows integration"
+- Best for: "Windows users"
+
+DIRECT DOWNLOAD (Gray - universal):
+- Icon: Download arrow
+- Command: `curl -fsSL ... && chmod +x`
+- Pros: "No dependencies, air-gapped"
+- Best for: "Restricted environments, Docker"
+
+VISUAL ELEMENTS:
+- Clear decision diamonds
+- Color-coded paths
+- Platform icons at decision points
+- "Recommended" badges on preferred paths
+- Verification step at all endpoints: `claude --version`
+
+Style: Professional flowchart, clear decision points, actionable endpoints, suitable for quick installation method selection.
+```
+
+---
+
+### Image 06-05: Authentication Security Comparison
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-05-compare-auth-security.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 6.3 "Authentication Security Best Practices" table (around line 519-528) |
+| **Alt Text** | "Four-tier security comparison of authentication methods: Interactive Login (highest), AWS Bedrock IAM (high), Environment Variable (medium), Config File (lowest)" |
+
+**Prompt:**
+```
+A security-focused comparison showing four authentication methods ranked by security level.
+
+LAYOUT: Four horizontal tiers arranged from most secure (top) to least secure (bottom), or four columns with security meters
+
+TIER 1 - INTERACTIVE LOGIN (Highest Security - 5 stars):
+- Icon: Browser + lock/shield combination
+- Security meter: Full green (★★★★★)
+- Visual: OAuth flow diagram simplified
+- How it works: "Browser auth → Token in keychain"
+- Pros (checkmarks):
+  - "Token encrypted at rest"
+  - "Auto-refresh, auto-expiration"
+  - "Can revoke from dashboard"
+  - "Full audit trail"
+- Risk level: LOW
+- Use case: "Individual developers"
+- Color: Green security zone
+
+TIER 2 - AWS BEDROCK (IAM Roles) (High Security - 5 stars):
+- Icon: AWS + IAM shield
+- Security meter: Full green (★★★★★)
+- Visual: IAM role assumption flow
+- How it works: "IAM role → Temporary credentials"
+- Pros (checkmarks):
+  - "No long-lived keys"
+  - "AWS manages rotation"
+  - "CloudTrail audit logs"
+  - "VPC restrictions possible"
+- Risk level: VERY LOW
+- Use case: "Enterprise, production"
+- Color: Green security zone
+
+TIER 3 - ENVIRONMENT VARIABLE (Medium Security - 3 stars):
+- Icon: Terminal with key visible
+- Security meter: Yellow (★★★☆☆)
+- Visual: Key exposed in terminal environment
+- How it works: "API key → Environment variable"
+- Warnings (caution icons):
+  - "Visible in process list"
+  - "Logged in shell history"
+  - "Inherited by child processes"
+- Risk level: MEDIUM
+- Use case: "CI/CD pipelines (with secrets manager)"
+- Color: Yellow caution zone
+- Mitigation: "Load from secrets manager"
+
+TIER 4 - CONFIG FILE (Lowest Security - 2 stars):
+- Icon: File with key/lock broken
+- Security meter: Red (★★☆☆☆)
+- Visual: Plaintext file with exposed key
+- How it works: "API key → Plaintext file"
+- Risks (X marks):
+  - "Can be accidentally committed"
+  - "Synced to cloud backups"
+  - "Readable by other users"
+- Risk level: HIGH
+- Use case: "NOT RECOMMENDED"
+- Color: Red danger zone
+- Warning badge: "Avoid if possible"
+
+VISUAL ELEMENTS:
+- Security gradient from top to bottom (green → yellow → red)
+- Clear star ratings
+- Pros/cons icons consistent
+- Risk level indicators
+- "Recommended" path highlighted (Interactive Login for dev, Bedrock for prod)
+
+CENTER GUIDANCE:
+- Decision helper: "Which should I use?"
+- Developer workstation → Interactive Login
+- CI/CD Pipeline → Env Var from Secrets Manager
+- Production/Enterprise → AWS Bedrock
+
+Style: Security-focused comparison, clear tier separation, visual risk indicators, suitable for understanding auth security trade-offs.
+```
+
+---
+
+### Image 06-06: Claude Code Interface Mockup
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-06-screen-interface-mockup.png` |
+| **Type** | Screen (Mockup) |
+| **Aspect Ratio** | 4:3 or 16:9 |
+| **Placement** | Replace or accompany the ASCII interface diagram in section 6.4 (around line 872-899) |
+| **Alt Text** | "Claude Code terminal interface mockup showing header, status indicators, input area, and navigation hints" |
+
+**Prompt:**
+```
+A realistic mockup of the Claude Code terminal interface showing its key elements.
+
+TERMINAL WINDOW FRAME:
+- Standard terminal chrome (title bar, window controls)
+- Dark theme background (#1e1e1e or similar)
+- Monospace font throughout
+
+INTERFACE ELEMENTS:
+
+HEADER SECTION (top):
+- Claude Code logo/banner (stylized)
+- Version indicator: "Claude Code v2.x.x"
+- Decorative border (box drawing characters)
+
+STATUS BAR:
+- Connection status: 🟢 "Connected to Claude"
+- Working directory: 📁 "/home/user/myproject"
+- Tools available: 🔧 "file, bash, edit, etc."
+- Model indicator (optional): "Using Claude Sonnet"
+
+MAIN AREA (conversation):
+- Sample exchange visible:
+  - User input: "> explain this codebase"
+  - Claude response: Structured output with:
+    - Project structure analysis
+    - Key files identified
+    - Framework detection
+- Syntax highlighting on code blocks
+- Proper formatting and indentation
+
+INPUT AREA (bottom):
+- Prompt indicator: ">"
+- Cursor blinking (or cursor indicator)
+- Input hint: "Type your message or /help"
+
+NAVIGATION HINTS PANEL (side or bottom):
+- Keyboard shortcuts visible:
+  - "Enter - Send message"
+  - "Shift+Enter - Multi-line (modern terminals)"
+  - "↑/↓ - History navigation"
+  - "Tab - Autocompletion"
+  - "Ctrl+C - Cancel operation"
+  - "Ctrl+T - Toggle theme"
+  - "Ctrl+B - Background tasks"
+  - "/help - Show commands"
+
+VISUAL ELEMENTS:
+- Proper terminal color scheme
+- Realistic code formatting
+- Status indicators color-coded
+- Clean, readable layout
+
+ANNOTATIONS (for documentation purposes):
+- Callout labels pointing to key areas
+- "Status indicators" pointing to status bar
+- "Your input" pointing to prompt area
+- "Claude's response" pointing to output area
+- "Keyboard shortcuts" pointing to hints
+
+Style: Realistic terminal mockup, professional appearance, clearly shows interface elements, suitable for documentation and user orientation.
+```
+
+---
+
+### Image 06-07: Core Workflows Visualization
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-07-flow-core-workflows.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Before section 6.5 "Core Workflows" (around line 935) |
+| **Alt Text** | "Five core Claude Code workflows: Understand Codebase, Write New Code, Debug Issues, Refactor Code, and Git Operations" |
+
+**Prompt:**
+```
+A workflow diagram showing the five core Claude Code workflows as connected, practical processes.
+
+LAYOUT: Five workflow cards arranged horizontally or in a pentagon/star pattern
+
+WORKFLOW 1 - UNDERSTANDING A CODEBASE:
+- Icon: Magnifying glass + code structure
+- Color: Blue (discovery/learning)
+- Flow steps:
+  1. Start Claude Code in project
+  2. Ask "explain the structure"
+  3. Claude reads key files
+  4. Receive architecture overview
+- Input example: "explain the structure of this project"
+- Output example: Project summary, key components
+- Badge: "Start here for new projects"
+
+WORKFLOW 2 - WRITING NEW CODE:
+- Icon: Plus sign + code brackets
+- Color: Green (creation)
+- Flow steps:
+  1. Describe requirements
+  2. Claude identifies patterns
+  3. Claude creates code
+  4. Review and approve
+- Input example: "create POST /api/users endpoint"
+- Output example: New endpoint with validation
+- Pro tip: "Ask for plan before changes"
+
+WORKFLOW 3 - DEBUGGING:
+- Icon: Bug + magnifying glass
+- Color: Red/orange (problem solving)
+- Flow steps:
+  1. Share error message
+  2. Claude reads relevant file
+  3. Claude analyzes context
+  4. Receive fix suggestion
+- Input example: "I'm getting TypeError..."
+- Output example: Root cause + fix
+- Pro tip: "Include full error context"
+
+WORKFLOW 4 - REFACTORING:
+- Icon: Arrows reorganizing + code
+- Color: Purple (transformation)
+- Flow steps:
+  1. Identify refactoring target
+  2. Claude analyzes function
+  3. Claude extracts/reorganizes
+  4. Tests verified
+- Input example: "refactor processOrder into smaller functions"
+- Output example: Clean, testable functions
+- Pro tip: "Work incrementally"
+
+WORKFLOW 5 - GIT OPERATIONS:
+- Icon: Git branch + commit
+- Color: Teal (version control)
+- Flow steps:
+  1. Request git action
+  2. Claude checks status/diff
+  3. Claude composes message
+  4. Execute with approval
+- Input example: "commit these changes with descriptive message"
+- Output example: Proper commit message, executed
+- Pro tip: "Claude understands git context"
+
+CENTER HUB (connecting element):
+- Claude Code icon
+- "Your AI Pair Programmer"
+- Shows all workflows available
+- "All workflows work together"
+
+VISUAL ELEMENTS:
+- Each workflow card distinct
+- Flow arrows within each card
+- Input/output examples visible
+- Pro tips highlighted
+- Connection lines showing workflows can chain
+
+Style: Clean workflow cards, practical focus, shows real commands and outputs, suitable for understanding core usage patterns.
+```
+
+---
+
+### Image 06-08: Approval Flow Diagram
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-08-flow-approval-process.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | Replace or accompany the ASCII approval flow in section 6.7 (around line 1172-1205) |
+| **Alt Text** | "Claude Code approval flow: Claude proposes action, user reviews, then chooses Yes (execute), No (skip), or Explain (learn more)" |
+
+**Prompt:**
+```
+A clear flow diagram illustrating Claude Code's approval mechanism for actions.
+
+FLOW STRUCTURE:
+
+TRIGGER NODE:
+- "Claude proposes an action"
+- Example shown: Command or file edit
+- Neutral color
+
+PROPOSAL DISPLAY:
+- Mock terminal showing proposed action
+- Example 1 (Command):
+  - "I'll run this command:"
+  - "$ npm install express"
+  - Options shown: [y]es / [n]o / [e]xplain
+- Example 2 (File Edit):
+  - "I'll make these changes to src/app.js:"
+  - Diff view: - old line / + new line
+  - Options shown: [y]es / [n]o / [e]xplain / [d]iff
+
+USER DECISION DIAMOND:
+- "Your choice?"
+- Three main branches
+
+BRANCH Y - YES (Execute):
+- Icon: Checkmark, green
+- Action: "Command/edit executes"
+- Result: "Claude continues to next step"
+- Flow continues forward
+- Color: Green path
+
+BRANCH N - NO (Skip):
+- Icon: X mark, red
+- Action: "Command/edit skipped"
+- Result: "Claude notes rejection, may suggest alternative"
+- Flow pauses/redirects
+- Color: Red path
+
+BRANCH E - EXPLAIN:
+- Icon: Question mark, blue
+- Action: "Claude explains why"
+- Result: "You get more context before deciding"
+- Flow loops back to decision
+- Color: Blue path
+
+BRANCH D - DIFF (File edits only):
+- Icon: Compare icon, purple
+- Action: "Show full diff context"
+- Result: "See complete changes"
+- Flow loops back to decision
+- Color: Purple path
+
+POST-APPROVAL FLOW:
+- Success → Continue to next action
+- Multiple actions → Each gets approval
+- Completion → Summary of actions taken
+
+SAFETY CALLOUTS:
+- "Always review commands before approving"
+- "Be cautious with destructive operations"
+- "Use /stop if unexpected behavior"
+- "You're always in control"
+
+AUTO-APPROVE MENTION:
+- Side note: "Auto-approve available for trusted operations"
+- Warning: "Use carefully in controlled environments"
+- How to enable indicator
+
+VISUAL ELEMENTS:
+- Clear decision flow
+- Mock terminal displays
+- Color-coded paths
+- Safety indicators
+- "You control everything" emphasis
+
+Style: Clean approval flowchart, shows user control emphasis, security-aware design, suitable for understanding the safety model.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing a proposed action, user reviewing it, and choosing to approve or explain.
+
+---
+
+### Image 06-09: DevOps Use Cases Matrix
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-09-info-devops-usecases.png` |
+| **Type** | Info (Infographic) |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | Replace or accompany the YAML use case matrix in section 6.9 (around line 1296-1335) |
+| **Alt Text** | "Four-category matrix of DevOps use cases: Daily Tasks, Infrastructure, Troubleshooting, and Documentation with example prompts" |
+
+**Prompt:**
+```
+A categorized matrix showing DevOps use cases for Claude Code with example prompts.
+
+LAYOUT: Four category quadrants or sections
+
+QUADRANT 1 - DAILY TASKS (Top-Left):
+- Icon: Calendar/daily checklist
+- Color: Blue
+- Use cases with example prompts:
+  1. "Review CI pipeline failures"
+     - Prompt: "The CI is failing, check .github/workflows/ and fix"
+  2. "Update dependencies"
+     - Prompt: "Update all npm dependencies and fix breaking changes"
+  3. "Add monitoring"
+     - Prompt: "Add Prometheus metrics to Express endpoints"
+- Frequency indicator: Daily/Weekly
+- Complexity: Low-Medium
+
+QUADRANT 2 - INFRASTRUCTURE (Top-Right):
+- Icon: Cloud/server infrastructure
+- Color: Purple
+- Use cases with example prompts:
+  1. "IaC generation"
+     - Prompt: "Create Terraform for S3 bucket with encryption"
+  2. "K8s manifests"
+     - Prompt: "Generate K8s manifests from docker-compose"
+  3. "Security hardening"
+     - Prompt: "Review Dockerfile and K8s for security issues"
+- Frequency indicator: As needed
+- Complexity: Medium-High
+
+QUADRANT 3 - TROUBLESHOOTING (Bottom-Left):
+- Icon: Bug/wrench/fix
+- Color: Orange/Red
+- Use cases with example prompts:
+  1. "Analyze logs"
+     - Prompt: "Here are 100 error logs, identify patterns"
+  2. "Debug performance"
+     - Prompt: "API is slow, analyze and suggest optimizations"
+  3. "Fix deployment"
+     - Prompt: "Pods are CrashLoopBackOff, here's describe output"
+- Frequency indicator: When issues arise
+- Complexity: Variable
+
+QUADRANT 4 - DOCUMENTATION (Bottom-Right):
+- Icon: Document/book
+- Color: Green
+- Use cases with example prompts:
+  1. "Generate runbooks"
+     - Prompt: "Create runbook for production deployment"
+  2. "API docs"
+     - Prompt: "Generate OpenAPI spec from Express routes"
+  3. "Architecture docs"
+     - Prompt: "Document system architecture from codebase"
+- Frequency indicator: Periodic
+- Complexity: Medium
+
+CENTER ELEMENT:
+- Claude Code icon
+- "DevOps Superpowers"
+- Connection to all quadrants
+
+VISUAL ELEMENTS:
+- Each quadrant distinctly colored
+- Example prompts in quote/command style
+- Icons for each use case
+- Frequency/complexity indicators
+- "Copy-ready prompts" feeling
+
+FOOTER:
+- "Start with these prompts, customize for your environment"
+- Pro tip: "Be specific about your stack and requirements"
+
+Style: Matrix/quadrant layout, actionable prompts visible, practical DevOps focus, suitable for quick reference and prompt ideas.
+```
+
+---
+
+### Image 06-10: Troubleshooting Decision Tree
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-06-img-10-flow-troubleshooting.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 6.11 header "Troubleshooting Common Issues" (around line 1431) |
+| **Alt Text** | "Decision tree for troubleshooting Claude Code issues: file access problems, slow responses, wrong changes, permission errors, crashes" |
+
+**Prompt:**
+```
+A troubleshooting decision tree helping users diagnose and fix common Claude Code issues.
+
+FLOWCHART STRUCTURE:
+
+START NODE:
+- "Having issues with Claude Code?"
+- Branch to issue types
+
+ISSUE SELECTOR (First Decision):
+- "What's the problem?"
+- Six branches for common issues
+
+BRANCH 1 - "Can't See Files":
+- Problem: Claude doesn't see files
+- Decision tree:
+  - Wrong directory? → Restart in project root
+  - File outside allowed paths? → Check config allowed_paths
+  - Gitignored? → Check .gitignore or .claudeignore
+- Solution endpoint: "cd /project && claude"
+
+BRANCH 2 - "Slow/Timing Out":
+- Problem: Responses too slow
+- Decision tree:
+  - Context too large? → /clear or be more specific
+  - Network issues? → Check api.anthropic.com connectivity
+  - Rate limited? → Check /cost for rate status
+- Solutions: Reduce context, switch model, check proxy
+
+BRANCH 3 - "Wrong Changes":
+- Problem: Claude makes incorrect changes
+- Prevention flow:
+  - Ask for plan first
+  - Work incrementally
+  - Use explicit file references
+- Recovery: git reset, git stash, ask to revert
+
+BRANCH 4 - "Permission Denied":
+- Problem: Can't execute or write
+- Decision tree:
+  - Shell execution disabled? → Enable in /config
+  - File permissions? → chmod +x or check ownership
+  - Protected directory? → Create elsewhere, copy with sudo
+
+BRANCH 5 - "Crashes/Freezes":
+- Problem: Claude Code becomes unresponsive
+- Recovery steps:
+  - Ctrl+C → Try to cancel
+  - Ctrl+Z then kill %1 → Force stop
+  - Restart Claude Code
+- Causes: Memory, corrupted session, filesystem issues
+
+BRANCH 6 - "Changes Not Applied":
+- Problem: Claude says done but nothing changed
+- Diagnostics:
+  - Approval missed? → Check for y/n prompt
+  - File write-protected? → Check permissions
+  - Auto-approve off? → Check settings
+
+SOLUTION ENDPOINTS:
+- Each branch leads to actionable solution
+- Color-coded: Green for fixes, Blue for commands
+
+QUICK COMMANDS BOX:
+- /doctor - Diagnose config issues
+- /help - Show all commands
+- /config - Check settings
+- claude --version - Verify installation
+
+ESCALATION PATH:
+- Still stuck? →
+  - Check docs.anthropic.com
+  - Search GitHub issues
+  - File bug report if reproducible
+
+VISUAL ELEMENTS:
+- Clear problem → diagnostic → solution flow
+- Color-coded by issue severity
+- Quick commands readily visible
+- "Most common" indicators on frequent issues
+
+Style: Practical troubleshooting flowchart, diagnostic approach, actionable solutions, suitable for quick problem resolution.
+```
+
+📐 **RECOMMEND**: This could also be created as an interactive troubleshooting wizard using a web-based tool or decision tree software
 
 ---
 
 ## Chapter 07: Claude Code Intermediate
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Configuration, custom commands/skills, IDE integration, browser mode, advanced workflows, session management
+- **Total Images**: 9
+- **Animation Candidates**: 1
+
+---
+
+### Image 07-01: Chapter Header
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-01-header-claude-code-intermediate.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title, before "Leveling Up Your Claude Code Skills" |
+| **Alt Text** | "Developer ascending skill levels with Claude Code, showing progression from basic terminal usage to advanced workflows with custom commands and IDE integration" |
+
+**Prompt:**
+```
+A hero illustration representing the journey from basic Claude Code usage to intermediate mastery, showing skill progression and capability expansion.
+
+VISUAL CONCEPT:
+A "leveling up" visualization showing a developer ascending through layers of capability, each layer revealing more sophisticated features.
+
+PROGRESSION LAYERS (bottom to top):
+
+BASE LAYER - FUNDAMENTALS (already mastered):
+- Simple terminal with basic commands
+- Grayed out slightly (already covered)
+- Foundation that everything builds on
+
+LEVEL 1 - CONFIGURATION:
+- Gear icons, settings files floating
+- ~/.claude/config.json representation
+- Color: Blue (foundation)
+
+LEVEL 2 - CUSTOM COMMANDS:
+- Multiple command cards/templates
+- .claude/commands/ folder representation
+- Reusable prompts visualization
+- Color: Purple (customization)
+
+LEVEL 3 - IDE INTEGRATION:
+- Multiple IDE icons (VS Code, JetBrains, Vim)
+- Connected to central Claude Code
+- Bidirectional arrows
+- Color: Green (integration)
+
+LEVEL 4 - ADVANCED WORKFLOWS:
+- Multi-step flow diagrams
+- CI/CD pipeline representation
+- Automated review symbols
+- Color: Orange (automation)
+
+CENTRAL FIGURE:
+- Developer/engineer ascending the levels
+- Each level unlocks new capabilities
+- "Power-ups" or skill icons at each tier
+- Achievement/progression feeling
+
+FLOATING ELEMENTS:
+- Code snippets
+- Configuration fragments
+- Workflow arrows
+- Integration connectors
+
+VISUAL STYLE:
+- Gamification aesthetic (skill tree, progression)
+- Professional but engaging
+- Each layer visually distinct
+- Upward momentum
+
+Color palette: Progressive from cool blues at base to warm oranges at top, representing increasing capability and energy.
+
+Style: Modern tech illustration with progression/leveling aesthetic, shows journey from basic to intermediate, engaging and motivating, suitable as chapter hero.
+```
+
+---
+
+### Image 07-02: Configuration Hierarchy
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-02-diagram-config-hierarchy.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 7.1 "Configuration File Locations" (around line 52-63) |
+| **Alt Text** | "Three-tier configuration hierarchy: Project-level (.claude/config.json), User-level (~/.claude/config.json), and Environment variables, with priority shown top to bottom" |
+
+**Prompt:**
+```
+A hierarchical diagram showing how Claude Code configuration is resolved across different levels.
+
+LAYOUT: Pyramid or layered structure showing configuration priority
+
+TOP LAYER - HIGHEST PRIORITY (Environment Variables):
+- Icon: Terminal with env variables
+- Examples: ANTHROPIC_API_KEY, CLAUDE_CODE_MODEL
+- Label: "Environment Variables (Override All)"
+- Color: Red/orange (immediate override)
+- Use case: "Temporary overrides, CI/CD, testing"
+
+MIDDLE LAYER - PROJECT LEVEL:
+- Icon: Folder with project icon
+- Path shown: "./.claude/config.json"
+- Label: "Project Configuration"
+- Color: Purple
+- Use case: "Team-shared settings, project-specific"
+- Note: "Committed to git, shared with team"
+
+BOTTOM LAYER - USER LEVEL:
+- Icon: Home folder or user icon
+- Path shown: "~/.claude/config.json"
+- Label: "User Defaults"
+- Color: Blue
+- Use case: "Personal preferences, API keys"
+- Note: "Not shared, your defaults"
+
+OPTIONAL - SYSTEM LEVEL:
+- Path shown: "/etc/claude/config.json"
+- Faded/small: "Rarely used"
+- Color: Gray
+
+RESOLUTION FLOW:
+- Arrow showing lookup order
+- "Claude checks in order: Project → User → System"
+- "Environment vars override at any level"
+
+MERGE VISUALIZATION:
+- Show how settings from different levels combine
+- Later settings override earlier ones
+- Visual merge/combine indicator
+
+EXAMPLE CALLOUT:
+```
+Project: model = "haiku"
+User:    model = "sonnet"
+Env:     CLAUDE_CODE_MODEL = "opus"
+
+Result:  model = "opus" (env wins)
+```
+
+Style: Clear hierarchy visualization, shows configuration resolution, practical for understanding which settings apply, professional documentation quality.
+```
+
+---
+
+### Image 07-03: Auto-Approve Security Levels
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-03-compare-autoapprove-security.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 7.1 "Security Implications of Configuration" (around line 156-178) |
+| **Alt Text** | "Three security profiles for auto-approve settings: Low Risk (development), Medium Risk (personal projects), and High Risk (production) with specific read/write/execute permissions" |
+
+**Prompt:**
+```
+A three-column comparison showing auto-approve security configurations for different risk environments.
+
+THREE COLUMNS:
+
+COLUMN 1 - LOW RISK (Development Environment):
+- Icon: Developer laptop, sandbox
+- Color: Green (safe)
+- Settings visualization:
+  - read: true ✅ (green checkmark)
+  - write: false ❌ (red X)
+  - execute: false ❌ (red X)
+- Risk indicator: Shield with checkmark
+- Description: "You review writes and commands"
+- Use case icons: Local development, learning, experimentation
+- Safety level: RECOMMENDED DEFAULT
+
+COLUMN 2 - MEDIUM RISK (Personal Projects):
+- Icon: Personal computer, solo work
+- Color: Yellow/amber (caution)
+- Settings visualization:
+  - read: true ✅
+  - write: true ⚠️ (yellow warning)
+  - execute: false ❌
+- Risk indicator: Caution triangle
+- Description: "Faster but risky - review commands"
+- Use case icons: Personal repos, prototypes
+- Warning: "Claude can modify any file"
+
+COLUMN 3 - HIGH RISK (Production/Shared):
+- Icon: Server rack, team collaboration
+- Color: Red (maximum caution)
+- Settings visualization:
+  - read: false ❌
+  - write: false ❌
+  - execute: false ❌
+- Risk indicator: Full lock
+- Description: "Every action requires approval"
+- Use case icons: Production systems, shared codebases
+- Note: "Audit trail for all actions"
+
+VISUAL ELEMENTS:
+- Lock icons showing increasing restrictions
+- Permission checkboxes clearly visible
+- Risk gradient from green → yellow → red
+- "Recommended for most users" highlight on Low Risk
+
+REAL-WORLD WARNING BOX:
+- Small callout: "A developer with write: true asked Claude to 'clean up configs'..."
+- Brief cautionary tale icon
+
+BOTTOM GUIDANCE:
+- "Choose based on environment, not convenience"
+- Quick selection guide
+
+Style: Clear security comparison, risk-based color coding, actionable guidance, suitable for configuration decisions.
+```
+
+---
+
+### Image 07-04: Custom Command Anatomy
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-04-diagram-command-anatomy.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 7.2 "Anatomy of Effective Custom Commands" header (around line 382) |
+| **Alt Text** | "Annotated diagram of a custom command file showing frontmatter (name, description, arguments), prompt body, and output format specification" |
+
+**Prompt:**
+```
+An annotated diagram showing the structure of an effective custom command file with callouts explaining each section.
+
+LAYOUT: A mock command file (.md) with annotation callouts pointing to each section
+
+COMMAND FILE VISUAL:
+```
+---
+name: review
+description: Comprehensive code review
+arguments:
+  - name: file
+    description: File to review
+    required: true
+---
+
+You are a senior DevOps engineer reviewing infrastructure code.
+
+Our standards:
+- All Terraform must use remote state
+- Security groups must never allow 0.0.0.0/0 on SSH
+- Resources must have Name tags
+
+Review {{file}} and flag any violations.
+
+Output format:
+## Security Review for {{file}}
+### Critical Issues (Must Fix)
+- [Line X] Issue description
+  Fix: Specific remediation
+```
+
+ANNOTATION CALLOUTS:
+
+SECTION 1 - FRONTMATTER (top, between ---):
+- Callout: "Metadata block"
+- Sub-callouts:
+  - name: "Command name (invoked as /review)"
+  - description: "Shows in /commands list"
+  - arguments: "Parameters you can pass"
+    - required: true/false indicator
+    - default values possible
+- Color: Purple zone
+
+SECTION 2 - CONTEXT (middle):
+- Callout: "Role and constraints"
+- Explains: "Tell Claude WHO it is and WHAT rules apply"
+- "Your team's standards go here"
+- Color: Blue zone
+
+SECTION 3 - ACTION (body):
+- Callout: "What to do"
+- Shows: {{file}} placeholder highlighted
+- "Use arguments with {{name}} syntax"
+- Color: Orange zone
+
+SECTION 4 - OUTPUT FORMAT (bottom):
+- Callout: "Structured output template"
+- "Ensures consistent, parseable results"
+- Color: Green zone
+
+BEST PRACTICES SIDEBAR:
+- ✅ Single responsibility
+- ✅ Context over instructions
+- ✅ Parameterized (not hardcoded)
+- ✅ Output format specified
+- ❌ Don't over-constrain
+- ❌ Don't script step-by-step
+
+Style: Code editor aesthetic with annotation overlays, clear section boundaries, educational documentation quality.
+```
+
+---
+
+### Image 07-05: Browser vs CLI Decision Matrix
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-05-compare-browser-vs-cli.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 7.3 "Decision Matrix Summary" (around line 964-977) |
+| **Alt Text** | "Decision matrix comparing Browser (claude.ai) vs CLI (Claude Code) across factors: installation, quick tasks, multi-file changes, command execution, git integration" |
+
+**Prompt:**
+```
+A comprehensive decision matrix comparing browser-based Claude (claude.ai) versus CLI Claude Code.
+
+LAYOUT: Two-column comparison with factor rows
+
+LEFT COLUMN - BROWSER (claude.ai):
+- Header icon: Browser window
+- Color scheme: Light blue/web aesthetic
+
+RIGHT COLUMN - CLI (Claude Code):
+- Header icon: Terminal window
+- Color scheme: Dark/terminal green
+
+COMPARISON ROWS (with icons):
+
+1. INSTALLATION:
+   - Browser: ✅ "Zero setup" (big green check)
+   - CLI: ⚠️ "Requires npm/node" (yellow)
+
+2. QUICK TASKS:
+   - Browser: ✅ "Instant access"
+   - CLI: ➖ "Neutral"
+
+3. MULTI-FILE CHANGES:
+   - Browser: ❌ "Manual sync" (red X)
+   - CLI: ✅ "Automatic"
+
+4. RUNNING COMMANDS:
+   - Browser: ❌ "Not possible"
+   - CLI: ✅ "Full shell access"
+
+5. VISUAL LEARNING:
+   - Browser: ✅ "Syntax highlighting, rich UI"
+   - CLI: ➖ "Terminal-only"
+
+6. GIT INTEGRATION:
+   - Browser: ❌ "Manual"
+   - CLI: ✅ "Automatic"
+
+7. AUTOMATION/CI:
+   - Browser: ❌ "Not suitable"
+   - CLI: ✅ "Scriptable"
+
+8. TEAM SHARING:
+   - Browser: ✅ "Shareable URLs"
+   - CLI: ❌ "Local only"
+
+SCENARIO BOXES:
+- Box 1: "Quick code review" → BROWSER
+- Box 2: "Multi-file refactoring" → CLI
+- Box 3: "Learning new codebase" → BROWSER
+- Box 4: "Incident response" → CLI
+
+DECISION RULE:
+- "If you'll run commands or modify >2-3 files → CLI"
+- "Otherwise → Browser is often faster"
+
+VISUAL ELEMENTS:
+- Clear check/X icons
+- Color coding (green for strength, red for weakness)
+- Scenario-based recommendations
+- "Choose based on task" emphasis
+
+Style: Clean comparison matrix, actionable decision guidance, professional documentation style.
+```
+
+---
+
+### Image 07-06: IDE Integration Comparison
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-06-compare-ide-integration.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 7.4 "Comparison Matrix: All IDE Options" (around line 1062-1073) |
+| **Alt Text** | "Five-column comparison of IDE integration options: VS Code Extension, JetBrains Plugin, Vim/Neovim Plugin, CLI + tmux, and Browser" |
+
+**Prompt:**
+```
+A multi-column comparison showing different ways to integrate Claude Code with development environments.
+
+FIVE COLUMNS:
+
+COLUMN 1 - VS CODE EXTENSION:
+- Icon: VS Code logo stylized
+- Setup: "Low (1-click)"
+- Key features:
+  - ✅ Full workspace context
+  - ✅ Inline suggestions
+  - ✅ Visual diff views
+  - ✅ Permission badges
+- Best for: "General development"
+- Color: Blue (VS Code)
+
+COLUMN 2 - JETBRAINS PLUGIN:
+- Icon: JetBrains logo stylized
+- Setup: "Low (marketplace)"
+- Key features:
+  - ✅ Full project context
+  - ✅ Inline suggestions
+  - ✅ Integrated debugging
+  - ✅ Refactoring tools
+- Best for: "IntelliJ/PyCharm users"
+- Color: Orange (JetBrains)
+
+COLUMN 3 - VIM/NEOVIM PLUGIN:
+- Icon: Vim logo stylized
+- Setup: "Medium (config)"
+- Key features:
+  - ✅ Fastest performance
+  - ✅ Full project context
+  - ⚠️ Limited inline suggestions
+  - ✅ Custom keybindings
+- Best for: "Vim power users"
+- Color: Green (Vim)
+
+COLUMN 4 - CLI + TMUX:
+- Icon: Terminal with splits
+- Setup: "Low (native)"
+- Key features:
+  - ✅ Editor-agnostic
+  - ✅ Full shell access
+  - ❌ No inline suggestions
+  - ✅ Fastest overall
+- Best for: "Terminal power users"
+- Color: Purple (terminal)
+
+COLUMN 5 - BROWSER:
+- Icon: Web browser
+- Setup: "None"
+- Key features:
+  - ❌ Manual upload
+  - ❌ No commands
+  - ✅ Shareable sessions
+  - ✅ Works anywhere
+- Best for: "Quick reviews"
+- Color: Light blue (web)
+
+DECISION GUIDANCE ROW:
+- "Choose based on your primary editor and workflow needs"
+
+USAGE PATTERNS:
+- "Daily coding" → IDE Extension
+- "Automation" → CLI
+- "Team sharing" → Browser
+
+Style: Clean multi-column comparison, icon-based features, actionable selection guidance.
+```
+
+---
+
+### Image 07-07: Advanced Workflow Patterns
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-07-flow-advanced-workflows.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Before section 7.5 "Advanced Workflows" (around line 1423) |
+| **Alt Text** | "Four advanced workflow patterns: Multi-File Refactoring, Infrastructure Migration, Automated Code Review, and Incident Response with flow indicators" |
+
+**Prompt:**
+```
+A four-quadrant diagram showing the four advanced workflows covered in the chapter.
+
+FOUR QUADRANTS:
+
+QUADRANT 1 - MULTI-FILE REFACTORING (Top-Left):
+- Icon: Multiple files with arrows/changes
+- Color: Blue
+- Flow visualization:
+  1. Understand current state
+  2. Plan the changes
+  3. Execute incrementally
+  4. Verify with tests
+  5. Cleanup
+- Key benefit: "Context carryover across files"
+- Example: "JWT migration across 15 files"
+
+QUADRANT 2 - INFRASTRUCTURE MIGRATION (Top-Right):
+- Icon: Cloud/servers with migration arrows
+- Color: Purple
+- Flow visualization:
+  1. Document current state
+  2. Plan migration
+  3. Create new infrastructure
+  4. Create K8s manifests
+  5. Test plan
+- Key benefit: "Claude maintains architecture knowledge"
+- Example: "EC2 to EKS migration"
+
+QUADRANT 3 - AUTOMATED CODE REVIEW (Bottom-Left):
+- Icon: PR/code review symbols
+- Color: Green
+- Flow visualization:
+  1. PR triggers workflow
+  2. Claude analyzes changes
+  3. Security + quality checks
+  4. Report generated
+  5. Posted as comment
+- Key benefit: "Consistent reviews in CI/CD"
+- Example: "GitHub Actions integration"
+
+QUADRANT 4 - INCIDENT RESPONSE (Bottom-Right):
+- Icon: Alert/fire/incident symbols
+- Color: Orange/red
+- Flow visualization:
+  1. Gather information
+  2. Initial assessment
+  3. Diagnostic steps
+  4. Recommended actions
+- Key benefit: "Situational awareness maintained"
+- Example: "Pod crash investigation"
+
+CENTER HUB:
+- Claude Code icon
+- "Advanced Workflows"
+- Connection to all quadrants
+
+KEY INSIGHT CALLOUT:
+- "Context carryover = Claude remembers throughout"
+- "No need to re-explain your project"
+
+Style: Clean quadrant layout, workflow flows visible in each, shows capability breadth, professional documentation quality.
+```
+
+---
+
+### Image 07-08: CI/CD Review Pipeline
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-08-flow-cicd-review-pipeline.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 7.5 Workflow 3 "Automated Code Review Pipeline" (around line 1642) |
+| **Alt Text** | "GitHub Actions workflow: PR Created → Checkout Code → Run Claude Review → Parse Results → Post Comment → Status Check" |
+
+**Prompt:**
+```
+A horizontal flow diagram showing how Claude Code integrates into a CI/CD pipeline for automated code review.
+
+FLOW (left to right):
+
+TRIGGER:
+- Icon: GitHub PR icon
+- Label: "PR Created"
+- Event: pull_request
+- Color: GitHub dark
+
+STEP 1 - CHECKOUT:
+- Icon: Download/clone
+- Label: "Checkout Code"
+- Action: actions/checkout@v4
+- Note: "fetch-depth: 0 for full history"
+
+STEP 2 - SETUP:
+- Icon: npm/install
+- Label: "Setup Claude Code"
+- Action: npm install
+- Shows: API key from secrets
+
+STEP 3 - RUN REVIEW:
+- Icon: Claude Code / AI brain
+- Label: "Run Claude Review"
+- Command: claude --output "/pr-review"
+- Shows: Custom command being invoked
+- Color: Anthropic orange
+
+STEP 4 - PARSE OUTPUT:
+- Icon: Document analysis
+- Label: "Parse Results"
+- Shows: pr-review.md generated
+- Critical issues check
+
+STEP 5 - POST COMMENT:
+- Icon: Comment bubble
+- Label: "Post to PR"
+- Action: github-script
+- Shows: Review posted as PR comment
+
+STEP 6 - STATUS CHECK:
+- Icon: Check/X status
+- Label: "Status Check"
+- Conditional: "Critical issues? → Fail"
+- Green check or red X based on results
+
+VISUAL ELEMENTS:
+- Pipeline style with arrows
+- Each step clearly bounded
+- GitHub Actions aesthetic
+- Success/failure paths shown
+
+SAMPLE OUTPUT BOX:
+- Mini preview of review comment format
+- Security findings summary
+- Code quality notes
+
+ERROR HANDLING NOTE:
+- Retry logic for rate limiting
+- Graceful failure handling
+
+Style: CI/CD pipeline visualization, GitHub Actions aesthetic, shows end-to-end flow, professional DevOps documentation style.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing the pipeline executing step by step, with the review being generated and posted.
+
+---
+
+### Image 07-09: Session Management
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-07-img-09-flow-session-management.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 7.6 "Session Management" header (around line 1983) |
+| **Alt Text** | "Session management workflow showing /rename to name sessions, /resume to continue work, and /save//load for export/import" |
+
+**Prompt:**
+```
+A workflow diagram illustrating Claude Code session management features.
+
+LAYOUT: Central session icon with workflows radiating outward
+
+CENTER:
+- Session icon (conversation/history symbol)
+- "Claude Code Sessions"
+- Auto-save indicator
+
+WORKFLOW 1 - NAMING & RESUMING (Primary):
+- Path: Work → /rename → Name assigned → Later → /resume
+- Flow:
+  1. Working on feature
+  2. "/rename my-feature-work"
+  3. Session named (saved automatically)
+  4. Close/exit
+  5. Next day: "/resume my-feature-work"
+  6. Continue with full context
+- Color: Green (recommended workflow)
+- Label: "New in 2.0.64"
+
+WORKFLOW 2 - SAVE/LOAD (Legacy):
+- Path: Work → /save → ~/.claude/sessions/ → /load
+- Flow:
+  1. "/save feature-auth-day3"
+  2. Session saved to disk
+  3. "/sessions" to list
+  4. "/load feature-auth-day3"
+- Color: Gray/muted (still supported)
+- Label: "Legacy (still works)"
+
+WORKFLOW 3 - EXPORT/SHARE:
+- Path: /export → JSON file → Share → Import
+- Flow:
+  1. "/export security-audit audit.json"
+  2. Share with teammate
+  3. Teammate imports: claude --import audit.json
+  4. Continue investigation
+- Color: Blue (collaboration)
+- Label: "Team sharing"
+
+BEST PRACTICES BOX:
+- "Save at key milestones"
+- "Before risky changes"
+- "After tests pass"
+- Icons for each tip
+
+VISUAL ELEMENTS:
+- Timeline/calendar indicators for resuming later
+- File system representation for storage
+- Team collaboration icons for sharing
+
+SESSION LIST MOCKUP:
+- Small terminal showing /sessions output
+- Named sessions visible
+
+Style: Clean workflow visualization, multiple usage patterns shown, practical session management guidance.
+```
 
 ---
 
