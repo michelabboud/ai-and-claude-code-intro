@@ -1,8 +1,8 @@
-# Project Bootstrap: Dr Visual Forge
+# Project Bootstrap: Visual Forge MCP
 
 ## Project Overview
 
-Create an MCP (Model Context Protocol) server called **Dr Visual Forge** (`dr-visual-forge-mcp`) that automates AI image generation for technical documentation. The server reads a structured markdown file containing image prompts and generates images using various AI providers (DALL-E 3, Stability AI, Replicate/Flux, Leonardo.ai).
+Create an MCP (Model Context Protocol) server called **Visual Forge MCP** (`visual-forge-mcp`) that automates AI image generation for technical documentation. The server reads a structured markdown file containing image prompts and generates images using various AI providers (DALL-E 3, Stability AI, Replicate/Flux, Leonardo.ai).
 
 ### Primary Use Case
 
@@ -23,28 +23,29 @@ This MCP server was designed to generate 151 images for an educational guide cal
 
 ## Supported Clients & IDEs
 
-Dr Visual Forge is built on the Model Context Protocol (MCP), making it compatible with any MCP-enabled client. **One server, all platforms.**
+Visual Forge MCP is built on the Model Context Protocol (MCP), making it compatible with any MCP-enabled client. **One server, all platforms.**
 
-### Verified Compatible Clients
+### Verified Compatible Clients (17 Platforms)
 
-| Client | Type | MCP Support | Notes |
-|--------|------|-------------|-------|
-| **Claude Code** | CLI | Native | Primary development target |
-| **Claude Desktop** | Desktop App | Native | Full GUI experience |
-| **Cursor** | IDE | Native | AI-first code editor |
-| **Windsurf** | IDE | Native | Codeium's AI IDE |
-| **VS Code + Continue** | IDE + Extension | Via Continue | Open-source AI extension |
-| **VS Code + Cline** | IDE + Extension | Via Cline | Autonomous coding agent |
-| **Zed** | IDE | Native | High-performance editor |
-| **JetBrains IDEs** | IDE | Via Plugin | IntelliJ, PyCharm, WebStorm, etc. |
-| **Neovim** | Editor | Via Plugin | For terminal enthusiasts |
-
-### OpenAI Codex / GitHub Copilot
-
-OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However, you can:
-1. Use Dr Visual Forge via CLI mode (standalone execution)
-2. Integrate via a bridge/wrapper if Copilot adds MCP support in the future
-3. Use the REST API mode (planned) for non-MCP clients
+| Client | Type | Developer | Notes |
+|--------|------|-----------|-------|
+| **Amp** | IDE | Sourcegraph | AI-native code editor |
+| **Claude Code** | CLI | Anthropic | Primary development target |
+| **Claude Desktop** | Desktop App | Anthropic | Full GUI experience |
+| **Cline** | VS Code Extension | Cline | Autonomous coding agent |
+| **Codex** | CLI | OpenAI | OpenAI's coding assistant |
+| **Copilot** | IDE Extension | GitHub/Microsoft | GitHub Copilot with MCP |
+| **Cursor** | IDE | Cursor | AI-first code editor |
+| **Factory** | Platform | Factory | AI software development platform |
+| **Gemini CLI** | CLI | Google | Google's AI CLI tool |
+| **Goose** | CLI | Block | Open-source AI agent |
+| **Kiro** | IDE | Amazon | AWS AI-powered IDE |
+| **LM Studio** | Desktop App | LM Studio | Local LLM runner with MCP |
+| **opencode** | CLI | Open Source | Terminal-based AI coding |
+| **Qodo Gen** | IDE Extension | Qodo | AI code generation |
+| **VS Code** | IDE | Microsoft | Via MCP extensions |
+| **Warp** | Terminal | Warp | AI-native terminal |
+| **Windsurf** | IDE | Codeium | Codeium's AI IDE |
 
 ### Configuration by Client
 
@@ -52,9 +53,9 @@ OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However
 ```json
 {
   "mcpServers": {
-    "dr-visual-forge": {
+    "visual-forge": {
       "command": "npx",
-      "args": ["dr-visual-forge-mcp"],
+      "args": ["visual-forge-mcp"],
       "env": {
         "OPENAI_API_KEY": "${OPENAI_API_KEY}"
       }
@@ -66,9 +67,9 @@ OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However
 **Cursor** (Settings → MCP Servers):
 ```json
 {
-  "dr-visual-forge": {
+  "visual-forge": {
     "command": "npx",
-    "args": ["dr-visual-forge-mcp"]
+    "args": ["visual-forge-mcp"]
   }
 }
 ```
@@ -78,9 +79,9 @@ OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However
 {
   "experimental": {
     "mcpServers": {
-      "dr-visual-forge": {
+      "visual-forge": {
         "command": "npx",
-        "args": ["dr-visual-forge-mcp"]
+        "args": ["visual-forge-mcp"]
       }
     }
   }
@@ -91,9 +92,9 @@ OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However
 ```json
 {
   "mcpServers": {
-    "dr-visual-forge": {
+    "visual-forge": {
       "command": "npx",
-      "args": ["dr-visual-forge-mcp"]
+      "args": ["visual-forge-mcp"]
     }
   }
 }
@@ -101,17 +102,17 @@ OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However
 
 ### Standalone CLI Mode
 
-For clients without MCP support, Dr Visual Forge can run as a standalone CLI:
+For clients without MCP support, Visual Forge MCP can run as a standalone CLI:
 
 ```bash
 # Install globally
-npm install -g dr-visual-forge-mcp
+npm install -g visual-forge-mcp
 
 # Run commands directly
-dr-visual-forge parse ./CHAPTER-VISUALS-GUIDE.md
-dr-visual-forge generate --chapter 1 --provider dalle
-dr-visual-forge status
-dr-visual-forge generate-all --batch-size 10
+visual-forge parse ./CHAPTER-VISUALS-GUIDE.md
+visual-forge generate --chapter 1 --provider dalle
+visual-forge status
+visual-forge generate-all --batch-size 10
 ```
 
 ### Future: REST API Mode
@@ -119,7 +120,7 @@ dr-visual-forge generate-all --batch-size 10
 Planned feature for universal integration:
 ```bash
 # Start as HTTP server
-dr-visual-forge serve --port 3000
+visual-forge serve --port 3000
 
 # Any client can call
 curl http://localhost:3000/api/generate -d '{"imageId": "chapter-01-img-01"}'
@@ -141,19 +142,23 @@ curl http://localhost:3000/api/generate -d '{"imageId": "chapter-01-img-01"}'
 ## Architecture
 
 ```
-┌───────────────────────────────────────────────────────────────────────────────┐
-│                           MCP Clients (Any IDE)                                │
-│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────┐  │
-│  │ Claude Code │ │   Cursor    │ │  Windsurf   │ │ VS Code +   │ │   Zed   │  │
-│  │             │ │             │ │             │ │  Continue   │ │         │  │
-│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────┘  │
-└───────────────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────────────┐
+│                            MCP Clients (17 Platforms)                                │
+│  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐   │
+│  │  Amp  │ │Claude │ │Cursor │ │ Cline │ │ Codex │ │Copilot│ │Factory│ │Gemini │   │
+│  │       │ │ Code  │ │       │ │       │ │       │ │       │ │       │ │  CLI  │   │
+│  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘   │
+│  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐   │
+│  │ Goose │ │ Kiro  │ │  LM   │ │ open  │ │ Qodo  │ │  VS   │ │ Warp  │ │ Wind  │   │
+│  │       │ │       │ │Studio │ │ code  │ │  Gen  │ │ Code  │ │       │ │ surf  │   │
+│  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘   │
+└─────────────────────────────────────────────────────────────────────────────────────┘
                                         │
                             MCP Protocol (stdio/SSE)
                                         │
                                         ▼
 ┌───────────────────────────────────────────────────────────────────────────────┐
-│                              Dr Visual Forge                                   │
+│                              Visual Forge MCP                                   │
 │                                                                               │
 │  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────────┐     │
 │  │   Parser         │  │  Workflow        │  │  Provider Adapters       │     │
