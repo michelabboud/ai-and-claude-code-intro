@@ -1689,7 +1689,562 @@ Style: Warning-style infographic, clear dos and don'ts, professional but direct,
 
 ## Chapter 04: AI Models Landscape
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: AI providers, model comparison, proprietary vs open source, hosting options
+- **Total Images**: 8
+- **Animation Candidates**: 1
+
+---
+
+### Image 04-01: Chapter Header
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-01-header-ai-models-landscape.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title, before "Navigating the World of AI Models and Providers" |
+| **Alt Text** | "Panoramic view of the AI ecosystem showing various AI companies and their models as a interconnected landscape with different terrains representing different capabilities" |
+
+**Prompt:**
+```
+A panoramic wide-angle hero illustration representing the AI models landscape as a dynamic, interconnected ecosystem.
+
+VISUAL CONCEPT: A stylized "map" or "landscape" showing the AI industry as a terrain with different regions and paths.
+
+CENTRAL COMPOSITION:
+- Multiple "islands" or "territories" representing major AI companies
+- Connecting bridges, pathways, or data streams linking them
+- Different terrain types representing different model capabilities
+
+COMPANY TERRITORIES (stylized, not realistic logos):
+- Anthropic region: Warm, safety-focused aesthetic (could be a lighthouse or beacon)
+- OpenAI region: Innovation/research vibe (could be a laboratory or launch pad)
+- Google region: Scale/infrastructure feel (could be a vast data center landscape)
+- Meta region: Open/community aesthetic (could be open fields or commons)
+- Mistral region: Efficient/French aesthetic (could be a sleek tower)
+
+CONNECTING ELEMENTS:
+- API pathways shown as glowing roads or data rivers
+- Cloud regions floating above (AWS, Azure, GCP as floating islands)
+- Open source models as freely accessible areas with multiple entry points
+
+VISUAL METAPHORS:
+- Models as different types of buildings/structures (larger = more parameters)
+- Context windows as sizes of reception areas
+- Speed as vehicle types on the roads
+
+DECORATIVE ELEMENTS:
+- Subtle grid pattern suggesting technology
+- Data particles flowing through the landscape
+- Different colored regions for different specializations (code, text, images)
+
+Color palette: Diverse but harmonious - tech blues for infrastructure, warm oranges for innovation hubs, greens for open source areas, purples for cutting-edge regions.
+
+Style: Modern illustrated map aesthetic, similar to video game world maps but professional and tech-focused, no readable text, suitable as chapter hero image conveying "the wide world of AI models awaits exploration."
+```
+
+---
+
+### Image 04-02: Model Lifecycle
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-02-flow-model-lifecycle.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Replace or accompany the ASCII model lifecycle in section 4.1 (around line 34-60) |
+| **Alt Text** | "Five-stage flow diagram showing model lifecycle: Architecture Design → Pre-training → Fine-tuning → Deployment → Inference" |
+
+**Prompt:**
+```
+A horizontal flow diagram illustrating the five stages of an AI model's lifecycle, from design to production use.
+
+FIVE STAGES (left to right with connecting flow):
+
+STAGE 1 - ARCHITECTURE DESIGN:
+- Icon: Blueprint/schematic/neural network structure diagram
+- Visual: Abstract neural network being designed on a drawing board
+- Sub-elements: Different architecture options (Transformer blocks)
+- Color: Light blue (planning/design phase)
+- Caption area: "How should the network be structured?"
+
+STAGE 2 - PRE-TRAINING:
+- Icon: Massive data flowing into a model
+- Visual: Books, websites, code all streaming into a growing brain
+- Sub-elements: GPU clusters, massive compute infrastructure
+- Time indicator: "Months of training"
+- Scale indicator: "Billions of tokens"
+- Color: Purple (compute-intensive phase)
+- Caption area: "Learn general knowledge from massive data"
+
+STAGE 3 - FINE-TUNING:
+- Icon: Precision tools refining the model
+- Visual: The model being specialized/refined
+- Sub-elements: Human feedback loop (RLHF), instruction tuning
+- Smaller but more precise than pre-training
+- Color: Orange (refinement phase)
+- Caption area: "Specialize for specific tasks"
+
+STAGE 4 - DEPLOYMENT:
+- Icon: Model being placed on servers/cloud
+- Visual: API endpoints, download symbols, cloud infrastructure
+- Sub-elements: API gateway, versioning, scaling
+- Color: Green (go-live phase)
+- Caption area: "Make it available for use"
+
+STAGE 5 - INFERENCE:
+- Icon: User interacting with model
+- Visual: Chat interface, API calls, responses flowing
+- Sub-elements: User queries, model responses
+- "This is what you do when you chat with AI"
+- Color: Teal (active use phase)
+- Caption area: "Using the model to get predictions"
+
+FLOW ELEMENTS:
+- Arrows showing progression
+- Time/cost indicators shrinking from pre-training to inference
+- Quality/specialization indicators increasing
+- Clear visual progression from broad to specific
+
+Style: Modern tech flow diagram, clean stages with distinct visual identities, educational documentation quality, minimal text, suitable for teaching the model lifecycle concept.
+```
+
+---
+
+### Image 04-03: Major AI Companies Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-03-info-ai-companies.png` |
+| **Type** | Info (Infographic) |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | Replace or accompany the ASCII company boxes in section 4.2 (around line 94-148) |
+| **Alt Text** | "Five-panel infographic showing major AI companies: Anthropic (safety), OpenAI (AGI), Google (scale), Meta (open source), and Mistral (efficiency)" |
+
+**Prompt:**
+```
+An infographic showing the five major AI companies as distinct "cards" or "panels" with their key characteristics.
+
+FIVE COMPANY PANELS (grid or horizontal layout):
+
+PANEL 1 - ANTHROPIC:
+- Visual identity: Safety beacon/lighthouse/shield
+- Tagline visualization: "AI Safety First"
+- Key visual: Constitutional AI, helpful robot
+- Color scheme: Warm orange/coral (#ff6d00, #ff9100)
+- Key models indicator: Claude family
+- Unique feature icon: Extra-long context (200K)
+- Founded: 2021
+
+PANEL 2 - OPENAI:
+- Visual identity: Rocket/laboratory/frontier exploration
+- Tagline visualization: "AGI for humanity"
+- Key visual: ChatGPT interface, research papers
+- Color scheme: Green/teal (#00a67e)
+- Key models indicator: GPT family, DALL-E
+- Unique feature icon: ChatGPT popularity, Microsoft partnership
+- Founded: 2015
+
+PANEL 3 - GOOGLE (DeepMind):
+- Visual identity: Data infrastructure/neural brain
+- Tagline visualization: "Organizing information"
+- Key visual: Massive scale, integrated products
+- Color scheme: Google colors (blue, red, yellow, green)
+- Key models indicator: Gemini, PaLM
+- Unique feature icon: AlphaFold, product integration
+- Established AI research presence
+
+PANEL 4 - META:
+- Visual identity: Open door/community/sharing
+- Tagline visualization: "Open AI research"
+- Key visual: Open source symbol, community contributions
+- Color scheme: Blue (#1877f2)
+- Key models indicator: LLaMA family
+- Unique feature icon: Open weights, democratization
+- FAIR research
+
+PANEL 5 - MISTRAL:
+- Visual identity: Efficient/sleek/European
+- Tagline visualization: "Open and efficient"
+- Key visual: Small but powerful, efficiency focused
+- Color scheme: French-inspired (blue, white, red accents)
+- Key models indicator: Mistral, Mixtral
+- Unique feature icon: High performance at smaller sizes
+- Founded: 2023
+
+LAYOUT OPTIONS:
+- 5 cards in a row
+- 2-3 top row + 2-3 bottom row
+- Central "AI Landscape" hub with radiating company cards
+
+VISUAL CONSISTENCY:
+- Each card same format but distinct color/icon
+- Key stats or unique value proposition visible
+- Year founded as timeline indicator
+
+Style: Modern company profile cards, tech startup aesthetic, clean and professional, consistent format but distinct identities, no actual logos (stylized representations), suitable for educational comparison.
+```
+
+---
+
+### Image 04-04: Proprietary vs Open Source Comparison
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-04-compare-proprietary-opensource.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 4.3 header "Proprietary vs Open Source Models" (around line 192) |
+| **Alt Text** | "Split comparison showing proprietary models (cloud-based, managed, pay-per-use) versus open source models (self-hosted, customizable, infrastructure required)" |
+
+**Prompt:**
+```
+A split-screen comparison illustration contrasting proprietary and open source AI models for DevOps decision-making.
+
+SPLIT SCREEN LAYOUT:
+
+LEFT SIDE - PROPRIETARY MODELS:
+- Header visual: Cloud with API endpoints, polished interface
+- Visual metaphor: Luxury car rental (convenient, no maintenance, pay per use)
+- Examples shown as icons: Claude, GPT-4, Gemini logos (stylized)
+
+PROS section (checkmarks, green):
+- "State-of-the-art performance" - Trophy/medal icon
+- "No infrastructure to manage" - Cloud with checkmark
+- "Regular updates" - Refresh/update icon
+- "Enterprise support" - Headset/support icon
+- "Easy to start" - Key icon (just an API key)
+
+CONS section (X marks, red):
+- "Ongoing costs" - Dollar signs flowing out
+- "Data leaves network" - Data flowing to external cloud
+- "Vendor lock-in" - Chain/lock icon
+- "Rate limits" - Throttle/gauge icon
+
+Best for: "Most production use cases, rapid prototyping"
+
+RIGHT SIDE - OPEN SOURCE MODELS:
+- Header visual: On-premise server rack, DIY setup
+- Visual metaphor: Own your own car (upfront cost, full control, you maintain)
+- Examples shown as icons: LLaMA, Mistral, Falcon logos (stylized)
+
+PROS section (checkmarks, green):
+- "Free to use" - Open/free icon, no dollar signs
+- "Data stays on-premise" - Data staying in box
+- "Full control" - Control panel/switches
+- "Can fine-tune" - Wrench/customization icon
+- "No vendor lock-in" - Broken chain
+
+CONS section (X marks, red):
+- "Requires GPU infrastructure" - Server rack cost
+- "Lower performance typically" - Slower indicator
+- "You manage updates" - Maintenance icon
+- "Need ML expertise" - Brain/expertise icon
+
+Best for: "Privacy requirements, high-volume workloads, customization"
+
+CENTER DIVIDER:
+- Question: "Which is right for you?"
+- Decision criteria hints
+- "Most teams start proprietary, migrate to open source at scale"
+
+Style: Clean comparison layout, clear pros/cons iconography, professional infographic style, balanced presentation (neither side "wins"), suitable for decision-making reference.
+```
+
+---
+
+### Image 04-05: Model Types Taxonomy
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-05-diagram-model-taxonomy.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 4:3 or 16:9 |
+| **Placement** | Replace or accompany the ASCII model taxonomy in section 4.4 (around line 502-545) |
+| **Alt Text** | "Hierarchical taxonomy diagram showing AI model types: Text Generation, Text Understanding, Embeddings, Image Generation, Image Understanding, Speech, and Specialized models" |
+
+**Prompt:**
+```
+A hierarchical taxonomy diagram showing the different types of AI models organized by their primary function.
+
+LAYOUT: Tree structure or category grid showing model types
+
+MAIN CATEGORIES (7 branches):
+
+1. TEXT GENERATION (LLMs):
+- Icon: Document with pen/writing
+- Sub-categories:
+  - General purpose: Claude, GPT-4, Gemini (icons)
+  - Code specialized: CodeLlama, StarCoder (code brackets)
+  - Instruction-tuned: Vicuna, Alpaca (assistant icon)
+- Color: Blue (primary language models)
+
+2. TEXT UNDERSTANDING:
+- Icon: Document with magnifying glass
+- Sub-categories:
+  - Classification: BERT, RoBERTa (category icon)
+  - Named Entity Recognition: SpaCy (tag icon)
+  - Sentiment Analysis: (emotion icon)
+- Color: Purple (analysis models)
+
+3. EMBEDDINGS:
+- Icon: Vector/arrow diagram
+- Sub-categories:
+  - Text embeddings: OpenAI Ada, E5
+  - Code embeddings: CodeBERT
+  - Multi-modal: CLIP
+- Color: Teal (representation models)
+
+4. IMAGE GENERATION:
+- Icon: Paintbrush/canvas
+- Sub-categories:
+  - DALL-E 3, Midjourney
+  - Stable Diffusion (open source highlighted)
+  - Imagen
+- Color: Orange (creative/generative)
+
+5. IMAGE UNDERSTANDING:
+- Icon: Eye/camera with brain
+- Sub-categories:
+  - GPT-4V, Claude Vision
+  - LLaVA (open source)
+  - BLIP-2
+- Color: Yellow (vision models)
+
+6. SPEECH:
+- Icon: Microphone/soundwave
+- Sub-categories:
+  - Speech-to-Text: Whisper (open source highlighted)
+  - Text-to-Speech: ElevenLabs, Azure
+  - Voice Cloning
+- Color: Green (audio models)
+
+7. SPECIALIZED:
+- Icon: Specialist/expert badge
+- Sub-categories:
+  - SQL Generation: SQLCoder
+  - Math/Reasoning: specialized fine-tunes
+  - Scientific: BioGPT, ChemBERTa
+- Color: Red (domain-specific)
+
+VISUAL ELEMENTS:
+- Clear hierarchy from general categories to specific models
+- Open source models highlighted with special indicator
+- Size or prominence indicating popularity/capability
+- Connection lines showing relationships
+
+Style: Modern taxonomy visualization, clear categorization, educational poster style, suitable for understanding the AI model ecosystem, minimal text with clear icons.
+```
+
+---
+
+### Image 04-06: Hosting Options Decision Tree
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-06-flow-hosting-decision-tree.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | Replace or accompany the ASCII decision flowchart in section 4.5 (around line 982-1042) |
+| **Alt Text** | "Decision tree flowchart for choosing AI model hosting: API vs Cloud Marketplace vs Self-hosted, based on privacy, volume, and expertise requirements" |
+
+**Prompt:**
+```
+A decision tree flowchart helping users choose the right AI model hosting option.
+
+FLOWCHART STRUCTURE (top to bottom):
+
+START NODE:
+- "I need to run AI models for DevOps workflows"
+- Entry point, neutral color
+
+DECISION 1 - DATA RESIDENCY:
+- Question: "Do you have strict data residency requirements?"
+- Diamond shape decision node
+- Branch YES → Go to GPU check
+- Branch NO → Go to volume check
+
+BRANCH A (YES → Data must stay):
+- Decision: "Do you have GPU infrastructure?"
+- YES → SELF-HOST OPEN SOURCE (Ollama/vLLM)
+  - Result box: "Cost: GPU maintenance, Setup: 1-2 weeks, Skill: High"
+  - Color: Orange (most complex)
+- NO → "Can data touch cloud provider?"
+  - YES → AWS BEDROCK / AZURE OPENAI (VPC)
+    - Result box: "Cost: $500-2K/month, Setup: 2-3 days, Skill: Medium"
+    - Color: Purple (enterprise)
+  - NO → BUILD GPU CLUSTER + SELF-HOST
+    - Result box: "Cost: $10K-50K/month, Setup: 1-3 months, Skill: Very High"
+    - Color: Red (most expensive/complex)
+
+BRANCH B (NO → Data can leave):
+- Decision: "What's your expected monthly token volume?"
+- <10M tokens/month → Check enterprise features need
+  - Enterprise features needed → CLOUD MARKETPLACE
+    - Result box: "Cost: $100-1K/month, Setup: Same day, Skill: Low"
+    - Color: Blue
+  - No enterprise features → DIRECT API
+    - Result box: "Cost: $10-500/month, Setup: 1 hour, Skill: Very Low"
+    - Color: Green (simplest)
+- 10-50M tokens/month → COMPARE COSTS path
+- >50M tokens/month → SELF-HOST OR MANAGED OPEN SOURCE
+  - Result box: "At this scale, self-hosting often cheaper"
+  - Color: Yellow
+
+VISUAL ELEMENTS:
+- Decision diamonds in neutral gray
+- Result boxes color-coded by complexity
+- Cost/time/skill indicators at each endpoint
+- Clear flow arrows
+- "Most common path" highlighted
+
+Style: Professional flowchart, clear decision points, actionable endpoints with key metrics, suitable for actual decision-making, clean and readable.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an interactive decision tree or animated GIF showing different paths highlighted based on different scenarios.
+
+---
+
+### Image 04-07: Model Trade-off Matrix
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-07-info-tradeoff-matrix.png` |
+| **Type** | Info (Infographic) |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 4.6 "Multi-Dimensional Trade-off Matrix" (around line 1514) |
+| **Alt Text** | "Matrix visualization showing model trade-offs across quality, cost, latency, privacy, context window, and ease of use for major AI models" |
+
+**Prompt:**
+```
+A multi-dimensional comparison matrix showing how different AI models trade off across key dimensions.
+
+MATRIX LAYOUT:
+Rows: Major models (8-10 models)
+Columns: Key dimensions (6 dimensions)
+
+MODELS (rows):
+- Claude Opus 4.5
+- Claude Sonnet 4.5
+- Claude Haiku 4.5
+- GPT-4 Turbo
+- GPT-4o mini
+- Gemini Ultra
+- LLaMA 3 70B
+- Mistral 7B
+- CodeLlama 34B
+
+DIMENSIONS (columns):
+1. QUALITY (star rating visualization)
+- 5 stars = Best reasoning
+- Varying fill levels per model
+
+2. COST (dollar sign scale)
+- $ to $$$$$ scale
+- Visual: Fewer dollars = cheaper
+
+3. LATENCY (clock/speed indicator)
+- Fast/Medium/Slow icons
+- Visual: Fewer clock icons = faster
+
+4. PRIVACY (lock/cloud icon)
+- API only (cloud) vs Self-hosted (lock)
+- Binary indicator
+
+5. CONTEXT (number visualization)
+- 8K to 1M tokens shown as bars
+- Visual: Longer bar = larger context
+
+6. EASE OF USE (difficulty indicator)
+- Easy/Moderate/Hard
+- Visual: Simple icons
+
+VISUAL DESIGN:
+- Heat map style coloring (green = good, red = challenging)
+- Each cell has both icon and subtle color
+- Highlighted "sweet spot" models (Pareto efficient)
+- Clear legends for each dimension
+
+CALLOUTS:
+- "Best for most teams" highlight on Claude Sonnet
+- "Best budget option" highlight on Claude Haiku
+- "Best for privacy" highlight on self-hosted options
+
+Style: Data-rich comparison matrix, scannable design, professional infographic, suitable for quick model comparison, clear visual hierarchy.
+```
+
+---
+
+### Image 04-08: Emerging Trends Timeline
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-04-img-08-flow-emerging-trends.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 4.7 "Emerging Trends" header (around line 1759) |
+| **Alt Text** | "Forward-looking illustration showing six emerging AI trends: multimodal models, longer context windows, specialized agents, local models, fine-tuning democratization, and real-time capabilities" |
+
+**Prompt:**
+```
+A forward-looking visualization showing six emerging trends in AI models, arranged as a futuristic roadmap or trend landscape.
+
+LAYOUT: Horizontal progression or radial arrangement showing 6 trends
+
+SIX TREND AREAS:
+
+1. MULTIMODAL BY DEFAULT:
+- Visual: Multiple input types (text, image, audio, video) converging
+- Icon: Eye + ear + document combining
+- Future vision: "Upload screenshot, get debugging help"
+- Color: Rainbow/multi-colored (multiple modalities)
+
+2. LONGER CONTEXT WINDOWS:
+- Visual: Expanding container or growing window
+- Progression shown: 4K → 32K → 128K → 200K → 1M+
+- Future vision: "Process entire codebases at once"
+- Color: Deep blue (depth/capacity)
+
+3. SPECIALIZED AGENTS:
+- Visual: AI with action capabilities (hands, tools)
+- Icon: Robot with kubectl/deployment tools
+- Future vision: "AI that can run commands, create PRs, deploy"
+- Examples: Claude Code, Copilot Workspace, Devin
+- Color: Orange (action/agency)
+
+4. LOCAL MODELS IMPROVING:
+- Visual: Laptop or personal device running AI
+- Icon: Small but powerful (tiny rocket)
+- Future vision: "7B models matching GPT-3.5 quality"
+- Tools: Ollama, LM Studio
+- Color: Green (accessible/personal)
+
+5. FINE-TUNING DEMOCRATIZATION:
+- Visual: Customization/personalization tools
+- Icon: DIY/maker tools, LoRA symbols
+- Future vision: "Easier to create specialized models"
+- Approaches: LoRA, few-shot, RAG
+- Color: Purple (customization)
+
+6. REAL-TIME CAPABILITIES:
+- Visual: Speed/streaming/instant
+- Icon: Lightning bolt, streaming data
+- Future vision: "Interactive debugging, real-time log analysis"
+- Color: Yellow (speed/energy)
+
+TIMELINE ELEMENT:
+- "2024-2025" indicator
+- "What's coming" directional arrow
+- Progression from current state to future capabilities
+
+VISUAL METAPHORS:
+- Could be arranged as a star map (exploring the future)
+- Or as a road with different lanes/directions
+- Or as emerging from a horizon
+
+Style: Futuristic but professional, forward-looking optimism, tech industry aesthetic, suitable for understanding where AI is heading, inspiring but grounded in real trends.
+```
 
 ---
 
