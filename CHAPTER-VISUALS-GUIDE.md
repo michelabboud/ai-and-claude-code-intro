@@ -4267,13 +4267,1213 @@ Style: Clean workflow visualization, multiple usage patterns shown, practical se
 
 ## Chapter 08: Skills and Subagents
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Agentic capabilities, skills system, sub-agents, task delegation, advanced autonomous workflows
+- **Total Images**: 8
+- **Animation Candidates**: 2
+
+---
+
+### Image 08-01: Chapter Header
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-01-header-skills-subagents.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title, before "Extending Claude Code with Custom Capabilities" |
+| **Alt Text** | "Claude Code as an orchestrator with multiple specialized skills and sub-agents working in parallel, representing autonomous DevOps capabilities" |
+
+**Prompt:**
+```
+A dynamic hero illustration showing Claude Code as an intelligent orchestrator coordinating multiple specialized skills and sub-agents.
+
+CENTRAL COMPOSITION:
+Claude Code represented as a central intelligence hub, with multiple specialized agents and skill modules radiating outward.
+
+CENTRAL HUB - CLAUDE CODE ORCHESTRATOR:
+- Large central node representing the main Claude Code agent
+- Pulsing energy/activity indicators
+- "Brain" or intelligence visualization
+- Command and coordination signals emanating outward
+- Color: Core Anthropic orange
+
+SURROUNDING SKILLS (First Ring):
+- Multiple skill modules as specialized cards/nodes:
+  - Kubernetes skill (K8s logo stylized, manifests)
+  - Terraform skill (purple, infrastructure diagrams)
+  - Docker skill (whale icon, container boxes)
+  - Security skill (shield, lock icons)
+  - CI/CD skill (pipeline arrows)
+- Each skill glows with its domain color
+- Connection lines to central hub
+
+SUB-AGENTS (Second Ring):
+- Multiple autonomous workers in action:
+  - Explorer agent (magnifying glass, file trees)
+  - Planner agent (flowchart, checklist)
+  - Code writer agent (code brackets, pencil)
+  - Test agent (checkmarks, test tubes)
+  - Reviewer agent (eye, security scan)
+- Each sub-agent shown actively working on tasks
+- Parallel execution visual (simultaneous activity)
+
+WORKFLOW CONNECTIONS:
+- Data/task flow lines between components
+- Coordination signals between agents
+- Skill knowledge feeding into agents
+- Results flowing back to central hub
+
+BACKGROUND ELEMENTS:
+- Codebase structure subtly visible
+- DevOps infrastructure suggestions
+- Parallel processing visualization
+- Cloud/servers in distance
+
+VISUAL METAPHORS:
+- Orchestra conductor (orchestration)
+- Multi-threaded processing (parallelism)
+- Expertise modules (skills)
+- Autonomous workers (sub-agents)
+
+Color palette: Anthropic orange for central hub, domain colors for each skill (K8s blue, Terraform purple, Docker blue, Security green, CI/CD orange), muted versions for sub-agents.
+
+Style: Dynamic tech illustration showing orchestration and parallel capability, professional yet engaging, represents the power of extending Claude Code with skills and sub-agents.
+```
+
+---
+
+### Image 08-02: Agentic Behavior Model
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-02-flow-agentic-behavior.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | Replace or accompany the ASCII agentic behavior model in section 8.1 (around line 89-140) |
+| **Alt Text** | "Five-step agentic behavior loop: Perceive (read files, understand context) → Plan (reason, identify steps) → Act (execute, edit) → Verify (test, validate) → Iterate (fix, refine)" |
+
+**Prompt:**
+```
+A circular or vertical flow diagram showing the five stages of agentic behavior in Claude Code.
+
+FLOW STRUCTURE:
+
+ENTRY POINT:
+- "Your Request"
+- Example: "Add caching to the user endpoint"
+- User icon
+
+STAGE 1 - PERCEIVE:
+- Icon: Eye / magnifying glass over code
+- Color: Blue (observation/input)
+- Actions:
+  - "Read existing code"
+  - "Understand project structure"
+  - "Identify patterns used"
+- Visual: Files being scanned, structure being mapped
+
+STAGE 2 - PLAN:
+- Icon: Brain / flowchart / lightbulb
+- Color: Purple (thinking)
+- Actions:
+  - "Decide on caching strategy"
+  - "Identify files to modify"
+  - "Plan implementation steps"
+- Visual: Decision tree forming, checklist appearing
+
+STAGE 3 - ACT:
+- Icon: Wrench / code brackets / terminal
+- Color: Orange (execution)
+- Actions:
+  - "Edit code files"
+  - "Add dependencies"
+  - "Update configurations"
+- Visual: Files being modified, code being written
+
+STAGE 4 - VERIFY:
+- Icon: Checkmark / test tube / validation
+- Color: Green (validation)
+- Actions:
+  - "Run tests"
+  - "Check for errors"
+  - "Validate changes work"
+- Visual: Tests running, results appearing
+
+STAGE 5 - ITERATE (conditional loop):
+- Icon: Loop arrow / refinement
+- Color: Cyan (refinement)
+- Actions:
+  - "Fix any issues found"
+  - "Refine implementation"
+  - "Re-verify"
+- Visual: Loop back to earlier stages if needed
+- Decision point: "Issues found?" → Yes: Loop back / No: Complete
+
+COMPLETION:
+- "Task Complete"
+- Summary/result indication
+- Checkmark
+
+LOOP VISUALIZATION:
+- Clear arrow showing iteration back from Verify/Iterate to earlier stages
+- Most common loop: Act → Verify → fix issues → Act again
+
+HUMAN IN THE LOOP INDICATOR:
+- Small callout: "You approve actions along the way"
+- Human checkpoint between Plan and Act
+
+Style: Clear lifecycle flow, shows autonomous yet controlled execution, emphasizes the verify/iterate capability that makes Claude Code reliable.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing the cycle in motion, with an example task progressing through each stage.
+
+---
+
+### Image 08-03: Skills System Overview
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-03-diagram-skills-system.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Replace or accompany the ASCII skills system diagram in section 8.2 (around line 192-220) |
+| **Alt Text** | "Skills system architecture showing four skill cards (Kubernetes, Terraform, Docker, CI/CD) each with specialized knowledge, tools, and patterns" |
+
+**Prompt:**
+```
+A modular diagram showing the skills system architecture with example skill cards.
+
+LAYOUT: Central concept with skill card examples
+
+CENTRAL CONCEPT:
+- "Skills = Specialized Knowledge + Tools + Patterns"
+- Claude Code core receiving skills
+- Skills enhance capabilities
+
+SKILL CARDS (Four Examples):
+
+CARD 1 - KUBERNETES SKILL:
+- Icon: K8s wheel logo stylized
+- Color: Kubernetes blue
+- Capabilities list:
+  - "K8s manifests"
+  - "Helm charts"
+  - "kubectl commands"
+  - "Debugging pods"
+- Visual: Mini manifest snippet
+
+CARD 2 - TERRAFORM SKILL:
+- Icon: Terraform logo stylized
+- Color: Terraform purple
+- Capabilities list:
+  - "AWS/GCP/Azure"
+  - "Module patterns"
+  - "State management"
+  - "Best practices"
+- Visual: Mini .tf snippet
+
+CARD 3 - DOCKER SKILL:
+- Icon: Docker whale stylized
+- Color: Docker blue
+- Capabilities list:
+  - "Dockerfile optimization"
+  - "Multi-stage builds"
+  - "Docker Compose"
+  - "Security scanning"
+- Visual: Mini Dockerfile snippet
+
+CARD 4 - CI/CD SKILL:
+- Icon: Pipeline arrows
+- Color: Orange
+- Capabilities list:
+  - "GitHub Actions"
+  - "GitLab CI"
+  - "Jenkins"
+  - "ArgoCD"
+- Visual: Mini workflow snippet
+
+SKILL COMBINATION INDICATOR:
+- Show how skills can be combined
+- "/skill kubernetes terraform"
+- Visual: K8s + Terraform cards merging
+
+HOT-RELOAD BADGE:
+- "Hot-reloaded" indicator
+- "Available immediately without restart"
+- Lightning bolt icon
+
+CUSTOM SKILLS SECTION:
+- "Create your own" indicator
+- Points to ~/.claude/skills/ or .claude/skills/
+- "Team-specific knowledge"
+
+Style: Clean skill cards layout, each card visually distinct, shows modularity and extensibility of skills system.
+```
+
+---
+
+### Image 08-04: Sub-Agent Architecture
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-04-diagram-subagent-architecture.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Replace or accompany the ASCII sub-agent architecture in section 8.3 (around line 398-429) |
+| **Alt Text** | "Main agent as coordinator with three sub-agents (Code Review, Test Writer, Docs Writer) working in parallel, results aggregating back to final output" |
+
+**Prompt:**
+```
+A hierarchical diagram showing how the main Claude Code agent spawns and coordinates sub-agents.
+
+ARCHITECTURE:
+
+TOP - MAIN AGENT (Coordinator):
+- Large node: "Main Agent (Coordinator)"
+- Icon: Central brain/hub
+- Shows: Receiving user request, delegating tasks
+- Color: Anthropic orange
+
+DISTRIBUTION ARROWS:
+- Three arrows pointing down from coordinator
+- Each labeled with task being delegated
+- Shows parallel distribution
+
+MIDDLE - SUB-AGENTS (Parallel Workers):
+
+SUB-AGENT 1 - CODE REVIEWER:
+- Icon: Eye + code
+- Color: Red/orange (review)
+- Tasks:
+  - "Security analysis"
+  - "Quality check"
+  - "Style review"
+- Working indicator (progress bar or spinner)
+
+SUB-AGENT 2 - TEST WRITER:
+- Icon: Checkmark + code
+- Color: Green (testing)
+- Tasks:
+  - "Unit tests"
+  - "Integration tests"
+  - "E2E tests"
+- Working indicator
+
+SUB-AGENT 3 - DOCS WRITER:
+- Icon: Document + pencil
+- Color: Blue (documentation)
+- Tasks:
+  - "README updates"
+  - "API docs"
+  - "Code comments"
+- Working indicator
+
+PARALLEL EXECUTION VISUAL:
+- Clock/timeline showing simultaneous work
+- "Parallel processing" label
+- Time savings indicator
+
+AGGREGATION ARROWS:
+- Three arrows pointing down from sub-agents
+- Converging to result node
+
+BOTTOM - AGGREGATED RESULT:
+- Node: "Final Result (Aggregated)"
+- Shows: Combined output from all sub-agents
+- Color: Green (complete)
+
+CONTEXT FORKING CALLOUT:
+- Small indicator: "Each sub-agent has own context"
+- "context: fork" badge
+- Shows isolation benefit
+
+BENEFITS SIDEBAR:
+- "Parallel execution = faster completion"
+- "Isolated contexts = no pollution"
+- "Specialized focus = better results"
+
+Style: Clear hierarchical flow, shows parallelism and coordination, professional documentation quality.
+```
+
+---
+
+### Image 08-05: Sub-Agent Types
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-05-compare-subagent-types.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 8.3 "Sub-Agent Types" (around line 453-503) |
+| **Alt Text** | "Five sub-agent types: Explorer (codebase navigation), Planner (implementation design), Code Writer (feature development), Test Agent (quality assurance), Reviewer (code analysis)" |
+
+**Prompt:**
+```
+A five-column comparison showing the different types of sub-agents available in Claude Code.
+
+FIVE COLUMNS:
+
+COLUMN 1 - EXPLORER AGENT:
+- Icon: Magnifying glass over file tree
+- Color: Blue (discovery)
+- Purpose: "Explore and understand codebases"
+- Capabilities:
+  - "Fast file searching"
+  - "Pattern recognition"
+  - "Architecture mapping"
+- Use case: "Where is X implemented?"
+- Example prompt: "Find all authentication-related code"
+- Speed: Fast
+
+COLUMN 2 - PLANNER AGENT:
+- Icon: Flowchart / strategy board
+- Color: Purple (planning)
+- Purpose: "Create implementation plans"
+- Capabilities:
+  - "Break down complex tasks"
+  - "Identify dependencies"
+  - "Estimate complexity"
+- Use case: "Plan a large refactor"
+- Example prompt: "Plan migration from REST to GraphQL"
+- Speed: Medium
+
+COLUMN 3 - CODE WRITER AGENT:
+- Icon: Code brackets + pencil
+- Color: Orange (creation)
+- Purpose: "Write and modify code"
+- Capabilities:
+  - "Generate new code"
+  - "Refactor existing code"
+  - "Follow patterns"
+- Use case: "Implement features"
+- Example prompt: "Create rate limiting middleware"
+- Speed: Variable
+
+COLUMN 4 - TEST AGENT:
+- Icon: Checkmark + test tube
+- Color: Green (validation)
+- Purpose: "Create and run tests"
+- Capabilities:
+  - "Generate unit tests"
+  - "Create integration tests"
+  - "Run test suites"
+- Use case: "Ensure code quality"
+- Example prompt: "Write tests for new auth module"
+- Speed: Medium
+
+COLUMN 5 - REVIEWER AGENT:
+- Icon: Eye + shield
+- Color: Red (analysis)
+- Purpose: "Review code for issues"
+- Capabilities:
+  - "Security analysis"
+  - "Performance review"
+  - "Best practice checking"
+- Use case: "Code review automation"
+- Example prompt: "Audit authentication for vulnerabilities"
+- Speed: Medium
+
+BOTTOM ROW - COMBINATION HINT:
+- "Combine agents for complex workflows"
+- Example: "Explorer → Planner → Code Writer → Test → Reviewer"
+
+Style: Clean comparison cards, each type visually distinct, shows capability spectrum, actionable agent selection guidance.
+```
+
+---
+
+### Image 08-06: Multi-Agent Workflow Example
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-06-flow-multiagent-workflow.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 8.4 "Advanced Agentic Workflows" (around line 546) |
+| **Alt Text** | "Production readiness workflow with four parallel agents: Security Audit, Performance Analysis, Test Coverage, and Documentation Review, feeding into aggregated report" |
+
+**Prompt:**
+```
+A workflow diagram showing a realistic multi-agent workflow for production readiness checking.
+
+WORKFLOW: Production Readiness Check
+
+ENTRY:
+- User request: "Prepare this service for production deployment"
+- Timestamp indicator: Start time
+
+ORCHESTRATOR DECISION:
+- Claude Code analyzes request
+- Decides on parallel checks needed
+- Spawns sub-agents
+
+PARALLEL EXECUTION PHASE:
+- Four agents working simultaneously
+- Visual: Timeline showing parallel bars
+
+AGENT 1 - SECURITY AUDIT:
+- Icon: Shield + magnifying glass
+- Tasks:
+  - "Scan for hardcoded secrets"
+  - "Check for vulnerabilities"
+  - "Review auth/authz"
+- Progress: In progress...
+- Output: Security findings report
+
+AGENT 2 - PERFORMANCE ANALYSIS:
+- Icon: Speedometer
+- Tasks:
+  - "Analyze resource usage"
+  - "Check for N+1 queries"
+  - "Review memory patterns"
+- Progress: In progress...
+- Output: Performance report
+
+AGENT 3 - TEST COVERAGE:
+- Icon: Checkmark grid
+- Tasks:
+  - "Run test suite"
+  - "Calculate coverage %"
+  - "Identify untested paths"
+- Progress: In progress...
+- Output: Coverage report (e.g., 85%)
+
+AGENT 4 - DOCUMENTATION REVIEW:
+- Icon: Document + checkmark
+- Tasks:
+  - "Check README completeness"
+  - "Verify API docs"
+  - "Review inline comments"
+- Progress: In progress...
+- Output: Docs completeness score
+
+AGGREGATION PHASE:
+- All reports feeding into central aggregator
+- Claude Code synthesizing findings
+
+FINAL OUTPUT:
+- "Production Readiness Report"
+- Sections from each agent
+- Overall recommendation: GO / NO-GO
+- Issues to address before deployment
+
+TIMELINE INDICATOR:
+- Shows time saved via parallelism
+- "Sequential: ~15 min → Parallel: ~5 min"
+
+Style: Real-world workflow, shows practical benefit of multi-agent orchestration, professional DevOps documentation quality.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing the parallel agents working and their results aggregating into the final report.
+
+---
+
+### Image 08-07: Task Tool Visualization
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-07-diagram-task-tool.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 8.5 "Understanding the Task Tool" (around line 679-716) |
+| **Alt Text** | "Task Tool interface showing parameters: subagent_type (Explore, Plan, general-purpose), prompt, model selection, and example spawning flow" |
+
+**Prompt:**
+```
+A technical diagram showing the Task Tool interface for spawning sub-agents.
+
+LAYOUT: API-style documentation with examples
+
+TASK TOOL INTERFACE:
+
+HEADER:
+- "Task Tool: Sub-Agent Spawning Mechanism"
+- Tool icon
+
+PARAMETERS SECTION:
+
+PARAMETER 1 - subagent_type:
+- Type: enum (dropdown visualization)
+- Options with icons:
+  - "general-purpose" - Multi-step tasks
+  - "Explore" - Codebase exploration
+  - "Plan" - Implementation planning
+  - "code-reviewer" - Code review (if configured)
+- Color coding for each type
+
+PARAMETER 2 - prompt:
+- Type: string
+- Description: "The task for the agent to perform"
+- Example shown in input field
+
+PARAMETER 3 - model (optional):
+- Type: enum
+- Options:
+  - "sonnet" (default) - Balanced
+  - "opus" - Complex reasoning
+  - "haiku" - Fast, simple tasks
+- Cost/speed indicators for each
+
+BEHAVIOR SECTION:
+- Bullet points with icons:
+  - "Sub-agents run autonomously"
+  - "Report back when complete"
+  - "Can be run in parallel"
+  - "Each has its own context"
+
+EXAMPLE INVOCATIONS:
+
+EXAMPLE 1 - EXPLORE:
+Task(
+  subagent_type="Explore",
+  prompt="Find auth-related code"
+)
+- Shows: Spawns explorer, returns findings
+
+EXAMPLE 2 - PLAN:
+Task(
+  subagent_type="Plan",
+  prompt="Design caching strategy"
+)
+- Shows: Spawns planner, returns plan
+
+EXAMPLE 3 - GENERAL:
+Task(
+  subagent_type="general-purpose",
+  prompt="Update all tests"
+)
+- Shows: Spawns worker, executes task
+
+SPAWN FLOW VISUALIZATION:
+- Main agent → Task Tool call → Sub-agent spawned → Works autonomously → Returns result
+
+Style: Technical API documentation aesthetic, clear parameter definitions, practical examples, suitable for understanding Task Tool usage.
+```
+
+---
+
+### Image 08-08: Context Forking Concept
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-08-img-08-concept-context-forking.png` |
+| **Type** | Concept |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 8.2 "Sub-Agent Context Forking" (around line 367-388) |
+| **Alt Text** | "Context forking visualization: Main conversation preserved while skill runs in isolated sub-agent context, results returning without pollution" |
+
+**Prompt:**
+```
+A conceptual diagram explaining context forking for sub-agents.
+
+LAYOUT: Before/After or Split comparison
+
+WITHOUT CONTEXT FORKING (Problem):
+- Main conversation context shown as container
+- Skill execution happening inside same context
+- Visual pollution:
+  - Context growing large
+  - Irrelevant information mixing in
+  - "Context pollution" label
+- Result: Slower responses, confused context
+
+WITH CONTEXT FORKING (Solution):
+- Main conversation context preserved (clean)
+- Fork indicator: context: fork
+- Separate sub-agent context spawned:
+  - Isolated container
+  - Skill runs inside
+  - Own workspace
+- Results channel:
+  - Only final results return to main context
+  - Main context stays clean
+- Benefits shown:
+  - "Isolated execution"
+  - "Clean main context"
+  - "Long-running tasks don't pollute"
+
+SKILL FILE SNIPPET:
+---
+name: security-audit
+context: fork  # Key setting
+---
+
+FORK VISUALIZATION:
+- Tree branch metaphor
+- Main trunk = main conversation
+- Branch = forked sub-agent
+- Graft = results returning
+
+USE CASE EXAMPLES:
+- "Long-running security scans"
+- "Resource-intensive analysis"
+- "Tasks generating lots of intermediate output"
+
+VISUAL ELEMENTS:
+- Container/sandbox imagery
+- Clean vs cluttered contexts
+- Fork/merge indicators
+
+Style: Clear conceptual explanation, shows benefit of isolation, suitable for understanding when to use context: fork.
+```
 
 ---
 
 ## Chapter 09: Hooks and Advanced Features
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Hooks system for automation, memory management, CI/CD integration, professional best practices
+- **Total Images**: 7
+- **Animation Candidates**: 1
+
+---
+
+### Image 09-01: Chapter Header
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-01-header-hooks-advanced.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title, before "Automation, CI/CD Integration, and Professional Best Practices" |
+| **Alt Text** | "Claude Code as an automation platform with hooks triggering workflows, CI/CD pipelines connecting, and memory/context management symbols" |
+
+**Prompt:**
+```
+A hero illustration showing Claude Code transformed into a full automation platform through hooks, memory, and CI/CD integration.
+
+CENTRAL CONCEPT:
+Claude Code at the center, but now surrounded by automation infrastructure - hooks, pipelines, memory systems, and integration points.
+
+MAIN VISUAL:
+Claude Code represented as a central processing hub with multiple automation layers:
+
+HOOKS LAYER (surrounding the core):
+- Event trigger points (lightning bolts, hooks icons)
+- Pre_edit, post_edit, pre_command hooks visualized as intercept points
+- Actions being triggered automatically
+- Color: Orange/amber for triggers
+
+MEMORY LAYER (above):
+- Brain/memory icon
+- Long-term storage visualization
+- Facts, patterns, conventions floating
+- Persistent across sessions indicator
+- Color: Purple for memory
+
+CI/CD LAYER (below):
+- Pipeline visualization (GitHub Actions, GitLab CI)
+- Automated PR reviews
+- Test generation symbols
+- Deployment arrows
+- Color: Green for automation
+
+INTEGRATION POINTS (sides):
+- Connection to external systems
+- API connections
+- Git integrations
+- Environment variable flows
+
+WORKFLOW ANIMATIONS:
+- Arrows showing automated flows
+- Events triggering actions
+- Results feeding back
+- Continuous loop indication
+
+VISUAL METAPHORS:
+- Factory automation (hooks as assembly line triggers)
+- Neural network (memory as persistent knowledge)
+- Pipeline (CI/CD as continuous flow)
+- Control panel (professional management)
+
+BACKGROUND:
+- Professional DevOps environment
+- Infrastructure hints (servers, clouds)
+- Code/terminal aesthetic
+
+Color palette: Anthropic orange for core, amber for hooks/triggers, purple for memory, green for CI/CD success, blue for integrations.
+
+Style: Technical automation platform visualization, shows transformation from interactive tool to production automation system, professional and capable.
+```
+
+---
+
+### Image 09-02: Hooks System Flow
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-02-flow-hooks-system.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 9.1 "What are Hooks?" (around line 48-94) |
+| **Alt Text** | "Hooks workflow showing six event types (pre_edit, post_edit, pre_command, post_test, session_start, session_end) with their trigger points and example actions" |
+
+**Prompt:**
+```
+A workflow diagram showing the hooks system with event types and their trigger points.
+
+LAYOUT: Central Claude Code workflow with hook intercept points
+
+MAIN WORKFLOW (horizontal center):
+- "Session Start" → "Read/Understand" → "Edit Files" → "Run Commands" → "Run Tests" → "Session End"
+- This represents the normal Claude Code workflow
+
+HOOK INTERCEPT POINTS (above and below main flow):
+
+HOOK 1 - SESSION_START:
+- Trigger point: Session begins
+- Position: At workflow start
+- Example action: "git status"
+- Icon: Play button / session icon
+- Color: Blue
+
+HOOK 2 - PRE_EDIT:
+- Trigger point: Before file modification
+- Position: Before "Edit Files" step
+- Example action: "cp {{file}} {{file}}.backup"
+- Icon: Save/backup icon
+- Color: Orange (warning/prepare)
+
+HOOK 3 - POST_EDIT:
+- Trigger point: After file modification
+- Position: After "Edit Files" step
+- Example actions:
+  - "prettier --write {{file}}" (JS/TS)
+  - "black {{file}}" (Python)
+  - "gitleaks detect" (security)
+- Icon: Format/check icon
+- Color: Green (success/validate)
+
+HOOK 4 - PRE_COMMAND:
+- Trigger point: Before command execution
+- Position: Before "Run Commands" step
+- Example action: "echo '{{command}}' >> log"
+- Can also: Block dangerous commands
+- Icon: Shield/filter icon
+- Color: Red (security gate)
+
+HOOK 5 - POST_TEST:
+- Trigger point: After tests complete
+- Position: After "Run Tests" step
+- Example action: "coverage report --fail-under=80"
+- Icon: Checkmark/report icon
+- Color: Green
+
+HOOK 6 - SESSION_END:
+- Trigger point: Session closing
+- Position: At workflow end
+- Example action: "git diff --stat"
+- Icon: Stop/summary icon
+- Color: Blue
+
+YAML SNIPPET:
+- Small example of hooks.yaml structure
+- Shows how hooks are configured
+
+TIMEOUT BADGE:
+- "10-minute timeout (v2.1.3)"
+- Shows hook can run complex operations
+
+Style: Clear workflow with intercept points, shows hook timing and purpose, practical for understanding when hooks fire.
+```
+
+---
+
+### Image 09-03: DevOps Hook Use Cases
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-03-info-devops-hooks.png` |
+| **Type** | Info (Infographic) |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 9.1 "Hook Use Cases for DevOps" (around line 96-133) |
+| **Alt Text** | "Five DevOps hook categories: Infrastructure Safety (terraform destroy protection), K8s Validation (kubeval), Security Scanning (gitleaks), Docker Linting (hadolint), Terraform Formatting (terraform fmt)" |
+
+**Prompt:**
+```
+An infographic showing practical DevOps hook use cases with examples.
+
+LAYOUT: Five category cards/sections
+
+CARD 1 - INFRASTRUCTURE SAFETY:
+- Icon: Shield + terraform logo
+- Color: Red (danger prevention)
+- Hook type: pre_command
+- Use case: "Confirm destructive commands"
+- Example: Detect "terraform destroy" and require confirmation
+- Visual: Warning dialog simulation
+- Impact: "Prevents accidental infrastructure deletion"
+
+CARD 2 - KUBERNETES VALIDATION:
+- Icon: K8s logo + checkmark
+- Color: Blue (K8s)
+- Hook type: post_edit
+- Use case: "Validate K8s manifests on save"
+- Example: Run kubeval on *.yaml files
+- Visual: Manifest being validated
+- Impact: "Catch errors before deployment"
+
+CARD 3 - SECURITY SCANNING:
+- Icon: Lock + magnifying glass
+- Color: Green (security)
+- Hook type: post_edit
+- Use case: "Scan for secrets in code"
+- Example: Run gitleaks on modified files
+- Visual: Secret detection alert
+- Impact: "Prevent credential exposure"
+
+CARD 4 - DOCKER LINTING:
+- Icon: Docker whale + lint icon
+- Color: Docker blue
+- Hook type: post_edit
+- Use case: "Lint Dockerfiles"
+- Example: Run hadolint on Dockerfile changes
+- Visual: Best practice suggestions
+- Impact: "Ensure container best practices"
+
+CARD 5 - TERRAFORM FORMATTING:
+- Icon: Terraform logo + format icon
+- Color: Purple (Terraform)
+- Hook type: post_edit
+- Use case: "Auto-format .tf files"
+- Example: Run terraform fmt on save
+- Visual: Code being formatted
+- Impact: "Consistent infrastructure code"
+
+CENTER INSIGHT:
+- "Set up once, benefit forever"
+- "Automated quality gates"
+
+COMMAND LOGGING BONUS:
+- Small callout: pre_command logging for audit trails
+- "Log all actions for compliance"
+
+Style: Practical use case cards, DevOps-focused, shows real commands and benefits, actionable reference.
+```
+
+**🎬 ANIMATION CANDIDATE**: This could be an animated GIF showing a file being edited, then hooks automatically triggering (formatting, scanning, validating).
+
+---
+
+### Image 09-04: Memory and Context Management
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-04-diagram-memory-context.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 9.2 "Long-Term Memory" (around line 137-175) |
+| **Alt Text** | "Memory configuration with three sections: Facts (project knowledge), Conventions (naming, architecture), and Context Prioritization (file importance levels)" |
+
+**Prompt:**
+```
+A diagram showing how memory and context configuration enhances Claude Code's understanding.
+
+LAYOUT: Three connected sections feeding into Claude Code
+
+SECTION 1 - FACTS (memory.yaml):
+- Icon: Brain / lightbulb
+- Color: Purple (knowledge)
+- Content types:
+  - "Project uses Django 4.2 with PostgreSQL"
+  - "GitFlow branching strategy"
+  - "Production needs two approvals"
+  - "Main API at /api/v2/"
+- Visual: Knowledge cards/facts floating
+- Purpose: "Persistent project knowledge"
+
+SECTION 2 - CONVENTIONS (memory.yaml):
+- Icon: Ruler / standards
+- Color: Blue (rules)
+- Sub-sections:
+  - Naming: "snake_case for Python, kebab-case for K8s"
+  - Architecture: "External calls through gateway"
+  - Anti-patterns: "Don't use print(), use logger"
+- Visual: Pattern templates
+- Purpose: "Team standards Claude follows"
+
+SECTION 3 - CONTEXT PRIORITIZATION (context.yaml):
+- Icon: Priority indicator / layers
+- Color: Orange (importance)
+- Levels shown:
+  - High priority: README.md, config/*.py, k8s/*.yaml
+  - Medium priority: docs/*.md, scripts/*.sh
+  - Ignore: *.min.js, coverage/*, dist/*
+- Visual: File tree with priority indicators
+- Purpose: "Focus Claude on what matters"
+
+FLOW INTO CLAUDE CODE:
+- All three sections feed into central Claude Code representation
+- "Enhanced Understanding" result
+- Better suggestions, follows standards, focuses on right files
+
+SESSION PERSISTENCE:
+- Indicator showing memory persists across sessions
+- "Remember project context automatically"
+
+YAML SNIPPETS:
+- Small code previews of memory.yaml and context.yaml structure
+
+BENEFITS CALLOUT:
+- "No need to re-explain project every session"
+- "Claude follows team conventions automatically"
+- "Relevant files are prioritized"
+
+Style: Knowledge organization diagram, shows configuration files feeding into enhanced Claude Code capability, practical configuration guide.
+```
+
+---
+
+### Image 09-05: CI/CD Integration Pipeline
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-05-flow-cicd-integration.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After section 9.3 "GitHub Actions Integration" (around line 211-295) |
+| **Alt Text** | "CI/CD integration flow: PR Created → Setup Claude → Get Changes → Run Claude Review → Post Comment → Create PR with fixes" |
+
+**Prompt:**
+```
+A pipeline diagram showing Claude Code integration into CI/CD workflows.
+
+LAYOUT: Horizontal CI/CD pipeline with Claude Code integration points
+
+PIPELINE STAGES:
+
+STAGE 1 - TRIGGER:
+- Events: PR created, workflow_dispatch
+- Icons: GitHub/GitLab PR icons
+- "Pull Request" or "Manual Trigger"
+
+STAGE 2 - SETUP:
+- Checkout code (actions/checkout)
+- Install Claude Code (npm install)
+- Configure API key from secrets
+- Visual: Setup icons, key icon
+
+STAGE 3 - ANALYZE:
+- Get changed files (git diff)
+- Prepare review context
+- Visual: Files being gathered
+
+STAGE 4 - CLAUDE CODE REVIEW:
+- Icon: Claude Code brain + review
+- Color: Anthropic orange (highlight)
+- Actions:
+  - Security analysis
+  - Code quality check
+  - Best practices review
+  - Test coverage assessment
+- Output: review.md generated
+
+STAGE 5 - POST RESULTS:
+- Post review as PR comment
+- Visual: Comment bubble on PR
+- github-script action
+
+STAGE 6 (Optional) - AUTO-FIX:
+- Create new branch
+- Apply Claude's suggestions
+- Create follow-up PR
+- Visual: New PR being created
+
+TWO WORKFLOWS SHOWN:
+
+WORKFLOW A - PR REVIEW:
+- Automatic on PR creation
+- Review and comment
+- Human makes decisions
+
+WORKFLOW B - AUTOMATED TASK:
+- Manual trigger with task input
+- Claude executes task
+- Creates PR with changes
+- Human reviews result
+
+SECRETS CALLOUT:
+- ANTHROPIC_API_KEY from GitHub Secrets
+- Secure handling
+
+RETRY LOGIC:
+- Rate limiting handling
+- Exponential backoff
+
+GITLAB ALTERNATIVE:
+- Small note: "Similar pattern for GitLab CI"
+- Link to GitLab example
+
+Style: CI/CD pipeline visualization, shows two integration patterns, professional DevOps documentation quality.
+```
+
+---
+
+### Image 09-06: Safety and Permissions
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-06-diagram-safety-permissions.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 9.4 "Safety Guidelines" and "Wildcard Bash Permissions" (around line 352-422) |
+| **Alt Text** | "Safety configuration with four areas: Permission Wildcards (allow/deny patterns), Environment Variables (DISABLE_BACKGROUND_TASKS, IS_DEMO), Audit Trail (logging), and Secret Management" |
+
+**Prompt:**
+```
+A safety and permissions configuration diagram for production Claude Code usage.
+
+LAYOUT: Four safety domains around central Claude Code
+
+DOMAIN 1 - WILDCARD PERMISSIONS:
+- Icon: Filter / wildcard pattern
+- Color: Blue
+- Allow patterns shown:
+  - "npm *" - All npm commands
+  - "kubectl get *" - Read operations
+  - "terraform plan *" - Safe planning
+  - "docker build *" - Build operations
+- Deny patterns shown:
+  - "rm -rf *" - Dangerous delete
+  - "* --force" - Force flags blocked
+  - "terraform destroy *" - Destructive blocked
+  - "kubectl delete *" - Delete blocked
+- Visual: Filter allowing/blocking commands
+
+DOMAIN 2 - ENVIRONMENT VARIABLES:
+- Icon: Terminal / env vars
+- Color: Green
+- Key variables:
+  - CLAUDE_CODE_DISABLE_BACKGROUND_TASKS=1
+    - "Use in CI/CD"
+    - Prevents auto-backgrounding
+  - IS_DEMO=1
+    - "Use for presentations"
+    - Hides sensitive info
+  - FORCE_AUTOUPDATE_PLUGINS=1
+    - "Force skill reload"
+- Visual: Environment settings panel
+
+DOMAIN 3 - AUDIT TRAIL:
+- Icon: Log / history
+- Color: Purple
+- Practices:
+  - "Log all Claude Code sessions"
+  - "Track automation changes"
+  - "PR review for AI code"
+- Visual: Audit log entries
+- Hook integration: pre_command logging
+
+DOMAIN 4 - SECRET MANAGEMENT:
+- Icon: Lock / key
+- Color: Red (security)
+- Practices:
+  - "Never include secrets in prompts"
+  - "Use environment variables"
+  - "Exclude .env from context"
+  - "Scan for secrets in hooks"
+- Visual: Secrets being protected
+
+CENTER - SAFETY PRINCIPLES:
+- "Always verify before applying"
+- "Test in non-production first"
+- "Have rollback plans ready"
+- "Separate keys for CI/CD vs interactive"
+
+PRODUCTION BADGE:
+- "Production-Ready Safety"
+- Checkmark indicators for each domain
+
+Style: Security-focused diagram, shows comprehensive safety setup, suitable for production deployment guidance.
+```
+
+---
+
+### Image 09-07: Efficiency and Model Selection
+
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-09-img-07-compare-model-efficiency.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 or 4:3 |
+| **Placement** | After section 9.4 "Efficiency Tips" (around line 424-453) |
+| **Alt Text** | "Model selection guide: Haiku for exploration (fast, cheap), Sonnet for implementation (balanced), Opus for architecture decisions (deep reasoning)" |
+
+**Prompt:**
+```
+A model selection and efficiency guide for optimal Claude Code usage.
+
+THREE COLUMNS - MODEL SELECTION:
+
+COLUMN 1 - HAIKU 4.5:
+- Icon: Rabbit / speed
+- Color: Green (fast)
+- Best for: "Exploration & Quick Searches"
+- Tasks:
+  - "Where is X implemented?"
+  - "Find all files matching..."
+  - "Quick code lookups"
+  - "Simple questions"
+- Speed: Fastest
+- Cost: Cheapest
+- Depth: Sufficient for search
+
+COLUMN 2 - SONNET 4.5:
+- Icon: Balance scale
+- Color: Blue (balanced)
+- Best for: "Most Coding Tasks"
+- Tasks:
+  - "Implement this feature"
+  - "Refactor this code"
+  - "Write tests"
+  - "Code review"
+- Speed: Fast
+- Cost: Balanced
+- Depth: Most tasks
+- Badge: "Default Recommendation"
+
+COLUMN 3 - OPUS 4.5:
+- Icon: Brain / deep thinking
+- Color: Purple (depth)
+- Best for: "Architecture & Complex Decisions"
+- Tasks:
+  - "Design system architecture"
+  - "Complex debugging"
+  - "Security analysis"
+  - "Multi-service refactoring"
+- Speed: Slower
+- Cost: Premium
+- Depth: Maximum reasoning
+- Note: "Thinking mode enabled by default"
+
+EFFICIENCY TIPS SECTION:
+
+TIP 1 - PARALLEL PROCESSING:
+- Visual: Multiple agents working simultaneously
+- Example: @parallel { security, performance, tests }
+- Benefit: "Break large tasks into parallel sub-tasks"
+
+TIP 2 - CONTEXT MANAGEMENT:
+- Visual: Clean context vs cluttered
+- Tips:
+  - "Start in right directory"
+  - "Use context.yaml to prioritize"
+  - "Clear between unrelated tasks"
+
+TIP 3 - AUTOMATION BOUNDARIES:
+- Visual: Human/AI boundary line
+- Automate: "Repetitive, well-defined tasks"
+- Human review: "Security-critical changes"
+- Human decision: "Architecture choices"
+
+DECISION FLOW:
+- Quick question? → Haiku
+- Building feature? → Sonnet
+- Critical decision? → Opus
+
+Style: Clear model comparison, practical selection guidance, efficiency-focused, suitable for optimizing Claude Code usage.
+```
 
 ---
 
