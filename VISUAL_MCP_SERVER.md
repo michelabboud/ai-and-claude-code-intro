@@ -1,8 +1,8 @@
-# Project Bootstrap: image-generator-mcp
+# Project Bootstrap: Dr Visual Forge
 
 ## Project Overview
 
-Create an MCP (Model Context Protocol) server called `image-generator-mcp` that automates AI image generation for technical documentation. The server reads a structured markdown file containing image prompts and generates images using various AI providers (DALL-E 3, Stability AI, Replicate/Flux, Leonardo.ai).
+Create an MCP (Model Context Protocol) server called **Dr Visual Forge** (`dr-visual-forge-mcp`) that automates AI image generation for technical documentation. The server reads a structured markdown file containing image prompts and generates images using various AI providers (DALL-E 3, Stability AI, Replicate/Flux, Leonardo.ai).
 
 ### Primary Use Case
 
@@ -17,6 +17,113 @@ This MCP server was designed to generate 151 images for an educational guide cal
 5. **Cost Tracking**: Monitor and limit spending across providers
 6. **State Persistence**: Resume interrupted sessions, track approvals/rejections
 7. **Smart Output**: Save images with consistent naming conventions and metadata
+8. **Universal IDE Support**: Works with any MCP-compatible client or IDE
+
+---
+
+## Supported Clients & IDEs
+
+Dr Visual Forge is built on the Model Context Protocol (MCP), making it compatible with any MCP-enabled client. **One server, all platforms.**
+
+### Verified Compatible Clients
+
+| Client | Type | MCP Support | Notes |
+|--------|------|-------------|-------|
+| **Claude Code** | CLI | Native | Primary development target |
+| **Claude Desktop** | Desktop App | Native | Full GUI experience |
+| **Cursor** | IDE | Native | AI-first code editor |
+| **Windsurf** | IDE | Native | Codeium's AI IDE |
+| **VS Code + Continue** | IDE + Extension | Via Continue | Open-source AI extension |
+| **VS Code + Cline** | IDE + Extension | Via Cline | Autonomous coding agent |
+| **Zed** | IDE | Native | High-performance editor |
+| **JetBrains IDEs** | IDE | Via Plugin | IntelliJ, PyCharm, WebStorm, etc. |
+| **Neovim** | Editor | Via Plugin | For terminal enthusiasts |
+
+### OpenAI Codex / GitHub Copilot
+
+OpenAI's Codex and GitHub Copilot do not currently support MCP natively. However, you can:
+1. Use Dr Visual Forge via CLI mode (standalone execution)
+2. Integrate via a bridge/wrapper if Copilot adds MCP support in the future
+3. Use the REST API mode (planned) for non-MCP clients
+
+### Configuration by Client
+
+**Claude Code / Claude Desktop** (`~/.claude/settings.json`):
+```json
+{
+  "mcpServers": {
+    "dr-visual-forge": {
+      "command": "npx",
+      "args": ["dr-visual-forge-mcp"],
+      "env": {
+        "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+      }
+    }
+  }
+}
+```
+
+**Cursor** (Settings → MCP Servers):
+```json
+{
+  "dr-visual-forge": {
+    "command": "npx",
+    "args": ["dr-visual-forge-mcp"]
+  }
+}
+```
+
+**VS Code + Continue** (`~/.continue/config.json`):
+```json
+{
+  "experimental": {
+    "mcpServers": {
+      "dr-visual-forge": {
+        "command": "npx",
+        "args": ["dr-visual-forge-mcp"]
+      }
+    }
+  }
+}
+```
+
+**Windsurf** (`~/.windsurf/settings.json`):
+```json
+{
+  "mcpServers": {
+    "dr-visual-forge": {
+      "command": "npx",
+      "args": ["dr-visual-forge-mcp"]
+    }
+  }
+}
+```
+
+### Standalone CLI Mode
+
+For clients without MCP support, Dr Visual Forge can run as a standalone CLI:
+
+```bash
+# Install globally
+npm install -g dr-visual-forge-mcp
+
+# Run commands directly
+dr-visual-forge parse ./CHAPTER-VISUALS-GUIDE.md
+dr-visual-forge generate --chapter 1 --provider dalle
+dr-visual-forge status
+dr-visual-forge generate-all --batch-size 10
+```
+
+### Future: REST API Mode
+
+Planned feature for universal integration:
+```bash
+# Start as HTTP server
+dr-visual-forge serve --port 3000
+
+# Any client can call
+curl http://localhost:3000/api/generate -d '{"imageId": "chapter-01-img-01"}'
+```
 
 ---
 
@@ -34,37 +141,44 @@ This MCP server was designed to generate 151 images for an educational guide cal
 ## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     Claude Code (MCP Client)                     │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                    image-generator-mcp                           │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐   │
-│  │   Parser     │  │  Workflow    │  │  Provider Adapters   │   │
-│  │   Module     │  │  Engine      │  │  ┌────────────────┐  │   │
-│  │              │  │              │  │  │ DALL-E 3       │  │   │
-│  │ - Extract    │  │ - One-by-one │  │  │ Stability AI   │  │   │
-│  │   prompts    │  │ - Batch N    │  │  │ Replicate/Flux │  │   │
-│  │ - Metadata   │  │ - Batch all  │  │  │ Leonardo.ai    │  │   │
-│  │ - Context    │  │ - Versions   │  │  └────────────────┘  │   │
-│  └──────────────┘  └──────────────┘  └──────────────────────┘   │
-│                                                                  │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────────┐   │
-│  │   State      │  │   Output     │  │   Cost Tracker       │   │
-│  │   Manager    │  │   Handler    │  │                      │   │
-│  └──────────────┘  └──────────────┘  └──────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
-                                │
-                                ▼
-                    ┌───────────────────┐
-                    │  Output Directory │
-                    │  /images/         │
-                    │  chapter-01/      │
-                    │  chapter-02/      │
-                    │  ...              │
-                    └───────────────────┘
+┌───────────────────────────────────────────────────────────────────────────────┐
+│                           MCP Clients (Any IDE)                                │
+│  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ ┌─────────┐  │
+│  │ Claude Code │ │   Cursor    │ │  Windsurf   │ │ VS Code +   │ │   Zed   │  │
+│  │             │ │             │ │             │ │  Continue   │ │         │  │
+│  └─────────────┘ └─────────────┘ └─────────────┘ └─────────────┘ └─────────┘  │
+└───────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                            MCP Protocol (stdio/SSE)
+                                        │
+                                        ▼
+┌───────────────────────────────────────────────────────────────────────────────┐
+│                              Dr Visual Forge                                   │
+│                                                                               │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────────┐     │
+│  │   Parser         │  │  Workflow        │  │  Provider Adapters       │     │
+│  │   Module         │  │  Engine          │  │  ┌────────────────────┐  │     │
+│  │                  │  │                  │  │  │ DALL-E 3           │  │     │
+│  │ - Extract        │  │ - One-by-one     │  │  │ Stability AI       │  │     │
+│  │   prompts        │  │ - Batch N        │  │  │ Replicate/Flux     │  │     │
+│  │ - Metadata       │  │ - Batch all      │  │  │ Leonardo.ai        │  │     │
+│  │ - Context        │  │ - Versions       │  │  └────────────────────┘  │     │
+│  └──────────────────┘  └──────────────────┘  └──────────────────────────┘     │
+│                                                                               │
+│  ┌──────────────────┐  ┌──────────────────┐  ┌──────────────────────────┐     │
+│  │   State          │  │   Output         │  │   Cost Tracker           │     │
+│  │   Manager        │  │   Handler        │  │                          │     │
+│  └──────────────────┘  └──────────────────┘  └──────────────────────────┘     │
+└───────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+                          ┌───────────────────────┐
+                          │    Output Directory   │
+                          │    /images/           │
+                          │    chapter-01/        │
+                          │    chapter-02/        │
+                          │    ...                │
+                          └───────────────────────┘
 ```
 
 ---
