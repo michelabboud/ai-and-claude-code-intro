@@ -55,7 +55,7 @@ Share these references with your team to establish common patterns and standards
 | Reference | Related Chapters |
 |-----------|------------------|
 | [Claude Code Quick Reference](./claude-code-quick-reference.md) | Chapters 6, 7, 8 |
-| [Hooks Cookbook](./hooks-cookbook.md) | Chapter 8 (§8.6) |
+| [Hooks Cookbook](./hooks-cookbook.md) | Chapter 9 (§9.1) |
 
 **Workflow**:
 1. **Learn**: Read the chapter for concepts and understanding

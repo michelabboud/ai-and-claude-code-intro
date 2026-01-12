@@ -79,9 +79,10 @@ Prerequisites:
 │  ├── Loop Detection: Ralph Wiggum loops, security, monitoring │
 │  └── Resilient Systems: Circuit breakers, self-healing        │
 │                                                                │
-│  RETRIEVAL-AUGMENTED GENERATION (Chapters 22-23)              │
+│  RETRIEVAL-AUGMENTED GENERATION (Chapters 23-25)              │
 │  ├── RAG Fundamentals: Embeddings, vector DBs, chunking       │
-│  └── Advanced RAG: Hybrid search, re-ranking, caching         │
+│  ├── RAG Search Optimization: Hybrid search, re-ranking       │
+│  └── Production RAG: Agentic RAG, evaluation, scaling         │
 │                                                                │
 └────────────────────────────────────────────────────────────────┘
 ```
@@ -138,14 +139,14 @@ Prerequisites:
 | [17](./chapters/17-aiops-fundamentals.md) | AIOps Fundamentals | Anomaly detection, predictive alerting, intelligent correlation |
 | [18](./chapters/18-aiops-advanced.md) | Advanced AIOps | Auto-remediation, self-healing, chaos engineering, production implementation |
 
-### Part 7: Advanced Agentic Development & Leadership
+### Part 7: Team Transformation & Advanced Reliability
 
 | Chapter | Title | Description |
 |---------|-------|-------------|
 | [19](./chapters/19-team-transformation.md) | Team Transformation | Leading organizational change, upskilling teams, measuring success |
 | [20](./chapters/20-agent-loop-detection.md) | Agent Loop Detection & Prevention | Ralph Wiggum loops, 6 loop types, detection strategies, DoW protection, production monitoring |
 
-### Part 8: Advanced Agentic Development
+### Part 8: Production-Ready Agentic Systems
 
 | Chapter | Title | Description |
 |---------|-------|-------------|
@@ -288,7 +289,7 @@ ai-and-claude-code-intro/
 ├── README.md                    # This file
 ├── LICENSE                      # CC BY-NC 4.0 License
 ├── CONTRIBUTING.md              # Contributor guidelines
-├── chapters/                    # Guide content (19 chapters)
+├── chapters/                    # Guide content (25 chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -307,13 +308,23 @@ ai-and-claude-code-intro/
 │   ├── 16-multi-agent-advanced.md
 │   ├── 17-aiops-fundamentals.md
 │   ├── 18-aiops-advanced.md
-│   └── 19-team-transformation.md
+│   ├── 19-team-transformation.md
+│   ├── 20-agent-loop-detection.md
+│   ├── 21-resilience-patterns.md
+│   ├── 22-production-deployment.md
+│   ├── 23-rag-fundamentals.md
+│   ├── 24-rag-search-optimization.md
+│   └── 25-production-rag-systems.md
 ├── appendices/                  # Reference architectures and blueprints
 │   └── appendix-a-platform-blueprint.md
 ├── presentations/               # Slides for each chapter
 │   ├── *.md                     # Marp source files
 │   └── pptx/                    # Generated PowerPoint files
-├── src/                         # Code examples by chapter
+├── references/                  # Quick reference guides
+│   ├── README.md
+│   ├── claude-code-quick-reference.md
+│   └── hooks-cookbook.md
+├── src/                         # Code examples by chapter (selective coverage)
 │   ├── chapter-01/              # Traditional vs ML, AIOps patterns
 │   ├── chapter-02/              # Token counting, cost estimation
 │   ├── chapter-03/              # CRAFT framework, prompt templates
@@ -323,15 +334,20 @@ ai-and-claude-code-intro/
 │   ├── chapter-07/              # Custom commands, GitHub Actions
 │   ├── chapter-08/              # Skills, sub-agents configurations
 │   ├── chapter-09/              # Hooks, memory, CI/CD examples
-│   ├── chapter-10/              # MCP usage examples
-│   ├── chapter-11/              # MCP server implementations
-│   ├── chapter-12/              # Shell aliases, incident response
-│   ├── chapter-13/              # n8n workflow examples
-│   ├── chapter-14/              # Advanced n8n workflows
+│   ├── chapter-10/              # MCP usage examples, shell aliases, incident response
 │   ├── chapter-15/              # Multi-agent fundamentals (coordination, agents)
 │   ├── chapter-16/              # Advanced multi-agent (swarms, monitoring)
 │   ├── chapter-17/              # AIOps fundamentals (monitoring integration)
-│   └── chapter-18/              # Advanced AIOps (auto-remediation, self-healing)
+│   ├── chapter-18/              # Advanced AIOps (auto-remediation, self-healing)
+│   ├── chapter-20/              # Agent loop detection examples
+│   ├── chapter-21/              # Resilience patterns examples
+│   └── chapter-24/              # RAG search optimization examples
+├── gamification/                # DevOps Quest learning system
+│   ├── progress-tracker/        # Track progress, achievements, streaks
+│   ├── challenges/              # Hands-on coding challenges
+│   ├── story-mode/              # Narrative-driven learning
+│   ├── sandbox/                 # Docker-based incident scenarios
+│   └── README.md
 └── assets/                      # Images and diagrams
 ```
 
