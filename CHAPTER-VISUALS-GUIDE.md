@@ -10,6 +10,7 @@
 
 ## Table of Contents
 
+- [Global Context Preamble](#global-context-preamble-copy-paste-this-first)
 - [Style Guidelines](#style-guidelines)
 - [Naming Convention](#naming-convention)
 - [Image Types Reference](#image-types-reference)
@@ -38,6 +39,68 @@
 - [Chapter 23: RAG Fundamentals](#chapter-23-rag-fundamentals)
 - [Chapter 24: RAG Search Optimization](#chapter-24-rag-search-optimization)
 - [Chapter 25: Production RAG Systems](#chapter-25-production-rag-systems)
+
+---
+
+## Global Context Preamble (Copy-Paste This First)
+
+**Important**: Before using any prompt from this guide, copy and paste the context block below to your AI image generator first. This gives the model essential context about the subject matter, visual style, and intended use.
+
+### Context Block for AI Image Generators
+
+```
+CONTEXT FOR ALL IMAGES:
+
+I am creating visuals for an educational technical guide titled "AI and Claude Code: A Comprehensive Guide for DevOps Engineers" by Michel Abboud.
+
+ABOUT THE GUIDE:
+- A 25-chapter comprehensive guide teaching AI fundamentals through professional Claude Code workflows
+- Target audience: DevOps engineers, SREs, platform engineers, and infrastructure professionals
+- Covers: AI/LLM fundamentals, prompt engineering, Claude (Anthropic's AI assistant), Claude Code (CLI development tool), Model Context Protocol (MCP), workflow automation, multi-agent systems, AIOps, and production deployment
+- The guide is practical and hands-on, focusing on real-world DevOps scenarios
+
+KEY SUBJECTS AND TERMINOLOGY:
+- Claude: Anthropic's AI assistant (the AI model itself)
+- Claude Code: A command-line interface (CLI) tool that allows developers to interact with Claude directly from their terminal
+- Anthropic: The AI safety company that created Claude
+- DevOps: Development operations - automation, CI/CD pipelines, infrastructure as code
+- MCP (Model Context Protocol): A protocol for AI tools to access external data sources
+- n8n: An open-source workflow automation platform
+- AIOps: AI for IT operations - monitoring, alerting, incident response
+- RAG: Retrieval-Augmented Generation - enhancing AI with external knowledge
+
+VISUAL STYLE REQUIREMENTS:
+- Modern tech illustration, clean and professional
+- Flat design with subtle gradients, isometric elements where appropriate
+- Primary colors: Tech blues (#1a73e8, #4285f4), DevOps oranges (#ff6d00, #ff9100)
+- Secondary colors: Neutral grays (#5f6368), accent purples (#7c4dff, #b388ff)
+- Professional, approachable, educational mood - slightly futuristic
+- Suitable for technical documentation and presentations
+- Clean backgrounds (white, light gray #f8f9fa, or dark mode #1e1e1e)
+- NO photorealistic humans, NO stock photo aesthetics, NO clip-art style
+- Minimal text in images; when needed use clean sans-serif fonts
+
+OUTPUT REQUIREMENTS:
+- High resolution suitable for digital documentation
+- Clean crisp edges, high contrast
+- Professional quality suitable for a published technical guide
+```
+
+### How to Use This Guide
+
+1. **Copy the context block above** and paste it at the start of your conversation with the AI image generator (Midjourney, DALL-E, Flux, Stable Diffusion, etc.)
+
+2. **Then copy the specific image prompt** from the chapter section below
+
+3. **Combine them** - the context block provides the "who, what, why" and the specific prompt provides the "exact image to generate"
+
+**Example combined prompt:**
+```
+[Paste context block first]
+
+Now generate this specific image:
+[Paste individual prompt from chapter section]
+```
 
 ---
 
