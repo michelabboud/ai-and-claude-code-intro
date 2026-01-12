@@ -19,7 +19,7 @@ This is **"AI and Claude Code: A Comprehensive Guide for DevOps Engineers"** - a
 
 ```
 ai-and-claude-code-intro/
-├── chapters/                    # Main guide content (16 markdown chapters)
+├── chapters/                    # Main guide content (25 markdown chapters)
 │   ├── 01-introduction-to-ai.md
 │   ├── 02-understanding-llms-and-tokens.md
 │   ├── 03-the-art-of-prompting.md
@@ -35,13 +35,22 @@ ai-and-claude-code-intro/
 │   ├── 13-n8n-fundamentals.md
 │   ├── 14-n8n-advanced.md
 │   ├── 15-multi-agent-fundamentals.md
-│   └── 16-multi-agent-advanced.md
+│   ├── 16-multi-agent-advanced.md
+│   ├── 17-aiops-fundamentals.md
+│   ├── 18-aiops-advanced.md
+│   ├── 19-team-transformation.md
+│   ├── 20-agent-loop-detection.md
+│   ├── 21-resilience-patterns.md
+│   ├── 22-production-deployment.md
+│   ├── 23-rag-fundamentals.md
+│   ├── 24-rag-search-optimization.md
+│   └── 25-production-rag-systems.md
 │
 ├── presentations/               # Marp slide decks for teaching
 │   ├── slides-chapter-*.md     # Marp markdown source files
 │   └── pptx/                   # Generated PowerPoint files (via GH Actions)
 │
-├── src/                        # Working code examples by chapter
+├── src/                        # Working code examples by chapter (selective coverage)
 │   ├── chapter-01/             # AI fundamentals examples (Python)
 │   ├── chapter-02/             # Token counting utilities (Python)
 │   ├── chapter-03/             # CRAFT framework templates
@@ -51,20 +60,29 @@ ai-and-claude-code-intro/
 │   ├── chapter-07/             # Custom commands, GitHub Actions
 │   ├── chapter-08/             # Skills, sub-agents configurations
 │   ├── chapter-09/             # Hooks, memory, CI/CD examples
-│   ├── chapter-10/             # MCP usage examples
-│   ├── chapter-11/             # MCP server implementations (TypeScript)
-│   ├── chapter-12/             # Shell aliases, DevOps workflows
-│   ├── chapter-13/             # n8n workflow examples
-│   ├── chapter-14/             # Advanced n8n workflows
+│   ├── chapter-10/             # MCP usage examples, shell aliases, DevOps workflows
 │   ├── chapter-15/             # Multi-agent fundamentals (agents, coordination, pools)
-│   └── chapter-16/             # Advanced multi-agent (incident swarms, code review, monitoring)
+│   ├── chapter-16/             # Advanced multi-agent (incident swarms, code review, monitoring)
+│   ├── chapter-17/             # AIOps fundamentals examples
+│   ├── chapter-18/             # AIOps advanced examples
+│   ├── chapter-20/             # Agent loop detection examples
+│   ├── chapter-21/             # Resilience patterns examples
+│   └── chapter-24/             # RAG search optimization examples
 │
-├── gamification/               # 🎮 NEW: DevOps Quest learning system
+├── gamification/               # 🎮 DevOps Quest learning system
 │   ├── progress-tracker/       # Track progress, achievements, streaks
 │   ├── challenges/             # Hands-on coding challenges with auto-grading
 │   ├── story-mode/             # Narrative-driven learning (in development)
 │   ├── sandbox/                # Docker-based incident scenarios (planned)
 │   └── README.md               # Gamification overview
+│
+├── appendices/                 # Supplementary content
+│   └── appendix-a-platform-blueprint.md
+│
+├── references/                 # Quick reference guides
+│   ├── README.md
+│   ├── claude-code-quick-reference.md
+│   └── hooks-cookbook.md
 │
 ├── README.md                   # Main documentation
 ├── CONTRIBUTING.md             # Contributor guidelines and licensing
@@ -85,6 +103,10 @@ The guide follows a deliberate progression:
 4. **MCP Integration (Chapters 10-11)**: Model Context Protocol fundamentals and custom server development
 5. **Workflow Automation (Chapters 12-14)**: Real-world DevOps applications, n8n fundamentals and advanced patterns
 6. **Multi-Agent Orchestration (Chapters 15-16)**: Agent teams, specialist agents, production incident response swarms
+7. **AIOps and Observability (Chapters 17-18)**: AI-powered observability, anomaly detection, predictive alerting, alert correlation
+8. **Team Transformation (Chapter 19)**: Organizational change management, AI adoption strategies, cultural transformation
+9. **Production Reliability (Chapters 20-22)**: Agent loop detection, resilience patterns, production deployment strategies
+10. **RAG Systems (Chapters 23-25)**: Retrieval-Augmented Generation fundamentals, search optimization, production RAG systems
 
 ### Key Concepts Taught
 
@@ -94,6 +116,10 @@ The guide follows a deliberate progression:
 - **MCP Integration**: Building custom Model Context Protocol servers
 - **DevOps Automation**: Incident response, infrastructure generation, code review
 - **Workflow Orchestration**: n8n automation, AI integration, production deployment
+- **AIOps**: AI-powered observability, anomaly detection, predictive alerting, alert correlation
+- **Team Transformation**: Organizational change management, AI adoption strategies
+- **Production Reliability**: Agent loop detection, resilience patterns, deployment strategies
+- **RAG Systems**: Retrieval-Augmented Generation, semantic search, vector databases, production optimization
 
 ---
 
@@ -188,13 +214,13 @@ marp -s .  # Opens server at http://localhost:8080
 cd src/chapter-02
 python token_examples.py
 
-# TypeScript examples (MCP servers in Chapter 9)
-cd src/chapter-09/mcp-servers
+# TypeScript examples (MCP servers in Chapter 11)
+cd src/chapter-11/mcp-servers
 npm init -y
 npm install @modelcontextprotocol/sdk @kubernetes/client-node @aws-sdk/client-ec2
 npx tsx kubernetes-mcp-server.ts
 
-# Shell aliases (Chapter 10)
+# Shell aliases (Chapter 10/12)
 source src/chapter-10/shell-aliases.sh
 ```
 
@@ -297,7 +323,7 @@ Content is specifically written for **DevOps engineers**. When making suggestion
 - Reference relevant tools (Docker, Ansible, AWS, monitoring systems)
 - Assume command-line comfort, Linux familiarity
 
-### MCP Server Examples (Chapter 9)
+### MCP Server Examples (Chapter 11)
 The TypeScript MCP server examples demonstrate custom protocol implementations. These require:
 - Node.js 18+ and npm/npx
 - Appropriate SDKs (@modelcontextprotocol/sdk)
@@ -415,7 +441,10 @@ Skills/commands can now run in isolated sub-agent contexts using `context: fork`
 | 10-11 | MCP (Model Context Protocol): fundamentals and server development |
 | 12-14 | Real-world AI for DevOps, n8n workflow automation (fundamentals and advanced) |
 | 15-16 | Multi-Agent Orchestration: agent teams, specialist agents, production swarms |
-| 17 | AI-Powered Observability (AIOps): anomaly detection, predictive alerting, alert correlation |
+| 17-18 | AIOps (AI-Powered Observability): anomaly detection, predictive alerting, alert correlation |
+| 19 | Team Transformation: organizational change, AI adoption strategies |
+| 20-22 | Production Reliability: agent loop detection, resilience patterns, deployment strategies |
+| 23-25 | RAG Systems: retrieval-augmented generation, search optimization, production systems |
 
 ### Key Commands Summary
 
@@ -428,7 +457,7 @@ marp presentations/slides-*.md --pptx
 cd src/chapter-XX && python example.py
 
 # Run TypeScript/MCP examples
-cd src/chapter-09/mcp-servers
+cd src/chapter-11/mcp-servers
 npm install && npx tsx server-name.ts
 
 # Test shell utilities
@@ -437,4 +466,4 @@ source src/chapter-10/shell-aliases.sh
 
 ---
 
-**Last Updated**: 2026-01-11
+**Last Updated**: 2026-01-12
