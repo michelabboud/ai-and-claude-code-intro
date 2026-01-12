@@ -25,7 +25,7 @@ This MCP server was designed to generate 151 images for an educational guide cal
 
 Visual Forge MCP is built on the Model Context Protocol (MCP), making it compatible with any MCP-enabled client. **One server, all platforms.**
 
-### Verified Compatible Clients (17 Platforms)
+### Verified Compatible Clients (18 Platforms)
 
 | Client | Type | Developer | Notes |
 |--------|------|-----------|-------|
@@ -42,6 +42,7 @@ Visual Forge MCP is built on the Model Context Protocol (MCP), making it compati
 | **Kiro** | IDE | Amazon | AWS AI-powered IDE |
 | **LM Studio** | Desktop App | LM Studio | Local LLM runner with MCP |
 | **opencode** | CLI | Open Source | Terminal-based AI coding |
+| **OpenHands** | Agent Platform | All Hands AI | Open-source AI software agent (64k+ stars) |
 | **Qodo Gen** | IDE Extension | Qodo | AI code generation |
 | **VS Code** | IDE | Microsoft | Via MCP extensions |
 | **Warp** | Terminal | Warp | AI-native terminal |
@@ -143,15 +144,19 @@ curl http://localhost:3000/api/generate -d '{"imageId": "chapter-01-img-01"}'
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────────────┐
-│                            MCP Clients (17 Platforms)                                │
+│                            MCP Clients (18 Platforms)                                │
 │  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐   │
 │  │  Amp  │ │Claude │ │Cursor │ │ Cline │ │ Codex │ │Copilot│ │Factory│ │Gemini │   │
 │  │       │ │ Code  │ │       │ │       │ │       │ │       │ │       │ │  CLI  │   │
 │  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘   │
 │  ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐ ┌───────┐   │
-│  │ Goose │ │ Kiro  │ │  LM   │ │ open  │ │ Qodo  │ │  VS   │ │ Warp  │ │ Wind  │   │
-│  │       │ │       │ │Studio │ │ code  │ │  Gen  │ │ Code  │ │       │ │ surf  │   │
+│  │ Goose │ │ Kiro  │ │  LM   │ │ open  │ │ Open  │ │ Qodo  │ │  VS   │ │ Warp  │   │
+│  │       │ │       │ │Studio │ │ code  │ │ Hands │ │  Gen  │ │ Code  │ │       │   │
 │  └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘ └───────┘   │
+│                                                              ┌───────┐             │
+│                                                              │ Wind  │             │
+│                                                              │ surf  │             │
+│                                                              └───────┘             │
 └─────────────────────────────────────────────────────────────────────────────────────┘
                                         │
                             MCP Protocol (stdio/SSE)
