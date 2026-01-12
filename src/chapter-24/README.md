@@ -439,10 +439,10 @@ pytest tests/test_evaluation.py -v
 ## Support
 
 For questions or issues:
-1. Review the chapter content in `chapters/23-advanced-rag-patterns.md`
+1. Review the chapter content in `chapters/24-rag-search-optimization.md` and `chapters/25-production-rag-systems.md`
 2. Check the code comments in each implementation file
 3. Run the example scripts to see expected outputs
 
 ---
 
-**Chapter 23 Code** | Advanced RAG Patterns | © 2026 Michel Abboud
+**Chapters 24-25 Code** | Advanced RAG | © 2026 Michel Abboud
