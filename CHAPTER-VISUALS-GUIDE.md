@@ -5479,111 +5479,1255 @@ Style: Clear model comparison, practical selection guidance, efficiency-focused,
 
 ## Chapter 10: MCP Fundamentals
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Model Context Protocol introduction, architecture, using MCP servers, DevOps use cases
+- **Total Images**: 6
+- **Animation Candidates**: 1
+
+---
+
+### Image 10-01: Chapter Header - MCP as Universal Adapter
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-10-img-01-header-mcp-fundamentals.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Claude Code connecting to databases, clouds, and tools through MCP universal adapter" |
+
+**Prompt:** Hero illustration showing MCP as a universal connector hub. Center: Claude Code with MCP ring around it. Radiating connections to: databases (PostgreSQL, Redis), cloud providers (AWS, GCP, Azure), Kubernetes, monitoring (Grafana), CI/CD (GitHub). All connections standardized and uniform. Color: Orange core, blue MCP layer, system-specific colors for externals. Style: Technical connectivity diagram, professional DevOps context.
+
+---
+
+### Image 10-02: Before/After MCP Comparison
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-10-img-02-compare-before-after-mcp.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Section 10.1 (line ~82-139) |
+| **Alt Text** | "Before MCP: chaotic custom integrations. After MCP: clean standardized protocol" |
+
+**Prompt:** Split-screen. LEFT "BEFORE MCP": AI app with tangled spaghetti lines to Git, DB, Slack, AWS, K8s - each connection different. Problems listed: custom-built, duplicated, inconsistent. RED/GRAY tones. RIGHT "WITH MCP": Multiple AI apps connecting to clean MCP LAYER bar, then uniform connections to same systems with "MCP Server" labels. GREEN/BLUE tones. Benefits: standard protocol, build once use everywhere.
+
+---
+
+### Image 10-03: MCP Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-10-img-03-diagram-mcp-architecture.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Section 10.2 (line ~184-225) |
+| **Alt Text** | "MCP Client (Claude Code) connecting via JSON-RPC to MCP Servers" |
+
+**Prompt:** Three-layer architecture. TOP: MCP CLIENT box containing Server Manager, Protocol Handler, Capability Cache. MIDDLE: JSON-RPC Protocol layer with bidirectional arrows. BOTTOM: Three MCP Servers - GitHub (clone, commit, create_pr), Kubernetes (get_pods, apply_manifest), PostgreSQL (query, list_tables). Clean technical diagram style.
+
+---
+
+### Image 10-04: Three Primitives (Tools, Resources, Prompts)
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-10-img-04-diagram-three-primitives.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Section 10.2 (line ~227-281) |
+| **Alt Text** | "MCP three primitives: Tools, Resources, Prompts" |
+
+**Prompt:** Three-section diagram. TOOLS (Orange): wrench icon, "Functions to execute", examples: create_file(), run_query(). RESOURCES (Blue): database icon, "Data to read", examples: file:///config.yaml, postgres://db/users. PROMPTS (Purple): template icon, "Reusable templates", examples: debug_pod(), analyze_query(). Show how they work together.
+
+🎬 **ANIMATION CANDIDATE**: Show Claude using each primitive in sequence.
+
+---
+
+### Image 10-05: DevOps Use Cases Matrix
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-10-img-05-info-devops-usecases.png` |
+| **Type** | Info |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Section 10.4 (line ~464) |
+| **Alt Text** | "Four MCP use cases: Multi-Cloud, Monitoring, CI/CD, Database" |
+
+**Prompt:** Four quadrants. MULTI-CLOUD (Purple): AWS/GCP/Azure icons, "List instances across clouds". MONITORING (Orange): Prometheus/Grafana, "Query metrics, show alerts". CI/CD (Green): GitHub/ArgoCD, "Show failed runs, trigger builds". DATABASE (Blue): PostgreSQL/Redis, "Compare schemas, slow queries". Center: Claude Code + MCP hub.
+
+---
+
+### Image 10-06: MCP Security Best Practices
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-10-img-06-diagram-mcp-security.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Section 10.5 (line ~660) |
+| **Alt Text** | "Four MCP security domains: Authentication, Authorization, Network, Data Protection" |
+
+**Prompt:** Four domains around center. AUTHENTICATION: Use ${ENV_VARS} not hardcoded tokens. AUTHORIZATION: Least privilege, read-only where possible. NETWORK: Local stdio preferred, TLS for HTTP. DATA PROTECTION: Audit logging, data masking. Show good/bad examples for each.
 
 ---
 
 ## Chapter 11: MCP Server Development
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Building custom MCP servers, TypeScript/Python development, production patterns
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 11-01: Chapter Header - Building Custom Integrations
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-11-img-01-header-mcp-development.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Developer building custom MCP server connecting Claude to internal tools" |
+
+**Prompt:** Developer at workstation building MCP server code. On screen: TypeScript/Python code. From the server: connections radiating to internal company tools (custom deployment system, internal API, proprietary database). Shows transformation from "any tool" to "Claude-accessible". Code editor aesthetic with terminal showing server running. Orange/blue palette.
+
+---
+
+### Image 11-02: Build vs Use Decision Matrix
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-11-img-02-flow-build-vs-use.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Section 11.1 decision matrix |
+| **Alt Text** | "Decision flowchart: Build custom MCP server or use existing" |
+
+**Prompt:** Flowchart. START: "Need MCP integration". Decision 1: "Public server exists?" YES→"Use existing" (green). NO→Decision 2: "Internal/proprietary tool?" YES→"Build custom" (orange). Decision 3: "Existing covers 80%?" YES→Use existing. NO→Build custom. Include time estimates: Existing=1 hour setup, Custom=4-8 hours. Show real examples: GitHub→use existing, DeployMaster→build custom.
+
+---
+
+### Image 11-03: MCP Server Structure
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-11-img-03-diagram-server-structure.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After server code examples |
+| **Alt Text** | "MCP server structure: Initialize, Define tools, Handle requests, Return results" |
+
+**Prompt:** Four-stage vertical flow. 1) INITIALIZE: Create server instance, set metadata. 2) DEFINE TOOLS: Register tool schemas with parameters. 3) HANDLE REQUESTS: Request handler receives calls. 4) RETURN RESULTS: Format and return data. Side: show both TypeScript (@modelcontextprotocol/sdk) and Python (mcp package) approaches. Code snippets for each stage.
+
+---
+
+### Image 11-04: Kubernetes MCP Server Example
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-11-img-04-diagram-k8s-mcp-server.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Complete K8s server example section |
+| **Alt Text** | "Kubernetes MCP server architecture with tools and cluster connection" |
+
+**Prompt:** Architecture showing K8s MCP Server in center. INPUTS (left): Tool calls from Claude Code (get_pods, get_deployments, apply_manifest, get_logs). CENTER: Server with @kubernetes/client-node. OUTPUT (right): Kubernetes cluster with pods, deployments, services. Show KUBECONFIG authentication flow. Tool descriptions visible for each operation.
+
+---
+
+### Image 11-05: Minimum Viable MCP Server Phases
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-11-img-05-flow-mvp-phases.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | MVP approach section |
+| **Alt Text** | "Three phases: Core Operations, Feedback & Expansion, Polish" |
+
+**Prompt:** Timeline/phases diagram. PHASE 1 (Week 1): "Core Operations" - 3-5 tools, 4-6 hours, "Usable not complete". PHASE 2 (Weeks 2-4): "Feedback & Expansion" - Track usage, add requested tools, "Cover 90% use cases". PHASE 3 (Month 2+): "Polish" - Error handling, caching, docs, "Production-ready". Show time investment vs value curve increasing.
 
 ---
 
 ## Chapter 12: AI for DevOps
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Real-world AI applications in DevOps workflows, practical examples
+- **Total Images**: 5
+- **Animation Candidates**: 1
+
+---
+
+### Image 12-01: Chapter Header - AI-Powered DevOps
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-12-img-01-header-ai-devops.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "AI assistant integrated into DevOps workflow: code review, deployment, monitoring" |
+
+**Prompt:** Split scene showing DevOps activities enhanced by AI. LEFT: Traditional DevOps (manual reviews, manual deployments). RIGHT: AI-enhanced (automated code review, intelligent deployment decisions, proactive monitoring). Center: AI brain/Claude icon bridging the two. Show: CI/CD pipelines, K8s clusters, monitoring dashboards, all with AI enhancement indicators. Professional DevOps aesthetic.
+
+---
+
+### Image 12-02: DevOps AI Use Cases Wheel
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-12-img-02-diagram-usecase-wheel.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 1:1 or 16:9 |
+| **Placement** | Use cases overview section |
+| **Alt Text** | "Wheel of DevOps AI use cases: Code Review, IaC Generation, Incident Response, Documentation, Testing, Security" |
+
+**Prompt:** Circular wheel with AI/Claude at center. Six segments: CODE REVIEW (automated PR analysis), IaC GENERATION (Terraform/K8s from requirements), INCIDENT RESPONSE (log analysis, RCA), DOCUMENTATION (auto-generate docs), TESTING (test generation, coverage), SECURITY (vulnerability scanning, compliance). Each segment with icon and example prompt.
+
+🎬 **ANIMATION CANDIDATE**: Wheel spinning to highlight each use case with example.
+
+---
+
+### Image 12-03: Incident Response Flow
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-12-img-03-flow-incident-response.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Incident response section |
+| **Alt Text** | "AI-assisted incident response: Alert→Gather→Analyze→Diagnose→Mitigate→Document" |
+
+**Prompt:** Horizontal flow. 1) ALERT: PagerDuty notification. 2) GATHER: AI collects logs, metrics, recent changes. 3) ANALYZE: Pattern recognition, anomaly detection. 4) DIAGNOSE: Root cause identification. 5) MITIGATE: Suggested fixes, runbook steps. 6) DOCUMENT: Auto-generate post-mortem. Show time savings at each step. Human checkpoints for critical decisions.
+
+---
+
+### Image 12-04: IaC Generation Workflow
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-12-img-04-flow-iac-generation.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Infrastructure as Code section |
+| **Alt Text** | "Natural language to Terraform/Kubernetes: Requirement→Generate→Review→Apply" |
+
+**Prompt:** Flow showing transformation. INPUT: Natural language "I need an S3 bucket with encryption and lifecycle rules". PROCESS: Claude Code analyzing requirements. OUTPUT: Terraform code + K8s manifests. VALIDATION: Security scan, best practice check. APPLY: terraform plan/apply with human approval. Show generated code snippets.
+
+---
+
+### Image 12-05: Code Review Automation
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-12-img-05-flow-code-review.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Automated code review section |
+| **Alt Text** | "Automated PR review pipeline: PR Created→AI Analysis→Report→Human Decision" |
+
+**Prompt:** CI/CD pipeline style. TRIGGER: PR created on GitHub. ANALYSIS: Claude Code checks security, quality, patterns, tests. REPORT: Structured findings posted as PR comment. Categories: Critical (red), Warning (yellow), Info (blue). HUMAN: Developer reviews AI suggestions, makes decision. Show example review comment format.
 
 ---
 
 ## Chapter 13: n8n Fundamentals
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: n8n workflow automation basics, AI integration fundamentals
+- **Total Images**: 5
+- **Animation Candidates**: 1
+
+---
+
+### Image 13-01: Chapter Header - Visual Workflow Automation
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-13-img-01-header-n8n-fundamentals.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "n8n visual workflow editor with connected nodes forming automation pipeline" |
+
+**Prompt:** n8n-style interface showing visual workflow. Nodes connected: Webhook trigger → Process data → AI node (Claude) → Multiple outputs (Slack, Database, Email). Show the visual programming paradigm - no code, drag-and-drop nodes, connection lines. n8n orange/coral brand color. Modern workflow automation aesthetic.
+
+---
+
+### Image 13-02: n8n Architecture Overview
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-13-img-02-diagram-n8n-architecture.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Architecture section |
+| **Alt Text** | "n8n architecture: Triggers, Nodes, Connections, Executions" |
+
+**Prompt:** Layered architecture. TOP: TRIGGERS (Webhook, Schedule, App events). MIDDLE: n8n Engine processing workflows. NODES: 400+ integrations shown as icons (Slack, GitHub, AWS, databases). BOTTOM: Outputs and actions. Show workflow execution flow with data transformation between nodes.
+
+---
+
+### Image 13-03: Node Types Comparison
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-13-img-03-compare-node-types.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Node types section |
+| **Alt Text** | "Four node types: Trigger, Regular, AI, Function" |
+
+**Prompt:** Four columns. TRIGGER NODES: Webhook, Schedule, App triggers - "Start workflows". REGULAR NODES: HTTP, Database, Apps - "Move and transform data". AI NODES: Claude, OpenAI, LangChain - "Intelligent processing". FUNCTION NODES: Code, IF, Switch - "Logic and control". Each with examples and when to use.
+
+🎬 **ANIMATION CANDIDATE**: Show data flowing through different node types.
+
+---
+
+### Image 13-04: First Workflow Tutorial
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-13-img-04-flow-first-workflow.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Tutorial section |
+| **Alt Text** | "Step-by-step first workflow: Trigger→Process→AI→Output" |
+
+**Prompt:** Numbered tutorial steps. 1) Add Webhook trigger node. 2) Connect HTTP Request node. 3) Add Claude AI node for processing. 4) Connect Slack node for output. Show n8n editor interface at each step. Highlight connection points. Include sample data flowing through.
+
+---
+
+### Image 13-05: AI Node Configuration
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-13-img-05-diagram-ai-node-config.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | AI integration section |
+| **Alt Text** | "Claude AI node configuration: API key, model, prompt, parameters" |
+
+**Prompt:** n8n node configuration panel mockup. Show Claude AI node with: API Key field (from credentials), Model selector (Sonnet/Opus/Haiku), Prompt template area with {{variables}}, Temperature/tokens settings. Side: show input data mapping and output handling. Best practices callouts.
 
 ---
 
 ## Chapter 14: n8n Advanced
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Advanced n8n patterns, production deployment, complex AI workflows
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 14-01: Chapter Header - Production Workflows
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-14-img-01-header-n8n-advanced.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Complex n8n workflow with error handling, sub-workflows, and monitoring" |
+
+**Prompt:** Sophisticated n8n workflow showing: multiple branches, error handling nodes, sub-workflow calls, retry logic, monitoring hooks. Production-ready aesthetic with status indicators, logging nodes. Show complexity while maintaining clarity. Include queue processing, rate limiting nodes.
+
+---
+
+### Image 14-02: Error Handling Patterns
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-14-img-02-diagram-error-handling.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Error handling section |
+| **Alt Text** | "Three error handling patterns: Retry, Fallback, Alert" |
+
+**Prompt:** Three workflow patterns. RETRY: Node fails → Wait → Retry (exponential backoff). FALLBACK: Primary fails → Switch to backup method. ALERT: Error captured → Format → Send to PagerDuty/Slack. Show error output nodes, continue on fail settings. Best practices for each pattern.
+
+---
+
+### Image 14-03: Sub-Workflow Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-14-img-03-diagram-subworkflows.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Sub-workflows section |
+| **Alt Text** | "Main workflow calling reusable sub-workflows" |
+
+**Prompt:** Hierarchical diagram. MAIN WORKFLOW at top calling three SUB-WORKFLOWS: "Process Order", "Notify Customer", "Update Inventory". Each sub-workflow shown as collapsed module. Show parameter passing in, results returning out. Benefits: reusability, maintainability, testing.
+
+---
+
+### Image 14-04: Production Deployment Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-14-img-04-diagram-production-deploy.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Production deployment section |
+| **Alt Text** | "n8n production setup: Load balancer, workers, queue, database" |
+
+**Prompt:** Infrastructure diagram. Load balancer → Multiple n8n workers. Shared components: Redis queue, PostgreSQL database, S3 for files. Monitoring: Prometheus metrics, Grafana dashboard. Show scaling indicators, health checks. Docker/Kubernetes deployment context.
+
+---
+
+### Image 14-05: AI Agent Workflow Pattern
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-14-img-05-flow-ai-agent-pattern.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | AI agents section |
+| **Alt Text** | "AI agent loop: Plan→Execute→Evaluate→Iterate" |
+
+**Prompt:** Circular flow showing AI agent pattern in n8n. Claude AI node for PLANNING → Tool execution nodes (HTTP, DB, etc.) for EXECUTE → Claude AI for EVALUATE results → Decision: Done? YES→Output, NO→Loop back to Plan. Show memory/context persistence. Max iterations safeguard.
 
 ---
 
 ## Chapter 15: Multi-Agent Fundamentals
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Multi-agent systems concepts, coordination patterns, agent teams
+- **Total Images**: 6
+- **Animation Candidates**: 1
+
+---
+
+### Image 15-01: Chapter Header - Agent Teams
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-15-img-01-header-multiagent-fundamentals.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Team of specialized AI agents collaborating on complex task" |
+
+**Prompt:** Multiple AI agents represented as specialized team members working together. COORDINATOR agent in center directing. Surrounding: RESEARCHER agent (magnifying glass), CODER agent (brackets), REVIEWER agent (checklist), DEPLOYER agent (rocket). Communication lines between them. Collaborative team aesthetic. Show task being broken down and distributed.
+
+---
+
+### Image 15-02: Single vs Multi-Agent Comparison
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-15-img-02-compare-single-vs-multi.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Concepts section |
+| **Alt Text** | "Single agent handling everything vs specialized multi-agent team" |
+
+**Prompt:** Split comparison. LEFT "SINGLE AGENT": One AI trying to do everything - overloaded, context limits, jack of all trades. RIGHT "MULTI-AGENT": Specialized agents - Researcher, Planner, Coder, Tester each focused. Show same complex task being handled. Benefits: specialization, parallelism, better results.
+
+🎬 **ANIMATION CANDIDATE**: Complex task flowing through multi-agent system.
+
+---
+
+### Image 15-03: Agent Coordination Patterns
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-15-img-03-diagram-coordination-patterns.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Coordination section |
+| **Alt Text** | "Four patterns: Hierarchical, Peer-to-Peer, Broadcast, Pipeline" |
+
+**Prompt:** Four coordination patterns. HIERARCHICAL: Manager agent directing worker agents. PEER-TO-PEER: Agents communicating directly, no central control. BROADCAST: One agent sending to all others. PIPELINE: Sequential handoff A→B→C→D. Show when to use each, pros/cons. DevOps context for examples.
+
+---
+
+### Image 15-04: Agent Specializations
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-15-img-04-info-agent-specializations.png` |
+| **Type** | Info |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Specialist agents section |
+| **Alt Text** | "Six specialist agent types with capabilities" |
+
+**Prompt:** Six agent cards. RESEARCHER: Find information, explore codebases. PLANNER: Break down tasks, create roadmaps. CODER: Write and modify code. REVIEWER: Security, quality, best practices. TESTER: Generate and run tests. DEPLOYER: Infrastructure, CI/CD, releases. Each card with icon, capabilities list, example prompts.
+
+---
+
+### Image 15-05: Agent Communication Flow
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-15-img-05-flow-agent-communication.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Communication section |
+| **Alt Text** | "Agent communication: Message passing, shared context, result aggregation" |
+
+**Prompt:** Communication flow diagram. MESSAGE PASSING: Agent A sends task to Agent B. SHARED CONTEXT: Multiple agents reading/writing shared memory. RESULT AGGREGATION: Multiple agent outputs combined by coordinator. Show message formats, context structures. Error handling for failed agents.
+
+---
+
+### Image 15-06: Agent Pool Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-15-img-06-diagram-agent-pool.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Agent pools section |
+| **Alt Text** | "Agent pool with task queue, worker agents, result collection" |
+
+**Prompt:** Pool architecture. TASK QUEUE: Incoming tasks waiting. AGENT POOL: Multiple available agents (some busy, some idle). DISPATCHER: Assigns tasks to available agents. RESULTS: Collected and aggregated. Show scaling (more agents for more tasks), load balancing, fault tolerance (replace failed agent).
 
 ---
 
 ## Chapter 16: Multi-Agent Advanced
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Production incident response swarms, code review teams, monitoring agents
+- **Total Images**: 5
+- **Animation Candidates**: 1
+
+---
+
+### Image 16-01: Chapter Header - Incident Response Swarm
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-16-img-01-header-multiagent-advanced.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Swarm of agents responding to production incident" |
+
+**Prompt:** Dynamic incident response scene. Alert triggering swarm deployment. Multiple agents converging: LOG ANALYZER examining logs, METRICS AGENT checking dashboards, CODE REVIEWER looking at recent commits, REMEDIATION AGENT preparing fixes. War room aesthetic with urgency. Coordinated response visualization.
+
+---
+
+### Image 16-02: Incident Swarm Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-16-img-02-diagram-incident-swarm.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Incident response section |
+| **Alt Text** | "Incident swarm: Coordinator spawning specialist agents in parallel" |
+
+**Prompt:** Swarm architecture. TRIGGER: PagerDuty alert. COORDINATOR: Spawns specialist agents. PARALLEL AGENTS: Log Analyzer, Metrics Checker, Change Detector, Impact Assessor, Remediation Planner. AGGREGATION: Findings combined. OUTPUT: RCA report, suggested fixes, auto-remediation options. Timeline showing parallel execution.
+
+🎬 **ANIMATION CANDIDATE**: Incident triggering swarm response with parallel investigation.
+
+---
+
+### Image 16-03: Code Review Team Structure
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-16-img-03-diagram-review-team.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Code review section |
+| **Alt Text** | "Multi-agent code review team with specialized reviewers" |
+
+**Prompt:** Review team structure. PR TRIGGER → REVIEW COORDINATOR. Coordinator dispatches to: SECURITY REVIEWER (vulnerabilities, auth), PERFORMANCE REVIEWER (efficiency, queries), STYLE REVIEWER (patterns, conventions), TEST REVIEWER (coverage, quality). Each produces findings. AGGREGATOR combines into single PR review. Show finding severity levels.
+
+---
+
+### Image 16-04: Monitoring Agent Network
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-16-img-04-diagram-monitoring-network.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Monitoring agents section |
+| **Alt Text** | "Network of monitoring agents watching different system aspects" |
+
+**Prompt:** Distributed monitoring network. Infrastructure showing: API servers, databases, queues, caches. MONITORING AGENTS positioned throughout: API Agent (latency, errors), DB Agent (queries, connections), Queue Agent (depth, processing), Cache Agent (hit rate). Central CORRELATION AGENT finding patterns across data. Alert escalation flow.
+
+---
+
+### Image 16-05: Swarm Scaling Patterns
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-16-img-05-diagram-swarm-scaling.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Scaling section |
+| **Alt Text** | "Swarm scaling: More agents for bigger incidents" |
+
+**Prompt:** Scaling visualization. Three scenarios: SMALL INCIDENT (Sev3): 2-3 agents, quick resolution. MEDIUM INCIDENT (Sev2): 5-7 agents, deeper analysis. MAJOR INCIDENT (Sev1): 10+ agents, full swarm, war room mode. Show resource allocation, agent specialization at each level. Cost/benefit indicators.
 
 ---
 
 ## Chapter 17: AIOps Fundamentals
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: AI-powered observability, anomaly detection, predictive alerting basics
+- **Total Images**: 5
+- **Animation Candidates**: 1
+
+---
+
+### Image 17-01: Chapter Header - AI-Powered Observability
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-17-img-01-header-aiops-fundamentals.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "AI analyzing metrics, logs, and traces to detect anomalies" |
+
+**Prompt:** Modern observability dashboard enhanced by AI. THREE PILLARS visible: Metrics (graphs), Logs (text streams), Traces (distributed paths). AI brain/neural network overlay analyzing all three. Anomalies being highlighted automatically. Predictive alerts showing future issues. Clean, professional monitoring aesthetic.
+
+---
+
+### Image 17-02: Traditional vs AIOps Monitoring
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-17-img-02-compare-traditional-vs-aiops.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | AIOps concepts section |
+| **Alt Text** | "Traditional monitoring (static thresholds) vs AIOps (intelligent detection)" |
+
+**Prompt:** Split comparison. LEFT "TRADITIONAL": Static threshold alerts (CPU > 80%), many false positives, alert fatigue, reactive only. RIGHT "AIOPS": Dynamic baselines, anomaly detection, noise reduction, predictive alerts. Show same metrics data handled differently. AIOps catching subtle issues traditional misses.
+
+---
+
+### Image 17-03: Anomaly Detection Types
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-17-img-03-diagram-anomaly-types.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Anomaly detection section |
+| **Alt Text** | "Three anomaly types: Point, Contextual, Collective" |
+
+**Prompt:** Three anomaly visualizations. POINT ANOMALY: Single outlier spike on time series. CONTEXTUAL ANOMALY: Value normal overall but wrong for time (high traffic at 3am). COLLECTIVE ANOMALY: Pattern of points that together indicate issue. Each with metric graph example, detection approach, real-world scenario.
+
+🎬 **ANIMATION CANDIDATE**: Anomaly detection in action on streaming metrics.
+
+---
+
+### Image 17-04: Predictive Alerting Flow
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-17-img-04-flow-predictive-alerting.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Predictive alerting section |
+| **Alt Text** | "Predictive alert flow: Collect→Learn→Predict→Alert before failure" |
+
+**Prompt:** Flow diagram. COLLECT: Historical metrics, patterns. LEARN: ML model training on normal behavior. PREDICT: Forecast future values, detect trending toward threshold. ALERT: Proactive notification before actual failure. Show timeline: Traditional alert at failure time, Predictive alert hours earlier. Lead time benefit highlighted.
+
+---
+
+### Image 17-05: AIOps Implementation Stack
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-17-img-05-diagram-aiops-stack.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Implementation section |
+| **Alt Text** | "AIOps stack: Data layer, ML layer, Action layer" |
+
+**Prompt:** Three-layer stack. DATA LAYER: Prometheus, Loki, Jaeger collecting metrics/logs/traces. ML LAYER: Anomaly detection models, forecasting, correlation. ACTION LAYER: Intelligent alerts, auto-remediation, runbook triggers. Show data flowing up through layers, actions flowing down. Integration points with existing tools.
 
 ---
 
 ## Chapter 18: AIOps Advanced
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Alert correlation, noise reduction, automated remediation, production patterns
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 18-01: Chapter Header - Intelligent Alert Management
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-18-img-01-header-aiops-advanced.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "AI correlating multiple alerts into single incident with auto-remediation" |
+
+**Prompt:** Alert storm (many alerts) being processed by AI correlation engine. Multiple related alerts combining into single meaningful incident. Auto-remediation robot/arm taking corrective action. Before: chaos of alerts. After: organized, actionable, automated. Show noise reduction metrics (100 alerts → 3 incidents).
+
+---
+
+### Image 18-02: Alert Correlation Engine
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-18-img-02-diagram-correlation-engine.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Alert correlation section |
+| **Alt Text** | "Correlation engine: Multiple alerts → Pattern matching → Single incident" |
+
+**Prompt:** Correlation architecture. INPUT: Stream of alerts from different sources (Prometheus, CloudWatch, app logs). CORRELATION ENGINE: Time-based grouping, topology-aware correlation, ML pattern matching. OUTPUT: Grouped incidents with root cause indication. Show example: DB slow + API errors + queue backup = "Database performance degradation" single incident.
+
+---
+
+### Image 18-03: Noise Reduction Techniques
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-18-img-03-diagram-noise-reduction.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Noise reduction section |
+| **Alt Text** | "Four noise reduction techniques: Deduplication, Suppression, Aggregation, Smart routing" |
+
+**Prompt:** Four technique boxes. DEDUPLICATION: Same alert × 50 → 1 alert. SUPPRESSION: Maintenance window → alerts muted. AGGREGATION: Similar alerts grouped by service/type. SMART ROUTING: Alert → right team based on content. Show before/after alert counts. Metrics: 95% noise reduction possible.
+
+---
+
+### Image 18-04: Auto-Remediation Decision Tree
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-18-img-04-flow-auto-remediation.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Auto-remediation section |
+| **Alt Text** | "Decision tree: When to auto-remediate vs human escalation" |
+
+**Prompt:** Decision flowchart. ALERT RECEIVED → Is known issue? YES→Runbook exists? YES→Safe to auto-remediate? YES→EXECUTE AUTO-REMEDIATION. NO paths → ESCALATE TO HUMAN. Show safety gates: impact assessment, blast radius check, rollback capability. Examples: restart pod (auto), scale down production (human).
+
+---
+
+### Image 18-05: AIOps Maturity Model
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-18-img-05-diagram-maturity-model.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Maturity section |
+| **Alt Text** | "AIOps maturity: Reactive → Proactive → Predictive → Autonomous" |
+
+**Prompt:** Four-stage maturity ladder. LEVEL 1 REACTIVE: Static thresholds, manual response. LEVEL 2 PROACTIVE: Dynamic baselines, anomaly detection. LEVEL 3 PREDICTIVE: Forecasting, early warning. LEVEL 4 AUTONOMOUS: Self-healing, auto-scaling, minimal human intervention. Show capabilities and tools at each level. Assessment questions for each stage.
 
 ---
 
 ## Chapter 19: Team Transformation
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Organizational change management, AI adoption strategies, cultural transformation
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 19-01: Chapter Header - AI Team Transformation
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-19-img-01-header-team-transformation.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Team evolving from traditional workflows to AI-augmented collaboration" |
+
+**Prompt:** Transformation journey visualization. LEFT: Traditional team (manual processes, siloed). CENTER: Transformation arrow with AI integration symbol. RIGHT: AI-augmented team (humans + AI collaboration, automated workflows). Show cultural shift: skepticism → experimentation → adoption → advocacy. Team members at various stages.
+
+---
+
+### Image 19-02: AI Adoption Curve
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-19-img-02-diagram-adoption-curve.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Adoption section |
+| **Alt Text** | "Technology adoption curve: Innovators → Early Adopters → Majority → Laggards" |
+
+**Prompt:** Classic adoption curve with AI context. Curve showing: INNOVATORS (2.5%) - AI enthusiasts experimenting. EARLY ADOPTERS (13.5%) - Champions driving adoption. EARLY MAJORITY (34%) - Practical users seeing value. LATE MAJORITY (34%) - Following proven success. LAGGARDS (16%) - Reluctant adopters. Strategies for each group.
+
+---
+
+### Image 19-03: Change Management Framework
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-19-img-03-flow-change-management.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Change management section |
+| **Alt Text** | "ADKAR change model: Awareness → Desire → Knowledge → Ability → Reinforcement" |
+
+**Prompt:** ADKAR framework applied to AI adoption. AWARENESS: Why AI matters for DevOps. DESIRE: Personal benefits, career growth. KNOWLEDGE: Training, documentation, examples. ABILITY: Practice, support, tools access. REINFORCEMENT: Recognition, metrics, continuous improvement. Activities for each stage.
+
+---
+
+### Image 19-04: Resistance and Solutions
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-19-img-04-compare-resistance-solutions.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Resistance section |
+| **Alt Text** | "Common resistance concerns and solutions" |
+
+**Prompt:** Two-column format. CONCERNS (left): Job security fears, Quality doubts, Learning curve, Loss of control. SOLUTIONS (right): AI as augmentation not replacement, Quality metrics showing improvement, Gradual rollout with training, Human-in-the-loop design. Empathetic tone, practical responses.
+
+---
+
+### Image 19-05: Success Metrics Dashboard
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-19-img-05-diagram-success-metrics.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Metrics section |
+| **Alt Text** | "AI adoption metrics: Productivity, Quality, Satisfaction, Adoption rate" |
+
+**Prompt:** Dashboard-style layout. Four metric categories: PRODUCTIVITY (time saved, tasks automated), QUALITY (error reduction, code quality), SATISFACTION (team sentiment, confidence), ADOPTION (active users, feature usage). Each with example KPIs, targets, measurement methods. Show improvement trends.
 
 ---
 
 ## Chapter 20: Agent Loop Detection
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Detecting and preventing infinite loops in AI agents
+- **Total Images**: 4
+- **Animation Candidates**: 1
+
+---
+
+### Image 20-01: Chapter Header - Preventing Infinite Loops
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-20-img-01-header-loop-detection.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "AI agent caught in loop being detected and stopped" |
+
+**Prompt:** Visual of agent stuck in circular pattern (loop visualization). Detection system recognizing pattern. STOP mechanism engaging. Before: Agent spinning endlessly consuming resources. After: Loop detected, agent redirected or stopped safely. Warning indicators, resource meters showing consumption.
+
+---
+
+### Image 20-02: Loop Pattern Types
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-20-img-02-diagram-loop-types.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Loop patterns section |
+| **Alt Text** | "Three loop types: Action loops, Thought loops, Tool loops" |
+
+**Prompt:** Three loop visualizations. ACTION LOOP: Agent repeatedly taking same action (edit file → check → edit same file). THOUGHT LOOP: Agent reasoning in circles without progress. TOOL LOOP: Agent calling same tool repeatedly with same parameters. Detection signals for each: repetition count, similarity score, progress metric.
+
+🎬 **ANIMATION CANDIDATE**: Agent entering loop, detection triggering, intervention.
+
+---
+
+### Image 20-03: Detection Mechanisms
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-20-img-03-diagram-detection-mechanisms.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Detection section |
+| **Alt Text** | "Loop detection: Iteration counting, State comparison, Progress tracking" |
+
+**Prompt:** Three detection methods. ITERATION COUNTING: Max iterations limit with counter. STATE COMPARISON: Hash/fingerprint of agent state, detect repeated states. PROGRESS TRACKING: Measure goal distance, detect no progress. Implementation code snippets for each. Thresholds and tuning guidance.
+
+---
+
+### Image 20-04: Recovery Strategies
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-20-img-04-flow-recovery-strategies.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Recovery section |
+| **Alt Text** | "Loop recovery: Detect → Intervene → Recover or Escalate" |
+
+**Prompt:** Recovery flow. DETECT: Loop identified. INTERVENTION OPTIONS: Inject new context, Change approach, Reduce scope, Pause and prompt user. RECOVERY: Agent continues with new strategy. ESCALATION: If recovery fails → Human intervention. Show decision points, timeout handling, state preservation for debugging.
 
 ---
 
 ## Chapter 21: Resilience Patterns
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Building resilient AI agent systems, fault tolerance, graceful degradation
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 21-01: Chapter Header - Resilient Agent Systems
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-21-img-01-header-resilience-patterns.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Resilient AI system weathering failures and continuing to operate" |
+
+**Prompt:** System reliability visualization. AI agent system facing various failures (network issues, API errors, rate limits) but continuing to operate. Redundancy shown (multiple paths). Graceful degradation (reduced but functional). Circuit breakers preventing cascade. Robust, stable aesthetic despite challenges.
+
+---
+
+### Image 21-02: Circuit Breaker Pattern
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-21-img-02-diagram-circuit-breaker.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Circuit breaker section |
+| **Alt Text** | "Circuit breaker states: Closed, Open, Half-Open" |
+
+**Prompt:** Three-state diagram. CLOSED: Normal operation, requests flow through. OPEN: Failures exceeded threshold, requests blocked immediately. HALF-OPEN: Testing recovery, limited requests allowed. Show state transitions, failure counters, timeout configuration. API call context for AI agents.
+
+---
+
+### Image 21-03: Retry Strategies
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-21-img-03-diagram-retry-strategies.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Retry section |
+| **Alt Text** | "Retry patterns: Immediate, Fixed delay, Exponential backoff, Jitter" |
+
+**Prompt:** Four retry patterns visualized on timeline. IMMEDIATE: Rapid retries (risky). FIXED DELAY: Equal spacing (simple). EXPONENTIAL BACKOFF: Increasing delays (recommended). WITH JITTER: Randomized to prevent thundering herd. Show wait times, success scenarios, max retry limits.
+
+---
+
+### Image 21-04: Fallback Hierarchy
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-21-img-04-flow-fallback-hierarchy.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Fallback section |
+| **Alt Text** | "Fallback chain: Primary → Secondary → Cache → Default" |
+
+**Prompt:** Fallback cascade. PRIMARY: Claude Opus (best quality). FALLBACK 1: Claude Sonnet (still good). FALLBACK 2: Claude Haiku (fast, cheaper). FALLBACK 3: Cached response (if available). FALLBACK 4: Default/safe response. Show decision at each level, graceful degradation of capability.
+
+---
+
+### Image 21-05: Bulkhead Pattern
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-21-img-05-diagram-bulkhead.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Isolation section |
+| **Alt Text** | "Bulkhead pattern: Isolated pools preventing cascade failures" |
+
+**Prompt:** Ship bulkhead metaphor. Multiple isolated compartments (resource pools). One compartment flooding (service failure) doesn't sink ship (system). Apply to agents: separate pools for different tasks, rate limit per pool, failure contained. Show isolation benefit when one pool fails.
 
 ---
 
 ## Chapter 22: Production Deployment
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Deploying AI agents to production, scaling, monitoring, operations
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 22-01: Chapter Header - Production AI Systems
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-22-img-01-header-production-deployment.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "AI agent system deployed in production with scaling and monitoring" |
+
+**Prompt:** Production infrastructure view. AI agent cluster running in Kubernetes. Load balancers distributing traffic. Monitoring dashboards showing health. Auto-scaling indicators. Multiple availability zones. Production-grade aesthetic: robust, monitored, scalable.
+
+---
+
+### Image 22-02: Deployment Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-22-img-02-diagram-deployment-architecture.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Architecture section |
+| **Alt Text** | "Production architecture: API Gateway, Agent Workers, Queue, Storage" |
+
+**Prompt:** Layered architecture. INGRESS: API Gateway, rate limiting, auth. ORCHESTRATION: Agent coordinator, task queue (Redis/SQS). WORKERS: Scalable agent pods. EXTERNAL: LLM APIs (Claude), tools (MCP servers). STORAGE: State store, conversation history. OBSERVABILITY: Metrics, logs, traces. Show connections and data flow.
+
+---
+
+### Image 22-03: Scaling Strategies
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-22-img-03-diagram-scaling-strategies.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Scaling section |
+| **Alt Text** | "Scaling: Horizontal (more agents), Vertical (bigger agents), Queue-based" |
+
+**Prompt:** Three scaling approaches. HORIZONTAL: Add more agent instances based on queue depth. VERTICAL: Use more powerful models for complex tasks. QUEUE-BASED: Buffer requests, process at sustainable rate. Show auto-scaling triggers, metrics (queue depth, latency, CPU). Cost implications of each.
+
+---
+
+### Image 22-04: Production Monitoring Dashboard
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-22-img-04-diagram-monitoring-dashboard.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Monitoring section |
+| **Alt Text** | "Agent monitoring: Success rate, Latency, Token usage, Errors" |
+
+**Prompt:** Dashboard mockup for AI agent monitoring. KEY METRICS: Success rate (%), Average latency (s), Token usage (cost), Error rate, Queue depth. GRAPHS: Request volume over time, Latency percentiles, Error breakdown by type. ALERTS: SLO violations highlighted. Agent-specific metrics: loop detection rate, fallback usage.
+
+---
+
+### Image 22-05: Deployment Pipeline
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-22-img-05-flow-deployment-pipeline.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | CI/CD section |
+| **Alt Text** | "Agent deployment pipeline: Test → Stage → Canary → Production" |
+
+**Prompt:** Progressive deployment flow. BUILD: Code + prompt testing. STAGE: Deploy to staging, integration tests. CANARY: Deploy to small % of production traffic. MONITOR: Watch metrics, compare to baseline. PROMOTE: Gradual rollout to full production. ROLLBACK: Automatic on metric degradation. Show gates between stages.
 
 ---
 
 ## Chapter 23: RAG Fundamentals
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Retrieval-Augmented Generation basics, vector databases, embedding fundamentals
+- **Total Images**: 5
+- **Animation Candidates**: 1
+
+---
+
+### Image 23-01: Chapter Header - Knowledge-Enhanced AI
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-23-img-01-header-rag-fundamentals.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "AI retrieving relevant documents to enhance response generation" |
+
+**Prompt:** RAG concept visualization. User question entering system. RETRIEVAL: Searching through document collection, relevant chunks highlighted. AUGMENTATION: Retrieved content combined with question. GENERATION: Claude producing informed response. Knowledge base (documents, code, docs) visible. Show enhancement over base LLM.
+
+---
+
+### Image 23-02: RAG vs Fine-tuning Comparison
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-23-img-02-compare-rag-vs-finetuning.png` |
+| **Type** | Compare |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Concepts section |
+| **Alt Text** | "RAG (external knowledge) vs Fine-tuning (baked-in knowledge)" |
+
+**Prompt:** Split comparison. LEFT "FINE-TUNING": Training data baked into model, expensive to update, good for style/behavior. RIGHT "RAG": External knowledge retrieved at runtime, easy to update, good for facts/docs. Compare: update frequency, cost, freshness, use cases. When to use each.
+
+---
+
+### Image 23-03: RAG Pipeline Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-23-img-03-flow-rag-pipeline.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Architecture section |
+| **Alt Text** | "RAG pipeline: Ingest → Embed → Store → Retrieve → Generate" |
+
+**Prompt:** End-to-end RAG flow. INGESTION: Documents chunked and processed. EMBEDDING: Text → vectors via embedding model. STORAGE: Vectors stored in vector database (Pinecone, Weaviate). RETRIEVAL: Query embedded, similar vectors found. GENERATION: Retrieved context + query → LLM → response. Show each stage with data transformation.
+
+🎬 **ANIMATION CANDIDATE**: Query flowing through RAG pipeline with retrieval and generation.
+
+---
+
+### Image 23-04: Vector Embeddings Explained
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-23-img-04-concept-embeddings.png` |
+| **Type** | Concept |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Embeddings section |
+| **Alt Text** | "Text to vectors: Similar concepts cluster together in vector space" |
+
+**Prompt:** Embedding visualization. Text examples: "Kubernetes deployment", "K8s pod", "Docker container", "Python function". Show conversion to vectors (arrays of numbers). 2D/3D projection of vector space showing similar concepts clustered together. K8s concepts cluster, code concepts cluster. Similarity = proximity.
+
+---
+
+### Image 23-05: Chunking Strategies
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-23-img-05-diagram-chunking.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Chunking section |
+| **Alt Text** | "Chunking strategies: Fixed size, Semantic, Document structure" |
+
+**Prompt:** Three chunking approaches. FIXED SIZE: Document split every N tokens, simple but may break context. SEMANTIC: Split at natural boundaries (paragraphs, sections), preserves meaning. DOCUMENT STRUCTURE: Respect headings, code blocks, lists. Show same document chunked three ways. Trade-offs: retrieval precision vs context preservation.
 
 ---
 
 ## Chapter 24: RAG Search Optimization
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Improving RAG retrieval quality, hybrid search, reranking
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 24-01: Chapter Header - Precision Retrieval
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-24-img-01-header-rag-optimization.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Optimized retrieval finding exact relevant documents from large corpus" |
+
+**Prompt:** Precision search visualization. Large document corpus. Query entering system. Multiple retrieval techniques working: vector search, keyword search, hybrid combination. Reranking stage sorting results. Top results highly relevant (green), less relevant filtered (gray). Accuracy metrics displayed.
+
+---
+
+### Image 24-02: Hybrid Search Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-24-img-02-diagram-hybrid-search.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Hybrid search section |
+| **Alt Text** | "Hybrid search: Vector + Keyword combined for better results" |
+
+**Prompt:** Parallel search paths. QUERY branches to: VECTOR SEARCH (semantic similarity) and KEYWORD SEARCH (BM25/exact match). Results merged with fusion algorithm (RRF or weighted). Show scenarios: "K8s deploy errors" - vector finds semantic matches, keyword finds exact terms. Combined results better than either alone.
+
+---
+
+### Image 24-03: Reranking Pipeline
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-24-img-03-flow-reranking.png` |
+| **Type** | Flow |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Reranking section |
+| **Alt Text** | "Reranking: Initial retrieval → Cross-encoder scoring → Final ranking" |
+
+**Prompt:** Two-stage retrieval. STAGE 1: Fast retrieval gets top-100 candidates (bi-encoder). STAGE 2: Reranker scores each candidate against query (cross-encoder). Results reordered by relevance score. Show quality improvement: initial ranking vs final ranking. Speed/quality trade-off explained.
+
+---
+
+### Image 24-04: Query Transformation
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-24-img-04-diagram-query-transform.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Query optimization section |
+| **Alt Text** | "Query transformations: Expansion, Decomposition, HyDE" |
+
+**Prompt:** Three query techniques. EXPANSION: "deploy error" → "deploy error failure deployment issue K8s". DECOMPOSITION: Complex query → multiple sub-queries. HYDE (Hypothetical Document): Generate hypothetical answer, use it for retrieval. Show original query, transformation, improved results.
+
+---
+
+### Image 24-05: Evaluation Metrics
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-24-img-05-diagram-evaluation.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Evaluation section |
+| **Alt Text** | "RAG metrics: Precision, Recall, MRR, NDCG" |
+
+**Prompt:** Metrics dashboard. PRECISION@K: Relevant docs in top K / K. RECALL@K: Relevant docs found / total relevant. MRR: Mean reciprocal rank (position of first relevant). NDCG: Normalized discounted cumulative gain. Visual examples of each metric calculation. Benchmark targets for production systems.
 
 ---
 
 ## Chapter 25: Production RAG Systems
 
-*[To be populated after reading chapter]*
+### Overview
+- **Chapter Focus**: Building production-ready RAG systems, scaling, operations
+- **Total Images**: 5
+- **Animation Candidates**: 0
+
+---
+
+### Image 25-01: Chapter Header - Enterprise RAG
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-25-img-01-header-production-rag.png` |
+| **Type** | Header |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | After chapter title |
+| **Alt Text** | "Enterprise RAG system with multiple data sources, caching, and monitoring" |
+
+**Prompt:** Production RAG infrastructure. Multiple data sources: documentation, code repos, wikis, tickets. Ingestion pipeline processing all. Vector database cluster. Query serving layer with caching. Monitoring and observability. Multi-tenant support indicators. Enterprise-grade, scalable, monitored.
+
+---
+
+### Image 25-02: Production Architecture
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-25-img-02-diagram-prod-architecture.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Architecture section |
+| **Alt Text** | "Production RAG: Ingestion pipeline, Vector store cluster, Query service" |
+
+**Prompt:** Three main components. INGESTION PIPELINE: Document processors, embedding service, batch/streaming modes. VECTOR STORE: Clustered database (Pinecone/Weaviate/Qdrant), replication, sharding. QUERY SERVICE: Load balanced, cached, rate limited. MONITORING: Retrieval quality metrics, latency, cost. Show scaling points.
+
+---
+
+### Image 25-03: Data Freshness Strategies
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-25-img-03-diagram-data-freshness.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Data management section |
+| **Alt Text** | "Freshness strategies: Batch, Incremental, Real-time" |
+
+**Prompt:** Three update strategies. BATCH: Full re-index on schedule (nightly), simple but stale. INCREMENTAL: Process changes only, webhook triggers. REAL-TIME: Stream processing, instant updates. Compare: freshness, complexity, cost. Choose based on data change rate and freshness requirements.
+
+---
+
+### Image 25-04: Multi-tenant RAG
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-25-img-04-diagram-multi-tenant.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Multi-tenancy section |
+| **Alt Text** | "Multi-tenant RAG: Tenant isolation, Access control, Resource limits" |
+
+**Prompt:** Multi-tenant architecture. Multiple tenants (companies/teams) sharing infrastructure. ISOLATION: Separate namespaces, filtered queries. ACCESS CONTROL: User → permissions → visible documents. RESOURCE LIMITS: Per-tenant quotas, fair scheduling. Show query path with tenant context applied.
+
+---
+
+### Image 25-05: RAG Observability Dashboard
+| Attribute | Value |
+|-----------|-------|
+| **Filename** | `chapter-25-img-05-diagram-observability.png` |
+| **Type** | Diagram |
+| **Aspect Ratio** | 16:9 |
+| **Placement** | Observability section |
+| **Alt Text** | "RAG monitoring: Retrieval quality, Latency, User feedback" |
+
+**Prompt:** Comprehensive dashboard. RETRIEVAL METRICS: Hit rate, empty results %, diversity score. LATENCY: Embedding time, search time, generation time. COST: Token usage, API costs, storage costs. USER FEEDBACK: Thumbs up/down, citations clicked. ALERTS: Quality degradation, latency spikes. Track improvements over time.
 
 ---
 
 ## Summary Statistics
 
-| Chapter | Images | Diagrams (Tool) | Animations |
-|---------|--------|-----------------|------------|
-| 01 | 8 | 0 | 2 |
-| 02 | TBD | TBD | TBD |
-| ... | ... | ... | ... |
+| Chapter | Images | Animation Candidates |
+|---------|--------|---------------------|
+| 01 - Introduction to AI | 8 | 2 |
+| 02 - Understanding LLMs and Tokens | 10 | 3 |
+| 03 - The Art of Prompting | 8 | 1 |
+| 04 - AI Models Landscape | 8 | 1 |
+| 05 - Introduction to Claude | 7 | 1 |
+| 06 - Claude Code Fundamentals | 10 | 2 |
+| 07 - Claude Code Intermediate | 9 | 1 |
+| 08 - Skills and Subagents | 8 | 2 |
+| 09 - Hooks and Advanced Features | 7 | 1 |
+| 10 - MCP Fundamentals | 6 | 1 |
+| 11 - MCP Server Development | 5 | 0 |
+| 12 - AI for DevOps | 5 | 1 |
+| 13 - n8n Fundamentals | 5 | 1 |
+| 14 - n8n Advanced | 5 | 0 |
+| 15 - Multi-Agent Fundamentals | 6 | 1 |
+| 16 - Multi-Agent Advanced | 5 | 1 |
+| 17 - AIOps Fundamentals | 5 | 1 |
+| 18 - AIOps Advanced | 5 | 0 |
+| 19 - Team Transformation | 5 | 0 |
+| 20 - Agent Loop Detection | 4 | 1 |
+| 21 - Resilience Patterns | 5 | 0 |
+| 22 - Production Deployment | 5 | 0 |
+| 23 - RAG Fundamentals | 5 | 1 |
+| 24 - RAG Search Optimization | 5 | 0 |
+| 25 - Production RAG Systems | 5 | 0 |
 
-**Total Images**: TBD
-**Total Animations**: TBD
-**Tool-based Diagrams**: TBD
+**Total Images**: 151
+**Total Animation Candidates**: 22
+**Image Types Breakdown**:
+- Header images: 25
+- Diagrams: ~60
+- Flow charts: ~35
+- Comparisons: ~20
+- Infographics: ~11
 
 ---
 
