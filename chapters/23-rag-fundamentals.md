@@ -76,15 +76,15 @@ Claude: "I don't have access to your specific deployment procedures.
 │                        RAG WORKFLOW                         │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  1. User Query: "How do I deploy to production?"           │
+│  1. User Query: "How do I deploy to production?"            │
 │                          ↓                                  │
-│  2. Retrieve: Search internal docs, find relevant chunks   │
+│  2. Retrieve: Search internal docs, find relevant chunks    │
 │                          ↓                                  │
-│  3. Augment: Add retrieved context to prompt               │
+│  3. Augment: Add retrieved context to prompt                │
 │                          ↓                                  │
-│  4. Generate: LLM answers using your custom knowledge      │
+│  4. Generate: LLM answers using your custom knowledge       │
 │                          ↓                                  │
-│  5. Response: "According to our runbook, run: kubectl..."  │
+│  5. Response: "According to our runbook, run: kubectl..."   │
 │                                                             │
 └─────────────────────────────────────────────────────────────┘
 ```
@@ -1063,9 +1063,9 @@ Let's build a production-ready RAG system step by step.
 │                     RAG PIPELINE                             │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
-│  Documents → Chunk → Embed → Store → Query → Retrieve       │
-│               ↓       ↓       ↓       ↓         ↓           │
-│             Text   Vectors   Vector   User   Top-K docs     │
+│  Documents → Chunk → Embed → Store → Query → Retrieve        │
+│               ↓       ↓       ↓       ↓         ↓            │
+│             Text   Vectors   Vector   User   Top-K docs      │
 │                              Database Question               │
 │                                                              │
 │                         ↓                                    │
