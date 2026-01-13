@@ -25,28 +25,34 @@ This MCP server was designed to generate 151 images for an educational guide cal
 
 Visual Forge MCP is built on the Model Context Protocol (MCP), making it compatible with any MCP-enabled client. **One server, all platforms.**
 
-### Verified Compatible Clients (18 Platforms)
+### Verified Compatible Clients (24 Platforms)
 
 | Client | Type | Developer | Notes |
 |--------|------|-----------|-------|
+| **Aider** | CLI | Aider | Terminal-based AI pair programming |
 | **Amp** | IDE | Sourcegraph | AI-native code editor |
 | **Claude Code** | CLI | Anthropic | Primary development target |
 | **Claude Desktop** | Desktop App | Anthropic | Full GUI experience |
 | **Cline** | VS Code Extension | Cline | Autonomous coding agent |
 | **Codex** | CLI | OpenAI | OpenAI's coding assistant |
+| **Continue** | VS Code Extension | Continue | Open-source AI extension |
 | **Copilot** | IDE Extension | GitHub/Microsoft | GitHub Copilot with MCP |
 | **Cursor** | IDE | Cursor | AI-first code editor |
 | **Factory** | Platform | Factory | AI software development platform |
 | **Gemini CLI** | CLI | Google | Google's AI CLI tool |
 | **Goose** | CLI | Block | Open-source AI agent |
+| **JetBrains IDEs** | IDE | JetBrains | IntelliJ, PyCharm, WebStorm via plugin |
 | **Kiro** | IDE | Amazon | AWS AI-powered IDE |
 | **LM Studio** | Desktop App | LM Studio | Local LLM runner with MCP |
+| **Neovim** | Editor | Open Source | Via MCP plugins |
 | **opencode** | CLI | Open Source | Terminal-based AI coding |
 | **OpenHands** | Agent Platform | All Hands AI | Open-source AI software agent (64k+ stars) |
 | **Qodo Gen** | IDE Extension | Qodo | AI code generation |
+| **Roo Code** | VS Code Extension | Roo | Fork of Cline |
 | **VS Code** | IDE | Microsoft | Via MCP extensions |
 | **Warp** | Terminal | Warp | AI-native terminal |
 | **Windsurf** | IDE | Codeium | Codeium's AI IDE |
+| **Zed** | IDE | Zed | High-performance editor with native MCP |
 
 ### Configuration by Client
 
