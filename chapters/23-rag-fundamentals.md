@@ -2941,12 +2941,4 @@ In Chapter 23, you'll learn:
 
 ---
 
-## Navigation
-
-← Previous: [Chapter 22: Production Deployment of Agentic Systems](./22-production-deployment.md) | Next: [Chapter 24: RAG Search & Retrieval Optimization](./24-rag-search-optimization.md) →
-
-**Quick Nav:** [README](../README.md) | [Table of Contents](../README.md#table-of-contents)
-
----
-
 **Chapter 23** | RAG Fundamentals | © 2026 Michel Abboud | [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
