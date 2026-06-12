@@ -10,7 +10,7 @@ This is **"AI and Claude Code: A Comprehensive Guide for DevOps Engineers"** - a
 
 **Author**: Michel Abboud
 **License**: CC BY-NC 4.0 (Creative Commons Attribution-NonCommercial)
-**Claude Code Version Coverage**: v2.1.4 (January 2025) and earlier
+**Claude Code Version Coverage**: v2.1.4 (January 2026) and earlier
 **Last Updated**: January 2026
 
 ---
@@ -380,7 +380,7 @@ Official documentation referenced:
 
 ### Current Version Coverage
 
-This guide covers **Claude Code v2.1.4 (January 2025)** and earlier versions.
+This guide covers **Claude Code v2.1.4 (January 2026)** and earlier versions.
 
 ### Key Features by Version
 
@@ -388,7 +388,7 @@ This guide covers **Claude Code v2.1.4 (January 2025)** and earlier versions.
 - `CLAUDE_CODE_DISABLE_BACKGROUND_TASKS` environment variable for disabling background tasks
 - Improved OAuth token refresh handling
 
-**v2.1.3 (January 2025)**
+**v2.1.3 (January 2026)**
 - **Unified slash commands and skills** - merged into single concept, simplified mental model
 - Release channel toggle (`stable` or `latest`) in `/config`
 - Tool hook timeout increased to 10 minutes (from 60 seconds)
